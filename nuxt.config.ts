@@ -6,11 +6,6 @@ export default defineNuxtConfig({
     experimental: {
         writeEarlyHints: false,
     },
-    vue: {
-      config: {
-          baseUrl: "/app/"
-      }
-    },
     runtimeConfig: {
         public: {
             apiURL: process.env.API_URL || 'https://intg.team-stage.com/api'
@@ -23,7 +18,7 @@ export default defineNuxtConfig({
         base: '/app/'
     },
     i18n: {
-        baseUrl: '/app/',
+        baseUrl: process.env.BASE_URL,
         locales: [
             {code: 'en', iso: 'en-US'},
             {code: 'de', iso: 'de-DE'}
