@@ -10,18 +10,13 @@ export default defineNuxtConfig({
     experimental: {
         writeEarlyHints: false,
     },
-    vue: {
-        config: {
-            baseUrl: '/app/'
-        }
+    app: {
+        baseURL: '/app/'
     },
     runtimeConfig: {
         public: {
             apiURL: process.env.API_URL || 'https://intg.team-stage.com/api'
         }
-    },
-    router: {
-        base: '/app/'
     },
     css: [
         'vuetify/lib/styles/main.sass',
