@@ -14,8 +14,10 @@ export default defineNuxtConfig({
     modules: [
         '@nuxtjs/i18n'
     ],
+    app: {
+        baseURL: '/app/'
+    },
     i18n: {
-        baseUrl: process.env.BASE_URL,
         locales: [
             {code: 'en', iso: 'en-US'},
             {code: 'de', iso: 'de-DE'}
