@@ -7,8 +7,8 @@
     "preview": "nuxt preview"
   },
   "devDependencies": {
-    "@intlify/unplugin-vue-i18n": "^0.5.0",
-    "nuxt": "^3.0.0"
+    "nuxt": "3.0.0-rc.12",
+    "@intlify/unplugin-vue-i18n": "^0.5.0"
   },
   "dependencies": {
     "@nuxt/cli": "^2.15.8",
@@ -16,7 +16,7 @@
     "mdi": "^2.2.43",
     "sass": "^1.54.5",
     "sass-loader": "^13.0.2",
-    "vue-i18n": "^9.2.2",
-    "vuetify": "^3.0.0"
+    "vuetify": "^3.0.0",
+    "vue-i18n": "^9.2.2"
   }
 }
