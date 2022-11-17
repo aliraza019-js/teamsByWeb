@@ -1,9 +1,5 @@
 import en from "./locales/en.json";
 import de from "./locales/de.json";
-import {resolve, dirname} from 'node:path'
-import {fileURLToPath} from 'url'
-import VueI18nVitePlugin from '@intlify/unplugin-vue-i18n/vite'
-
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
@@ -11,17 +7,43 @@ export default defineNuxtConfig({
         writeEarlyHints: false,
     },
     vue: {
-        config: {
-            baseUrl: '/app/'
-        }
+      config: {
+          baseUrl: "/app/"
+      }
     },
     runtimeConfig: {
         public: {
             apiURL: process.env.API_URL || 'https://intg.team-stage.com/api'
         }
     },
+    modules: [
+        '@nuxtjs/i18n'
+    ],
     router: {
         base: '/app/'
+    },
+    i18n: {
+        baseUrl: '/app/',
+        locales: [
+            {code: 'en', iso: 'en-US'},
+            {code: 'de', iso: 'de-DE'}
+        ],
+        strategy: 'prefix',
+        defaultLocale: 'de',
+        rootRedirect: {
+            statusCode: 301,
+            path: 'de'
+        },
+        vueI18n: {
+            legacy: false,
+            globalInjection: true,
+            locale: 'de',
+            fallbackLocale: 'en',
+            messages: {
+                en,
+                de
+            }
+        }
     },
     css: [
         'vuetify/lib/styles/main.sass',
@@ -46,11 +68,11 @@ export default defineNuxtConfig({
             }
         },
         plugins: [
-            VueI18nVitePlugin({
-                include: [
-                    resolve(dirname(fileURLToPath(import.meta.url)), './locales/*.json')
-                ]
-            })
+            // VueI18nVitePlugin({
+            //     include: [
+            //         resolve(dirname(fileURLToPath(import.meta.url)), './locales/*.json')
+            //     ]
+            // })
         ]
     }
 

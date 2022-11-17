@@ -68,6 +68,5 @@ export default defineNuxtPlugin(nuxtApp => {
         directives
     })
 
-    nuxtApp.vueApp.use(i18n)
     nuxtApp.vueApp.use(vuetify)
 })
