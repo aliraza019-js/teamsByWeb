@@ -14,6 +14,9 @@ export default defineNuxtConfig({
     modules: [
         '@nuxtjs/i18n'
     ],
+    router: {
+        base: '/app/'
+    },
     i18n: {
         baseUrl: process.env.BASE_URL,
         locales: [
