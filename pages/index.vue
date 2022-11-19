@@ -5,6 +5,14 @@
   <div>
     Aktuell eingeloggter Benutzer: {{ currentUser }}
   </div>
+
+  <div>
+    <v-btn class="rounded-xl primary-btn d-md-flex" @click="logout()">
+      <v-icon>mdi-logout-variant</v-icon>
+      <span class="d-none d-md-flex ml-1">Ausloggen</span>
+    </v-btn>
+  </div>
+
 </template>
 
 <script setup lang="ts">
@@ -33,6 +41,15 @@ onMounted(() => {
 
   })
 })
+
+const logout = () => {
+  const {app, auth} = useFirebase()
+  auth.signOut().then(() => {
+    console.log("user signed out")
+  }).catch((error) => {
+    console.log("error signing out")
+  })
+}
 
 </script>
 
