@@ -1,7 +1,7 @@
 <template>
 
   <div class="heading text-center mt-10">
-    Sign In
+    {{ $t('login.label.login') }}
   </div>
 
   <FormsSignIn/>
@@ -9,10 +9,10 @@
   <div class="text-center mt-16">
 
     <div class="d-inline-block mr-1">
-      Noch keinen Account?
+      {{ $t('login.noAccount1') }}
     </div>
     <NuxtLink :to="localePath('/signup')" class="d-inline-block text-decoration-underline">
-      Hier registrieren
+      {{ $t('login.noAccount2') }}
     </NuxtLink>
 
   </div>

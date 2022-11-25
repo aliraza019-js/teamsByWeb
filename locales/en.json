@@ -5,7 +5,9 @@
     "label": {
       "email": "Mail",
       "password": "Password",
-      "login": "Log In"
-    }
+      "login": "Sign In"
+    },
+    "noAccount1": "Don't have an account?",
+    "noAccount2": "Sign up here"
   }
 }
