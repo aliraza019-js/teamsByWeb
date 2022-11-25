@@ -1,1 +1,11 @@
-{}
+{
+  "required": "Required",
+  "login": {
+    "invalid": "Invalid credentials",
+    "label": {
+      "email": "Mail",
+      "password": "Password",
+      "login": "Log In"
+    }
+  }
+}
