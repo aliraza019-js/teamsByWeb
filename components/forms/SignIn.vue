@@ -49,19 +49,6 @@
       </v-container>
     </div>
   </div>
-
-  <div class="text-center mt-16">
-
-    <div class="d-inline-block mr-1">
-      Noch keinen Account?
-    </div>
-    <NuxtLink :to="localePath('/signup')" class="d-inline-block text-decoration-underline">
-      Hier registrieren
-    </NuxtLink>
-
-  </div>
-
-
 </template>
 
 <script setup lang="ts">
