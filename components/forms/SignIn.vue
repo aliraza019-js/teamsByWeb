@@ -1,36 +1,37 @@
 <template>
 
+  <!--            no-ssr Tag weil $vuetify.display.lgAndUp sonst buggt-->
+  <v-no-ssr>
+    <div class="d-flex justify-center mt-16">
+      <div class="elevation-5 rounded" :class="{'box': $vuetify.display.mdAndUp}">
 
-  <div class="d-flex justify-center mt-16">
-    <div class="elevation-5 box rounded">
+        <v-container class="pt-10 pb-10">
 
-      <v-container class="pt-10 pb-10">
+          <v-row>
 
-        <v-row>
-
-          <v-col class="v-col-12 v-col-lg-6 d-flex align-center">
-            <div class="shadow rounded text-center ml-auto mr-auto" style="width:80%">
-              <v-btn style="width:100%" class="bg-google mb-3" rounded="rounded" prepend-icon="mdi-google" dark="dark">
-                Sign in with Google
-              </v-btn>
-              <v-btn style="width:100%" class="bg-facebook mb-3 text-white" rounded="rounded"
-                     prepend-icon="mdi-facebook">Sign in with
-                Facebook
-              </v-btn>
-              <v-btn style="width:100%" class="bg-apple mb-3 text-white" rounded="rounded" theme="dark"
-                     prepend-icon="mdi-apple">Sign in
-                with
-                Apple
-              </v-btn>
-            </div>
-          </v-col>
-          <v-col class="v-col-12 v-col-lg-6">
-            <!--            no-ssr Tag weil $vuetify.display.lgAndUp sonst buggt-->
-            <v-no-ssr>
+            <v-col class="v-col-12 v-col-lg-6 d-flex align-center">
+              <div class="shadow rounded text-center ml-auto mr-auto" style="width:80%">
+                <v-btn style="width:100%" class="bg-google mb-3" rounded="rounded" prepend-icon="mdi-google"
+                       dark="dark">
+                  Sign in with Google
+                </v-btn>
+                <v-btn style="width:100%" class="bg-facebook mb-3 text-white" rounded="rounded"
+                       prepend-icon="mdi-facebook">Sign in with
+                  Facebook
+                </v-btn>
+                <v-btn style="width:100%" class="bg-apple mb-3 text-white" rounded="rounded" theme="dark"
+                       prepend-icon="mdi-apple">Sign in
+                  with
+                  Apple
+                </v-btn>
+              </div>
+            </v-col>
+            <v-col class="v-col-12 v-col-lg-6">
               <div :class="{ 'vl': $vuetify.display.lgAndUp }">
                 <div style="width:80%" class="text-center ml-auto mr-auto">
                   <v-form ref="form" @keydown.enter="login()">
-                    <v-text-field class="shadow" v-model="loginData.mail" type="email" :label="$t('login.label.email')"
+                    <v-text-field class="shadow" v-model="loginData.mail" type="email"
+                                  :label="$t('login.label.email')"
                                   :rules="[requiredRule]"
                                   prepend-inner-icon="mdi-email" variant="solo"></v-text-field>
                     <v-text-field v-model="loginData.pwd" type="password" :label="$t('login.label.password')"
@@ -44,13 +45,13 @@
                   <v-alert class="mt-3" closable v-if="showAlert" type="error">{{ $t('login.invalid') }}</v-alert>
                 </div>
               </div>
-            </v-no-ssr>
-          </v-col>
+            </v-col>
 
-        </v-row>
-      </v-container>
+          </v-row>
+        </v-container>
+      </div>
     </div>
-  </div>
+  </v-no-ssr>
 </template>
 
 <script setup lang="ts">
