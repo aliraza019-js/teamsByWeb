@@ -8,7 +8,7 @@
 
         <v-row>
 
-          <v-col class="v-col-12 v-col-md-6 d-flex align-center">
+          <v-col class="v-col-12 v-col-lg-6 d-flex align-center">
             <div class="shadow rounded text-center ml-auto mr-auto" style="width:80%">
               <v-btn style="width:100%" class="bg-google mb-3" rounded="rounded" prepend-icon="mdi-google" dark="dark">
                 Sign in with Google
@@ -24,25 +24,27 @@
               </v-btn>
             </div>
           </v-col>
-          <v-col class="v-col-12 v-col-md-6">
-            <div class="vl">
-              <div style="width:80%" class="text-center ml-auto mr-auto">
-                <v-form ref="form" @keydown.enter="login()">
-                  <v-text-field class="shadow" v-model="loginData.mail" type="email" :label="$t('login.label.email')"
-                                :rules="[requiredRule]"
-                                prepend-inner-icon="mdi-email" variant="solo"></v-text-field>
-                  <v-text-field v-model="loginData.pwd" type="password" :label="$t('login.label.password')"
-                                :rules="[requiredRule]"
-                                prepend-inner-icon="mdi-lock"
-                                append-inner-icon="mdi-eye" variant="solo"></v-text-field>
-                  <v-btn class="stretch bg-primary" style="width:80%" rounded="rounded" @click="login()"
-                         :loading="loading"> {{ $t('login.label.login') }}
-                  </v-btn>
-                </v-form>
-                <v-alert class="mt-3" closable v-if="showAlert" type="error">{{ $t('login.invalid') }}</v-alert>
+          <v-col class="v-col-12 v-col-lg-6">
+            <!--            no-ssr Tag weil $vuetify.display.lgAndUp sonst buggt-->
+            <v-no-ssr>
+              <div :class="{ 'vl': $vuetify.display.lgAndUp }">
+                <div style="width:80%" class="text-center ml-auto mr-auto">
+                  <v-form ref="form" @keydown.enter="login()">
+                    <v-text-field class="shadow" v-model="loginData.mail" type="email" :label="$t('login.label.email')"
+                                  :rules="[requiredRule]"
+                                  prepend-inner-icon="mdi-email" variant="solo"></v-text-field>
+                    <v-text-field v-model="loginData.pwd" type="password" :label="$t('login.label.password')"
+                                  :rules="[requiredRule]"
+                                  prepend-inner-icon="mdi-lock"
+                                  append-inner-icon="mdi-eye" variant="solo"></v-text-field>
+                    <v-btn class="stretch bg-primary" style="width:80%" rounded="rounded" @click="login()"
+                           :loading="loading"> {{ $t('login.label.login') }}
+                    </v-btn>
+                  </v-form>
+                  <v-alert class="mt-3" closable v-if="showAlert" type="error">{{ $t('login.invalid') }}</v-alert>
+                </div>
               </div>
-
-            </div>
+            </v-no-ssr>
           </v-col>
 
         </v-row>
@@ -52,7 +54,7 @@
 </template>
 
 <script setup lang="ts">
-import {navigateTo, ref, useLocalePath} from '#imports';
+import {computed, navigateTo, onMounted, ref, useLocalePath} from '#imports';
 import {useFirebase} from '~/composables/useFirebase';
 import {signInWithEmailAndPassword} from '@firebase/auth';
 import {useRuntimeConfig} from '#app';
@@ -62,13 +64,13 @@ import {VForm} from 'vuetify/components';
 
 const form: Ref<VForm> = ref();
 const t = useI18n();
-const loading = ref(false)
+const loading = ref(false);
 const loginData = ref({
   mail: '',
   pwd: ''
-})
-const requiredRule = (value: any) => !!value || t.t('required')
-let showAlert = ref(false)
+});
+const requiredRule = (value: any) => !!value || t.t('required');
+let showAlert = ref(false);
 
 const runtimeConfig = useRuntimeConfig();
 const localePath = useLocalePath();
@@ -90,7 +92,7 @@ const login = () => {
       const user = userCredential.user;
 
 
-      navigateTo(localePath('/'))
+      navigateTo(localePath('/'));
       // window.location.href = runtimeConfig.public.appURL;
     }).catch((error) => {
       const errorCode = error.code;
@@ -99,12 +101,12 @@ const login = () => {
       showAlert.value = true;
     }).finally(() => {
       loading.value = false;
-    })
+    });
 
   });
 
 
-}
+};
 </script>
 
 <style scoped>
@@ -115,7 +117,7 @@ const login = () => {
 }
 
 .box {
-  width: 35%
+  width: 50%
 }
 
 </style>
