@@ -1,1 +1,11 @@
-{}
+{
+  "required": "Pflichtpfeld",
+  "login": {
+    "invalid": "Ungültige Zugangsdaten",
+    "label": {
+      "email": "E-Mail",
+      "password": "Passwort",
+      "login": "Anmelden"
+    }
+  }
+}
