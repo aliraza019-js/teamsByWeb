@@ -8,7 +8,7 @@
 
         <v-row>
 
-          <v-col class="v-col-12 v-col-md-6">
+          <v-col class="v-col-12 v-col-md-6 d-flex align-center">
             <div class="shadow rounded text-center ml-auto mr-auto" style="width:80%">
               <v-btn style="width:100%" class="bg-google mb-3" rounded="rounded" prepend-icon="mdi-google" dark="dark">
                 Sign in with Google
@@ -59,7 +59,6 @@ import {useRuntimeConfig} from '#app';
 import {useI18n} from 'vue-i18n';
 import {Ref} from '@vue/reactivity';
 import {VForm} from 'vuetify/components';
-import {localePath} from 'vue-i18n-routing';
 
 const form: Ref<VForm> = ref();
 const t = useI18n();
