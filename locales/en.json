@@ -9,5 +9,16 @@
     },
     "noAccount1": "Don't have an account?",
     "noAccount2": "Sign up here"
+  },
+  "signUp": {
+    "invalid": "Mail already exists",
+    "label": {
+      "email": "Mail",
+      "password": "Password",
+      "password2": "Enter Password again",
+      "login": "Sign Up"
+    },
+    "existingAccount1": "Already have an account?",
+    "existingAccount2": "Log in here"
   }
 }
