@@ -5,9 +5,12 @@
     "label": {
       "email": "E-Mail",
       "password": "Passwort",
+      "password2": "Passwort wiederholen",
       "login": "Anmelden"
     },
     "noAccount1": "Noch keinen Account?",
-    "noAccount2": "Hier registrieren"
+    "noAccount2": "Hier registrieren",
+    "existingAccount1": "Bereits registriert?",
+    "existingAccount2": "Hier einloggen"
   }
 }

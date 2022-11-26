@@ -5,9 +5,12 @@
     "label": {
       "email": "Mail",
       "password": "Password",
+      "password2": "Enter Password again",
       "login": "Sign In"
     },
     "noAccount1": "Don't have an account?",
-    "noAccount2": "Sign up here"
+    "noAccount2": "Sign up here",
+    "existingAccount1": "Already have an account?",
+    "existingAccount2": "Log in here"
   }
 }
