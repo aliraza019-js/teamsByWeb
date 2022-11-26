@@ -11,7 +11,7 @@
     "noAccount2": "Sign up here"
   },
   "signUp": {
-    "invalid": "E-Mail already exists",
+    "invalid": "Mail already exists",
     "label": {
       "email": "Mail",
       "password": "Password",
