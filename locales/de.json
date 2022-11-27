@@ -16,7 +16,7 @@
       "email": "E-Mail",
       "password": "Passwort",
       "password2": "Passwort wiederholen",
-      "login": "Anmelden"
+      "login": "Registrieren"
     },
     "existingAccount1": "Bereits registriert?",
     "existingAccount2": "Hier einloggen"
