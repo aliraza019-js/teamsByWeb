@@ -1,33 +1,38 @@
 <template>
   <Html :lang="head.htmlAttrs.lang" :dir="head.htmlAttrs.dir">
-    <v-app>
-      
-      <v-main>
-        <slot></slot>
-      </v-main>
-      
+
+  <Head>
+  </Head>
+  <v-app>
+
+    <v-main>
+      <slot></slot>
+    </v-main>
+
     <v-footer class="footer">
       <v-container>
         <v-row>
           <v-col cols="12" md="5" lg="4">
             <div class="d-flex justify-space-between align-center">
-              <v-img src="/img/logo_sm.png" width="200px"></v-img>
+              <v-img src="../img/logo_sm.png" width="200px"></v-img>
               <v-spacer></v-spacer>
-              <v-btn class="rounded-xl primary-btn" text="text" flat="flat" 
-                     v-if="$i18n.locale != 'de'">
+              <v-btn class="rounded-xl primary-btn" text="text" flat="flat" @click.stop="goToDe()"
+                v-if="$i18n.locale != 'de'">
                 <v-icon class="mr-2">mdi-web</v-icon>
                 <span>Deutsch</span>
               </v-btn>
-              <v-btn class="rounded-xl primary-btn" text="text" flat="flat" 
-                     v-if="$i18n.locale != 'en'">
+              <v-btn class="rounded-xl primary-btn" text="text" flat="flat" @click.stop="goToEn()"
+                v-if="$i18n.locale != 'en'">
                 <v-icon class="mr-2">mdi-web</v-icon>
                 <span>English</span>
               </v-btn>
             </div>
             <div class="d-flex align-center">
-              <CompsStoreBtn title="App-Store" icon="mdi-apple"></CompsStoreBtn>
+              <CompsStoreBtn title="App-Store" icon="mdi-apple" href="https://www.apple.com/de/app-store/">
+              </CompsStoreBtn>
               <v-spacer></v-spacer>
-              <CompsStoreBtn title="Play-Store" icon="mdi-google-play"></CompsStoreBtn>
+              <CompsStoreBtn title="Play-Store" icon="mdi-google-play" href="https://play.google.com/store">
+              </CompsStoreBtn>
             </div>
             <div class="d-flex">
               <p class="text-caption">copyright &copy; 2022</p>
@@ -38,7 +43,7 @@
             <v-row>
               <v-col cols="12" sm="4">
                 <h6 class="text-subtitle-1 font-weight-bold">Quick-Links</h6>
-                <hr class="footer-header mb-5"/>
+                <hr class="footer-header mb-5" />
                 <div class="d-flex flex-column"><a class="footer-link text-caption py-1" href="#">lorem ipsum</a><a
                     class="footer-link text-caption py-1" href="#">lorem ipsum</a><a
                     class="footer-link text-caption py-1" href="#">lorem ipsum</a><a
@@ -46,15 +51,15 @@
               </v-col>
               <v-col cols="12" sm="4">
                 <h6 class="text-subtitle-1 font-weight-bold">Support</h6>
-                <hr class="footer-header mb-5"/>
+                <hr class="footer-header mb-5" />
                 <div class="d-flex flex-column"><a class="footer-link text-caption py-1" href="#">FAQ</a><a
                     class="footer-link text-caption py-1" href="#">Technische Hotline</a><a
                     class="footer-link text-caption py-1" href="#">Vetrieb</a><a class="footer-link text-caption py-1"
-                                                                                 href="#">Ticketsystem</a></div>
+                    href="#">Ticketsystem</a></div>
               </v-col>
               <v-col cols="12" sm="4">
                 <h6 class="text-subtitle-1 font-weight-bold">Corporate</h6>
-                <hr class="footer-header mb-5"/>
+                <hr class="footer-header mb-5" />
                 <div class="d-flex flex-column"><a class="footer-link text-caption py-1" href="#">Impressum</a>
                   <a class="footer-link text-caption py-1" href="#">Datenschutz</a>
                   <NuxtLink class="footer-link text-caption py-1" :to="localePath('contact')">Kontakt</NuxtLink>
@@ -66,7 +71,8 @@
         </v-row>
       </v-container>
     </v-footer>
-    </v-app>
+  </v-app>
+
   </Html>
 
 </template>
@@ -82,15 +88,15 @@ import {
   useSwitchLocalePath,
   useLocalePath, useI18n, useLocaleHead, computed, useRouteBaseName, useFirebase
 } from '#imports';
-import {onAuthStateChanged} from '@firebase/auth';
+import { onAuthStateChanged } from '@firebase/auth';
 
 const switchLocalePath = useSwitchLocalePath()
 const localePath = useLocalePath();
-const t = useI18n({useScope: 'global'})
+const t = useI18n({ useScope: 'global' })
 /**
  * head configuration
  */
- const head = useLocaleHead({
+const head = useLocaleHead({
   addDirAttribute: true,
   identifierAttribute: 'id',
   addSeoAttributes: true
@@ -99,8 +105,17 @@ const t = useI18n({useScope: 'global'})
 /**
  * data
  */
- const drawer = ref(false)
+const drawer = ref(false)
 const route = useRoute()
+
+// lang switcher
+
+const goToDe = () => {
+  navigateTo(switchLocalePath('de'))
+}
+const goToEn = () => {
+  navigateTo(switchLocalePath('en'))
+}
 
 
 </script>
