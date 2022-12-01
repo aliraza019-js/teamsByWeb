@@ -1,0 +1,36 @@
+a {
+    text-decoration: none;
+    color: $text-link;
+    font-weight: bold;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.primary-btn {
+    background-image: linear-gradient($secondary, $primary) !important;
+    span {
+        color: $text-light;
+    }
+}
+
+.stretch {
+    width: 100%;
+}
+
+.bg.primary {
+    background-color: $primary;
+}
+
+.bg-google {
+    background-color: $bg-google !important;
+}
+
+.bg-facebook {
+    background-color: $bg-facebook !important;
+}
+
+.bg-apple {
+    background-color: $bg-apple !important;
+}
