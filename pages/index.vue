@@ -11,7 +11,6 @@
       <v-icon>mdi-logout-variant</v-icon>
       <span class="d-none d-md-flex ml-1">Ausloggen</span>
     </v-btn>
-    Hallo
   </div>
 
 </template>
