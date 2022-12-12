@@ -80,6 +80,8 @@ const route = useRoute()
 
 <style scoped>
 
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
 .footer {
   background-color: #f2f2f2;
   min-height: 48px;
