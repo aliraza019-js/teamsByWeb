@@ -6,79 +6,79 @@
           <v-card class="homeCard" elevation="8">
             <v-card-subtitle>
 
-              <v-row class="elemts" style="margin-top: 10px">
+              <v-row class="rows" style="margin-top: 10px">
                 <v-col col="12" sm="2">
                   <v-icon>
                     mdi-home-outline
                   </v-icon>
                 </v-col>
                 <v-col col="12" sm="10">
-                  <p>Home</p>
+                  <button id="home" @click="foo()">Home</button>
                 </v-col>
               </v-row>
 
               <hr>
 
-              <v-row class="elemts">
+              <v-row class="rows">
                 <v-col col="12" sm="2">
                   <v-icon>
                     mdi-account-multiple-outline
                   </v-icon>
                 </v-col>
                 <v-col col="12" sm="10">
-                  <p>Team</p>
+                  <button id="team">Team</button>
                 </v-col>
               </v-row>
 
               <hr>
 
-              <v-row class="elemts">
+              <v-row class="rows">
                 <v-col col="12" sm="2">
                   <v-icon>
                     mdi-file-document
                   </v-icon>
                 </v-col>
                 <v-col col="12" sm="10">
-                  <p>Projects</p>
+                  <button id="projects">Projects</button>
                 </v-col>
               </v-row>
 
               <hr>
 
-              <v-row class="elemts">
+              <v-row class="rows">
                 <v-col col="12" sm="2">
                   <v-icon>
                     mdi-magnify
                   </v-icon>
                 </v-col>
                 <v-col col="12" sm="10">
-                  <p>Search</p>
+                  <button id="search">Search</button>
                 </v-col>
               </v-row>
 
               <hr>
 
-              <v-row class="elemts">
+              <v-row class="rows">
                 <v-col col="12" sm="2">
                   <v-icon>
                     mdi-account-outline
                   </v-icon>
                 </v-col>
                 <v-col col="12" sm="10">
-                  <p>Account</p>
+                  <button id="account">Account</button>
                 </v-col>
               </v-row>
 
               <hr>
 
-              <v-row class="elemts" style="margin-bottom: 10px">
+              <v-row class="rows" style="margin-bottom: 10px">
                 <v-col col="12" sm="2">
                   <v-icon>
                     mdi-settings-outline
                   </v-icon>
                 </v-col>
                 <v-col col="12" sm="10">
-                  <p>Admin</p>
+                  <button id="admin">Admin</button>
                 </v-col>
               </v-row>
 
@@ -117,7 +117,10 @@
 
 <script setup lang="ts">
 
+function foo() {
+  alert("Hello Worold");
 
+}
 
 
 </script>
@@ -152,7 +155,7 @@ hr {
   margin-bottom: 10px;
 }
 
-.elemts:hover {
+.rows:active {
   color: #4D6FF8;
 }
 </style>
