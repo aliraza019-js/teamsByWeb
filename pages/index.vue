@@ -31,6 +31,7 @@ import {useFirebase} from "~/composables/useFirebase";
 import {onAuthStateChanged} from "@firebase/auth";
 
 const currentUser = ref();
+const currentUserPicture = ref();
 const runtimeConfig = useRuntimeConfig()
 const apiUrl = runtimeConfig.public.apiURL;
 
@@ -44,10 +45,12 @@ onMounted(() => {
       console.log("user is logged in")
       console.log("Angemeldeter Benutzer: ", auth.currentUser)
       currentUser.value = auth.currentUser?.email
+      currentUserPicture.value = auth.currentUser?.photoURL
     } else {
       console.log("user is not logged in")
       console.log("Angemeldeter Benutzer: ", auth.currentUser)
       currentUser.value = "N/A"
+      currentUserPicture.value = "img/profile_pic_default.png"
     }
 
 
