@@ -83,11 +83,25 @@ const getPdf = () => {
         console.log("Fehler bei der Abfrage: ", JSON.stringify(value.error.value))
       } else {
         console.log("Erfolgreich: " + JSON.stringify(value.data.value))
+
+        //TODO Funktioniert so evtl schon, nächste Zeile wieder auskommentieren
+        //forceFileDownload(value.data.value, "Zusammenfassung")
       }
     })
 
   })
 }
+
+const forceFileDownload = (response: any, title: string) => {
+  console.log(title)
+  const url = window.URL.createObjectURL(new Blob([response.data]))
+  const link = document.createElement('a')
+  link.href = url
+  link.setAttribute('download', title)
+  document.body.appendChild(link)
+  link.click()
+}
+
 </script>
 
 <style scoped>
