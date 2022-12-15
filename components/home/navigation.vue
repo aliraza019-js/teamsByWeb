@@ -1,87 +1,85 @@
 <template>
   <v-container class="my-15 text-left">
     <v-row>
-      <v-col>
+      <v-col col="12" sm="3">
         <v-card class="homeCard" elevation="8">
           <v-card-subtitle>
 
-            <v-row class="rows" style="margin-top: 10px">
-              <v-col col="12" sm="2">
+            <div style="margin-bottom: 10px; margin-top:10px" tabindex="1">
+              <button class="block">
                 <v-icon>
                   mdi-home-outline
                 </v-icon>
-              </v-col>
-              <v-col col="12" sm="10">
-                <button id="home" @click="foo()">Home</button>
-              </v-col>
-            </v-row>
+                Home
+              </button>
+            </div>
 
-            <hr>
 
-            <v-row class="rows">
-              <v-col col="12" sm="2">
+            <div style="margin-bottom: 10px" tabindex="2">
+              <button class="block">
                 <v-icon>
                   mdi-account-multiple-outline
                 </v-icon>
-              </v-col>
-              <v-col col="12" sm="10">
-                <button id="team">Team</button>
-              </v-col>
-            </v-row>
+                Team
+              </button>
+            </div>
 
-            <hr>
-
-            <v-row class="rows">
-              <v-col col="12" sm="2">
+            <div style="margin-bottom: 10px" tabindex="3">
+              <button class="block">
                 <v-icon>
                   mdi-file-document
                 </v-icon>
-              </v-col>
-              <v-col col="12" sm="10">
-                <button id="projects">Projects</button>
-              </v-col>
-            </v-row>
+                Projects
+              </button>
+            </div>
 
-            <hr>
-
-            <v-row class="rows">
-              <v-col col="12" sm="2">
+            <div style="margin-bottom: 10px" tabindex="4">
+              <button class="block">
                 <v-icon>
                   mdi-magnify
                 </v-icon>
-              </v-col>
-              <v-col col="12" sm="10">
-                <button id="search">Search</button>
-              </v-col>
-            </v-row>
+                Search
+              </button>
+            </div>
 
-            <hr>
-
-            <v-row class="rows">
-              <v-col col="12" sm="2">
+            <div style="margin-bottom: 10px" tabindex="5">
+              <button class="block">
                 <v-icon>
                   mdi-account-outline
                 </v-icon>
-              </v-col>
-              <v-col col="12" sm="10">
-                <button id="account">Account</button>
-              </v-col>
-            </v-row>
+                Account
+              </button>
+            </div>
 
-            <hr>
-
-            <v-row class="rows" style="margin-bottom: 10px">
-              <v-col col="12" sm="2">
+            <div style="margin-bottom: 10px" tabindex="6">
+              <button class="block">
                 <v-icon>
                   mdi-settings-outline
                 </v-icon>
-              </v-col>
-              <v-col col="12" sm="10">
-                <button id="admin">Admin</button>
-              </v-col>
-            </v-row>
+                Admin
+              </button>
+            </div>
+
+            <div style="margin-top: 100px">
+              <button class="block logout btn7" >
+                <v-icon>
+                  mdi-logout-variant
+                </v-icon>
+                Log Out
+              </button>
+            </div>
+
 
           </v-card-subtitle>
+        </v-card>
+      </v-col>
+      <v-col col="12" sm="9">
+        <v-card>
+          <v-row>
+            <v-col >
+
+            </v-col>
+          </v-row>
         </v-card>
       </v-col>
     </v-row>
@@ -91,17 +89,38 @@
 
 <style scoped>
 
-.rows:active {
-  color: #4D6FF8;
+div:focus {
+  background-color:#06A69D;
+  border-radius: 10px;
 }
 
 .homeCard{
-  max-width: 200px ;
+  max-width: 320px ;
 }
 
 hr {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.block {
+  display: block;
+  width: 70%;
+  border: none;
+  padding: 14px 28px;
+  font-size: 16px;
+  text-align: left;
+}
+
+.logout:active{
+  color: #4D6FF8;
+}
+
+.btn7 {
+  color: #1C1C1C;
+  border-style: solid;
+  border-radius: 100px;
+  width: 100%;
 }
 
 </style>

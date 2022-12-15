@@ -4,10 +4,6 @@
 
 <script setup lang="ts">
 
-function foo() {
-  alert("Hello Worold");
-
-}
 
 import {definePageMeta} from "#imports";
 definePageMeta({
