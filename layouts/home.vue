@@ -5,6 +5,8 @@
   </Head>
   <v-app>
 
+    <HomeHeader/>
+
     <v-main>
       <slot></slot>
     </v-main>
