@@ -77,9 +77,8 @@ const getPdf = () => {
     fetch(`http://127.0.0.1:3001/api/users-pdfs`, {
       method: 'GET',
       headers: {
-        'Accept': 'blob',
+        'Accept': 'application/pdf',
         'Authorization': `Bearer ${token}`,
-        'Access-Control-Allow-Origin': 'http://127.0.0.1:3001'
       }
     }) .then((response) => response.blob()).then((myBlob) => {
         const url = window.URL.createObjectURL(myBlob)
