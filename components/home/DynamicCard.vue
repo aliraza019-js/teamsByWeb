@@ -6,11 +6,31 @@
           <div class="pa-4 bg-secondary rounded-e-xl small-box"/>
         </v-col>
         <v-col>
-          <div class="small-title">
+          <div class="text">
             22 July 2022 - Tenant name
           </div>
           <div class="title mt-1">
             <a href="###">Relaunch volkswagen.com</a>
+          </div>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-divider class="divider mt-5"/>
+        <div class="text mt-5">
+          Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec,
+        </div>
+      </v-row>
+      <v-row>
+        <v-col class="d-flex">
+          <v-img src="../img/Icon_material-comment.png" max-height="24px" max-width="24px"/>
+          <div class="bold">
+            24 comments
+          </div>
+        </v-col>
+        <v-col class="d-flex">
+          <v-img src="../img/Icon_feather-thumbs-up.png" max-height="24px" max-width="24px"/>
+          <div class="bold">
+            1.2K likes
           </div>
         </v-col>
       </v-row>
@@ -42,6 +62,18 @@
 .small-box {
   background: #06A69D 0% 0% no-repeat padding-box;
   border-radius: 0px 4px 4px 0px;
+  opacity: 1;
+}
+
+.divider {
+  border: 0.5px solid #707070;
+  opacity: 0.23;
+}
+
+.bold {
+  font: normal normal bold 14px/19px Nunito;
+  letter-spacing: 0.35px;
+  color: #1C1C1C;
   opacity: 1;
 }
 
