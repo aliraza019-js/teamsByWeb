@@ -92,6 +92,8 @@
 div:focus {
   background-color:#06A69D;
   border-radius: 10px;
+  color: white;
+  opacity: 1;
 }
 
 .homeCard{
