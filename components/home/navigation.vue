@@ -7,64 +7,64 @@
 
             <div class="mt-2" tabindex="1">
               <button class="block button-gradient card-text">
-                <v-icon>
+                <v-icon class="icons">
                   mdi-home-outline
                 </v-icon>
-                Home
+                {{ $t('home.home')}}
               </button>
             </div>
 
             <div class="mt-2" tabindex="2">
               <button class="block button-gradient card-text">
-                <v-icon>
+                <v-icon class="icons">
                   mdi-account-multiple-outline
                 </v-icon>
-                Team
+                {{ $t('home.team')}}
               </button>
             </div>
 
             <div class="mt-2" tabindex="3">
               <button class="block button-gradient card-text">
-                <v-icon>
+                <v-icon class="icons">
                   mdi-file-document
                 </v-icon>
-                Projects
+                {{ $t('home.projects')}}
               </button>
             </div>
 
             <div class="mt-2" tabindex="4">
               <button class="block button-gradient card-text">
-                <v-icon>
+                <v-icon class="icons">
                   mdi-magnify
                 </v-icon>
-                Search
+                {{ $t('home.search')}}
               </button>
             </div>
 
             <div class="mt-2" tabindex="5">
               <button class="block button-gradient card-text">
-                <v-icon>
+                <v-icon class="icons">
                   mdi-account-outline
                 </v-icon>
-                Account
+                {{ $t('home.account')}}
               </button>
             </div>
 
             <div class="mt-2" tabindex="6">
               <button class="block button-gradient card-text">
-                <v-icon>
+                <v-icon class="icons">
                   mdi-settings-outline
                 </v-icon>
-                Admin
+                {{ $t('home.setting')}}
               </button>
             </div>
 
             <div>
               <button class="logout btn7" >
-                <v-icon>
+                <v-icon class="icons">
                   mdi-logout-variant
                 </v-icon>
-                Log Out
+                {{ $t('home.logOut')}}
               </button>
             </div>
 
@@ -136,6 +136,14 @@
   opacity: 1;
 }
 
+.card-text {
+  letter-spacing: 0px;
+  opacity: 1;
+}
+
+.icons {
+  opacity: 1;
+}
 </style>
 <script setup lang="ts">
 import Home from "~/layouts/home.vue";
