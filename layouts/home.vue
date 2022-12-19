@@ -21,11 +21,11 @@
       <v-divider></v-divider>
     </v-navigation-drawer>
     <v-app-bar app="app" flat="flat" elevate-on-scroll="elevate-on-scroll" class="background-header">
-      <v-container>
+      <v-container class="fill-height mt-6">
         <v-row class="align-center justify-center">
           <v-col sm="8" md="3">
             <div class="d-flex justify-left">
-              <v-img class="pointer" src="../img/logoWhite.png" max-width="240px" contain="contain"
+              <v-img class="pointer" src="img/logoWhite.png" max-width="240px" contain="contain"
                      @click="goHome()"></v-img>
             </div>
           </v-col>
@@ -56,16 +56,16 @@
 
   <v-footer class="footer">
     <v-container class="w-75 mr-auto ml-auto">
-      <v-row>
+      <v-row class="justify-center">
         <v-col cols="12" md="6">
-          <div class="footer-text order-0">
-            © TeamStage GmbH 2022
+          <div class="order-0">
+            <a href="#" class="footer-text">© TeamStage GmbH 2022</a>
           </div>
         </v-col>
         <v-col cols="12" md="6">
           <v-row>
-            <v-col class="d-flex">
-              <div class="order-1 mr-5 text-right">
+            <v-col class="d-flex justify-end">
+              <div class="order-1 mr-5">
                 <a href="###" class="footer-text">FAQ</a>
               </div>
               <div class="order-2 mr-5">

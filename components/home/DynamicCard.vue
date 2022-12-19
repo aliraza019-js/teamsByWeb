@@ -2,24 +2,28 @@
   <v-container>
     <v-card elevation="8">
       <v-row class="align-center mt-3">
-        <v-col cols="12" md="1">
-          <div class="small-box"/>
+        <v-col lg="6" md="6" sm="6" >
+          <v-row>
+            <v-col class="klein" md="1" sm="1"  >
+              <div class="small-box"/>
+            </v-col>
+            <v-col class="klein2" md="10" sm="10">
+              <div class="text">
+                22 July 2022 - Tenant name
+              </div>
+              <div class="title mt-1">
+                <a href="###">Relaunch volkswagen.com</a>
+              </div>
+            </v-col>
+          </v-row>
         </v-col>
-        <v-col>
-          <div class="text">
-            22 July 2022 - Tenant name
-          </div>
-          <div class="title mt-1">
-            <a href="###">Relaunch volkswagen.com</a>
-          </div>
-        </v-col>
-        <v-col>
+        <v-col lg="6" md="6">
           <v-card height="48px" width="95px" class="grey-box mr-12">
-            <v-row>
-              <v-col>
-                <v-img src="../img/Icon_awesome-hourglass-start.png" max-height="24px" max-width="18px"/>
+            <v-row class="mt-0">
+              <v-col class="ml-1">
+                <v-img src="img/Icon_awesome-hourglass-start.png" max-height="24px" max-width="18px"/>
               </v-col>
-              <v-col>
+              <v-col class="mr-1">
                 <div>
                   Project Started
                 </div>
@@ -40,13 +44,13 @@
       </v-row>
       <v-row>
         <v-col class="d-flex ml-10 mb-4 mt-2">
-          <v-img src="../img/Icon_material-comment.png" max-height="24px" max-width="24px"/>
+          <v-img src="img/Icon_material-comment.png" max-height="24px" max-width="24px"/>
           <div class="bold ml-2">
             24 comments
           </div>
         </v-col>
-        <v-col class="d-flex mb-4 mt-2">
-          <v-img src="../img/Icon_feather-thumbs-up.png" max-height="24px" max-width="24px"/>
+        <v-col class="d-flex mb-4 mt-2 mr-12 justify-end">
+          <v-img src="img/Icon_feather-thumbs-up.png" max-height="24px" max-width="24px"/>
           <div class="bold ml-2">
             1.2K likes
           </div>
@@ -59,6 +63,17 @@
 <style lang="scss" scoped>
 
 @import url('https://fonts.googleapis.com/css?family=Nunito');
+
+@media (max-width: 600px){
+  .klein {
+    flex: 0 0 8.3333333333%;
+    max-width: 8.3333333333%;
+  }
+  .klein2 {
+    flex: 0 0 8.3333333333%;
+    max-width: 87.33%;
+  }
+}
 
 .small-title {
   text-align: left;
@@ -98,13 +113,8 @@
   opacity: 1;
 }
 
-.grey-box::before {
-  background: #1C1C1C 0% 0% no-repeat padding-box;
-  border-radius: 4px;
-  opacity: 0.06;
-}
-
 .grey-box {
+  background-color: #1C1C1C15;
   float: right;
   text-align: left;
   font: normal normal normal 13px/15px Nunito;
