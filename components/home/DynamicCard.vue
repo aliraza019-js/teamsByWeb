@@ -3,7 +3,10 @@
     <v-card elevation="8">
       <v-row class="align-center">
         <v-col cols="12" md="1">
-          <div class="pa-4 bg-secondary rounded-e-xl small-box"/>
+          <div>
+
+          </div>
+          <div class="small-box"/>
         </v-col>
         <v-col>
           <div class="small-title">
@@ -43,6 +46,10 @@
   background: #06A69D 0% 0% no-repeat padding-box;
   border-radius: 0px 4px 4px 0px;
   opacity: 1;
+  top: 186px;
+  left: 620px;
+  width: 10px;
+  height: 48px;
 }
 
 </style>
