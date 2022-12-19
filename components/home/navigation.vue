@@ -87,6 +87,8 @@
       </v-col>
     </v-row>
   </v-container>
+
+  <HomeDynamicCard/>
 </template>
 
 
