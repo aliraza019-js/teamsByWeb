@@ -74,18 +74,11 @@
         </v-card>
       </v-col>
       <v-col col="12" sm="9">
-        <v-card>
-          <v-row>
-            <v-col >
-
-            </v-col>
-          </v-row>
-        </v-card>
+        <HomeDynamicCard/>
       </v-col>
     </v-row>
   </v-container>
 
-  <HomeDynamicCard/>
 </template>
 
 
