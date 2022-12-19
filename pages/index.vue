@@ -35,6 +35,8 @@ const currentUserPicture = ref();
 const runtimeConfig = useRuntimeConfig()
 const apiUrl = runtimeConfig.public.apiURL;
 
+
+
 onMounted(() => {
 
   const {app, auth} = useFirebase()
@@ -72,38 +74,26 @@ const getPdf = () => {
 
   auth.currentUser?.getIdToken(false).then(token => {
 
-    useFetch(`${apiUrl}/users-pdfs`, {
+    fetch(`${apiUrl}/users-pdfs`, {
       method: 'GET',
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      },
-      params: {uuid: "jlABvMy0FuW3klYTbEzyzaes8cJ2"},
-    }).then(value => {
-
-      if (value?.error?.value) {
-        console.log("Fehler bei der Abfrage: ", JSON.stringify(value.error.value))
-      } else {
-        console.log("Erfolgreich: " + JSON.stringify(value.data.value))
-
-        //TODO Funktioniert so evtl schon, nächste Zeile wieder auskommentieren
-        //forceFileDownload(value.data.value, "Zusammenfassung")
+        'Accept': 'application/pdf',
+        'Authorization': `Bearer ${token}`,
       }
-    })
+    }) .then((response) => response.blob()).then((myBlob) => {
+        const url = window.URL.createObjectURL(myBlob)
+        const link = document.createElement('a')
+      link.href = url
+      link.setAttribute('download', "Teamstage.pdf")
+      document.body.appendChild(link)
+      link.click()
 
+    })
+    //open -n -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --user-data-dir="/tmp/chrome_dev_test" --disable-web-security
+    
   })
 }
 
-const forceFileDownload = (response: any, title: string) => {
-  console.log(title)
-  const url = window.URL.createObjectURL(new Blob([response.data]))
-  const link = document.createElement('a')
-  link.href = url
-  link.setAttribute('download', title)
-  document.body.appendChild(link)
-  link.click()
-}
 
 </script>
 
