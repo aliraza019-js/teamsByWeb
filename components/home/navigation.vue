@@ -1,12 +1,12 @@
 <template>
-  <v-container class="my-15 text-left">
+  <v-container class="w-75 mr-auto ml-auto my-15">
     <v-row>
-      <v-col col="12" sm="3">
+      <v-col col="12" sm="3" class="d-flex">
         <v-card class="homeCard" elevation="8">
           <v-card-text>
 
-            <div style="margin-bottom: 10px; margin-top:10px" tabindex="1">
-              <button class="block">
+            <div class="mt-2" tabindex="1">
+              <button class="block button-gradient card-text">
                 <v-icon>
                   mdi-home-outline
                 </v-icon>
@@ -14,9 +14,8 @@
               </button>
             </div>
 
-
-            <div style="margin-bottom: 10px" tabindex="2">
-              <button class="block">
+            <div class="mt-2" tabindex="2">
+              <button class="block button-gradient card-text">
                 <v-icon>
                   mdi-account-multiple-outline
                 </v-icon>
@@ -24,8 +23,8 @@
               </button>
             </div>
 
-            <div style="margin-bottom: 10px" tabindex="3">
-              <button class="block">
+            <div class="mt-2" tabindex="3">
+              <button class="block button-gradient card-text">
                 <v-icon>
                   mdi-file-document
                 </v-icon>
@@ -33,8 +32,8 @@
               </button>
             </div>
 
-            <div style="margin-bottom: 10px" tabindex="4">
-              <button class="block">
+            <div class="mt-2" tabindex="4">
+              <button class="block button-gradient card-text">
                 <v-icon>
                   mdi-magnify
                 </v-icon>
@@ -42,8 +41,8 @@
               </button>
             </div>
 
-            <div style="margin-bottom: 10px" tabindex="5">
-              <button class="block">
+            <div class="mt-2" tabindex="5">
+              <button class="block button-gradient card-text">
                 <v-icon>
                   mdi-account-outline
                 </v-icon>
@@ -51,8 +50,8 @@
               </button>
             </div>
 
-            <div style="margin-bottom: 10px" tabindex="6">
-              <button class="block">
+            <div class="mt-2" tabindex="6">
+              <button class="block button-gradient card-text">
                 <v-icon>
                   mdi-settings-outline
                 </v-icon>
@@ -60,7 +59,7 @@
               </button>
             </div>
 
-            <div style="margin-top: 100px">
+            <div>
               <button class="logout btn7" >
                 <v-icon>
                   mdi-logout-variant
@@ -74,7 +73,9 @@
         </v-card>
       </v-col>
       <v-col col="12" sm="9">
-        <HomeDynamicCard/>
+        <div v-for="index in 10" :key="index">
+          <HomeDynamicCard/>
+        </div>
       </v-col>
     </v-row>
   </v-container>
@@ -84,11 +85,19 @@
 
 <style scoped>
 
-div:focus {
+.button-gradient:focus {
   background: transparent linear-gradient(180deg, #04C785 0%, #0966CB 100%) 0% 0% no-repeat padding-box;
   border-radius: 8px;
   color: white;
   top: 185px;
+}
+
+.card-text {
+  text-align: left;
+  font: normal normal normal 16px/32px Nunito;
+  letter-spacing: 0px;
+  color: #1C1C1C;
+  opacity: 1;
 }
 
 .homeCard{

@@ -55,31 +55,27 @@
 
 
   <v-footer class="footer">
-    <v-container>
+    <v-container class="w-75 mr-auto ml-auto">
       <v-row>
-        <v-col cols="12" md="9" class="align-start">
-          <p class="footer-text order-0">© TeamStage GmbH 2022</p>
+        <v-col cols="12" md="6">
+          <div class="footer-text order-0">
+            © TeamStage GmbH 2022
+          </div>
         </v-col>
-        <v-col cols="12" md="3" class="align-end">
+        <v-col cols="12" md="6">
           <v-row>
-            <v-col cols="12" md="3">
-              <div class="d-flex flex-column">
-                <a href="#" class="footer-text order-1">FAQ</a>
+            <v-col class="d-flex">
+              <div class="order-1 mr-5 text-right">
+                <a href="###" class="footer-text">FAQ</a>
               </div>
-            </v-col>
-            <v-col cols="12" md="3">
-              <div class="d-flex flex-column">
-              <a href="#" class="footer-text order-2">Support</a>
+              <div class="order-2 mr-5">
+                <a href="###" class="footer-text">Support</a>
               </div>
-            </v-col>
-            <v-col cols="12" md="3">
-              <div class="d-flex flex-column">
-              <a href="#" class="footer-text order-3">Contact</a>
+              <div class="order-3 mr-5">
+                <a href="###" class="footer-text">Contact</a>
               </div>
-            </v-col>
-            <v-col cols="12" md="3">
-              <div class="d-flex flex-column">
-              <a href="#" class="footer-text order-4">Imprint</a>
+              <div class="order-4">
+              <a href="#" class="footer-text">Imprint</a>
               </div>
             </v-col>
           </v-row>
