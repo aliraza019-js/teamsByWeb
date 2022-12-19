@@ -3,7 +3,7 @@
     <v-row>
       <v-col col="12" sm="3">
         <v-card class="homeCard" elevation="8">
-          <v-card-subtitle>
+          <v-card-text>
 
             <div style="margin-bottom: 10px; margin-top:10px" tabindex="1">
               <button class="block">
@@ -13,6 +13,7 @@
                 Home
               </button>
             </div>
+
 
             <div style="margin-bottom: 10px" tabindex="2">
               <button class="block">
@@ -59,21 +60,17 @@
               </button>
             </div>
 
-          </v-card-subtitle>
-
-          <v-card-actions>
-            <div>
-              <button class="block logout btn7" >
+            <div style="margin-top: 100px">
+              <button class="logout btn7" >
                 <v-icon>
                   mdi-logout-variant
                 </v-icon>
                 Log Out
               </button>
             </div>
-          </v-card-actions>
 
 
-
+          </v-card-text>
         </v-card>
       </v-col>
       <v-col col="12" sm="9">
@@ -97,7 +94,8 @@
 div:focus {
   background: transparent linear-gradient(180deg, #04C785 0%, #0966CB 100%) 0% 0% no-repeat padding-box;
   border-radius: 8px;
-  opacity: 1;
+  color: white;
+  top: 185px;
 }
 
 .homeCard{
@@ -110,17 +108,15 @@ div:focus {
   opacity: 1;
 }
 
-hr {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
 
 .block {
-  top: 185px;
+  text-align: left;
+  top: 255px;
   left: 290px;
   width: 260px;
   height: 60px;
-  
+  border-radius: 30px;
+  opacity: 1;
 }
 
 .logout:active{
@@ -139,3 +135,6 @@ hr {
 }
 
 </style>
+<script setup lang="ts">
+import Home from "~/layouts/home.vue";
+</script>
