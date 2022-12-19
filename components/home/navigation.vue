@@ -14,7 +14,6 @@
               </button>
             </div>
 
-
             <div style="margin-bottom: 10px" tabindex="2">
               <button class="block">
                 <v-icon>
@@ -60,7 +59,10 @@
               </button>
             </div>
 
-            <div style="margin-top: 100px">
+          </v-card-subtitle>
+
+          <v-card-actions>
+            <div>
               <button class="block logout btn7" >
                 <v-icon>
                   mdi-logout-variant
@@ -68,9 +70,10 @@
                 Log Out
               </button>
             </div>
+          </v-card-actions>
 
 
-          </v-card-subtitle>
+
         </v-card>
       </v-col>
       <v-col col="12" sm="9">
@@ -90,14 +93,19 @@
 <style scoped>
 
 div:focus {
-  background-color:#06A69D;
-  border-radius: 10px;
-  color: white;
+  background: transparent linear-gradient(180deg, #04C785 0%, #0966CB 100%) 0% 0% no-repeat padding-box;
+  border-radius: 8px;
   opacity: 1;
 }
 
 .homeCard{
   max-width: 320px ;
+  height: 845px;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  box-shadow: 0px 5px 20px #00000017;
+  border: 1px solid #E2E2E273;
+  border-radius: 8px;
+  opacity: 1;
 }
 
 hr {
@@ -106,12 +114,11 @@ hr {
 }
 
 .block {
-  display: block;
-  width: 70%;
-  border: none;
-  padding: 14px 28px;
-  font-size: 16px;
-  text-align: left;
+  top: 185px;
+  left: 290px;
+  width: 260px;
+  height: 60px;
+  
 }
 
 .logout:active{
@@ -119,10 +126,14 @@ hr {
 }
 
 .btn7 {
-  color: #1C1C1C;
-  border-style: solid;
-  border-radius: 100px;
-  width: 100%;
+  top: 909px;
+  left: 290px;
+  width: 260px;
+  height: 60px;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  border: 1px solid #0966CB;
+  border-radius: 30px;
+  opacity: 1;
 }
 
 </style>
