@@ -14,7 +14,7 @@
           </div>
         </v-col>
         <v-col>
-          <v-card height="48px" width="95px" class="grey-box">
+          <v-card height="48px" width="95px" class="grey-box mr-12">
             <v-row>
               <v-col>
                 <v-img src="../img/Icon_awesome-hourglass-start.png" max-height="24px" max-width="18px"/>
@@ -99,13 +99,13 @@
 }
 
 .grey-box::before {
-  float: right;
   background: #1C1C1C 0% 0% no-repeat padding-box;
   border-radius: 4px;
   opacity: 0.06;
 }
 
 .grey-box {
+  float: right;
   text-align: left;
   font: normal normal normal 13px/15px Nunito;
   letter-spacing: 0.33px;

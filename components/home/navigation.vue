@@ -1,72 +1,58 @@
 <template>
-  <v-container class="w-75 mr-auto ml-auto my-15">
+  <v-container class="mr-auto ml-auto my-15" :class="{'w-75': $vuetify.display.mdAndUp}">
     <v-row>
       <v-col col="12" sm="3" class="d-flex">
         <v-card class="homeCard" elevation="8">
           <v-card-text>
 
-            <div class="mt-2" tabindex="1">
-              <button class="block button-gradient card-text">
+              <v-btn block class="button-gradient card-text elevation-0">
                 <v-icon class="icons">
                   mdi-home-outline
                 </v-icon>
                 {{ $t('home.home')}}
-              </button>
-            </div>
+              </v-btn>
 
-            <div class="mt-2" tabindex="2">
-              <button class="block button-gradient card-text">
+              <v-btn block class="button-gradient card-text mt-2 elevation-0">
                 <v-icon class="icons">
                   mdi-account-multiple-outline
                 </v-icon>
                 {{ $t('home.team')}}
-              </button>
-            </div>
+              </v-btn>
 
-            <div class="mt-2" tabindex="3">
-              <button class="block button-gradient card-text">
+              <v-btn block class="button-gradient card-text mt-2 elevation-0">
                 <v-icon class="icons">
                   mdi-file-document
                 </v-icon>
                 {{ $t('home.projects')}}
-              </button>
-            </div>
+              </v-btn>
 
-            <div class="mt-2" tabindex="4">
-              <button class="block button-gradient card-text">
+              <v-btn block class="button-gradient card-text mt-2 elevation-0">
                 <v-icon class="icons">
                   mdi-magnify
                 </v-icon>
                 {{ $t('home.search')}}
-              </button>
-            </div>
+              </v-btn>
 
-            <div class="mt-2" tabindex="5">
-              <button class="block button-gradient card-text">
+              <v-btn block class="button-gradient card-text mt-2 elevation-0">
                 <v-icon class="icons">
                   mdi-account-outline
                 </v-icon>
                 {{ $t('home.account')}}
-              </button>
-            </div>
+              </v-btn>
 
-            <div class="mt-2" tabindex="6">
-              <button class="block button-gradient card-text">
+              <v-btn block class="button-gradient card-text mt-2 elevation-0">
                 <v-icon class="icons">
                   mdi-settings-outline
                 </v-icon>
                 {{ $t('home.setting')}}
-              </button>
-            </div>
+              </v-btn>
 
-            <div>
-              <button class="logout btn7" >
+              <v-btn block class="logout btn7 mt-2 elevation-0">
                 <v-icon class="icons">
                   mdi-logout-variant
                 </v-icon>
                 {{ $t('home.logOut')}}
-              </button>
-            </div>
+              </v-btn>
 
 
           </v-card-text>
@@ -89,7 +75,6 @@
   background: transparent linear-gradient(180deg, #04C785 0%, #0966CB 100%) 0% 0% no-repeat padding-box;
   border-radius: 8px;
   color: white;
-  top: 185px;
 }
 
 .card-text {
@@ -110,26 +95,11 @@
   opacity: 1;
 }
 
-
-.block {
-  text-align: left;
-  top: 255px;
-  left: 290px;
-  width: 260px;
-  height: 60px;
-  border-radius: 30px;
-  opacity: 1;
-}
-
 .logout:active{
   color: #4D6FF8;
 }
 
 .btn7 {
-  top: 909px;
-  left: 290px;
-  width: 260px;
-  height: 60px;
   background: #FFFFFF 0% 0% no-repeat padding-box;
   border: 1px solid #0966CB;
   border-radius: 30px;
