@@ -9,6 +9,7 @@ definePageMeta({
   name: 'account',
   layout: 'app'
 })
+
 </script>
 
 <style lang="scss" scoped>
