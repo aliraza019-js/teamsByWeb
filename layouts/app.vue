@@ -7,10 +7,10 @@ v-app
         h5 Navigation
 
   //- app bar
-  v-app-bar(app flat)
+  v-app-bar.app-bar(app flat theme="dark")
     v-container.d-flex.flex-row.align-center.justify-space-between
       //- logo
-      v-img.pointer(src="/app/img/logo_sm.png" max-width="190px" contain)
+      v-img.pointer(src="/app/img/logo-white_sm.png" max-width="190px" contain)
 
       //- navBar buttons
       .d-flex.flex-row
@@ -26,7 +26,7 @@ v-app
     v-container
       .d-flex.flex-row
         div(style="width:350px")
-          LayoutMainNav
+          LayoutMainNav(:navItems="navItems")
         slot
 
   //- footer
@@ -40,8 +40,20 @@ v-app
 <script setup>
 // data
 const drawer = ref(false)
+const navItems = [
+  { titleRef: 'home', icon: 'mdi-home', to: '/' },
+  { titleRef: 'teams', icon: 'mdi-home', to: '/team' },
+  { titleRef: 'projects', icon: 'mdi-home', to: '/projects' },
+  { titleRef: 'search', icon: 'mdi-home', to: '/search' },
+  { titleRef: 'account', icon: 'mdi-home', to: '/account' },
+  { titleRef: 'settings', icon: 'mdi-home', to: '/settings' }
+]
 </script>
 
 <style lang="scss" scoped>
-
+.app-bar {
+  background-image: linear-gradient($secondary, $primary);
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+}
 </style>
