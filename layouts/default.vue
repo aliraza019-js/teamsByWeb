@@ -18,7 +18,8 @@ v-app
   //- main
   v-main
     v-container.d-flex.flex-row
-      LayoutMainNav.mr-5(:nav-items="navItems")
+      .d-none.d-md-flex
+        LayoutMainNav.mr-5(:nav-items="navItems")
       slot
   //- footer
   v-footer(app height="45px" color="#f1f1f1")
