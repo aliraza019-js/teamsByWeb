@@ -1,10 +1,12 @@
 <template lang="pug">
 v-layout
-  h2 team list component
+  v-card 
+   v-card-subtitle {{team.name}} 
 </template>
 
 <script setup>
-const props = defineProps(['team'])
+ const props = defineProps(['team'])
+
 console.log('team', props.team)
 </script>
 
