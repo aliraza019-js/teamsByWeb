@@ -1,24 +1,28 @@
 <template lang="pug">
-v-container
+v-card(width="100%" flat)
   v-layout
-    v-card
-      v-tabs(v-model="tab")
-        v-tab(value="one") Kollegen
-        v-tab(value="two") Teams
-      v-card-text
-        v-window(v-model="tab")
-          v-window-item(value="one")
-            CommonPersonList(v-for="person in persons" :person="person")
+    v-app-bar(flat color="transparent")
+      v-app-bar-title Teams
+      v-btn(icon)
+        v-icon mdi-menu
+    v-main
+      v-container
+        v-divider.mt--10
+        v-card.mt-5(flat)
+          v-tabs(v-model="tab" height="35px")
+            v-tab(value="one") Kollegen
+            v-tab(value="two") Teams
 
-          v-window-item(value="two")
-            CommonTeamList(v-for="team in teams" :team="team")
+          v-card-text
+            v-window(v-model="tab")
+              v-window-item(value="one")
+                common-person-list(v-for="(person, index) in persons" :key="index" :person="person")
+
+              v-window-item(value="two")
+                common-team-list(v-for="(team, index) in teams" :key="index" :team="team")
 </template>
 
 <script setup>
-definePageMeta({
-  name: 'team',
-  layout: 'app'
-})
 
 // data
 const tab = ref(null)

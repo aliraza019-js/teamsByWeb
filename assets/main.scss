@@ -10,6 +10,7 @@ a {
 
 .primary-btn {
     background-image: linear-gradient($secondary, $primary) !important;
+
     span {
         color: $text-light;
     }
@@ -33,4 +34,8 @@ a {
 
 .bg-apple {
     background-color: $bg-apple !important;
+}
+
+.mt--10 {
+    margin-top: -17px;
 }

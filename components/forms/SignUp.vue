@@ -59,64 +59,64 @@
 </template>
 
 <script setup lang="ts">
-import {computed, navigateTo, onMounted, ref, useLocalePath} from '#imports';
-import {useFirebase} from '~/composables/useFirebase';
-import {createUserWithEmailAndPassword} from '@firebase/auth';
-import {useRuntimeConfig} from '#app';
-import {useI18n} from 'vue-i18n';
-import {Ref} from '@vue/reactivity';
-import {VForm} from 'vuetify/components';
+// import {computed, navigateTo, onMounted, ref, useLocalePath} from '#imports';
+// import {useFirebase} from '~/composables/useFirebase';
+// import {createUserWithEmailAndPassword} from '@firebase/auth';
+// import {useRuntimeConfig} from '#app';
+// import {useI18n} from 'vue-i18n';
+// import {Ref} from '@vue/reactivity';
+// import {VForm} from 'vuetify/components';
 
-const form: Ref<VForm> = ref();
-const t = useI18n();
-const loading = ref(false);
-const signUpData = ref({
-  mail: '',
-  pwd: '',
-  pwd2: ''
-});
-const requiredRule = (value: any) => !!value || t.t('required');
-let showAlert = ref(false);
+// const form: Ref<VForm> = ref();
+// const t = useI18n();
+// const loading = ref(false);
+// const signUpData = ref({
+//   mail: '',
+//   pwd: '',
+//   pwd2: ''
+// });
+// const requiredRule = (value: any) => !!value || t.t('required');
+// let showAlert = ref(false);
 
-const runtimeConfig = useRuntimeConfig();
-const localePath = useLocalePath();
+// const runtimeConfig = useRuntimeConfig();
+// const localePath = useLocalePath();
 
-const signUp = () => {
+// const signUp = () => {
 
-  form.value.validate().then(result => {
+//   form.value.validate().then(result => {
 
-    if (!result.valid) {
-      return;
-    }
+//     if (!result.valid) {
+//       return;
+//     }
 
-    loading.value = true;
-    showAlert.value = false;
-    const {app, auth} = useFirebase();
+//     loading.value = true;
+//     showAlert.value = false;
+//     const {app, auth} = useFirebase();
 
-    if (signUpData.value.pwd === signUpData.value.pwd2) {
+//     if (signUpData.value.pwd === signUpData.value.pwd2) {
 
-      createUserWithEmailAndPassword(auth, signUpData.value.mail, signUpData.value.pwd).then((userCredential) => {
-        // Signed up
-        const user = userCredential.user;
-
-
-        navigateTo(localePath('/'));
-        // window.location.href = runtimeConfig.public.appURL;
-      }).catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-        showAlert.value = true;
-      }).finally(() => {
-        loading.value = false;
-      });
-
-    }
-
-  });
+//       createUserWithEmailAndPassword(auth, signUpData.value.mail, signUpData.value.pwd).then((userCredential) => {
+//         // Signed up
+//         const user = userCredential.user;
 
 
-};
+//         navigateTo(localePath('/'));
+//         // window.location.href = runtimeConfig.public.appURL;
+//       }).catch((error) => {
+//         const errorCode = error.code;
+//         const errorMessage = error.message;
+//         console.log(errorCode, errorMessage);
+//         showAlert.value = true;
+//       }).finally(() => {
+//         loading.value = false;
+//       });
+
+//     }
+
+//   });
+
+
+// };
 </script>
 
 <style scoped>

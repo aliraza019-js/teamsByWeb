@@ -20,5 +20,14 @@
     },
     "existingAccount1": "Already have an account?",
     "existingAccount2": "Log in here"
+  },
+  "navLinks": {
+    "home": "Home",
+    "team": "Team",
+    "projects": "Projects",
+    "search": "Search",
+    "account": "Account",
+    "settings": "Settings",
+    "signout": "Sign out"
   }
 }
