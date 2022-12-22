@@ -8,18 +8,19 @@ v-container
             v-col.klein(md='1' sm='1')
               .small-box
             v-col.klein2(md='10' sm='10')
-              .text
+              .small-title
                 | 22 July 2022 - Tenant name
               .title.mt-1
-                a(href='###') Relaunch volkswagen.com
+                a(href='###').title Relaunch volkswagen.com
         v-col(lg='6' md='6')
           v-card.grey-box.mr-12(height='48px' width='95px')
             v-row.mt-0
               v-col.ml-1
-                v-icon 
-                  | mdi-timer-sand 
+                v-icon.icon
+                  | mdi-check-circle 
+              v-col.iconText.mr-3
                 p
-                  = 'Status'
+                  = 'Project Started'
             
       v-row
         v-divider.divider.mt-5.mr-10.ml-10.mb-5
@@ -107,6 +108,16 @@ console.log('projects', props.project)
   left: 620px;
   width: 10px;
   height: 48px;
+}
+
+.icon {
+  color: #04C785;
+  width: 18px;
+  height: 24px;
+}
+.iconText {
+  text-align: left;
+  font: normal normal 10px/13px Nunito;
 }
 
 .divider {
