@@ -10,14 +10,15 @@
     "nuxt": "^3.0.0"
   },
   "dependencies": {
+    "@intlify/unplugin-vue-i18n": "^0.8.1",
     "@nuxt/cli": "^2.15.8",
-    "@nuxtjs/i18n": "^8.0.0-beta.7",
+    "@nuxtjs/i18n": "^8.0.0-beta.6",
     "firebase": "^9.14.0",
     "imagekitio-vue": "^1.0.9",
     "mdi": "^2.2.43",
-    "sass": "^1.54.5",
+    "sass": "^1.57.1",
     "sass-loader": "^13.0.2",
     "vite-plugin-pug": "^0.3.2",
-    "vuetify": "^3.0.4"
+    "vuetify": "^3.0.6"
   }
 }

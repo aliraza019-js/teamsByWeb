@@ -1,32 +1,23 @@
-<template>
-
-  <div class="heading text-center mt-10">
-    {{ $t('signUp.label.login')}}
-  </div>
-
-  <FormsSignUp/>
-
-  <div class="text-center mt-16">
-
-    <div class="d-inline-block mr-1">
-      {{ $t('signUp.existingAccount1')}}
-    </div>
-    <NuxtLink :to="localePath('/sign-in')" class="d-inline-block text-decoration-underline">
-      {{ $t('signUp.existingAccount2')}}
-    </NuxtLink>
-
-  </div>
+<template lang="pug">
+v-layout
+  h2 signUp
+//- v-layout.d-flex.align-center.justify-center
+//-   v-card(max-width="450px")
+//-     v-card-title {{ $t('signUp.label.login') }}
+//-   v-card-text
+//-     //- forms-sign-up
+//-   v-card-text
+//-     span {{ $t('signUp.existingAccount1') }}
+//-     nuxt-link(:to="localePath('/sign-in')") {{ $t('signUp.existingAccount2') }}
 </template>
 
-<script setup lang="ts">
+<script setup>
 
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
 .heading {
   color: #0965CB;
   font-size: 4vh;
 }
-
 </style>

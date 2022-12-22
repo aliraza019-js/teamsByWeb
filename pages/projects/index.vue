@@ -1,25 +1,27 @@
 <template lang="pug">
-v-container
+v-card(width="100%" flat)
   v-layout
-    v-card
-      v-tabs(v-model="tab")
-        v-tab(value="one") Projekte
-        v-tab(value="two") Kunden
-      v-card-text
-        v-window(v-model="tab")
-          v-window-item(value="one")
-            CommonProjectList(v-for="project in projects" :project="project")
+    v-app-bar(flat color="transparent")
+      v-app-bar-title Projects
+      v-btn(icon)
+        v-icon mdi-menu
+    v-main
+      v-container
+        v-divider.mt--10
+        v-card.mt-5(flat)
+          v-tabs(v-model="tab" height="35px")
+            v-tab(value="one") Projekte
+            v-tab(value="two") Kunden
+          v-card-text
+            v-window(v-model="tab")
+              v-window-item(value="one")
+                CommonProjectList(v-for="project in projects" :project="project")
 
-          v-window-item(value="two")
-            CommonOrgList(v-for="org in orgs" :org="org")
+              v-window-item(value="two")
+                CommonOrgList(v-for="org in orgs" :org="org")
 </template>
 
 <script setup>
-
-definePageMeta({
-  name: 'projects',
-  layout: 'app'
-})
 
 // data
 const tab = ref(null)

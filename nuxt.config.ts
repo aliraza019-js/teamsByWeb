@@ -1,5 +1,6 @@
 import en from "./locales/en.json";
 import de from "./locales/de.json";
+import pugPlugin from "vite-plugin-pug"
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
@@ -17,21 +18,19 @@ export default defineNuxtConfig({
     app: {
         baseURL: '/app/'
     },
+    css: [
+        'vuetify/lib/styles/main.sass',
+        'mdi/css/materialdesignicons.min.css',
+        '@/assets/main.scss',
+        '@/assets/comps.scss'
+    ],
+    build: {
+        transpile: ['vuetify'],
+    },
     i18n: {
-        locales: [
-            {code: 'en', iso: 'en-US'},
-            {code: 'de', iso: 'de-DE'}
-        ],
-        strategy: 'prefix',
-        defaultLocale: 'de',
-        rootRedirect: {
-            statusCode: 301,
-            path: 'de'
-        },
+        locales: ['en', 'de'],
+        defaultLocale: 'en',
         vueI18n: {
-            legacy: false,
-            globalInjection: true,
-            locale: 'de',
             fallbackLocale: 'en',
             messages: {
                 en,
@@ -39,17 +38,9 @@ export default defineNuxtConfig({
             }
         }
     },
-    css: [
-        'vuetify/lib/styles/main.sass',
-        'mdi/css/materialdesignicons.min.css',
-        '@/assets/main.scss'
-    ],
-    build: {
-        transpile: ['vuetify'],
-    },
-    nitro: {
-        preset: 'node-server'
-    },
+    // nitro: {
+    //     preset: 'node-server'
+    // },
     vite: {
         define: {
             'process.env.DEBUG': false,
@@ -62,6 +53,7 @@ export default defineNuxtConfig({
             }
         },
         plugins: [
+            pugPlugin(),
             // VueI18nVitePlugin({
             //     include: [
             //         resolve(dirname(fileURLToPath(import.meta.url)), './locales/*.json')

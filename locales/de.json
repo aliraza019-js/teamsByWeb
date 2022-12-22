@@ -20,5 +20,14 @@
     },
     "existingAccount1": "Bereits registriert?",
     "existingAccount2": "Hier einloggen"
+  },
+  "navLinks": {
+    "home": "Start",
+    "team": "Team",
+    "projects": "Projekte",
+    "search": "Suche",
+    "account": "Account",
+    "settings": "Einstellungen",
+    "signout": "Abmelden"
   }
 }
