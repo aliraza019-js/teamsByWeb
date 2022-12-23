@@ -1,5 +1,8 @@
 {
   "required": "Pflichtpfeld",
+  "layout": {
+    "or": "ODER"
+  },
   "login": {
     "invalid": "Ungültige Zugangsdaten",
     "label": {
@@ -8,7 +11,12 @@
       "login": "Anmelden"
     },
     "noAccount1": "Noch keinen Account?",
-    "noAccount2": "Hier registrieren"
+    "noAccount2": "Hier registrieren.",
+    "signInWithGoogle": "Mit Google anmelden",
+    "signInWithFacebook": "Mit Facebook anmelden",
+    "signInWithApple": "Mit Apple anmelden",
+    "alreadyLoggedIn": "Du bist bereits angemeldet",
+    "goToApp": "Zur App"
   },
   "signUp": {
     "invalid": "E-Mail schon vorhanden",
@@ -19,7 +27,7 @@
       "login": "Registrieren"
     },
     "existingAccount1": "Bereits registriert?",
-    "existingAccount2": "Hier einloggen"
+    "existingAccount2": "Hier einloggen."
   },
   "navLinks": {
     "home": "Start",

@@ -9,11 +9,15 @@ export default defineNuxtConfig({
     },
     runtimeConfig: {
         public: {
-            apiURL: process.env.API_URL || 'https://intg.team-stage.com/api'
+            apiURL: process.env.API_URL || 'https://intg.team-stage.com/api',
+            firebaseApiKey: process.env.FIREBASE_API_KEY
         }
     },
     modules: [
-        '@nuxtjs/i18n'
+        '@nuxtjs/i18n',
+        ['@pinia/nuxt', {
+            autoImports: ['defineStore']
+        }],
     ],
     app: {
         baseURL: '/app/'

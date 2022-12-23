@@ -13,6 +13,9 @@ v-card(width="100%" flat)
 </template>
 
 <script setup>
+definePageMeta({
+  middleware: ['guard']
+})
 
 </script>
 
