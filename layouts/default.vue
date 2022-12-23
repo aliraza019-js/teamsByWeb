@@ -45,6 +45,9 @@ const navItems = [
 ]
 
 // methods
+onMounted(async () => {
+  await fbInitUser()
+})
 
 </script>
 

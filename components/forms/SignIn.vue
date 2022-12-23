@@ -1,111 +1,99 @@
-<template>
+<template lang="pug">
+v-form.d-flex-flex-column.align-center.justify-center.text-center(ref="form")
+  v-text-field.mb-2(
+    v-model="formData.mail"
+    style="width:100%"
+    type="email" 
+    label="Mail" 
+    :loading="loading" 
+    :disabled="loading"
+    :rules="rules.mail"
+    prepend-inner-icon="mdi-email")
 
-  <!--            no-ssr Tag weil $vuetify.display.lgAndUp sonst buggt-->
-  <v-no-ssr>
-    <div class="d-flex justify-center mt-16">
-      <div class="elevation-5 rounded" :class="{ 'box': $vuetify.display.mdAndUp }">
+  v-text-field.mb-2(
+    v-model="formData.pwd" 
+    style="width:100%"
+    type="password" 
+    label="password" 
+    :loading="loading" 
+    :disabled="loading"
+    :rules="rules.required"
+    prepend-inner-icon="mdi-lock")
 
-        <v-container class="pt-10 pb-10">
+  v-alert.mb-3(:type="msgType" variant="tonal" v-show="msgIsVisible") {{msgText}}
 
-          <v-row>
-
-            <v-col class="v-col-12 v-col-lg-6 d-flex align-center">
-              <div class="shadow rounded text-center ml-auto mr-auto" style="width:80%">
-                <v-btn style="width:100%" class="bg-google mb-3" rounded="rounded" prepend-icon="mdi-google"
-                  dark="dark">
-                  Sign in with Google
-                </v-btn>
-                <v-btn style="width:100%" class="bg-facebook mb-3 text-white" rounded="rounded"
-                  prepend-icon="mdi-facebook">Sign in with
-                  Facebook
-                </v-btn>
-                <v-btn style="width:100%" class="bg-apple mb-3 text-white" rounded="rounded" theme="dark"
-                  prepend-icon="mdi-apple">Sign in
-                  with
-                  Apple
-                </v-btn>
-              </div>
-            </v-col>
-            <v-col class="v-col-12 v-col-lg-6">
-              <div :class="{ 'vl': $vuetify.display.lgAndUp }">
-                <div style="width:80%" class="text-center ml-auto mr-auto">
-                  <v-form ref="form" @keydown.enter="login()">
-                    <v-text-field class="shadow" v-model="loginData.mail" type="email" :label="$t('login.label.email')"
-                      :rules="[requiredRule]" prepend-inner-icon="mdi-email" variant="solo"></v-text-field>
-                    <v-text-field v-model="loginData.pwd" type="password" :label="$t('login.label.password')"
-                      :rules="[requiredRule]" prepend-inner-icon="mdi-lock" append-inner-icon="mdi-eye"
-                      variant="solo"></v-text-field>
-                    <v-btn class="stretch bg-primary" style="width:80%" rounded="rounded" @click="login()"
-                      :loading="loading"> {{ $t('login.label.login') }}
-                    </v-btn>
-                  </v-form>
-                  <v-alert class="mt-3" closable v-if="showAlert" type="error">{{ $t('login.invalid') }}</v-alert>
-                </div>
-              </div>
-            </v-col>
-
-          </v-row>
-        </v-container>
-      </div>
-    </div>
-  </v-no-ssr>
+  v-btn.stretch(
+    style="width:100%; maxWidth:300px" 
+    :loading="loading" 
+    :disabled="loading"
+    rounded 
+    color="secondary"
+    @click="validate()")
+    span {{ $t('login.label.login') }}
 </template>
 
 <script setup>
-// const form = ref();
-// const t = useI18n();
-// const loading = ref(false);
-// const loginData = ref({
-//   mail: '',
-//   pwd: ''
-// });
-// const requiredRule = (value: any) => !!value || t.t('required');
-// let showAlert = ref(false);
+const config = useRuntimeConfig()
+const localePath = useLocalePath()
+const router = useRouter()
 
-// const runtimeConfig = useRuntimeConfig();
-// const localePath = useLocalePath();
+// data
+let form
+let valid
+const loading = ref(false)
+const formData = reactive({
+  mail: '',
+  pwd: ''
+})
+const rules = reactive({
+  required: [
+    v => !!v || 'required'
+  ],
+  mail: [
+    v => !!v || 'required',
+    v => !v || /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
+  ]
+})
+const msgType = ref('success')
+const msgText = ref()
+const msgIsVisible = ref(false)
 
-// const login = () => {
+// methods
+const validate = async () => {
+  loading.value = true
+  const { valid } = await form.validate()
+  if (valid) return signUp()
+  loading.value = false
+  return
+}
 
-//   form.value.validate().then(result => {
+const signUp = async () => {
+  try {
+    await fbSignInWithMail(formData.mail, formData.pwd)
+    await fbInitUser()
+    navigateTo(localePath('/'))
+    loading.value = false
+    await form.reset()
+    msgType.value = 'success'
+    msgText.value = 'erfolgreich angemeldet'
+    msgIsVisible.value = true
+    setTimeout(() => {
+      msgIsVisible.value = false
+    }, 2000)
 
-//     if (!result.valid) {
-//       return;
-//     }
-
-//     loading.value = true;
-//     showAlert.value = false;
-//     const { app, auth } = useFirebase();
-
-//     signInWithEmailAndPassword(auth, loginData.value.mail, loginData.value.pwd).then((userCredential) => {
-//       // Signed in
-//       const user = userCredential.user;
-
-
-//       navigateTo(localePath('/'));
-//       // window.location.href = runtimeConfig.public.appURL;
-//     }).catch((error) => {
-//       const errorCode = error.code;
-//       const errorMessage = error.message;
-//       console.log(errorCode, errorMessage);
-//       showAlert.value = true;
-//     }).finally(() => {
-//       loading.value = false;
-//     });
-
-//   });
-
-
-// };
+  }
+  catch (err) {
+    console.log('err', err)
+    msgType.value = 'error'
+    msgIsVisible.value = true
+    msgText.value = err.message
+  }
+  finally {
+    loading.value = false
+  }
+}
 </script>
 
-<style scoped>
-.vl {
-  border-left: 1px solid black;
-  height: 100%;
-}
+<style lang="scss">
 
-.box {
-  width: 50%
-}
 </style>

@@ -1,21 +1,13 @@
 <template lang="pug">
 v-app
-  //- navi drawer
-  v-navigation-drawer(app location="right" disable-resize-watcher v-model="drawer")
-    v-card
-      v-card-text
-        h5 Navigation
-  v-app-bar.app-bar(app flat theme="dark")
+  v-app-bar.app-bar(app flat)
     v-container.d-flex.flex-row.align-center.justify-space-between
       //- logo
-      v-img.pointer(src="/app/img/logo-white_sm.png" max-width="190px" contain)
+      v-img.pointer(src="/app/img/logo_sm.png" max-width="190px" contain)
       v-spacer
-      v-btn(nuxt :to="switchLocalePath('en')") en
-      v-btn(nuxt :to="switchLocalePath('de')") de
-      v-btn(icon)
-        v-icon mdi-web
-      v-btn.d-flex.d-md-none(icon @click="drawer = !drawer")
-        v-icon mdi-menu
+      v-btn(nuxt :to="switchLocalePath($i18n.locale == 'de' ? 'en' : 'de')")
+        v-icon.mr-2 mdi-web
+        span {{ $i18n.locale == 'de' ? 'EN' : 'DE' }}
   //- main
   v-main
     slot
@@ -25,3 +17,16 @@ v-app
       .d-flex.flex-row
         span.text-caption copyright &copy; TeamStage 2022
 </template>
+
+<script setup>
+onMounted(async () => {
+  await fbInitUser()
+})
+
+</script>
+
+<style lang="scss" scoped>
+.app-bar {
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.09);
+}
+</style>

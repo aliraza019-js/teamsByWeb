@@ -18,8 +18,14 @@ div.nav-card
 const props = defineProps(['navItems'])
 const localPath = useLocalePath()
 
-const signout = () => {
-  console.log('sign out')
+const signout = async () => {
+  try {
+    await fbSignOut()
+    navigateTo(localPath('/auth'))
+  }
+  catch (err) {
+    console.log('err', err)
+  }
 }
 </script>
 
