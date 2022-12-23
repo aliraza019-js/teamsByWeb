@@ -8,7 +8,7 @@ v-container
             v-col.klein(md='1' sm='1')
               .small-box
             v-col.klein2(md='10' sm='10')
-              .small-title
+              .small-title-left
                 | 22 July 2022 - Tenant name
               .title.mt-1
                 a(href='###').title Relaunch volkswagen.com
@@ -24,34 +24,31 @@ v-container
             
       v-row
         v-divider.divider.mt-5.mr-10.ml-10.mb-5
-      v-row
+      v-row.align-center
         .ml-10
-        v-col
+        v-col.d-flex(lg='2')
           v-img(src='https://ik.imagekit.io/teamstage/image_picker_3125430F-511F-43C9-B086-AB64D48351B8-2200-000002773AA5F329_PAgGU5JhU.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1669902515925').photo
-        v-col
-          v-row 
-            .text.ml-7
-            v-col.klein2
-                = 'Time here'
-            v-col.klein2
-              p
-                = 'Tech'
-          v-row 
-            .text.ml-10
-              | Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. 
-              | Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, 
-              | ultricies nec, Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. 
-              | Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec,.
+        v-col(lg='9')
+          v-row
+            v-col(align='left')
+              | time here
+            v-col(align='right')
+              | catalog 
+          v-row.mr-1.ml-1
+            | Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. 
+            | Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, 
+            | ultricies nec, Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. 
+            | Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec,.
       v-row
         v-col.d-flex.ml-10.mb-4.mt-2
-          v-icon 
+          v-icon.icon-one-color 
             | mdi-message-reply-text
-          p
+          p.ml-2
             = '24 comments'
         v-col.d-flex.mb-4.mt-2.mr-12.justify-end
-          v-icon 
-            | mdi-thumb-up
-          p
+          v-icon.icon-one-color 
+            | mdi-thumb-up-outline
+          p.ml-2
             ='1.2k likes'  
 </template>
 
@@ -81,6 +78,13 @@ console.log('projects', props.project)
 }
 
 .small-title {
+  font: normal normal normal 16px/22px Nunito;
+  letter-spacing: 0.4px;
+  color: #1C1C1C;
+  opacity: 1;
+}
+
+.small-title-left {
   text-align: left;
   font: normal normal normal 16px/22px Nunito;
   letter-spacing: 0.4px;
@@ -88,9 +92,19 @@ console.log('projects', props.project)
   opacity: 1;
 }
 
+.small-title-right {
+  text-align: right;
+  font: normal normal normal 16px/22px Nunito;
+  letter-spacing: 0.4px;
+  color: #1C1C1C;
+  opacity: 1;
+}
+
+
 .photo {
-  width: 150px;
-  height: 150px;
+  max-width: 150px;
+  max-height: 150px;
+  border-radius: 8px;
 }
 .title {
   text-align: left;
@@ -111,13 +125,19 @@ console.log('projects', props.project)
 }
 
 .icon {
-  color: #04C785;
+  color: transparent;
+  background-clip: text;
+  background-image:linear-gradient(to bottom, #04C785 0%, #0966CB 100%);
   width: 18px;
   height: 24px;
 }
 .iconText {
   text-align: left;
   font: normal normal 10px/13px Nunito;
+}
+
+.icon-one-color{
+  color:#04C785;
 }
 
 .divider {
@@ -132,6 +152,10 @@ console.log('projects', props.project)
   opacity: 1;
 }
 
+.text-box {
+  float:left;
+  text-align: left;
+}
 .grey-box {
   background-color: #1C1C1C15;
   float: right;
