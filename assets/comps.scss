@@ -28,3 +28,28 @@
     border-bottom-style: hidden;
   }
 }
+
+.v-bottom-navigation--active {
+  .v-btn--active {
+    color: $primary;
+
+    .v-btn__overlay {
+      background: transparent !important;
+      background: none !important;
+      opacity: 1;
+    }
+
+    .v-btn__overlay:after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 5px;
+      background-image: linear-gradient($secondary, $primary);
+      left: 0px;
+      right: 0px;
+      bottom: 0px;
+      position: absolute;
+      border-radius: 5px;
+    }
+  }
+}

@@ -13,15 +13,23 @@ export default defineNuxtConfig({
             firebaseApiKey: process.env.FIREBASE_API_KEY
         }
     },
+    app: {
+        baseURL: '/app/',
+        head: {
+            viewport: 'width=device-width, initial-scale=1',
+            title: 'TeamStage',
+            titleTemplate: '%s - TeamStage',
+            meta: [
+                { name: 'description', content: 'For consultants only' }
+            ],
+        }
+    },
     modules: [
         '@nuxtjs/i18n',
         ['@pinia/nuxt', {
             autoImports: ['defineStore']
         }],
     ],
-    app: {
-        baseURL: '/app/'
-    },
     css: [
         'vuetify/lib/styles/main.sass',
         'mdi/css/materialdesignicons.min.css',
