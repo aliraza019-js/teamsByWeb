@@ -1,19 +1,17 @@
 <template lang="pug">
 v-card(width="100%" flat)
-  v-toolbar(title="Account" color="transparent")
+  v-toolbar(:title="$t('account.account')" flat color="transparent")
+    .underline
     v-btn(icon)
       v-icon mdi-menu
     template(v-slot:extension)
-      .d-flex.flex-column.stretch.mt-7.pb-1
-        v-divider
-        //- .d-flex.flex-row.my-5
-        v-tabs.my-5
-          v-btn.mr-2(nuxt :to="localePath('/account/general')") General
-          v-btn.mr-2(nuxt :to="localePath('/account/teams')") Teams
-          v-btn.mr-2(nuxt :to="localePath('/account/skills')") Skills
-          v-btn.mr-2(nuxt :to="localePath('/account/projects')") Projects
-          v-btn.mr-2(nuxt :to="localePath('/account/trainings')") Trainings
-          v-btn(nuxt :to="localePath('/account/certifications')") Certifications
+      v-tabs.my-5
+        v-btn.mr-2.tab-btn(nuxt :to="localePath('/account/general')") {{ $t('account.general') }}
+        v-btn.mr-2.tab-btn(nuxt :to="localePath('/account/teams')") {{ $t('account.teams') }}
+        v-btn.mr-2.tab-btn(nuxt :to="localePath('/account/skills')") {{ $t('account.skills') }}
+        v-btn.mr-2.tab-btn(nuxt :to="localePath('/account/projects')") {{ $t('account.projects') }}
+        v-btn.mr-2.tab-btn(nuxt :to="localePath('/account/trainings')") {{ $t('account.trainings') }}
+        v-btn.tab-btn(nuxt :to="localePath('/account/certifications')") {{ $t('account.certifications') }}
 
   NuxtPage
 </template>
@@ -26,13 +24,23 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-.v-btn {
+.v-btn.tab-btn {
   border-radius: 24px;
   background-color: rgba(28, 28, 28, 0.03);
 }
 
-.v-btn--active {
+.v-btn--active.tab-btn {
   background-image: linear-gradient($secondary, $primary);
   color: #fff;
+}
+
+.underline {
+  position: absolute;
+  width: 100%;
+  left: 0px;
+  top: 56px;
+  right: 0px;
+  height: 1px;
+  background-color: rgb(204, 204, 204);
 }
 </style>

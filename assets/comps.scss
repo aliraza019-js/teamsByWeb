@@ -53,3 +53,13 @@
     }
   }
 }
+
+.v-toolbar__content {
+  .v-btn {
+    .v-btn__overlay {
+      background: transparent !important;
+      background: none !important;
+    }
+  }
+
+}

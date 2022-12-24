@@ -37,5 +37,28 @@
     "account": "Account",
     "settings": "Einstellungen",
     "signout": "Abmelden"
+  },
+  "home": {
+    "home": "Start"
+  },
+  "team": {
+    "teams": "Teams",
+    "colleagues": "Kollegen"
+  },
+  "projects": {
+    "projects": "Projekte",
+    "clients": "Kunden"
+  },
+  "search": {
+    "search": "Suche"
+  },
+  "account": {
+    "account": "Account",
+    "teams": "Teams",
+    "general": "Allgemein",
+    "skills": "Skills",
+    "projects": "Projekte",
+    "trainings": "Trainings",
+    "certifications": "Zertifizierungen"
   }
 }
