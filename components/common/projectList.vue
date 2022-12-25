@@ -9,57 +9,50 @@ v-container
               .small-box
             v-col.klein2(md='10' sm='10')
               .small-title-left
-                | 22 July 2022 - Tenant name
+                | {{ project.title }}
               .title.mt-1
-                a(href='###').title Relaunch volkswagen.com
+                a(href='###').title {{ project.orgName }}
         v-col(lg='6' md='6')
           v-card.grey-box.mr-12(height='48px' width='95px')
             v-row.mt-0
-              v-col.ml-1
-                v-icon.icon
-                  | mdi-check-circle 
-              v-col.iconText.mr-3
-                p
-                  = 'Project Started'
+              v-col(cols="3").ml-1
+                v-icon.icon.v-icon--size-large
+                  | mdi-check-circle
+              v-col(cols="8").iconText.mt-0
+                | {{ project.status }}
             
       v-row
-        v-divider.divider.mt-5.mr-10.ml-10.mb-5
+        v-divider.divider.mt-2.mr-10.ml-10
       v-row.align-center
         .ml-10
         v-col.d-flex(lg='2')
-          v-img(src='https://ik.imagekit.io/teamstage/image_picker_3125430F-511F-43C9-B086-AB64D48351B8-2200-000002773AA5F329_PAgGU5JhU.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1669902515925').photo
+          v-img(:src='project.imgUrl').photo
         v-col(lg='9')
           v-row
             v-col(align='left')
-              | time here
+              | {{ project.time }}
             v-col(align='right')
-              | catalog 
+              | {{ project.catalog }}
           v-row.mr-1.ml-1
-            | Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. 
-            | Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, 
-            | ultricies nec, Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. 
-            | Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec,.
+            | {{ project.intro}}
       v-row
-        v-col.d-flex.ml-10.mb-4.mt-2
+        v-col.d-flex.ml-10.mb-4.mt-1
           v-icon.icon-one-color 
             | mdi-message-reply-text
           p.ml-2
-            = '24 comments'
+            | {{project.comments}}
+            | comments
         v-col.d-flex.mb-4.mt-2.mr-12.justify-end
           v-icon.icon-one-color 
             | mdi-thumb-up-outline
           p.ml-2
-            ='1.2k likes'  
+            | {{ project.likes}}
+            | likes
 </template>
 
 <script setup>
 
-const props = defineProps({
-  'title': String,
-  'orgName': String
-})
-
-
+const props = defineProps(['project'])
 console.log('projects', props.project)
 </script>
 
@@ -103,7 +96,6 @@ console.log('projects', props.project)
 
 .photo {
   max-width: 150px;
-  max-height: 150px;
   border-radius: 8px;
 }
 .title {
@@ -128,12 +120,10 @@ console.log('projects', props.project)
   color: transparent;
   background-clip: text;
   background-image:linear-gradient(to bottom, #04C785 0%, #0966CB 100%);
-  width: 18px;
-  height: 24px;
 }
 .iconText {
   text-align: left;
-  font: normal normal 10px/13px Nunito;
+  font: normal normal 13px Nunito;
 }
 
 .icon-one-color{
