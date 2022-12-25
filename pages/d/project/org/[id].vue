@@ -1,6 +1,6 @@
 <template lang="pug">
 v-card(width="100%" flat)
-  v-toolbar(:title="'team detail'" flat color="transparent")
+  v-toolbar(:title="'org detail'" flat color="transparent")
     .underline
     v-btn(icon)
       v-icon mdi-menu

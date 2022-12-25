@@ -26,6 +26,7 @@ export default defineNuxtConfig({
     },
     modules: [
         '@nuxtjs/i18n',
+        '@nuxtjs/plausible',
         ['@pinia/nuxt', {
             autoImports: ['defineStore']
         }],
@@ -43,12 +44,16 @@ export default defineNuxtConfig({
         locales: ['en', 'de'],
         defaultLocale: 'en',
         vueI18n: {
-            fallbackLocale: 'en',
+            fallbackLocale: 'de',
             messages: {
                 en,
                 de
             }
         }
+    },
+    plausible: {
+        trackLocalhost: false,
+        autoOutboundTracking: true
     },
     // nitro: {
     //     preset: 'node-server'

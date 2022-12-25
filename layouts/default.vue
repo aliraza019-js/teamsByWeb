@@ -41,7 +41,7 @@ const localPath = useLocalePath()
 
 // data
 const navItems = [
-  { titleRef: 'home', icon: 'home', to: '/' },
+  { titleRef: 'home', icon: 'home', to: '/home' },
   { titleRef: 'team', icon: 'users', to: '/team' },
   { titleRef: 'projects', icon: 'filetext', to: '/project' },
   { titleRef: 'search', icon: 'search', to: '/search' },

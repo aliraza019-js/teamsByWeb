@@ -1,5 +1,7 @@
 <template lang="pug">
-CommonPersonList(v-for="(person, index) in persons" :key="index" :person="person")
+v-container
+  CommonPersonList(v-for="(person, index) in persons" :key="index" :person="person")
+  v-btn(nuxt :to="localePath('/d/team/person/123')") detail page
 </template>
 
 <script setup>
