@@ -6,7 +6,7 @@ v-card(width="100%" flat)
       v-icon mdi-menu
 
   v-card-text
-    p some content
+    p.text-body-1 some content
 </template>
 
 <script setup>
