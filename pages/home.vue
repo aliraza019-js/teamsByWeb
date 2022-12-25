@@ -1,15 +1,18 @@
 <template lang="pug">
 v-card(width="100%" flat)
-  v-toolbar(:title="$t('search.search')" flat color="transparent")
+  v-toolbar(:title="$t('home.home')" flat color="transparent")
     .underline
     v-btn(icon)
       v-icon mdi-menu
 
   v-card-text
-    p some content
+    p.text-body-1 some content
 </template>
 
 <script setup>
+definePageMeta({
+  // middleware: ['guard']
+})
 
 </script>
 

@@ -13,15 +13,24 @@ export default defineNuxtConfig({
             firebaseApiKey: process.env.FIREBASE_API_KEY
         }
     },
+    app: {
+        baseURL: '/app/',
+        head: {
+            viewport: 'width=device-width, initial-scale=1',
+            title: 'TeamStage',
+            titleTemplate: '%s - TeamStage',
+            meta: [
+                { name: 'description', content: 'For consultants only' }
+            ],
+        }
+    },
     modules: [
         '@nuxtjs/i18n',
+        '@nuxtjs/plausible',
         ['@pinia/nuxt', {
             autoImports: ['defineStore']
         }],
     ],
-    app: {
-        baseURL: '/app/'
-    },
     css: [
         'vuetify/lib/styles/main.sass',
         'mdi/css/materialdesignicons.min.css',
@@ -35,12 +44,16 @@ export default defineNuxtConfig({
         locales: ['en', 'de'],
         defaultLocale: 'en',
         vueI18n: {
-            fallbackLocale: 'en',
+            fallbackLocale: 'de',
             messages: {
                 en,
                 de
             }
         }
+    },
+    plausible: {
+        trackLocalhost: false,
+        autoOutboundTracking: true
     },
     // nitro: {
     //     preset: 'node-server'

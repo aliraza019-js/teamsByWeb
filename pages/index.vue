@@ -1,24 +1,19 @@
 <template lang="pug">
-v-card(width="100%" flat)
-  v-layout
-    v-app-bar(flat color="transparent")
-      v-app-bar-title Home
-      v-btn(icon)
-        v-icon mdi-menu
-    v-main
-      v-container
-        v-divider.mt--10
-        v-card.mt-5(flat)
-          p some content
+v-container.d-flex.algin-center.justify-center
+  v-card(loading width="100%" max-width="450px")
+    v-card-title Init Screen
+    v-card-text.d-flex.align-center.justify-center(style="width:100%; height:100%;")
+      v-img(src="/app/img/logo_sm.png" contain max-width="350px")
 </template>
 
 <script setup>
-definePageMeta({
-  middleware: ['guard']
+const localePath = useLocalePath()
+// later we check here for user auth state and forward to auth/sign-in or home
+// furthermore we can preload certain stuff before forwarding
+onMounted(() => {
+  setTimeout(() => {
+    navigateTo(localePath('/home'))
+  }, 2000)
+
 })
-
 </script>
-
-<style lang="scss" scoped>
-
-</style>
