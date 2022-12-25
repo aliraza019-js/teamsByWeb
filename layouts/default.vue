@@ -13,6 +13,9 @@ v-app
       v-btn(nuxt :to="switchLocalePath($i18n.locale == 'de' ? 'en' : 'de')")
         v-icon.mr-2 mdi-web
         span {{ $i18n.locale == 'de' ? 'EN' : 'DE' }}
+
+      ClientOnly
+        LayoutHeadUserComp
       //- v-btn.d-flex.d-md-none(icon @click="drawer = !drawer")
         v-icon mdi-menu
   //- main

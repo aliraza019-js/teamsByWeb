@@ -3,7 +3,7 @@ div.nav-card
   v-card(flat)
     v-card-text.d-flex.flex-column
       //- nav
-      NuxtLink.d-flex.align-center.justify-start.nav-btn.rounded-lg.pointer.mb-2(v-for="(item, index) in props.navItems" :key="index" :to="localPath(item.to)")
+      NuxtLink.d-flex.align-center.justify-start.nav-btn.rounded-lg.pointer.mb-2(v-for="(item, index) in props.navItems" :key="index" :to="localePath(item.to)")
         icon-feather.mr-2(:icon="item.icon")
         //- v-icon.mr-2 {{item.icon}}
         span.text-subtitle-1 {{ $t(`navLinks.${item.titleRef}`) }}
@@ -16,12 +16,12 @@ div.nav-card
 
 <script setup>
 const props = defineProps(['navItems'])
-const localPath = useLocalePath()
+const localePath = useLocalePath()
 
 const signout = async () => {
   try {
     await fbSignOut()
-    navigateTo(localPath('/auth'))
+    navigateTo(localePath('/auth'))
   }
   catch (err) {
     console.log('err', err)

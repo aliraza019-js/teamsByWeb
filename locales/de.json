@@ -60,5 +60,8 @@
     "projects": "Projekte",
     "trainings": "Trainings",
     "certifications": "Zertifizierungen"
+  },
+  "settings": {
+    "settings": "Einstellungen"
   }
 }

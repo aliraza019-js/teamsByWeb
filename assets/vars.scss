@@ -12,3 +12,11 @@ $bg-light-accent: #1c1c1c0F;
 $bg-google: #FBBC05;
 $bg-facebook: #4D6FF8;
 $bg-apple: #1C1C1C;
+
+@font-face {
+  font-family: 'Nunito';
+  src: url(/fonts/nunito/Nunito-VariableFont_wght.ttf) format('truetype');
+}
+
+$body-font-family: 'Nunito';
+$title-font: 'Nunito';
