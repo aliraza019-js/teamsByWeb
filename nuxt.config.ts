@@ -27,6 +27,7 @@ export default defineNuxtConfig({
     modules: [
         '@nuxtjs/i18n',
         '@nuxtjs/plausible',
+        'nuxt-icons',
         ['@pinia/nuxt', {
             autoImports: ['defineStore']
         }],
