@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'Nunito';
+  src: url(fonts/nunito/Nunito-VariableFont_wght.ttf) format('truetype');
+}
+
+$font-family: 'Nunito';
+
 $primary: #0965CB;
 $secondary: #04C785;
 $accent: orange;

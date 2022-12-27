@@ -1,16 +1,26 @@
 <template lang="pug">
-v-container
-  h2 Settings
+v-card(width="100%" flat)
+  v-toolbar(:title="$t('settings.settings')" flat color="transparent")
+    .underline
+    v-btn(icon)
+      v-icon mdi-menu
+
+  v-card-text
+    p some content
 </template>
 
 <script setup>
 
-definePageMeta({
-  name: 'settings',
-  layout: 'app'
-})
 </script>
 
 <style lang="scss" scoped>
-
+.underline {
+  position: absolute;
+  width: 100%;
+  left: 0px;
+  top: 56px;
+  right: 0px;
+  height: 1px;
+  background-color: rgb(204, 204, 204);
+}
 </style>
