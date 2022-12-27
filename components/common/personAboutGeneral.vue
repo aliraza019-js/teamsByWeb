@@ -6,16 +6,16 @@ v-container
         div(class="small-box")
       v-col(md="10" sm="10")
         div(class="blueH") Über Amy
-    v-row.ml-5
+    v-row
       v-col
         v-divider.inline.mr-8
-    v-row.ml-8.mt-8
+    v-row
       div(class="title") Title
-    v-row.ml-8
+    v-row
       div(class="title2") Senior Project Manager
-    v-row.ml-8.mt-12
+    v-row
       div(class="blueDes") Description
-    v-row.ml-8.mt-6
+    v-row
       div(class text) Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget.
 
 
