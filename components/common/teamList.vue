@@ -3,7 +3,7 @@ v-layout
   v-card(class='mt-4 mb-4 ml-4 mr-4 mx-auto d-flex' elevation="1" width="330" height="67")
    v-row(align="center" justify="center")  
     v-col( cols="4")  
-      v-img(class="teamPic" src="../img/team_pic_default.png" alt="Avatar")
+      v-img(class="teamPic" src="team.imgUrl" alt="Avatar")
     v-col(align-self="center" class="mr-4") 
       div(class="title") {{ team.title }}
       div(class="name") {{ team.name  }}
@@ -15,6 +15,21 @@ v-layout
   </script>
   
   <style lang="scss" scoped> 
+  @import url('https://fonts.googleapis.com/css?family=Nunito');
+  .title {
+    text-align: left;
+    font: normal normal normal 12px/16px Nunito;
+    letter-spacing: 0px;
+    color: #1C1C1C;
+    opacity: 1;
+  }
+  .name {
+    text-align: left;
+    font: normal normal bold 16px/22px Nunito;
+    letter-spacing: 0px;
+    color: #1C1C1C;
+    opacity: 1;
+  }
   .teamPic{
     max-width: 100px;
     max-height: 67px;
