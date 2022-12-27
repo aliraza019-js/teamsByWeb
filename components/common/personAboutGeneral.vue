@@ -2,10 +2,9 @@
 v-container
   v-card(class="elevation-8")
     v-row.align-center.mt-1
-      v-col(md="1" sm="1")
+      v-col(class="d-flex align-center")
         div(class="small-box")
-      v-col(md="10" sm="10")
-        div(class="blueH") Über Amy
+        div(class="blueH").ml-6 Über Amy
     v-row
       v-col
         v-divider.inline.mr-8

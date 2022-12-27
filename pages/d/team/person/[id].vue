@@ -6,6 +6,8 @@ v-card(width="100%" flat)
       v-icon mdi-menu
 
   CommonPersonAboutGeneral
+  CommonPersonContactInformation
+  CommonPersonTeams
 </template>
 
 <script setup>
