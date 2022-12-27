@@ -16,17 +16,23 @@ v-menu(theme="light" location="left")
           v-icon mdi-logout-variant
         v-list-item-title {{ $t('navLinks.signout') }}
 
+      v-list-item(@click="toggleTheme()")
+        template(v-slot:prepend)
+          v-icon mdi-theme-light-dark
+        v-list-item-title theme
+
 </template>
 
 <script setup>
+import { useTheme } from 'vuetify'
+const theme = useTheme()
 const localePath = useLocalePath()
 const signout = async () => {
-  try {
-    await fbSignOut()
-    navigateTo(localePath('/auth'))
-  }
-  catch (err) {
-    console.log('err', err)
-  }
+  await fbSignOut()
+  navigateTo(localePath('/auth'))
+}
+const toggleTheme = () => {
+  theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark'
+  console.log('toggled theme')
 }
 </script>
