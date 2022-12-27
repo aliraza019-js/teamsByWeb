@@ -5,8 +5,7 @@ v-card(width="100%" flat)
     v-btn(icon)
       v-icon mdi-menu
 
-  v-card-text
-    p.text-body-1 some content
+  CommonPersonAboutGeneral
 </template>
 
 <script setup>
