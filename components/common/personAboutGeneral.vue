@@ -1,13 +1,13 @@
 <template lang="pug">
 v-container
-  v-card(class="elevation-8")
+  v-card.elevation-8
     v-row.align-center.mt-1
       v-col(class="d-flex align-center")
         div(class="small-box")
         div(class="blueH").ml-6 Über Amy
     v-row
       v-col
-        v-divider.inline.mr-8
+        v-divider.inset.mr-8
     v-row
       div(class="title") Title
     v-row

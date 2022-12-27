@@ -7,8 +7,15 @@ v-container
         div(class="blueH").ml-6 Teams
     v-row
       v-col
-        v-divider.inline.mr-8
+        v-divider.inset.mr-8
     v-row
+      v-card
+        v-row
+          v-col.d-flex
+            v-img
+
+            div CMS for the future
+
 </template>
 
 
