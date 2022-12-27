@@ -6,11 +6,11 @@ v-container
 
 <script setup>
 const teams = [
-  { name: 'Amy Lee', title: 'title 1', imgUrl: 'https://ik.imagekit.io/teamstage/image_picker379473135243521174_lHzLHNBAa.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1670403726734' },
-  { name: 'Frank Werner', title: 'title 2', imgUrl: 'https://ik.imagekit.io/teamstage/image_picker379473135243521174_lHzLHNBAa.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1670403726734' },
-  { name: 'Flo Eutert', title: 'title 3', imgUrl: 'https://ik.imagekit.io/teamstage/image_picker379473135243521174_lHzLHNBAa.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1670403726734' },
-  { name: 'Anne Winkler', title: 'title 4', imgUrl: 'https://ik.imagekit.io/teamstage/image_picker379473135243521174_lHzLHNBAa.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1670403726734' },
-  { name: 'Danny Crane', title: 'title 5', imgUrl: 'https://ik.imagekit.io/teamstage/image_picker379473135243521174_lHzLHNBAa.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1670403726734' }
+  { name: 'Amy Lee', title: 'title 1', imgUrl: '../../img/team_pic_default.png' },
+  { name: 'Frank Werner', title: 'title 2', imgUrl: '../../img/team_pic_default.png' },
+  { name: 'Flo Eutert', title: 'title 3', imgUrl: '../../img/team_pic_default.png' },
+  { name: 'Anne Winkler', title: 'title 4', imgUrl: '../../img/team_pic_default.png' },
+  { name: 'Danny Crane', title: 'title 5', imgUrl: '../../img/team_pic_default.png' }
 ]
 </script>
 

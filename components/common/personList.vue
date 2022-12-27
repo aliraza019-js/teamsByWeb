@@ -3,7 +3,7 @@ v-layout
   v-card(class='mt-4 mb-4 ml-4 mr-4 elevation-2 outlined mx-auto d-flex' width="330" height="67")
    v-row(align="center" justify="center")  
     v-col(class='ml-2' cols="3")  
-      v-img(class="profilePic" src="person.imgUrl" alt="Avatar")
+      v-img(class="profilePic" :src="person.imgUrl" alt="Avatar")
     v-col(align="left") 
       div(class="title" ) {{ person.title }}
       div(class="name") {{ person.name  }}
