@@ -10,29 +10,35 @@ v-container
         v-col
           v-divider.inline.mr-8
       v-row
-        v-card(class="mt-4 mb-4 ml-4 mr-4 mx-auto d-flex" elevation="1")
-          v-row
-            v-col(col="4")
-              v-img(class="pic" src="../../public/img/team_pic_default.png")
-            v-col(class="mr-10")
-              div(class="text") CMS for the future
-              div(class="title") AEM Specialists
-        v-card(class="mt-4 mb-4 ml-4 mr-4 mx-auto d-flex" elevation="1")
-          v-row
-            v-col(col="4")
-              v-img(class="pic" src="../../public/img/profile_pic_default.png")
-            v-col(class="mr-10")
-              div(class="text") Bilanz, GuV, CashFlow
-              div(class="title") Finanzplanung
-        v-card(class="mt-4 mb-4 ml-4 mr-4 mx-auto d-flex" elevation="1")
-          v-row
-            v-col(col="4")
-              v-img(class="pic" src="../../public/img/profile_pic_default.png")
-            v-col(class="mr-10")
-              div(class="text") Personal-Steuerung
-              div(class="title") HR Managment
+        v-col(col="4" class="justify-left")
+          v-card(class="d-flex" elevation="1" max-width="400")
+            v-row
+              v-col(col="4")
+                img(class="pic" src="../../img/team_pic_default.png")
+              v-col(class="mr-10")
+                div(class="text") CMS for the future
+                div(class="title") AEM Specialists
+        v-col(col="4" class="justify-center")
+          v-card(class="d-flex" elevation="1" max-width="400")
+            v-row
+              v-col(col="4")
+                img(class="pic" src="../../img/team_pic_default.png")
+              v-col(class="mr-10")
+                div(class="text") Bilanz, GuV, CashFlow
+                div(class="title") Finanzplanung
+        v-col(col="4" class="justify-right")
+          v-card(class="d-flex" elevation="1" max-width="400")
+            v-row
+              v-col(col="4")
+                img(class="pic" src="../../img/team_pic_default.png")
+              v-col(class="mr-10")
+                div(class="text") Personal-Steuerung
+                div(class="title") HR Managment
 </template>
 
+<script>
+  const imgUrl = "../../img/pro_pic_default.png"
+</script>
 
 <style lang="scss" scoped>
 
@@ -73,9 +79,10 @@ v-container
 }
 
 .pic{
-  max-width: 100px;
-  max-height: 67px;
-  border-radius: 1%;
-  }
+  background: transparent url('img/Rechteck 2139.png') 0% 0% no-repeat padding-box;
+  border-radius: 7px 0px 0px 7px;
+  opacity: 1;
+}
+
 
 </style>
