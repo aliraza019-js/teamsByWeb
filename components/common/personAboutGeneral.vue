@@ -1,23 +1,22 @@
 <template lang="pug">
-v-container
-  v-card(class="elevation-8")
-    v-row.align-center.mt-1
-      v-col(class="d-flex align-center")
-        div(class="small-box")
-        div(class="blueH").ml-6 Über Amy
-    v-row
-      v-col
-        v-divider.inline.mr-8
-    v-row
-      div(class="title") Title
-    v-row
-      div(class="title2") Senior Project Manager
-    v-row
-      div(class="blueDes") Description
-    v-row
-      div(class text) Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget.
-
-
+v-container 
+  v-card(class="elevation-8 cards")
+    v-row(class="align-center mt-1")
+        v-col(class="d-flex align-center")
+          div(class="small-box")
+          div(class="blueH ml-6 ") Über Amy
+    v-card-text
+      v-row
+        v-col
+          v-divider(class="mr-8") 
+      v-row
+        div(class="title") Title
+      v-row
+        div(class="title2") Senior Project Manager
+      v-row
+        div(class="blueDes") Description
+      v-row
+        div(class="text") Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget.
 
 </template>
 
@@ -73,10 +72,11 @@ v-container
   background: #06A69D 0% 0% no-repeat padding-box;
   border-radius: 0px 4px 4px 0px;
   opacity: 1;
-  top: 186px;
+  top: 293px;
   left: 620px;
   width: 10px;
   height: 48px;
 }
+
 
 </style>
