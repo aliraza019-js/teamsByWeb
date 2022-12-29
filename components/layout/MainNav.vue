@@ -21,10 +21,6 @@ div.nav-card
 <script setup>
 const props = defineProps(['navItems'])
 const localePath = useLocalePath()
-const i18n = useI18n()
-const route = useRoute()
-
-console.log('route', route)
 
 const signout = async () => {
   try {
