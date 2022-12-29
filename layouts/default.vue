@@ -27,7 +27,7 @@ v-app
 
   LayoutFooterNav.d-flex.d-md-none(:navItems="navItems")
   //- footer
-  v-footer.d-none.d-md-flex.my-footer(app height="45px" color="#f1f1f1")
+  v-footer.d-none.d-md-flex.my-footer(app height="45px")
     v-container
       .d-flex.flex-row
         span.text-caption copyright &copy; TeamStage 2022
@@ -41,12 +41,12 @@ const localPath = useLocalePath()
 
 // data
 const navItems = [
-  { titleRef: 'home', icon: 'home', to: '/home' },
-  { titleRef: 'team', icon: 'users', to: '/team' },
-  { titleRef: 'projects', icon: 'filetext', to: '/project' },
-  { titleRef: 'search', icon: 'search', to: '/search' },
-  { titleRef: 'account', icon: 'user', to: '/account' },
-  { titleRef: 'settings', icon: 'settings', to: '/settings' }
+  { titleRef: 'home', icon: 'home', to: '/home', routerLink: 'home' },
+  { titleRef: 'team', icon: 'users', to: '/team/persons', routerLink: 'team' },
+  { titleRef: 'projects', icon: 'filetext', to: '/project/projects', routerLink: 'project' },
+  { titleRef: 'search', icon: 'search', to: '/search', routerLink: 'search' },
+  { titleRef: 'account', icon: 'user', to: '/account/general', routerLink: 'account' },
+  { titleRef: 'settings', icon: 'settings', to: '/settings', routerLink: 'settings' }
 ]
 
 // methods

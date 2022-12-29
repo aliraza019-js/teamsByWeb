@@ -7,7 +7,7 @@ div.nav-card
         v-for="(item, index) in props.navItems" 
         :key="index" 
         :to="localePath(item.to)"
-        :class="{'router-link-active': $route.fullPath.includes(`/d${item.to}`)}") 
+        :class="{ 'router-link-active': $route.meta.activeRoute == item.routerLink}") 
         icon-feather.mr-2(:icon="item.icon")
         //- v-icon.mr-2 {{item.icon}}
         span.text-subtitle-1 {{ $t(`navLinks.${item.titleRef}`) }}
@@ -36,7 +36,7 @@ const signout = async () => {
 <style lang="scss" scoped>
 .nav-card {
   box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.09);
-  border: 1px solid rgba(226, 226, 226, 0.45);
+  border: 1px solid rgba(var(--v-theme-card-border), 0.45);
   width: 320px;
 }
 
@@ -45,7 +45,7 @@ const signout = async () => {
   width: 100%;
   padding-left: 15px;
   padding-right: 15px;
-  color: rgb(28, 28, 28);
+  // color: rgb(28, 28, 28);
 }
 
 .signout-btn {
