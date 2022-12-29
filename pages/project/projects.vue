@@ -1,6 +1,8 @@
 <template lang="pug">
 v-container
-  CommonProjectList(v-for="project in projects" :project="project")
+  v-row
+    v-col(cols="12" sm="4" v-for="(project, index) in projects" :key="index")
+      CommonProjectList(:project="project")
   v-btn(nuxt :to="localePath('/d/project/123')") detail page
 </template>
 

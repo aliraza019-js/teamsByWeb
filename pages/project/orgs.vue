@@ -1,6 +1,8 @@
 <template lang="pug">
 v-container
-  CommonOrgList(v-for="org in orgs" :org="org")
+  v-row
+    v-col(cols="12" sm="4" v-for="(org, index) in orgs" :key="index")
+      CommonOrgList(:org="org")
   v-btn(nuxt :to="localePath('/d/project/org/123')" color="blue" variant="outlined")
     nuxt-icon.mr-2(name="feather/users")
     span detail page

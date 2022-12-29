@@ -10,7 +10,7 @@ div.nav-card
         :class="{ 'router-link-active': $route.meta.activeRoute == item.routerLink}") 
         icon-feather.mr-2(:icon="item.icon")
         //- v-icon.mr-2 {{item.icon}}
-        span.text-subtitle-1 {{ $t(`navLinks.${item.titleRef}`) }} {{ $route.meta.activeRoute }}
+        span.text-subtitle-1 {{ $t(`navLinks.${item.titleRef}`) }}
 
       NuxtLink.nav-btn.signout-btn.d-flex.align-center.justify-start.mt-15.pointer(@click="signout()") 
         icon-feather.mr-2(icon="signout")

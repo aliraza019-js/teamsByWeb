@@ -1,6 +1,8 @@
 <template lang="pug">
 v-container
-  CommonTeamList(v-for="(team, index) in teams" :key="index" :team="team")
+  v-row
+    v-col(cols="12" sm="4" v-for="(team, index) in teams" :key="index")
+      CommonTeamList(:team="team")
   v-btn(nuxt :to="localePath('/d/team/123')") detail page
 </template>
 
