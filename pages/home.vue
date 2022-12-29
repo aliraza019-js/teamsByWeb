@@ -11,7 +11,7 @@ v-card(width="100%" flat)
 
 <script setup>
 definePageMeta({
-  // middleware: ['guard']
+  activeRoute: 'home'
 })
 
 </script>

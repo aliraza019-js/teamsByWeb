@@ -7,10 +7,10 @@ div.nav-card
         v-for="(item, index) in props.navItems" 
         :key="index" 
         :to="localePath(item.to)"
-        :class="{'router-link-active': $route.fullPath.includes(`/d${item.to}`)}") 
+        :class="{ 'router-link-active': $route.meta.activeRoute == item.routerLink}") 
         icon-feather.mr-2(:icon="item.icon")
         //- v-icon.mr-2 {{item.icon}}
-        span.text-subtitle-1 {{ $t(`navLinks.${item.titleRef}`) }}
+        span.text-subtitle-1 {{ $t(`navLinks.${item.titleRef}`) }} {{ $route.meta.activeRoute }}
 
       NuxtLink.nav-btn.signout-btn.d-flex.align-center.justify-start.mt-15.pointer(@click="signout()") 
         icon-feather.mr-2(icon="signout")
@@ -21,6 +21,10 @@ div.nav-card
 <script setup>
 const props = defineProps(['navItems'])
 const localePath = useLocalePath()
+const i18n = useI18n()
+const route = useRoute()
+
+console.log('route', route)
 
 const signout = async () => {
   try {

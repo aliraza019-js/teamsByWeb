@@ -5,6 +5,9 @@ v-container
 </template>
 
 <script setup>
+definePageMeta({
+  activeRoute: 'team'
+})
 const persons = [
   { name: 'testname', title: 'testtitle', imgUrl: 'whatever' },
   { name: 'testname', title: 'testtitle', imgUrl: 'whatever' },

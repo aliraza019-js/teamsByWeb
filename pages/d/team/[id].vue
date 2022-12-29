@@ -10,6 +10,9 @@ v-card(width="100%" flat)
 </template>
 
 <script setup>
+definePageMeta({
+  activeRoute: 'team'
+})
 const route = useRoute()
 console.log(route.params.id)
 </script>

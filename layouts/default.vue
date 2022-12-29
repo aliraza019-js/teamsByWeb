@@ -41,12 +41,12 @@ const localPath = useLocalePath()
 
 // data
 const navItems = [
-  { titleRef: 'home', icon: 'home', to: '/home' },
-  { titleRef: 'team', icon: 'users', to: '/team/persons' },
-  { titleRef: 'projects', icon: 'filetext', to: '/project/projects' },
-  { titleRef: 'search', icon: 'search', to: '/search' },
-  { titleRef: 'account', icon: 'user', to: '/account/general' },
-  { titleRef: 'settings', icon: 'settings', to: '/settings' }
+  { titleRef: 'home', icon: 'home', to: '/home', routerLink: 'home' },
+  { titleRef: 'team', icon: 'users', to: '/team/persons', routerLink: 'team' },
+  { titleRef: 'projects', icon: 'filetext', to: '/project/projects', routerLink: 'project' },
+  { titleRef: 'search', icon: 'search', to: '/search', routerLink: 'search' },
+  { titleRef: 'account', icon: 'user', to: '/account/general', routerLink: 'account' },
+  { titleRef: 'settings', icon: 'settings', to: '/settings', routerLink: 'settings' }
 ]
 
 // methods
