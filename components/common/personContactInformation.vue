@@ -6,7 +6,6 @@ v-container
         div(class="small-box")
         div(class="blueH").ml-6 Kontakt Informationen
     v-card-text
- 
       v-row
         v-col
           v-divider.inset.mr-8
