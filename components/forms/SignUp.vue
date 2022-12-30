@@ -1,133 +1,112 @@
-<template>
+<template lang="pug">
+v-form.d-flex-flex-column.align-center.justify-center.text-center(ref="form")
+  v-text-field.mb-2(
+    v-model="formData.mail"
+    style="width:100%"
+    type="email" 
+    label="Mail" 
+    :loading="loading" 
+    :disabled="loading"
+    :rules="rules.mail"
+    prepend-inner-icon="mdi-email")
 
-  <!--            no-ssr Tag weil $vuetify.display.lgAndUp sonst buggt-->
-  <v-no-ssr>
-    <div class="d-flex justify-center mt-16">
-      <div class="elevation-5 rounded" :class="{'box': $vuetify.display.mdAndUp}">
+  v-text-field.mb-2(
+    v-model="formData.pwd" 
+    style="width:100%"
+    type="password" 
+    label="password" 
+    :loading="loading" 
+    :disabled="loading"
+    :rules="rules.required"
+    @keydown.enter.prevent="validate()"
+    prepend-inner-icon="mdi-lock")
 
-        <v-container class="pt-10 pb-10">
+  v-text-field.mb-2(
+    v-model="formData.pwdConf" 
+    style="width:100%"
+    type="password" 
+    label="confirm password" 
+    :loading="loading" 
+    :disabled="loading"
+    :rules="rules.confirmation"
+    @keydown.enter.prevent="validate()"
+    prepend-inner-icon="mdi-lock")
 
-          <v-row>
+  v-alert.mb-3(:type="msgType" variant="tonal" v-show="msgIsVisible") {{msgText}}
 
-            <v-col class="v-col-12 v-col-lg-6 d-flex align-center">
-              <div class="shadow rounded text-center ml-auto mr-auto" style="width:80%">
-                <v-btn style="width:100%" class="bg-google mb-3" rounded="rounded" prepend-icon="mdi-google"
-                       dark="dark">
-                  Sign in with Google
-                </v-btn>
-                <v-btn style="width:100%" class="bg-facebook mb-3 text-white" rounded="rounded"
-                       prepend-icon="mdi-facebook">Sign in with
-                  Facebook
-                </v-btn>
-                <v-btn style="width:100%" class="bg-apple mb-3 text-white" rounded="rounded" theme="dark"
-                       prepend-icon="mdi-apple">Sign in
-                  with
-                  Apple
-                </v-btn>
-              </div>
-            </v-col>
-            <v-col class="v-col-12 v-col-lg-6">
-              <div :class="{ 'vl': $vuetify.display.lgAndUp }">
-                <div style="width:80%" class="text-center ml-auto mr-auto">
-                  <v-form ref="form" @keydown.enter="signUp()">
-                    <v-text-field class="shadow" v-model="signUpData.mail" type="email"
-                                  :label="$t('signUp.label.email')"
-                                  :rules="[requiredRule]"
-                                  prepend-inner-icon="mdi-email" variant="solo"></v-text-field>
-                    <v-text-field v-model="signUpData.pwd" type="password" :label="$t('signUp.label.password')"
-                                  :rules="[requiredRule]"
-                                  prepend-inner-icon="mdi-lock"
-                                  append-inner-icon="mdi-eye" variant="solo"></v-text-field>
-                    <v-text-field v-model="signUpData.pwd2" type="password" :label="$t('signUp.label.password2')"
-                                  :rules="[requiredRule]"
-                                  prepend-inner-icon="mdi-lock"
-                                  append-inner-icon="mdi-eye" variant="solo"></v-text-field>
-                    <v-btn class="stretch bg-primary" style="width:80%" rounded="rounded" @click="signUp()"
-                           :loading="loading"> {{ $t('signUp.label.login') }}
-                    </v-btn>
-                  </v-form>
-                  <v-alert class="mt-3" closable v-if="showAlert" type="error">{{ $t('signUp.invalid') }}</v-alert>
-                </div>
-              </div>
-            </v-col>
-
-          </v-row>
-        </v-container>
-      </div>
-    </div>
-  </v-no-ssr>
+  v-btn.stretch(
+    style="width:100%; maxWidth:300px" 
+    :loading="loading" 
+    :disabled="loading"
+    rounded 
+    color="secondary"
+    @click="validate()")
+    span {{ $t('signUp.label.login') }}
 </template>
 
-<script setup lang="ts">
-import {computed, navigateTo, onMounted, ref, useLocalePath} from '#imports';
-import {useFirebase} from '~/composables/useFirebase';
-import {createUserWithEmailAndPassword} from '@firebase/auth';
-import {useRuntimeConfig} from '#app';
-import {useI18n} from 'vue-i18n';
-import {Ref} from '@vue/reactivity';
-import {VForm} from 'vuetify/components';
-
-const form: Ref<VForm> = ref();
-const t = useI18n();
-const loading = ref(false);
-const signUpData = ref({
+<script setup>
+const config = useRuntimeConfig()
+const localePath = useLocalePath()
+let form = ref(null)
+let valid = ref(false)
+const loading = ref(false)
+const formData = reactive({
   mail: '',
   pwd: '',
-  pwd2: ''
-});
-const requiredRule = (value: any) => !!value || t.t('required');
-let showAlert = ref(false);
+  pwdConf: ''
+})
+const rules = reactive({
+  required: [
+    v => !!v || 'required'
+  ],
+  mail: [
+    v => !!v || 'required',
+    v => !v || /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
+  ],
+  confirmation: [
+    v => !!v || "required",
+    v => v == formData.pwd || 'password must match'
+  ]
+})
+const msgType = ref('success')
+const msgText = ref()
+const msgIsVisible = ref(false)
 
-const runtimeConfig = useRuntimeConfig();
-const localePath = useLocalePath();
+const validate = async () => {
+  loading.value = true
+  const { valid } = await form.value.validate()
+  if (valid) return signUp()
+  loading.value = false
+  return
+}
 
-const signUp = () => {
+const signUp = async () => {
+  try {
+    await fbCreateUser(formData.mail, formData.pwd)
+    await fbInitUser()
+    navigateTo(localePath('/'))
+    loading.value = false
+    await form.reset()
+    msgType.value = 'success'
+    msgText.value = 'erfolgreich angemeldet'
+    msgIsVisible.value = true
+    setTimeout(() => {
+      msgIsVisible.value = false
+    }, 2000)
 
-  form.value.validate().then(result => {
-
-    if (!result.valid) {
-      return;
-    }
-
-    loading.value = true;
-    showAlert.value = false;
-    const {app, auth} = useFirebase();
-
-    if (signUpData.value.pwd === signUpData.value.pwd2) {
-
-      createUserWithEmailAndPassword(auth, signUpData.value.mail, signUpData.value.pwd).then((userCredential) => {
-        // Signed up
-        const user = userCredential.user;
-
-
-        navigateTo(localePath('/'));
-        // window.location.href = runtimeConfig.public.appURL;
-      }).catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-        showAlert.value = true;
-      }).finally(() => {
-        loading.value = false;
-      });
-
-    }
-
-  });
-
-
-};
+  }
+  catch (err) {
+    console.log('err', err)
+    msgType.value = 'error'
+    msgIsVisible.value = true
+    msgText.value = err.message
+  }
+  finally {
+    loading.value = false
+  }
+}
 </script>
 
-<style scoped>
-
-.vl {
-  border-left: 1px solid black;
-  height: 100%;
-}
-
-.box {
-  width: 50%
-}
+<style lang="scss">
 
 </style>

@@ -1,0 +1,10 @@
+<template lang="pug">
+v-container
+  h4 projects
+</template>
+
+<script setup>
+definePageMeta({
+  activeRoute: 'account'
+})
+</script>
