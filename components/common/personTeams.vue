@@ -6,41 +6,44 @@ v-container
         div(class="small-box")
         div(class="blueH").ml-6 Teams
     v-card-text
-      v-row
-        v-col
-          v-divider.inline.mr-8
+      v-divider.inset.mr-8.mb-7
+      
+      v-row(class="d-flex justify-space-around mt-5 mb-5")
+        v-card(elevation="1" max-width="400")
+          v-row
+            v-col(col="4")
+              img(class="pic" src="../../img/team_pic_default.png")
+            v-card-text
+              v-col
+                div(class="mr-5")
+                  div(class="text") CMS for the future
+                  div(class="title") AEM Specialists
 
-      v-row
-        div(class="d-flex justify-space-around mt-5 mb-5")
-          v-card(class="d-flex" elevation="1" max-width="400")
-            v-row
-              v-col(col="4")
-                img(class="pic" src="../../img/team_pic_default.png")
-              v-col(class="mr-10")
-                div(class="text") CMS for the future
-                div(class="title") AEM Specialists
+        v-card(elevation="1" max-width="400")
+          v-row
+            v-col(col="4")
+              img(class="pic" src="../../img/team_pic_default.png")
+            v-card-text
+              v-col
+                div(class="mr-5")
+                  div(class="text") Bilanz, GuV, CashFlow
+                  div(class="title") Finanzplanung
 
-          v-card(class="d-flex" elevation="1" max-width="400")
-            v-row
-              v-col(col="4")
+        v-card(elevation="1" max-width="400")
+          v-row
+            v-col
                 img(class="pic" src="../../img/team_pic_default.png")
-              v-col(class="mr-10")
-                div(class="text") Bilanz, GuV, CashFlow
-                div(class="title") Finanzplanung
-
-          v-card(class="d-flex" elevation="1" max-width="400")
-            v-row
-              v-col(col="4")
-                img(class="pic" src="../../img/team_pic_default.png")
-              v-col(class="mr-10")
-                div(class="text") Personal-Steuerung
-                div(class="title") HR Managment
+            v-card-text
+               v-col
+                div(class="mr-5")
+                  div(class="text") Personal-Steuerung
+                  div(class="title") HR Managment
+            
             
         
 </template>
 
 <script>
-  const imgUrl = "../../img/pro_pic_default.png"
 </script>
 
 <style lang="scss" scoped>

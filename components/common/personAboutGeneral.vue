@@ -6,17 +6,16 @@ v-container
           div(class="small-box")
           div(class="blueH ml-6 ") Über Amy
     v-card-text
-      v-row
-        v-col
-          v-divider(class="mr-8") 
-      v-row
-        div(class="title") Title
-      v-row
-        div(class="title2") Senior Project Manager
-      v-row
-        div(class="blueDes") Description
-      v-row
-        div(class="text") Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget.
+      v-divider.inset.mr-8.mb-7
+      
+      v-row.ml-1
+        p(class="title") Title
+      v-row.ml-1.mb-4
+        p(class="title2") Senior Project Manager
+      v-row.ml-1.mb-2
+        p(class="blueDes") Description
+      v-row.ml-1.mb-2.mr-1
+        p(class="text") Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget.
 
 </template>
 

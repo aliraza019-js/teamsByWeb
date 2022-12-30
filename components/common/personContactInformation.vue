@@ -6,24 +6,24 @@ v-container
         div(class="small-box")
         div(class="blueH").ml-6 Kontakt Informationen
     v-card-text
-      v-row
-        v-col
-          v-divider.inset.mr-8
-      v-row
-        v-col(cols="12" md="6" sm="6")
-          v-row
-            v-icon(color="#1C1C1C") mdi-phone
-            div(class="text ml-5") +49 511 123456-0
-          v-row.mt-12
-            v-icon(color="#1C1C1C" ) mdi-cellphone
-            div(class="text ml-5") +49 172 12345678
-        v-col(cols="12" md="6" sm="6")
-          v-row
-            v-icon(color="#1C1C1C") mdi-email
-            div(class="text ml-5") spaus@27apps.com
-          v-row.mt-12
-            v-icon(color="#1C1C1C") mdi-instagram
-            a(href="###" class="text ml-5") @27appsCom
+      v-divider.inset.mr-8.mb-10
+
+      div(class="ml-15 mb-10")
+        v-row
+          v-col(cols="12" md="6" sm="6")
+            v-row
+                v-icon(color="#1C1C1C") mdi-phone
+                div(class="text ml-5") +49 511 123456-0
+            v-row.mt-12
+              v-icon(color="#1C1C1C" ) mdi-cellphone
+              div(class="text ml-5") +49 172 12345678
+          v-col(cols="12" md="6" sm="6")
+            v-row
+              v-icon(color="#1C1C1C") mdi-email
+              div(class="text ml-5") spaus@27apps.com
+            v-row.mt-12
+              v-icon(color="#1C1C1C") mdi-instagram
+              a(href="###" class="text ml-5") @27appsCom
 
 </template>
 
