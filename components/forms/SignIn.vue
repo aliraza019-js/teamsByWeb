@@ -1,5 +1,5 @@
 <template lang="pug">
-v-form.d-flex-flex-column.align-center.justify-center.text-center(ref="form")
+v-form.d-flex-flex-column.align-center.justify-center.text-center(ref="form" v-model="valid" lazy-validation)
   v-text-field.mb-2(
     v-model="formData.mail"
     style="width:100%"
@@ -38,8 +38,8 @@ const localePath = useLocalePath()
 const router = useRouter()
 
 // data
-let form
-let valid
+let form = ref(null)
+let valid = ref(false)
 const loading = ref(false)
 const formData = reactive({
   mail: '',
@@ -61,7 +61,8 @@ const msgIsVisible = ref(false)
 // methods
 const validate = async () => {
   loading.value = true
-  const { valid } = await form.validate()
+  console.log('form', form.value)
+  const { valid } = await form.value.validate()
   if (valid) return signUp()
   loading.value = false
   return

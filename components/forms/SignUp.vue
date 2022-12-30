@@ -47,8 +47,8 @@ v-form.d-flex-flex-column.align-center.justify-center.text-center(ref="form")
 <script setup>
 const config = useRuntimeConfig()
 const localePath = useLocalePath()
-let form
-let valid
+let form = ref(null)
+let valid = ref(false)
 const loading = ref(false)
 const formData = reactive({
   mail: '',
@@ -74,7 +74,7 @@ const msgIsVisible = ref(false)
 
 const validate = async () => {
   loading.value = true
-  const { valid } = await form.validate()
+  const { valid } = await form.value.validate()
   if (valid) return signUp()
   loading.value = false
   return
