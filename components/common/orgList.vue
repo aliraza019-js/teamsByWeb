@@ -1,7 +1,7 @@
 <template lang="pug">
 v-layout
   v-card.card.mt-4.mb-4.ml-4.mr-4.elevation-2.d-flex
-   v-container
+    v-container
       v-row
         v-col(cols="8" lg="8" xs="8")
           div.place
@@ -19,14 +19,17 @@ console.log('org', props.org)
 
 <style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css?family=Nunito');
+
 @media only screen and (max-width: 320px) {
-  .v-card{
-  width: 90%;
+  .v-card {
+    width: 90%;
   }
-  .v-layout{
-  width: 100%;
+
+  .v-layout {
+    width: 100%;
   }
 }
+
 .place {
   text-align: left;
   font: normal normal normal 12px/16px Nunito;
@@ -43,10 +46,11 @@ console.log('org', props.org)
 }
 
 .card {
-  width:330px;
+  width: 330px;
   height: 72px;
   border-radius: 5px;
 }
+
 .img {
   border: 1px solid #E1E1E1;
   margin-top: -10%;

@@ -1,17 +1,17 @@
 <template lang="pug">
-v-layout 
-  v-card(width="330px" height="72px").mt-4.mb-4.ml-4.mr-4.elevation-2.d-flex
-    v-container 
-      v-row(align="center" justify="center")
-        v-col(cols="4" lg="3" xs="3")
+v-layout
+  v-card.card.mt-4.mb-4.ml-4.mr-4.elevation-2.d-flex
+    v-container
+      v-row.row
+        v-col(cols="auto")
           v-img(:src='project.imgUrl').img
-        v-col
-          div.title
+        v-col(cols="auto")
+          div.title.mt-4
             | {{ project.title }}
           div.orgName
             | {{ project.orgName }}
-        v-col
-
+        v-col(cols="auto")
+          div.iconCard.mt-5
 </template>
 
 <script setup>
@@ -22,27 +22,37 @@ console.log('projects', props.project)
 
 <style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css?family=Nunito');
-@media only screen and (max-width: 600px) {
-  .v-card{
-  width: 100%;
-  height: 100%;
+
+@media only screen and (max-width: 320px) {
+  .v-card {
+    width: 100%;
   }
-  .v-layout{
-  width: 100%;
+
+  .v-layout {
+    width: 100%;
   }
 }
 
 .card {
+  height: 72px;
+  width: 330px;
   border-radius: 5px;
 }
 
-.row {
+.border {
+  border: #1C1C1C;
 }
 
+.row {
+  margin-left: -10%;
+  margin-top: -10%;
+}
+
+
 .img {
-  max-width: 100px;
-  max-height: 72px;
-  transform: scale(1.5);
+  width: 100px;
+  height: 72px;
+  transform: scale(1.1);
 }
 
 .title {
@@ -60,11 +70,17 @@ console.log('projects', props.project)
 }
 
 .iconCard {
-  width:61px;
-  background: #1C1C1C 0% 0% no-repeat padding-box;
+  width: 61px;
+  height: 32px;
+  background-image: url("/img/icon_project_started.png");
+  background-size: 100% 100%;
   border-radius: 4px;
   opacity: 1;
 }
 
-
+.icon {
+  width: 62px;
+  height: 31px;
+  margin-top: -10%;
+}
 </style>
