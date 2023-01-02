@@ -7,25 +7,24 @@ v-card(width="100%" flat)
     template(v-slot:extension)
       v-slide-group(show-arrows="false")
         v-slide-group-item(v-slot="{ isSelected }")
-          v-btn.mr-2.tab-btn(nuxt :to="localePath('/account/general')") {{ $t('account.general') }}
+          v-btn.ma-2.tab-btn(nuxt :to="localePath('/account/general')") {{ $t('account.general') }}
         v-slide-group-item(v-slot="{ isSelected }")
-          v-btn.mr-2.tab-btn(nuxt :to="localePath('/account/teams')") {{ $t('account.teams') }}
+          v-btn.ma-2.tab-btn(nuxt :to="localePath('/account/teams')") {{ $t('account.teams') }}
         v-slide-group-item(v-slot="{ isSelected }")
-          v-btn.mr-2.tab-btn(nuxt :to="localePath('/account/skills')") {{ $t('account.skills') }}
+          v-btn.ma-2.tab-btn(nuxt :to="localePath('/account/skills')") {{ $t('account.skills') }}
         v-slide-group-item(v-slot="{ isSelected }")
-          v-btn.mr-2.tab-btn(nuxt :to="localePath('/account/projects')") {{ $t('account.projects') }}
+          v-btn.ma-2.tab-btn(nuxt :to="localePath('/account/projects')") {{ $t('account.projects') }}
         v-slide-group-item(v-slot="{ isSelected }")
-          v-btn.mr-2.tab-btn(nuxt :to="localePath('/account/trainings')") {{ $t('account.trainings') }}
+          v-btn.ma-2.tab-btn(nuxt :to="localePath('/account/trainings')") {{ $t('account.trainings') }}
         v-slide-group-item(v-slot="{ isSelected }")
-          v-btn.tab-btn(nuxt :to="localePath('/account/certifications')") {{ $t('account.certifications') }}
+          v-btn.ma-2.tab-btn(nuxt :to="localePath('/account/certifications')") {{ $t('account.certifications') }}
 
   NuxtPage
 </template>
 
 <script setup>
-const localePath = useLocalePath()
-onMounted(() => {
-  navigateTo(localePath('/account/general'))
+definePageMeta({
+  activeRoute: 'account'
 })
 </script>
 
