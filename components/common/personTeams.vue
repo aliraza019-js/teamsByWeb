@@ -9,41 +9,56 @@ v-container
       v-divider.inset.mr-8.mb-7
       
       v-row(class="d-flex justify-space-around mt-5 mb-5")
-        v-card(elevation="1" max-width="400")
-          v-row
-            v-col(col="4")
-              img(class="pic" src="../../img/team_pic_default.png")
-            v-card-text
-              v-col
-                div(class="mr-5")
-                  div(class="text") CMS for the future
-                  div(class="title") AEM Specialists
 
-        v-card(elevation="1" max-width="400")
-          v-row
-            v-col(col="4")
-              img(class="pic" src="../../img/team_pic_default.png")
-            v-card-text
-              v-col
-                div(class="mr-5")
-                  div(class="text") Bilanz, GuV, CashFlow
-                  div(class="title") Finanzplanung
+        v-col(cols="12" sm="4" v-for="(t, index) in 3" key="index")
+          v-card(outlined max-width="400")
+            v-row
+              //-warum funktionier das nicht?
+              v-img(:src="require('../../img/team_pic_default.png')")
+              v-card-text
+                v-col
+                  div(class="mr-5")
+                    div(class="text") CMS for the future
+                    div(class="title") AEM Specialists
 
-        v-card(elevation="1" max-width="400")
-          v-row
-            v-col
-                img(class="pic" src="../../img/team_pic_default.png")
-            v-card-text
-               v-col
-                div(class="mr-5")
-                  div(class="text") Personal-Steuerung
-                  div(class="title") HR Managment
-            
+
             
         
 </template>
 
+<!--
+v-col(cols="12" sm="4").d-flex
+v-card(elevation="1" max-width="400")
+v-row
+v-col(col="4")
+img(class="pic" src="../../img/team_pic_default.png")
+v-card-text
+v-col
+div(class="mr-5")
+div(class="text") Bilanz, GuV, CashFlow
+div(class="title") Finanzplanung
+
+v-col(cols="12" sm="4").d-flex
+v-card(elevation="1" max-width="400")
+v-row
+v-col
+img(class="pic" src="../../img/team_pic_default.png")
+v-card-text
+v-col
+div(class="mr-5")
+div(class="text") Personal-Steuerung
+div(class="title") HR Managment
+-->
+
+
 <script>
+
+const test = [
+  { text: 'CMS for the future', title: 'AEM Specialists', image: '../../img/team_pic_default.png' },
+  { text: 'Bilanz, GuV, CashFlow', title: 'Finanzplanung', image: '../../img/team_pic_default.png' },
+  { text: 'Personal-Steuerung', title: 'HR Managment', image: '../../img/team_pic_default.png' }
+]
+
 </script>
 
 <style lang="scss" scoped>
