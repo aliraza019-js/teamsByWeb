@@ -1,5 +1,6 @@
 <template lang="pug">
-v-layout 
+v-layout
+ v-row
   v-container
     v-card(elevation='8')
       v-row.align-center.mt-3
@@ -19,41 +20,37 @@ v-layout
         v-divider.divider.mr-12.ml-12.mb-1
       v-row.align-center
         .ml-1
-      ul
-        li(v-for="n in 2")
-          v-row.d-flex.ml-15.mb-10.mt-10
-            v-row
-              v-col(cols='3')
-                .small-title Agil
-                .text Agile Coach
-              v-col
-                v-icon.star.ml-3.mt-3(v-for="n in 5")
+      
+          v-row.d-flex.ml-0.mb-10.mt-10.flex-row
+           v-col(md='6' sm='12')(v-for="(skill,index) in skills" :key="index" :skill="skill").flex-sm-row.justify-center
+               v-row 
+                v-col(cols='6')
+                 .small-title Agil
+                 .text Agile Coach
+                v-col(cols='6')
+                 v-icon.star.ml-2.mt-3(v-for="n in 5")
                   | mdi-star
-                
-              v-col(cols='3')
-                .small-title Agil
-                .text Agile Coach
-              v-col
-                v-icon.star.ml-3.mt-3(v-for="n in 5")
-                  | mdi-star
-
+  //v-row
+    //common-person-skill(v-for="(skills, index) in skills" :key="index" :skills="skills")
   </template>
 <script setup>
 const props = defineProps({
+  'name': String,
   'title': String,
-  'orgName': String
+  'rating': String
 })
 
 const skills = [
   {name: 'Agile' , title: 'Agile Coach', rating: '1'},
+  {name: 'Test' , title: 'Agile Coach', rating: '1'},
+  {name: 'Test3' , title: 'Agile Coach', rating: '1'},
   {name: 'Agile' , title: 'Agile Coach', rating: '1'},
   {name: 'Agile' , title: 'Agile Coach', rating: '1'},
   {name: 'Agile' , title: 'Agile Coach', rating: '1'},
   {name: 'Agile' , title: 'Agile Coach', rating: '1'}
+
 ]
 
-
-console.log('projects', props.project)
 </script>
 <style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css?family=Nunito');
@@ -68,7 +65,17 @@ console.log('projects', props.project)
     flex: 0 0 8.3333333333%;
     max-width: 87.33%;
   }
+
+  .v-col{
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
 }
+
+.halb{
+  width: 100%;
+}
+
 
 .small-title {
   text-align: left;
@@ -76,6 +83,10 @@ console.log('projects', props.project)
   letter-spacing: 0.3px;
   color: #1C1C1C;
   opacity: 1;
+}
+
+.mdi-pencil {
+  background: radial-gradient(180deg, #04C785 0%, #0966CB 100%) 0% 0% no-repeat padding-box;
 }
 
 .small-title-left {
@@ -120,7 +131,13 @@ console.log('projects', props.project)
   float: right;
   width: 18px;
   height: 18px;
-  background: linear-gradient(180deg, #04C785 0%, #0966CB 100%) 0% 0% no-repeat padding-box;
+  background: -moz-linear-gradient(180deg, #04C785 0%, #0966CB 100%);
+  background: -webkit-linear-gradient(180deg, #04C785 0%, #0966CB 100%);
+  background: linear-gradient(180deg, #04C785 0%, #0966CB 100%);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .divider {
