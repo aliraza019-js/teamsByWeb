@@ -2,6 +2,7 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  sendPasswordResetEmail,
   onAuthStateChanged
 } from 'firebase/auth';
 import { useUsersStore } from '~~/stores/users'
@@ -37,8 +38,22 @@ export const fbSignOut = async (): Promise<any> => {
     return
   }
   catch (err) {
-    console.log('err');
+    console.log('err', err);
     throw err;
+  }
+}
+
+export const fbResetPassword = async (mail: string): Promise<any> => {
+  const auth = getAuth()
+  const userStore = useUsersStore()
+  console.log('mail', mail)
+  try {
+    await userStore.$reset()
+    return await sendPasswordResetEmail(auth, mail)
+  }
+  catch (err) {
+    console.log('err', err)
+    throw err
   }
 }
 
