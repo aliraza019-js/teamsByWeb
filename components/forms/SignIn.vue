@@ -1,35 +1,40 @@
 <template lang="pug">
-v-form.d-flex-flex-column.align-center.justify-center.text-center(ref="form" v-model="valid" lazy-validation)
-  v-text-field.mb-2(
-    v-model="formData.mail"
-    style="width:100%"
-    type="email" 
-    label="Mail" 
-    :loading="loading" 
-    :disabled="loading"
-    :rules="rules.mail"
-    prepend-inner-icon="mdi-email")
+v-form.d-flex.flex-column.align-center.justify-center.text-center(ref="form" v-model="valid" lazy-validation)
+  v-row.stretch
+    v-text-field.mb-2.stretch(
+      v-model="formData.mail"
+      type="email" 
+      label="Mail" 
+      :loading="loading" 
+      :disabled="loading"
+      :rules="rules.mail"
+      prepend-inner-icon="mdi-email")
 
-  v-text-field.mb-2(
-    v-model="formData.pwd" 
-    style="width:100%"
-    type="password" 
-    label="password" 
-    :loading="loading" 
-    :disabled="loading"
-    :rules="rules.required"
-    prepend-inner-icon="mdi-lock")
+  v-row.stretch
+    v-text-field.mb-2.stretch(
+      v-model="formData.pwd"
+      type="password" 
+      label="password" 
+      :loading="loading" 
+      :disabled="loading"
+      :rules="rules.required"
+      prepend-inner-icon="mdi-lock")
 
-  v-alert.mb-3(:type="msgType" variant="tonal" v-show="msgIsVisible") {{msgText}}
+  v-row.align-center.justify-end.pb-5.stretch
+    nuxt-link(:to="localePath('/auth/password')") {{ $t('login.forgotPassword') }}
 
-  v-btn.stretch(
-    style="width:100%; maxWidth:300px" 
-    :loading="loading" 
-    :disabled="loading"
-    rounded 
-    color="secondary"
-    @click="validate()")
-    span {{ $t('login.label.login') }}
+  v-row.align-center.justify-center
+    v-alert.mb-3(:type="msgType" variant="tonal" v-show="msgIsVisible") {{msgText}}
+
+  v-row.align-center.justify-center.stretch
+    v-btn.stretch(
+      max-width="300px"
+      :loading="loading" 
+      :disabled="loading"
+      rounded 
+      color="secondary"
+      @click="validate()")
+      span {{ $t('login.label.login') }}
 </template>
 
 <script setup>
@@ -61,7 +66,6 @@ const msgIsVisible = ref(false)
 // methods
 const validate = async () => {
   loading.value = true
-  console.log('form', form.value)
   const { valid } = await form.value.validate()
   if (valid) return signUp()
   loading.value = false
@@ -74,7 +78,7 @@ const signUp = async () => {
     await fbInitUser()
     navigateTo(localePath('/'))
     loading.value = false
-    await form.reset()
+    await form.value.reset()
     msgType.value = 'success'
     msgText.value = 'erfolgreich angemeldet'
     msgIsVisible.value = true

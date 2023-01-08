@@ -16,7 +16,8 @@
     "signInWithFacebook": "Sign in with Facebook",
     "signInWithApple": "Sign in with Apple",
     "alreadyLoggedIn": "You are already logged in",
-    "goToApp": "Go to app"
+    "goToApp": "Go to app",
+    "forgotPassword": "Forgot password?"
   },
   "signUp": {
     "invalid": "Mail already exists",
@@ -28,6 +29,11 @@
     },
     "existingAccount1": "Already have an account?",
     "existingAccount2": "Log in here."
+  },
+  "password": {
+    "restorePassword": "Reset password",
+    "enterEmail": "Enter email to reset you password.",
+    "resetPassword": "reset password"
   },
   "navLinks": {
     "home": "Home",
