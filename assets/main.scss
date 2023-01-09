@@ -1,3 +1,19 @@
+body {
+    font-family: $font-family, sans-serif;
+    color: rgb(var(--v-theme-primary-text));
+}
+
+.v-application {
+    [class*='text-'] {
+        color: rgb(var(--v-theme-primary-text));
+        font-family: $font-family, sans-serif !important;
+    }
+
+    color: rgb(var(--v-theme-primary-text));
+    font-family: $font-family,
+    sans-serif !important;
+}
+
 a {
     text-decoration: none;
     color: $text-link;

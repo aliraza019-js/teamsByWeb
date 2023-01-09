@@ -16,7 +16,8 @@
     "signInWithFacebook": "Sign in with Facebook",
     "signInWithApple": "Sign in with Apple",
     "alreadyLoggedIn": "You are already logged in",
-    "goToApp": "Go to app"
+    "goToApp": "Go to app",
+    "forgotPassword": "Forgot password?"
   },
   "signUp": {
     "invalid": "Mail already exists",
@@ -29,6 +30,11 @@
     "existingAccount1": "Already have an account?",
     "existingAccount2": "Log in here."
   },
+  "password": {
+    "restorePassword": "Reset password",
+    "enterEmail": "Enter email to reset you password.",
+    "resetPassword": "reset password"
+  },
   "navLinks": {
     "home": "Home",
     "team": "Team",
@@ -37,5 +43,31 @@
     "account": "Account",
     "settings": "Settings",
     "signout": "Sign out"
+  },
+  "home": {
+    "home": "Home"
+  },
+  "team": {
+    "teams": "Teams",
+    "colleagues": "Colleagues"
+  },
+  "projects": {
+    "projects": "Projects",
+    "clients": "Clients"
+  },
+  "search": {
+    "search": "Search"
+  },
+  "account": {
+    "account": "Account",
+    "teams": "Teams",
+    "general": "General",
+    "skills": "Skills",
+    "projects": "Projects",
+    "trainings": "Trainings",
+    "certifications": "Certifications"
+  },
+  "settings": {
+    "settings": "Settings"
   }
 }
