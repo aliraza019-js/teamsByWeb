@@ -20,16 +20,20 @@ v-layout
         v-divider.divider.mr-12.ml-12.mb-1
       v-row.align-center
         .ml-1
-      
-          v-row.d-flex.ml-0.mb-10.mt-10.flex-row
-           v-col(md='6' sm='12')(v-for="(skill,index) in skills" :key="index" :skill="skill").flex-sm-row.justify-center
+      v-row.d-flex.ml-10.flex-row
+          v-row.d-flex.ml-10.mb-10.mt-10.flex-row
+           v-col.d-flex.mb-2(md='6' sm='12')(v-for="items in skills").flex-sm-row.justify-center
                v-row 
                 v-col(cols='6')
-                 .small-title Agil
-                 .text Agile Coach
+                 .small-title {{items.name}}
+                 .text {{items.title}}
                 v-col(cols='6')
-                 v-icon.star.ml-2.mt-3(v-for="n in 5")
-                  | mdi-star
+                  v-icon.star.ml-2.mt-3(v-for="n in items.rating")
+                    | mdi-star
+                  v-icon.star.ml-2.mt-3(v-for="n in 5 - items.rating")
+                    | mdi-star-outline
+                
+
   //v-row
     //common-person-skill(v-for="(skills, index) in skills" :key="index" :skills="skills")
   </template>
@@ -41,13 +45,13 @@ const props = defineProps({
 })
 
 const skills = [
-  {name: 'Agile' , title: 'Agile Coach', rating: '1'},
-  {name: 'Test' , title: 'Agile Coach', rating: '1'},
-  {name: 'Test3' , title: 'Agile Coach', rating: '1'},
-  {name: 'Agile' , title: 'Agile Coach', rating: '1'},
-  {name: 'Agile' , title: 'Agile Coach', rating: '1'},
-  {name: 'Agile' , title: 'Agile Coach', rating: '1'},
-  {name: 'Agile' , title: 'Agile Coach', rating: '1'}
+  { name: 'Agile1', title: 'Agile Coach', rating: 5 },
+  { name: 'Agile2', title: 'Scrum Product Owner (cert.)', rating: 2 },
+  { name: 'Agile3', title: 'Scrum Master (cert.)', rating: 4 },
+  { name: 'Agile4', title: 'Scaled Scrum(LeSS)', rating: 3 },
+  { name: 'Agile5', title: 'Software Quality Manager', rating: 1 },
+  { name: 'Agile6', title: 'Software Developer', rating: 5 },
+  { name: 'Agile7', title: 'Test Designer', rating: 4 }
 
 ]
 
@@ -66,13 +70,13 @@ const skills = [
     max-width: 87.33%;
   }
 
-  .v-col{
+  .v-col {
     flex: 0 0 100%;
     max-width: 100%;
   }
 }
 
-.halb{
+.halb {
   width: 100%;
 }
 
@@ -170,7 +174,7 @@ const skills = [
 
 }
 
-.star{
+.star {
   color: #06A69D;
   width: 16px;
   height: 15px;
