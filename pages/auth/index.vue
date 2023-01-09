@@ -1,5 +1,4 @@
 <template lang="pug">
-h2 auth index
 </template>
 
 <script setup>
@@ -8,6 +7,10 @@ definePageMeta({
 })
 
 const localePath = useLocalePath()
+definePageMeta({
+  layout: 'login',
+  ignoreAuth: true,
+})
 onMounted(() => {
   navigateTo(localePath('/auth/sign-in'))
   console.log('mounted')
