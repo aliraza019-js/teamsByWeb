@@ -14,7 +14,8 @@ v-container
 import { useUsersStore } from '~~/stores/users';
 
 definePageMeta({
-  layout: 'login'
+  layout: 'login',
+  ignoreAuth: true,
 })
 </script>
 
