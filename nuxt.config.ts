@@ -9,8 +9,8 @@ export default defineNuxtConfig({
     },
     runtimeConfig: {
         public: {
-            apiURL: process.env.API_URL || 'https://intg.team-stage.com/api',
-            firebaseApiKey: process.env.FIREBASE_API_KEY
+            apiURL: process.env.VUE_APP_API_URL || 'https://intg.team-stage.com/api',
+            firebaseApiKey: process.env.VUE_APP_FIREBASE_API_KEY || 'AIzaSyAUQtH-du-W8We3I1LvN6e0HTOXh-D-OdI'
         }
     },
     app: {

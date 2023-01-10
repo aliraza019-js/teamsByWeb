@@ -1,5 +1,5 @@
 <template lang="pug">
-v-form.d-flex-flex-column.align-center.justify-center.text-center(ref="form")
+v-form.d-flex.flex-column.align-center.justify-center.text-center(ref="form")
   v-text-field.mb-2(
     v-model="formData.mail"
     style="width:100%"
@@ -86,7 +86,7 @@ const signUp = async () => {
     await fbInitUser()
     navigateTo(localePath('/'))
     loading.value = false
-    await form.reset()
+    await form.value.reset()
     msgType.value = 'success'
     msgText.value = 'erfolgreich angemeldet'
     msgIsVisible.value = true

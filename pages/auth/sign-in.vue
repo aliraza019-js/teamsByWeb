@@ -1,14 +1,15 @@
 <template lang="pug">
 v-container
   .d-flex.align-center.justify-center
-    v-card.l-card.rounded.mt-5.pa-10(flat width="100%" max-width="560px")
+    v-card.l-card.rounded-xl.mt-5.pa-10(flat width="100%" max-width="560px")
       v-card-title.text-center.pt-10
         span.text-h4 {{ $t('login.label.login') }}
       v-card-text
         ClientOnly
           forms-sign-in(v-if="!userState.isLoggedIn")
           forms-already-signed-in(v-if="userState.isLoggedIn")
-      v-card-text(v-if="!userState.isLoggedIn")
+
+      v-card-text.mt-5(v-if="!userState.isLoggedIn")
         layout-or-divider
         ClientOnly
           comps-social-btns
@@ -22,7 +23,8 @@ v-container
 import { useUsersStore } from '~~/stores/users';
 
 definePageMeta({
-  layout: 'login'
+  layout: 'login',
+  ignoreAuth: true,
 })
 
 // data
@@ -33,12 +35,8 @@ const localePath = useLocalePath()
 </script>
 
 <style lang="scss" scoped>
-.heading {
-  color: #0965CB;
-  font-size: 4vh;
-}
-
 .l-card {
   box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.09);
+  border: 1px solid rgb(204, 204, 204);
 }
 </style>

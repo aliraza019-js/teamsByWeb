@@ -16,7 +16,8 @@
     "signInWithFacebook": "Mit Facebook anmelden",
     "signInWithApple": "Mit Apple anmelden",
     "alreadyLoggedIn": "Du bist bereits angemeldet",
-    "goToApp": "Zur App"
+    "goToApp": "Zur App",
+    "forgotPassword": "Passwort vergessen?"
   },
   "signUp": {
     "invalid": "E-Mail schon vorhanden",
@@ -28,6 +29,11 @@
     },
     "existingAccount1": "Bereits registriert?",
     "existingAccount2": "Hier einloggen."
+  },
+  "password": {
+    "restorePassword": "Passwort wiederherstellen",
+    "enterEmail": "Trage deine Mail-Adresse ein, um dein Passwort zurückzusetzen.",
+    "resetPassword": "Passwort zurücksetzen"
   },
   "navLinks": {
     "home": "Start",
