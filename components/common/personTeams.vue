@@ -14,7 +14,7 @@ v-container
           v-card(outlined max-width="400")
             v-row
               //-warum funktionier das nicht?
-              v-img(:src="require('../../img/team_pic_default.png')")
+              v-img(:src="/app/img/team_pic_default.png")
               v-card-text
                 v-col
                   div(class="mr-5")
@@ -27,6 +27,7 @@ v-container
 </template>
 
 <!--
+v-img(:src="require('../../img/team_pic_default.png')")
 v-col(cols="12" sm="4").d-flex
 v-card(elevation="1" max-width="400")
 v-row
@@ -98,12 +99,5 @@ const test = [
   color: #1C1C1C;
   opacity: 1;
 }
-
-.pic{
-  background: transparent url('img/Rechteck 2139.png') 0% 0% no-repeat padding-box;
-  border-radius: 7px 0px 0px 7px;
-  opacity: 1;
-}
-
 
 </style>

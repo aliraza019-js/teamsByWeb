@@ -12,8 +12,8 @@ v-container
         v-row
           v-col(cols="12" md="6" sm="6")
             v-row
-                v-icon(color="#1C1C1C") mdi-phone
-                div(class="text ml-5") +49 511 123456-0
+              v-icon(color="#1C1C1C") mdi-phone
+              div(class="text ml-5") +49 511 123456-0
             v-row.mt-12
               v-icon(color="#1C1C1C" ) mdi-cellphone
               div(class="text ml-5") +49 172 12345678
