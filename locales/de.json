@@ -69,5 +69,13 @@
   },
   "settings": {
     "settings": "Einstellungen"
+  },
+  "personAbout": {
+    "about": "Über",
+    "title": "Titel",
+    "description": "Beschreibung" 
+  },
+  "personContact": {
+    "title": "Kontakt Informationen"
   }
 }

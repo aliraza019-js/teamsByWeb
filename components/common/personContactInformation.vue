@@ -4,7 +4,7 @@ v-container
     v-row.align-center.mt-1
       v-col(class="d-flex align-center")
         div(class="small-box")
-        div(class="blueH").ml-6 Kontakt Informationen
+        div(class="blueH").ml-6 {{ $t('personContact.title') }}
     v-card-text
       v-divider.inset.mr-8.mb-10
 
