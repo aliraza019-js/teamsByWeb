@@ -14,12 +14,11 @@ v-container
           v-card(outlined max-width="400")
             v-row
               //-warum funktionier das nicht?
-              v-img(:src="/app/img/team_pic_default.png")
+              v-img(src="/app/img/team_pic_default.png")
               v-card-text
                 v-col
-                  div(class="mr-5")
-                    div(class="text") CMS for the future
-                    div(class="title") AEM Specialists
+                  div(class="text") CMS for the future
+                  div(class="title") AEM Specialists
 
 
             
