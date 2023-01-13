@@ -10,7 +10,7 @@ export default defineNuxtConfig({
     runtimeConfig: {
         public: {
             apiURL: process.env.VUE_APP_API_URL || 'https://intg.team-stage.com/api',
-            firebaseApiKey: process.env.VUE_APP_FIREBASE_API_KEY || 'AIzaSyAUQtH-du-W8We3I1LvN6e0HTOXh-D-OdI'
+            firebaseApiKey: process.env.VUE_APP_FIREBASE_API_KEY
         }
     },
     app: {
@@ -40,6 +40,7 @@ export default defineNuxtConfig({
     ],
     build: {
         transpile: ['vuetify'],
+
     },
     i18n: {
         locales: ['en', 'de'],
