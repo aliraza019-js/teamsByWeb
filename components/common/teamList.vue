@@ -1,12 +1,11 @@
-<template lang="pug">
-v-layout  
-  v-card(class='mt-4 mb-4 ml-4 mr-4 mx-auto d-flex' elevation="1" width="330" height="67")
-   v-row(align="center" justify="center")  
-    v-col( cols="4")  
-      v-img(class="teamPic" :src="team.imgUrl" alt="Avatar")
+<template lang="pug">  
+v-card(class='mt-1 mb-1 ml-1 mr-1' elevation="1" width="100%" height="100%")
+  v-row(align="center" justify="center")  
+    v-col( cols="auto")  
+      img(class="teamPic" src="./team_pic_default.png" alt="Avatar")
     v-col(align-self="center" class="mr-4") 
-      div(class="title") {{ team.title }}
-      div(class="name") {{ team.name  }}
+      h3 {{ team.title }}
+      h5 {{ team.name  }}
 </template>
   
   <script setup>

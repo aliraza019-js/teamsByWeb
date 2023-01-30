@@ -1,9 +1,11 @@
 <template lang="pug">
 v-container
-  CommonTeamList(v-for="team in teams" :team="team" style="display:inline-block")
-  v-row.my-5
-      v-divider
-      v-btn.mt-5(nuxt :to="localePath('/d/team/person/123')") detail page
+  v-col(cols="12" sm="4" v-for="(team, index) in teams" :key="index")
+      CommonTeamList(:team="team")
+      v-btn(nuxt :to="localePath('/d/team/123')") detail page
+  
+
+      
   
 </template>
 
