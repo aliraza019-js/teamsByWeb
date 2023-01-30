@@ -1,12 +1,11 @@
 <template lang="pug">
-v-layout
-  v-card(class="mt-1 mb-1 ml-1 mr-1" width="100%" height="100%" elevation="3" )
-    v-row
-      v-col(cols="auto" )
-        img(class="profilePic" src="./profile_pic_default.png" alt="non found")
-      v-col()
-        div(class="title") {{ props.person.title }}
-        div(class="name") {{props.person.name}}
+v-card(class="" width="100%" height="100%" elevation="3")
+  v-row()
+    v-col(cols="auto")
+      img(class="profilePic" src="./profile_pic_default.png" alt="non found" )
+    v-col()
+      div(class="title") {{ props.person.title }}
+      div(class="name") {{props.person.name}}
 </template>
 
 <script setup>
@@ -37,10 +36,13 @@ console.log('person', props.person)
     min-height: 30px;
     max-width: 60px;
     max-height: 60px;
-    margin: auto;    
-    display: block;
     border-radius: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
   }
-  $grid-breakpoints: ( xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl:1400px );
+ 
   
 </style>
