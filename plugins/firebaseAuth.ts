@@ -4,6 +4,8 @@ export default defineNuxtPlugin(nuxtApp => {
 
   const config = useRuntimeConfig();
 
+  console.log('fb key', config.public.firebaseApiKey)
+
   const firebaseConfig = {
     apiKey: config.public.firebaseApiKey
   }

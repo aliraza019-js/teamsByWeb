@@ -40,6 +40,7 @@ export default defineNuxtConfig({
     ],
     build: {
         transpile: ['vuetify'],
+
     },
     i18n: {
         locales: ['en', 'de'],
