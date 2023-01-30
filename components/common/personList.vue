@@ -1,11 +1,12 @@
 <template lang="pug">
-v-card(class='mt-auto mb-5 ml-4 mr-4 elevation-2 outlined mx-auto d-flex fluid' width="29%" height="10%")
-  v-row(align="center" justify="center")  
-    v-col(align="start" class='ml-2')  
-      v-img(class="profilePic" :src="person.imgUrl" alt="Avatar")
-    v-col(cols="8") 
-      div(class="title" ) {{ person.title }}
-      div(class="name") {{ person.name  }}
+v-layout
+  v-card(class="mt-1 mb-1 ml-1 mr-1" width="100%" height="100%" elevation="3" )
+    v-row
+      v-col(cols="auto" )
+        img(class="profilePic" src="./profile_pic_default.png" alt="non found")
+      v-col()
+        div(class="title") {{ props.person.title }}
+        div(class="name") {{props.person.name}}
 </template>
 
 <script setup>
@@ -34,8 +35,12 @@ console.log('person', props.person)
   .profilePic{
     min-width: 30px;
     min-height: 30px;
+    max-width: 60px;
+    max-height: 60px;
+    margin: auto;    
+    display: block;
     border-radius: 50%;
   }
-  
+  $grid-breakpoints: ( xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl:1400px );
   
 </style>
