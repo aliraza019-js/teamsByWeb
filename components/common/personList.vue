@@ -1,12 +1,13 @@
 <template lang="pug">
-v-card(class="d-flex" width="100%" height="100%" elevation="3")
-  v-row(style="align-items:center;")
-    v-col(cols="auto")
-        v-avatar(class="ml-1" size="56" )
-          img(class="profilePic" src="./profile_pic_default.png" alt="non found" )
+v-card(class="d-flex flex-row" width="100%" height="100%" elevation="3" style="align-items:center;")
+    v-col(style="max-width:65px; padding:2px;")
+        v-avatar(size=56 )
+          img(class="profilePic" src="./profile_pic_default.png" alt="Avatar")
     v-col()
-      div(class="text-caption") {{ props.person.title }}
-      h4 {{props.person.name}}
+      v-row()
+        div(class="text-caption ") {{ props.person.title }}
+      v-row()
+        h4 {{props.person.name}}
 </template>
 
 <script setup>
@@ -17,8 +18,8 @@ console.log('person', props.person)
 <style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css?family=Nunito');
   .profilePic{
-    max-width: 56px;
-    max-height: 56px;  
+    max-width: 60px;
+    max-height: 60px;  
   }
   
 </style>

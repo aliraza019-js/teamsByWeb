@@ -1,6 +1,6 @@
 <template lang="pug">
 v-container
-    v-row()
+    v-row
       v-col(cols="12" sm=4 v-for="(person, index) in persons" :key="index")
         CommonPersonList(:person="person")
     v-row.my-5
@@ -37,7 +37,8 @@ v-container
   { name: 'Anne Winkler', title: 'Teamlead | CPM', imgUrl: '../../img/profile_pic_default.png' },
   { name: 'Danny Crane', title: 'Global Communications Supervisor', imgUrl: '../../img/profile_pic_default.png' },
   { name: 'Danny Crane', title: 'Global Communications Supervisor', imgUrl: '../../img/profile_pic_default.png' },
-  { name: 'Danny Crane Pimmel man', title: 'Global Communications Supervisor', imgUrl: '../../img/profile_pic_default.png' }
+  { name: 'Danny Crane', title: 'Global Communications Supervisor ', imgUrl: '../../img/profile_pic_default.png' },
+  { name: 'Christopher Michelangelo', title: 'Global Communications Supervisor', imgUrl: '../../img/profile_pic_default.png' }
 ]
   
   // methods
