@@ -1,8 +1,11 @@
 <template lang="pug">
 v-container
-  v-col(cols="12" sm="4" v-for="(team, index) in teams" :key="index")
+  v-row
+    v-col(cols="12" sm="4" v-for="(team, index) in teams" :key="index")
       CommonTeamList(:team="team")
-      v-btn(nuxt :to="localePath('/d/team/123')") detail page
+  v-row.my-5
+    v-divider
+    v-btn.mt-5(nuxt :to="localePath('/d/team/123')") detail page
   
 
       
@@ -11,11 +14,11 @@ v-container
 
 <script setup>
 const teams = [
-  { name: 'Amy Lee', title: 'title 1', imgUrl: '../../img/team_pic_default.png' },
-  { name: 'Frank Werner', title: 'title 2', imgUrl: '../../img/team_pic_default.png' },
-  { name: 'Flo Eutert', title: 'title 3', imgUrl: '../../img/team_pic_default.png' },
-  { name: 'Anne Winkler', title: 'title 4', imgUrl: '../../img/team_pic_default.png' },
-  { name: 'Danny Crane', title: 'title 5', imgUrl: '../../img/team_pic_default.png' }
+  { name: 'Amy Lee', title: 'Sales', imgUrl: '../../img/team_pic_default.png' },
+  { name: 'Frank Werner', title: 'Design', imgUrl: '../../img/team_pic_default.png' },
+  { name: 'Flo Eutert', title: 'Quality Management ', imgUrl: '../../img/team_pic_default.png' },
+  { name: 'Anne Winkler', title: 'Development', imgUrl: '../../img/team_pic_default.png' },
+  { name: 'Danny Crane', title: 'Testing', imgUrl: '../../img/team_pic_default.png' }
 ]
 </script>
 
