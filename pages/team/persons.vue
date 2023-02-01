@@ -21,24 +21,24 @@ v-container
   
   // data
   const persons = [
-  { name: 'Amy Lee', title: 'Senior Project Manager', imgUrl: '../../img/profile_pic_default.png' },
-  { name: 'Frank Werner', title: 'Dynamic Optimatization Manager', imgUrl: '../../img/profile_pic_default.png' },
-  { name: 'Flo Eutert', title: 'Chief Mobility Strategist', imgUrl: '../../img/profile_pic_default.png' },
-  { name: 'Anne Winkler', title: 'Teamlead | CPM', imgUrl: '../../img/profile_pic_default.png' },
-  { name: 'Danny Crane', title: 'Global Communications Supervisor', imgUrl: '../../img/profile_pic_default.png' },
-  { name: 'Amy Lee', title: 'Senior Project Manager', imgUrl: '../../img/profile_pic_default.png' },
-  { name: 'Frank Werner', title: 'Dynamic Optimatization Manager', imgUrl: '../../img/profile_pic_default.png' },
-  { name: 'Flo Eutert', title: 'Chief Mobility Strategist', imgUrl: '../../img/profile_pic_default.png' },
-  { name: 'Anne Winkler', title: 'Teamlead | CPM', imgUrl: '../../img/profile_pic_default.png' },
-  { name: 'Danny Crane', title: 'Global Communications Supervisor', imgUrl: '../../img/profile_pic_default.png' },
-  { name: 'Amy Lee', title: 'Senior Project Manager', imgUrl: '../../img/profile_pic_default.png' },
-  { name: 'Frank Werner', title: 'Dynamic Optimatization Manager', imgUrl: '../../img/profile_pic_default.png' },
-  { name: 'Flo Eutert', title: 'Chief Mobility Strategist', imgUrl: '../../img/profile_pic_default.png' },
-  { name: 'Anne Winkler', title: 'Teamlead | CPM', imgUrl: '../../img/profile_pic_default.png' },
-  { name: 'Danny Crane', title: 'Global Communications Supervisor', imgUrl: '../../img/profile_pic_default.png' },
-  { name: 'Danny Crane', title: 'Global Communications Supervisor', imgUrl: '../../img/profile_pic_default.png' },
-  { name: 'Danny Crane', title: 'Global Communications Supervisor ', imgUrl: '../../img/profile_pic_default.png' },
-  { name: 'Christopher Michelangelo', title: 'Global Communications Supervisor', imgUrl: '../../img/profile_pic_default.png' }
+  { name: 'Amy Lee', title: 'Senior Project Manager', imgUrl: 'https://cdn.vuetifyjs.com/images/john.jpg' },
+  { name: 'Frank Werner', title: 'Dynamic Optimatization Manager', imgUrl: 'https://cdn.vuetifyjs.com/images/john.jpg' },
+  { name: 'Flo Eutert', title: 'Chief Mobility Strategist', imgUrl: '../img/profile_pic_default.png' },
+  { name: 'Anne Winkler', title: 'Teamlead | CPM', imgUrl: '../img/profile_pic_default.png' },
+  { name: 'Danny Crane', title: 'Global Communications Supervisor', imgUrl: '../img/profile_pic_default.png' },
+  { name: 'Amy Lee', title: 'Senior Project Manager', imgUrl: '../img/profile_pic_default.png' },
+  { name: 'Frank Werner', title: 'Dynamic Optimatization Manager', imgUrl: '../img/profile_pic_default.png' },
+  { name: 'Flo Eutert', title: 'Chief Mobility Strategist', imgUrl: '../img/profile_pic_default.png' },
+  { name: 'Anne Winkler', title: 'Teamlead | CPM', imgUrl: '../img/profile_pic_default.png' },
+  { name: 'Danny Crane', title: 'Global Communications Supervisor', imgUrl: '../img/profile_pic_default.png' },
+  { name: 'Amy Lee', title: 'Senior Project Manager', imgUrl: '../img/profile_pic_default.png' },
+  { name: 'Frank Werner', title: 'Dynamic Optimatization Manager', imgUrl: '../img/profile_pic_default.png' },
+  { name: 'Flo Eutert', title: 'Chief Mobility Strategist', imgUrl: '../img/profile_pic_default.png' },
+  { name: 'Anne Winkler', title: 'Teamlead | CPM', imgUrl: '../img/profile_pic_default.png' },
+  { name: 'Danny Crane', title: 'Global Communications Supervisor', imgUrl: '../img/profile_pic_default.png' },
+  { name: 'Danny Crane', title: 'Global Communications Supervisor', imgUrl: '../img/profile_pic_default.png' },
+  { name: 'Danny Crane', title: 'Global Communications Supervisor ', imgUrl: '../img/profile_pic_default.png' },
+  { name: 'Christopher Michelangelo', title: 'Global Communications Supervisor', imgUrl: '../img/profile_pic_default.png' }
 ]
   
   // methods

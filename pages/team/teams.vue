@@ -13,11 +13,11 @@ definePageMeta({
   activeRoute: 'team'
 })
 const teams = [
-  { name: 'Amy Lee', title: 'Sales', imgUrl: '../../img/team_pic_default.png' },
-  { name: 'Frank Werner', title: 'Design', imgUrl: '../../img/team_pic_default.png' },
-  { name: 'Flo Eutert', title: 'Quality Management', imgUrl: '../../img/team_pic_default.png' },
-  { name: 'Anne Winkler', title: 'Development', imgUrl: '../../img/team_pic_default.png' },
-  { name: 'Danny Crane', title: 'Testing', imgUrl: '../../img/team_pic_default.png' }
+  { name: 'Amy Lee', title: 'Sales', imgUrl: '../img/team_pic_default.png' },
+  { name: 'Frank Werner', title: 'Design', imgUrl: '../img/team_pic_default.png' },
+  { name: 'Flo Eutert', title: 'Quality Management', imgUrl: '../img/team_pic_default.png' },
+  { name: 'Anne Winkler', title: 'Development', imgUrl: '../img/team_pic_default.png' },
+  { name: 'Danny Crane', title: 'Testing', imgUrl: '../img/team_pic_default.png' }
 ]
 </script>
 
