@@ -6,13 +6,12 @@ v-container
   v-row.my-5
     v-divider
     v-btn.mt-5(nuxt :to="localePath('/d/team/123')") detail page
-  
-
-      
-  
 </template>
 
 <script setup>
+definePageMeta({
+  activeRoute: 'team'
+})
 const teams = [
   { name: 'Amy Lee', title: 'Sales', imgUrl: '../../img/team_pic_default.png' },
   { name: 'Frank Werner', title: 'Design', imgUrl: '../../img/team_pic_default.png' },

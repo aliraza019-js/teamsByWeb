@@ -5,11 +5,15 @@ v-card(width="100%" flat)
     v-btn(icon)
       v-icon mdi-menu
 
-  v-card-text
-    p.text-body-1 some content
+  CommonPersonAboutGeneral
+  CommonPersonContactInformation
+  CommonPersonTeams
 </template>
 
 <script setup>
+definePageMeta({
+  activeRoute: 'team'
+})
 const route = useRoute()
 console.log(route.params.id)
 </script>

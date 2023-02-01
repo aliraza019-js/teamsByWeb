@@ -1,5 +1,5 @@
 <template lang="pug">
-v-form.d-flex-flex-column.align-center.justify-center.text-center(ref="form")
+v-form.d-flex.flex-column.align-center.justify-center.text-center(ref="form")
   v-text-field.mb-2(
     v-model="formData.mail"
     style="width:100%"
@@ -47,8 +47,8 @@ v-form.d-flex-flex-column.align-center.justify-center.text-center(ref="form")
 <script setup>
 const config = useRuntimeConfig()
 const localePath = useLocalePath()
-let form
-let valid
+let form = ref(null)
+let valid = ref(false)
 const loading = ref(false)
 const formData = reactive({
   mail: '',
@@ -74,7 +74,7 @@ const msgIsVisible = ref(false)
 
 const validate = async () => {
   loading.value = true
-  const { valid } = await form.validate()
+  const { valid } = await form.value.validate()
   if (valid) return signUp()
   loading.value = false
   return
@@ -86,7 +86,7 @@ const signUp = async () => {
     await fbInitUser()
     navigateTo(localePath('/'))
     loading.value = false
-    await form.reset()
+    await form.value.reset()
     msgType.value = 'success'
     msgText.value = 'erfolgreich angemeldet'
     msgIsVisible.value = true

@@ -10,7 +10,9 @@ v-card(width="100%" flat)
 </template>
 
 <script setup>
-
+definePageMeta({
+  activeRoute: 'search'
+})
 </script>
 
 <style lang="scss" scoped>

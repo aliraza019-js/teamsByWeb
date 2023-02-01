@@ -6,16 +6,15 @@ v-card(width="100%" flat)
       v-icon mdi-menu
     template(v-slot:extension)
       v-tabs.my-5
-        v-btn.tab-btn.mr-2(nuxt :to="localePath('/team/persons')") {{ $t('team.colleagues') }}
-        v-btn.tab-btn(nuxt :to="localePath('/team/teams')") {{ $t('team.teams') }}
+        v-btn.tab-btn.ma-2(nuxt :to="localePath('/team/persons')") {{ $t('team.colleagues') }}
+        v-btn.tab-btn.ma-2(nuxt :to="localePath('/team/teams')") {{ $t('team.teams') }}
   NuxtPage
 
 </template>
 
 <script setup>
-const localePath = useLocalePath()
-onMounted(() => {
-  navigateTo(localePath('/team/persons'))
+definePageMeta({
+  activeRoute: 'team'
 })
 </script>
 
