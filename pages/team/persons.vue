@@ -1,7 +1,7 @@
 <template lang="pug">
 v-container
     v-row
-      v-col(cols="12" sm=4 xl=3 v-for="(person, index) in persons" :key="index")
+      v-col(cols="12" sm=4 v-for="(person, index) in persons" :key="index")
         CommonPersonList(:person="person")
     v-row.my-5
       v-divider

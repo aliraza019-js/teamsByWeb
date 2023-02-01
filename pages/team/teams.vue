@@ -1,7 +1,7 @@
 <template lang="pug">
 v-container
   v-row
-    v-col(cols="12" sm=4 xl=3 v-for="(team, index) in teams" :key="index")
+    v-col(cols="12" sm=4 v-for="(team, index) in teams" :key="index")
       CommonTeamList(:team="team")
   v-row.my-5
     v-divider
