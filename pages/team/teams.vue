@@ -1,9 +1,11 @@
 <template lang="pug">
 v-container
   v-row
-    v-col(cols="12" sm="4" v-for="(team, index) in teams" :key="index")
+    v-col(cols="12" sm=4 v-for="(team, index) in teams" :key="index")
       CommonTeamList(:team="team")
-  v-btn(nuxt :to="localePath('/d/team/123')") detail page
+  v-row.my-5
+    v-divider
+    v-btn.mt-5(nuxt :to="localePath('/d/team/123')") detail page
 </template>
 
 <script setup>
@@ -11,11 +13,11 @@ definePageMeta({
   activeRoute: 'team'
 })
 const teams = [
-  { name: 'Amy Lee', title: 'title 1', imgUrl: 'https://ik.imagekit.io/teamstage/image_picker379473135243521174_lHzLHNBAa.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1670403726734' },
-  { name: 'Frank Werner', title: 'title 2', imgUrl: 'https://ik.imagekit.io/teamstage/image_picker379473135243521174_lHzLHNBAa.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1670403726734' },
-  { name: 'Flo Eutert', title: 'title 3', imgUrl: 'https://ik.imagekit.io/teamstage/image_picker379473135243521174_lHzLHNBAa.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1670403726734' },
-  { name: 'Anne Winkler', title: 'title 4', imgUrl: 'https://ik.imagekit.io/teamstage/image_picker379473135243521174_lHzLHNBAa.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1670403726734' },
-  { name: 'Danny Crane', title: 'title 5', imgUrl: 'https://ik.imagekit.io/teamstage/image_picker379473135243521174_lHzLHNBAa.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1670403726734' }
+  { name: 'Amy Lee', title: 'Sales', imgUrl: '../img/team_pic_default.png' },
+  { name: 'Frank Werner', title: 'Design', imgUrl: '../img/team_pic_default.png' },
+  { name: 'Flo Eutert', title: 'Quality Management', imgUrl: '../img/team_pic_default.png' },
+  { name: 'Anne Winkler', title: 'Development', imgUrl: '../img/team_pic_default.png' },
+  { name: 'Danny Crane', title: 'Testing', imgUrl: '../img/team_pic_default.png' }
 ]
 </script>
 
