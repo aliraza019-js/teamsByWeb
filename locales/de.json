@@ -1,5 +1,8 @@
 {
   "required": "Pflichtpfeld",
+  "layout": {
+    "or": "ODER"
+  },
   "login": {
     "invalid": "Ungültige Zugangsdaten",
     "label": {
@@ -8,7 +11,13 @@
       "login": "Anmelden"
     },
     "noAccount1": "Noch keinen Account?",
-    "noAccount2": "Hier registrieren"
+    "noAccount2": "Hier registrieren.",
+    "signInWithGoogle": "Mit Google anmelden",
+    "signInWithFacebook": "Mit Facebook anmelden",
+    "signInWithApple": "Mit Apple anmelden",
+    "alreadyLoggedIn": "Du bist bereits angemeldet",
+    "goToApp": "Zur App",
+    "forgotPassword": "Passwort vergessen?"
   },
   "signUp": {
     "invalid": "E-Mail schon vorhanden",
@@ -19,6 +28,54 @@
       "login": "Registrieren"
     },
     "existingAccount1": "Bereits registriert?",
-    "existingAccount2": "Hier einloggen"
+    "existingAccount2": "Hier einloggen."
+  },
+  "password": {
+    "restorePassword": "Passwort wiederherstellen",
+    "enterEmail": "Trage deine Mail-Adresse ein, um dein Passwort zurückzusetzen.",
+    "resetPassword": "Passwort zurücksetzen"
+  },
+  "navLinks": {
+    "home": "Start",
+    "team": "Team",
+    "projects": "Projekte",
+    "search": "Suche",
+    "account": "Account",
+    "settings": "Einstellungen",
+    "signout": "Abmelden"
+  },
+  "home": {
+    "home": "Start"
+  },
+  "team": {
+    "teams": "Teams",
+    "colleagues": "Kollegen"
+  },
+  "projects": {
+    "projects": "Projekte",
+    "clients": "Kunden"
+  },
+  "search": {
+    "search": "Suche"
+  },
+  "account": {
+    "account": "Account",
+    "teams": "Teams",
+    "general": "Allgemein",
+    "skills": "Skills",
+    "projects": "Projekte",
+    "trainings": "Trainings",
+    "certifications": "Zertifizierungen"
+  },
+  "settings": {
+    "settings": "Einstellungen"
+  },
+  "personAbout": {
+    "about": "Über",
+    "title": "Titel",
+    "description": "Beschreibung" 
+  },
+  "personContact": {
+    "title": "Kontakt Informationen"
   }
 }

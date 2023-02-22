@@ -1,136 +1,69 @@
-<template>
-  <Html :lang="head.htmlAttrs.lang" :dir="head.htmlAttrs.dir">
+<template lang="pug">
+v-app
+  //- navi drawer
+  //- v-navigation-drawer(app location="right" disable-resize-watcher v-model="drawer")
+    v-card
+      v-card-text
+        h5 Navigation
+  v-app-bar.app-bar(app flat theme="dark")
+    v-container.d-flex.flex-row.align-center.justify-space-between
+      //- logo
+      v-img(src="/app/img/logo-white_sm.png" max-width="190px" contain)
+      v-spacer
+      v-btn(nuxt :to="switchLocalePath($i18n.locale == 'de' ? 'en' : 'de')")
+        v-icon.mr-2 mdi-web
+        span {{ $i18n.locale == 'de' ? 'EN' : 'DE' }}
 
-  <Head>
-  </Head>
-  <v-app>
+      ClientOnly
+        LayoutHeadUserComp
+      //- v-btn.d-flex.d-md-none(icon @click="drawer = !drawer")
+        v-icon mdi-menu
+  //- main
+  v-main
+    v-container.d-flex.flex-row
+      .d-none.d-md-flex
+        LayoutMainNav.mr-5(:nav-items="navItems")
+      slot
 
-    <v-main>
-      <slot></slot>
-    </v-main>
-
-    <v-footer class="footer">
-      <v-container>
-        <v-row>
-          <v-col cols="12" md="5" lg="4">
-            <div class="d-flex justify-space-between align-center">
-              <v-img src="../img/logo_sm.png" width="200px"></v-img>
-              <v-spacer></v-spacer>
-              <v-btn class="rounded-xl primary-btn" text="text" flat="flat" @click.stop="goToDe()"
-                v-if="$i18n.locale != 'de'">
-                <v-icon class="mr-2">mdi-web</v-icon>
-                <span>Deutsch</span>
-              </v-btn>
-              <v-btn class="rounded-xl primary-btn" text="text" flat="flat" @click.stop="goToEn()"
-                v-if="$i18n.locale != 'en'">
-                <v-icon class="mr-2">mdi-web</v-icon>
-                <span>English</span>
-              </v-btn>
-            </div>
-            <div class="d-flex align-center">
-              <CompsStoreBtn title="App-Store" icon="mdi-apple" href="https://www.apple.com/de/app-store/">
-              </CompsStoreBtn>
-              <v-spacer></v-spacer>
-              <CompsStoreBtn title="Play-Store" icon="mdi-google-play" href="https://play.google.com/store">
-              </CompsStoreBtn>
-            </div>
-            <div class="d-flex">
-              <p class="text-caption">copyright &copy; 2022</p>
-            </div>
-          </v-col>
-          <v-col class="d-none d-md-flex" md="1" lg="2"></v-col>
-          <v-col cols="12" md="6">
-            <v-row>
-              <v-col cols="12" sm="4">
-                <h6 class="text-subtitle-1 font-weight-bold">Quick-Links</h6>
-                <hr class="footer-header mb-5" />
-                <div class="d-flex flex-column"><a class="footer-link text-caption py-1" href="#">lorem ipsum</a><a
-                    class="footer-link text-caption py-1" href="#">lorem ipsum</a><a
-                    class="footer-link text-caption py-1" href="#">lorem ipsum</a><a
-                    class="footer-link text-caption py-1" href="#">lorem ipsum</a></div>
-              </v-col>
-              <v-col cols="12" sm="4">
-                <h6 class="text-subtitle-1 font-weight-bold">Support</h6>
-                <hr class="footer-header mb-5" />
-                <div class="d-flex flex-column"><a class="footer-link text-caption py-1" href="#">FAQ</a><a
-                    class="footer-link text-caption py-1" href="#">Technische Hotline</a><a
-                    class="footer-link text-caption py-1" href="#">Vetrieb</a><a class="footer-link text-caption py-1"
-                    href="#">Ticketsystem</a></div>
-              </v-col>
-              <v-col cols="12" sm="4">
-                <h6 class="text-subtitle-1 font-weight-bold">Corporate</h6>
-                <hr class="footer-header mb-5" />
-                <div class="d-flex flex-column"><a class="footer-link text-caption py-1" href="#">Impressum</a>
-                  <a class="footer-link text-caption py-1" href="#">Datenschutz</a>
-                  <NuxtLink class="footer-link text-caption py-1" :to="localePath('contact')">Kontakt</NuxtLink>
-                  <a class="footer-link text-caption py-1" href="#">Datenschutzeinstellungen</a>
-                </div>
-              </v-col>
-            </v-row>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-footer>
-  </v-app>
-
-  </Html>
-
+  LayoutFooterNav.d-flex.d-md-none(:navItems="navItems")
+  //- footer
+  v-footer.d-none.d-md-flex.my-footer(app height="45px")
+    v-container
+      .d-flex.flex-row
+        span.text-caption copyright &copy; TeamStage 2022
 </template>
 
-<script setup lang="ts">
-import {
-  onMounted,
-  ref,
-  resolveComponent,
-  useHead,
-  useRoute,
-  navigateTo,
-  useSwitchLocalePath,
-  useLocalePath, useI18n, useLocaleHead, computed, useRouteBaseName, useFirebase
-} from '#imports';
-import { onAuthStateChanged } from '@firebase/auth';
+<script setup>
 
-const switchLocalePath = useSwitchLocalePath()
-const localePath = useLocalePath();
-const t = useI18n({ useScope: 'global' })
-/**
- * head configuration
- */
-const head = useLocaleHead({
-  addDirAttribute: true,
-  identifierAttribute: 'id',
-  addSeoAttributes: true
-})
-
-/**
- * data
- */
+// data
 const drawer = ref(false)
-const route = useRoute()
+const localPath = useLocalePath()
 
-// lang switcher
+// data
+const navItems = [
+  { titleRef: 'home', icon: 'home', to: '/home', routerLink: 'home' },
+  { titleRef: 'team', icon: 'users', to: '/team/persons', routerLink: 'team' },
+  { titleRef: 'projects', icon: 'filetext', to: '/project/projects', routerLink: 'project' },
+  { titleRef: 'search', icon: 'search', to: '/search', routerLink: 'search' },
+  { titleRef: 'account', icon: 'user', to: '/account/general', routerLink: 'account' },
+  { titleRef: 'settings', icon: 'settings', to: '/settings', routerLink: 'settings' }
+]
 
-const goToDe = () => {
-  navigateTo(switchLocalePath('de'))
-}
-const goToEn = () => {
-  navigateTo(switchLocalePath('en'))
-}
-
+// methods
+onMounted(async () => {
+  await fbInitUser()
+})
 
 </script>
 
-<style scoped>
-.footer {
-  background-color: #f2f2f2;
+<style lang="scss" scoped>
+.app-bar {
+  background-image: linear-gradient($secondary, $primary);
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
 }
 
-.footer-header {
-  color: #1C1C1C;
-}
-
-.footer-link {
-  text-decoration: none;
-  color: #1C1C1C;
+.my-footer {
+  bottom: 0px !important;
 }
 </style>

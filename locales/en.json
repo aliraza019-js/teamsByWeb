@@ -1,5 +1,8 @@
 {
   "required": "Required",
+  "layout": {
+    "or": "OR"
+  },
   "login": {
     "invalid": "Invalid credentials",
     "label": {
@@ -8,7 +11,13 @@
       "login": "Sign In"
     },
     "noAccount1": "Don't have an account?",
-    "noAccount2": "Sign up here"
+    "noAccount2": "Sign up here.",
+    "signInWithGoogle": "Sign in with Google",
+    "signInWithFacebook": "Sign in with Facebook",
+    "signInWithApple": "Sign in with Apple",
+    "alreadyLoggedIn": "You are already logged in",
+    "goToApp": "Go to app",
+    "forgotPassword": "Forgot password?"
   },
   "signUp": {
     "invalid": "Mail already exists",
@@ -19,6 +28,54 @@
       "login": "Sign Up"
     },
     "existingAccount1": "Already have an account?",
-    "existingAccount2": "Log in here"
+    "existingAccount2": "Log in here."
+  },
+  "password": {
+    "restorePassword": "Reset password",
+    "enterEmail": "Enter email to reset you password.",
+    "resetPassword": "reset password"
+  },
+  "navLinks": {
+    "home": "Home",
+    "team": "Team",
+    "projects": "Projects",
+    "search": "Search",
+    "account": "Account",
+    "settings": "Settings",
+    "signout": "Sign out"
+  },
+  "home": {
+    "home": "Home"
+  },
+  "team": {
+    "teams": "Teams",
+    "colleagues": "Colleagues"
+  },
+  "projects": {
+    "projects": "Projects",
+    "clients": "Clients"
+  },
+  "search": {
+    "search": "Search"
+  },
+  "account": {
+    "account": "Account",
+    "teams": "Teams",
+    "general": "General",
+    "skills": "Skills",
+    "projects": "Projects",
+    "trainings": "Trainings",
+    "certifications": "Certifications"
+  },
+  "settings": {
+    "settings": "Settings"
+  },
+  "personAbout": {
+    "about": "About",
+    "title": "Title",
+    "description": "Description" 
+  },
+  "personContact": {
+    "title": "Contact information"
   }
 }
