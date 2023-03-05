@@ -42,7 +42,8 @@
     "search": "Suche",
     "account": "Account",
     "settings": "Einstellungen",
-    "signout": "Abmelden"
+    "signout": "Abmelden",
+    "admin": "Admin"
   },
   "home": {
     "home": "Start"
@@ -70,10 +71,13 @@
   "settings": {
     "settings": "Einstellungen"
   },
+  "admin": {
+    "admin": "Admin"
+  },
   "personAbout": {
     "about": "Über",
     "title": "Titel",
-    "description": "Beschreibung" 
+    "description": "Beschreibung"
   },
   "personContact": {
     "title": "Kontakt Informationen"
