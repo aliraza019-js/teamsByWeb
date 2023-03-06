@@ -39,7 +39,7 @@ export default defineNuxtConfig({
         '@/assets/comps.scss'
     ],
     build: {
-        transpile: ['vuetify'],
+        transpile: ['vuetify', '@vuepic/vue-datepicker'],
 
     },
     i18n: {

@@ -15,6 +15,7 @@
     "@nuxtjs/i18n": "^8.0.0-beta.6",
     "@nuxtjs/plausible": "^0.2.0",
     "@pinia/nuxt": "^0.4.6",
+    "@vuepic/vue-datepicker": "^4.0.1",
     "firebase": "^9.15.0",
     "imagekitio-vue": "^1.0.9",
     "mdi": "^2.2.43",
@@ -23,9 +24,10 @@
     "sass-loader": "^13.0.2",
     "std-env": "^3.3.1",
     "vite-plugin-pug": "^0.3.2",
+    "vue3-datepicker": "^0.3.4",
     "vuetify": "^3.0.6"
   },
   "overrides": {
     "ufo": "^0.8.4"
- }
+  }
 }

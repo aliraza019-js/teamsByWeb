@@ -46,7 +46,8 @@ const navItems = [
   { titleRef: 'projects', icon: 'filetext', to: '/project/projects', routerLink: 'project' },
   { titleRef: 'search', icon: 'search', to: '/search', routerLink: 'search' },
   { titleRef: 'account', icon: 'user', to: '/account/general', routerLink: 'account' },
-  { titleRef: 'settings', icon: 'settings', to: '/settings', routerLink: 'settings' }
+  { titleRef: 'settings', icon: 'settings', to: '/settings', routerLink: 'settings' },
+  { titleRef: 'admin', icon: 'settings', to: '/admin', routerLink: 'admin' }
 ]
 
 // methods
