@@ -1,6 +1,6 @@
 <template lang="pug">
 v-card(width="100%" flat)
-  v-toolbar(:title="$t('account.account')" flat color="transparent")
+  v-toolbar(title="Philipp Wicke" flat color="transparent")
     .underline
     v-btn(icon)
       v-icon mdi-menu
