@@ -1,7 +1,10 @@
 <template lang="pug">
 v-container
   v-card(class="rounded-lg py-3 px-6")
-    v-card-title(class="text-secondary px-0 font-weight-bold") {{$t('account.tabs.general.headline')}}
+    v-card-title(class="align-items-center d-flex justify-space-between px-0 font-weight-bold")
+      span(class="text-secondary") {{$t('account.tabs.general.headline')}}
+      v-btn(icon size="small" variant="plain" color="greenSecondary")
+        v-icon(color="") mdi-pencil
     p.px-0.pt-5.font-weight-medium.text-subtitle-1 {{$t('account.tabs.general.title')}}
     p.text-h6.font-weight-bold Senior Product manager
     v-card-text.px-0
