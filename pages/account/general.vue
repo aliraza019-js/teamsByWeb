@@ -1,18 +1,18 @@
 <template lang="pug">
 v-container
-  v-card(class="rounded-lg relative py-3 px-6 mb-3")
+  v-card(class="rounded-lg relative elevation-4 py-3 px-6 mb-3")
     v-card-title(class="align-center d-flex justify-space-between px-0 font-weight-bold")
       div(class="left-rounded position-absolute rounded-lg")
-      span(class="text-secondary d-flex align-center") {{$t('account.tabs.general.headline')}}
+      span(class="text-secondary d-flex align-center") {{$t('personAbout.about')}}
       v-btn(icon size="small" variant="plain" color="#06A69D")
         v-icon mdi-pencil
-    p(class="px-0 pt-5 font-weight-medium text-subtitle-1") {{$t('account.tabs.general.title')}}
+    p(class="px-0 pt-5 font-weight-medium text-subtitle-1") {{$t('personAbout.title')}}
     p(class="text-h6 font-weight-bold") Senior Product manager
     v-card-text(class="px-0") 
-      p(class="description text-body-1 font-weight-medium") {{$t('account.tabs.general.desc')}}
+      p(class="description text-body-1 font-weight-medium") {{$t('personAbout.description')}}
       p(class="pt-5 text-justify") Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, 
 
-  v-card(class="rounded-lg relative py-3 px-6")
+  v-card(class="rounded-lg elevation-4 relative py-4 px-6")
     v-card-title(class="align-center d-flex justify-space-between px-0 font-weight-bold")
       div(class="left-rounded position-absolute rounded-lg")
       span(class="text-secondary d-flex align-center") {{$t('account.tabs.general.contactInfo')}}
@@ -24,24 +24,35 @@ v-container
     v-card-text(class="px-0 pb-0")
       v-container
         v-row
-          v-col(cols="12" sm="6" class="d-flex gap-10 align-items justify-start")
-            v-icon(color="#707070") mdi-pencil
-            p(class="mb-0 font-weight-bold") +49 511 123456-0
-          v-col(cols="12" sm="6" class="d-flex gap-10 align-items justify-start")
-            v-icon(color="#707070") mdi-email
-            p(class="mb-0 font-weight-bold") mail@gmail.com
-          v-col(cols="12" sm="6" class="d-flex gap-10 align-items justify-start")
-            v-icon(color="#707070") mdi-cellphone
-            p(class="mb-0 font-weight-bold") +49 511 123456-0
-          v-col(cols="12" sm="6" class="d-flex gap-10 align-items justify-start")
-            v-icon(color="#707070") mdi-instagram
-            p(class="mb-0 font-weight-bold") @trusteddecisions.com
+          v-col(cols="12" sm="6" v-for="item , index in contactPerson" :key="index" class="d-flex gap-10 align-items justify-start")
+            v-icon(color="#707070") {{item.icon}}
+            p(class="mb-0 font-weight-bold")  {{item.text}}
 </template>
 
 <script setup>
 definePageMeta({
   activeRoute: 'account'
 });
+
+
+const contactPerson = ref([
+  {
+    icon: "mdi-pencil",
+    text: "+49 511 123456-0"
+  },
+  {
+    icon: "mdi-email",
+    text: "mail@mail.com"
+  },
+  {
+    icon: "mdi-cellphone",
+    text: "+49 511 123456-0"
+  },
+  {
+    icon: "mdi-instagram",
+    text: "@trusteddecisions.com"
+  }
+])
 
 try {
   const res = await myFetch('/api/users')

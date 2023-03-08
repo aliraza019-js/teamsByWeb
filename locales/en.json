@@ -66,15 +66,7 @@
     "skills": "Skills",
     "projects": "Projects",
     "trainings": "Trainings",
-    "certifications": "Certifications",
-    "tabs" : {
-      "general": {
-        "headline": "About me",
-        "title": "Title",
-        "desc": "Description",
-        "contactInfo": "Contact Information"
-      }
-    }
+    "certifications": "Certifications"
   },
   "settings": {
     "settings": "Settings"
