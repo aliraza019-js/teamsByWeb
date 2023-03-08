@@ -27,13 +27,17 @@ v-container
         v-row
           v-col(cols="12" sm="6" v-for="item , index in contactPerson" :key="index" class="d-flex gap-10 align-items justify-start")
             v-icon(color="#707070") {{item.icon}}
-            p(class="mb-0 font-weight-bold")  {{item.text}}
+            p(class="mb-0 font-weight-bold") {{item.text}}
 </template>
 
 <script setup>
 definePageMeta({
   activeRoute: 'account'
 });
+
+const {data}  = await useAsyncData(() => myFetch('/api/users'))
+
+console.log(data.value)
 
 // vFocus Directive
 const vFocus = {
@@ -60,14 +64,7 @@ const contactPerson = ref([
 
 const editAbout = ref(false)
 const title = ref('Senior Product manager')
-const description = ref('Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, ')
-
-try {
-  const res = await myFetch('/api/users')
-  console.log(res)
-} catch (err) {
-  console.log(err)
-}
+const description = ref('Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, ');
 </script>
 
 <style lang="scss" scoped>

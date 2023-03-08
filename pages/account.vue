@@ -5,7 +5,7 @@ v-card(width="100%" flat)
     v-btn(icon)
       v-icon mdi-menu
     template(v-slot:extension)
-      v-slide-group(show-arrows="false")
+      v-slide-group(:show-arrows="false")
         v-slide-group-item(v-slot="{ isSelected }")
           v-btn.ma-2.tab-btn(nuxt :to="localePath('/account/general')") {{ $t('account.general') }}
         v-slide-group-item(v-slot="{ isSelected }")
@@ -25,7 +25,7 @@ v-card(width="100%" flat)
 <script setup>
 definePageMeta({
   activeRoute: 'account'
-})
+});
 </script>
 
 <style lang="scss" scoped>

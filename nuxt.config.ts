@@ -22,7 +22,9 @@ export default defineNuxtConfig({
             meta: [
                 { name: 'description', content: 'For consultants only' }
             ],
-        }
+        },
+        pageTransition: { name: 'slide-fade', mode: 'out-in' },
+        layoutTransition: { name: 'slide-fade', mode: 'out-in' }
     },
     modules: [
         '@nuxtjs/i18n',
