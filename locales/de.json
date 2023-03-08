@@ -71,7 +71,8 @@
       "general": {
         "headline": "Über mich",
         "title": "Titel",
-        "desc": "Beschreibung"
+        "desc": "Beschreibung",
+        "contactInfo": "Kontakt Informationen"
       }
     }
   },
