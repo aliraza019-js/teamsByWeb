@@ -1,27 +1,28 @@
 <template lang="pug">
 v-container
-  v-card(class="rounded-lg relative elevation-4 py-3 px-6 mb-3")
-    v-card-title(class="align-center d-flex justify-space-between px-0 font-weight-bold")
-      div(class="left-rounded position-absolute rounded-lg")
+  CommonCard 
+    template(#title)
       span(class="text-secondary d-flex align-center") {{$t('personAbout.about')}}
-      v-btn(icon size="small" variant="plain" color="#06A69D")
-        v-icon mdi-pencil
-    p(class="px-0 pt-5 font-weight-medium text-subtitle-1") {{$t('personAbout.title')}}
-    p(class="text-h6 font-weight-bold") Senior Product manager
-    v-card-text(class="px-0") 
-      p(class="description text-body-1 font-weight-medium") {{$t('personAbout.description')}}
-      p(class="pt-5 text-justify") Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, 
+      v-btn(icon size="small" variant="plain" color="#06A69D" @click="editAbout = !editAbout")
+        v-icon(v-if="editAbout") mdi-pencil
+        v-icon(v-else) mdi-check
+    template(#body)
+      p(class="px-0 pt-5 font-weight-medium text-subtitle-1") {{$t('personAbout.title')}}
+      p(v-if="editAbout" class="text-h6 font-weight-bold") {{title}}
+      input(v-else v-focus v-model="title" class="input")
+      p(class="description py-3 text-body-1 font-weight-medium") {{$t('personAbout.description')}}
+      p(v-if="editAbout" class="pt-2 text-justify") {{description}}
+      textarea(v-else class="input" rows="4" v-focus class="w-100" v-model="description")
 
-  v-card(class="rounded-lg elevation-4 relative py-4 px-6")
-    v-card-title(class="align-center d-flex justify-space-between px-0 font-weight-bold")
-      div(class="left-rounded position-absolute rounded-lg")
-      span(class="text-secondary d-flex align-center") {{$t('account.tabs.general.contactInfo')}}
+  CommonCard 
+    template(#title)
+      span(class="text-secondary d-flex align-center") {{$t('personContact.title')}}
       div(class="d-flex align-center")
         v-btn(icon size="small" variant="plain" color="secondary")
           v-icon(color="") mdi-plus-circle-outline
         v-btn(icon size="small" variant="plain" color="#06A69D")
           v-icon mdi-pencil 
-    v-card-text(class="px-0 pb-0")
+    template(#body)
       v-container
         v-row
           v-col(cols="12" sm="6" v-for="item , index in contactPerson" :key="index" class="d-flex gap-10 align-items justify-start")
@@ -34,7 +35,10 @@ definePageMeta({
   activeRoute: 'account'
 });
 
-
+// vFocus Directive
+const vFocus = {
+  mounted: (el) => el.focus()
+}
 const contactPerson = ref([
   {
     icon: "mdi-pencil",
@@ -52,7 +56,11 @@ const contactPerson = ref([
     icon: "mdi-instagram",
     text: "@trusteddecisions.com"
   }
-])
+]);
+
+const editAbout = ref(false)
+const title = ref('Senior Product manager')
+const description = ref('Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, ')
 
 try {
   const res = await myFetch('/api/users')
@@ -76,6 +84,18 @@ try {
   width: 30px;
   height: 48px;
   left: -17px;
+}
+
+.input {
+  background: #f7f7f7;
+  border-radius: 5px;
+  padding: 5px 10px;
+  width: 30%;
+  filter: drop-shadow(0 1px 1px rgb(0 0 0 / 0.05));
+
+  &:focus {
+    outline: none;
+  }
 }
 
 
