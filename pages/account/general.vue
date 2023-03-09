@@ -4,15 +4,12 @@ v-container
     template(#title)
       span(class="text-secondary d-flex align-center") {{$t('personAbout.about')}}
       v-btn(icon size="small" variant="plain" color="#06A69D" @click="editAbout = !editAbout")
-        v-icon(v-if="editAbout") mdi-pencil
-        v-icon(v-else) mdi-check
+        v-icon mdi-pencil
     template(#body)
       p(class="px-0 pt-5 font-weight-medium text-subtitle-1") {{$t('personAbout.title')}}
-      p(v-if="editAbout" class="text-h6 font-weight-bold") {{title}}
-      input(v-else v-focus v-model="title" class="input")
+      p(class="text-h6 font-weight-bold") {{title}}
       p(class="description py-3 text-body-1 font-weight-medium") {{$t('personAbout.description')}}
-      p(v-if="editAbout" class="pt-2 text-justify") {{description}}
-      textarea(v-else class="input" rows="4" v-focus class="w-100" v-model="description")
+      p(class="pt-2 text-justify") {{description}}
 
   CommonCard 
     template(#title)
@@ -28,6 +25,19 @@ v-container
           v-col(cols="12" sm="6" v-for="item , index in contactPerson" :key="index" class="d-flex gap-10 align-items justify-start")
             v-icon(color="#707070") {{item.icon}}
             p(class="mb-0 font-weight-bold") {{item.text}}
+
+  v-dialog(:persistent="true" v-model="editAbout" height="500" width="500")
+    CommonCard(color="#e4edf8")
+      template(#title)
+        span(class="text-secondary d-flex align-center") Edit {{$t('personAbout.about')}}
+        v-btn(icon size="small" variant="plain" color="#06A69D" @click="editAbout = !editAbout")
+          v-icon mdi-close
+      template(#body)
+        div(class="d-flex flex-column")
+          input(v-model="title" class="input elevation-6 w-100")
+          textarea(class="input elevation-6 w-100 mt-4" rows="9" v-model="description")
+          div(class="d-flex justify-center mt-5")
+            v-btn(rounded="pill" size="large" color="secondary" width="65%") Save
 </template>
 
 <script setup>
@@ -39,10 +49,6 @@ const {data}  = await useAsyncData(() => myFetch('/api/users'))
 
 console.log(data.value)
 
-// vFocus Directive
-const vFocus = {
-  mounted: (el) => el.focus()
-}
 const contactPerson = ref([
   {
     icon: "mdi-pencil",
@@ -85,8 +91,8 @@ const description = ref('Lorem ipsum dolor sit amet, consectetuer adipiscing eli
 
 .input {
   background: #f7f7f7;
-  border-radius: 5px;
-  padding: 5px 10px;
+  border-radius: 10px;
+  padding: 10px 10px;
   width: 30%;
   filter: drop-shadow(0 1px 1px rgb(0 0 0 / 0.05));
 

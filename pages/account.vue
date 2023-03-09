@@ -1,9 +1,9 @@
 <template lang="pug">
 v-card(width="100%" flat)
-  v-toolbar(title="Philipp Wicke" flat color="transparent")
+  v-toolbar(title="Philipp Wicke" flat color="transparent" class="position-relative")
     .underline
-    v-btn(icon)
-      v-icon mdi-menu
+    v-avatar(size="70" class="user-profile position-absolute")
+      v-img(src="https://cdn.vuetifyjs.com/images/john.jpg")
     template(v-slot:extension)
       v-slide-group(:show-arrows="false")
         v-slide-group-item(v-slot="{ isSelected }")
@@ -47,5 +47,10 @@ definePageMeta({
   right: 0px;
   height: 1px;
   background-color: rgb(204, 204, 204);
+}
+
+.user-profile {
+  right: 0;
+  top: 12px;
 }
 </style>
