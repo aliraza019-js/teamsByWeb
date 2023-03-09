@@ -29,7 +29,7 @@ v-container
   v-dialog(:persistent="true" v-model="editAbout" height="500" width="500")
     CommonCard(color="#e4edf8")
       template(#title)
-        span(class="text-secondary d-flex align-center") Edit {{$t('personAbout.about')}}
+        span(class="text-secondary d-flex align-center") {{$t('layout.editAbout')}}
         v-btn(icon size="small" variant="plain" color="#06A69D" @click="editAbout = !editAbout")
           v-icon mdi-close
       template(#body)
@@ -37,7 +37,7 @@ v-container
           input(v-model="title" class="input elevation-6 w-100")
           textarea(class="input elevation-6 w-100 mt-4" rows="9" v-model="description")
           div(class="d-flex justify-center mt-5")
-            v-btn(rounded="pill" size="large" color="secondary" width="65%") Save
+            v-btn(rounded="pill" size="large" color="secondary" width="65%" @click="updateUser") Save
 </template>
 
 <script setup>
@@ -45,7 +45,7 @@ definePageMeta({
   activeRoute: 'account'
 });
 
-const {data}  = await useAsyncData(() => myFetch('/api/users'))
+const {data}  = useLazyAsyncData(() => myFetch('/api/users'))
 
 console.log(data.value)
 
@@ -71,6 +71,17 @@ const contactPerson = ref([
 const editAbout = ref(false)
 const title = ref('Senior Product manager')
 const description = ref('Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, ');
+
+// Function 
+const updateUser = () => {
+  myFetch('/api/users', {
+    method: "PATCH",
+    body: {
+      title: title.value,
+      desc: description.value
+    }
+  })
+};
 </script>
 
 <style lang="scss" scoped>
