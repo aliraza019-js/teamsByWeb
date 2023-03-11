@@ -93,12 +93,6 @@ const updateUser = () => {
   color: $secondary;
 }
 
-.left-rounded {
-  background: #06A69D;
-  width: 30px;
-  height: 48px;
-  left: -17px;
-}
 
 .input {
   background: #f7f7f7;
