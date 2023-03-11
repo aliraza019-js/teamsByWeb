@@ -1,6 +1,7 @@
 {
   "required": "Required",
   "layout": {
+    "editAbout": "Edit About Me",
     "or": "OR"
   },
   "login": {

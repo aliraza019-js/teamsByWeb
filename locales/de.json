@@ -1,6 +1,7 @@
 {
   "required": "Pflichtpfeld",
   "layout": {
+    "editAbout": "Bearbeite über mich",
     "or": "ODER"
   },
   "login": {

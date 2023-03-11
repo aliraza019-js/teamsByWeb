@@ -39,7 +39,8 @@ export default defineNuxtPlugin(nuxtApp => {
                         info: '#FFDDA9',
                         error: '#b71c1c',
                         warning: '#fc7a30',
-                        cardBorder: '#3C3C3C'
+                        cardBorder: '#3C3C3C',
+                        greenSecondary: "#04C785"
                         // success: colors.green.accent3
                     }
                 },
@@ -56,7 +57,8 @@ export default defineNuxtPlugin(nuxtApp => {
                         error: '#b71c1c',
                         warning: '#fc7a30',
                         bgAccent: '#f2f2f2',
-                        cardBorder: '#e2e2e2'
+                        cardBorder: '#e2e2e2',
+                        greenSecondary: "#04C785"
                         // success: colors.green.accent3,
                     }
                 }

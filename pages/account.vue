@@ -1,11 +1,11 @@
 <template lang="pug">
 v-card(width="100%" flat)
-  v-toolbar(:title="$t('account.account')" flat color="transparent")
+  v-toolbar(title="Philipp Wicke" flat color="transparent" class="position-relative")
     .underline
-    v-btn(icon)
-      v-icon mdi-menu
+    v-avatar(size="70" class="user-profile position-absolute")
+      v-img(src="https://cdn.vuetifyjs.com/images/john.jpg")
     template(v-slot:extension)
-      v-slide-group(show-arrows="false")
+      v-slide-group(:show-arrows="false")
         v-slide-group-item(v-slot="{ isSelected }")
           v-btn.ma-2.tab-btn(nuxt :to="localePath('/account/general')") {{ $t('account.general') }}
         v-slide-group-item(v-slot="{ isSelected }")
@@ -25,7 +25,7 @@ v-card(width="100%" flat)
 <script setup>
 definePageMeta({
   activeRoute: 'account'
-})
+});
 </script>
 
 <style lang="scss" scoped>
@@ -47,5 +47,10 @@ definePageMeta({
   right: 0px;
   height: 1px;
   background-color: rgb(204, 204, 204);
+}
+
+.user-profile {
+  right: 0;
+  top: 12px;
 }
 </style>
