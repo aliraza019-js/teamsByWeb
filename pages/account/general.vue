@@ -25,18 +25,7 @@ v-container
           v-col(cols="12" sm="6" v-for="item , index in contactPerson" :key="index" class="d-flex gap-10 align-items justify-start")
             v-icon(color="#707070") {{item.icon}}
             p(class="mb-0 font-weight-bold") {{item.text}}
-  v-dialog(:persistent="true" v-model="editAbout" min-height="500" width="500")
-    CommonCard(color="#e4edf8")
-      template(#title)
-        span(class="text-secondary d-flex align-center") {{$t('layout.editAbout')}}
-        v-btn(icon size="small" variant="plain" color="#06A69D" @click="editAbout = !editAbout")
-          v-icon mdi-close
-      template(#body)
-        v-form(class="d-flex flex-column" ref="form")
-          v-text-field(density="comfortable" variant="solo" :rules="rules.required" v-model="formData.title")
-          v-textarea(density="comfortable" variant="solo" :rules="rules.required" v-model="formData.description")
-          div(class="d-flex justify-center mt-5")
-            v-btn(rounded="pill" size="large" color="secondary" width="65%" @click="validate") Save
+  GeneralEditAboutMe(:persistent="true" v-bind="formData" min-height="500" width="500" :isDialogVisible="editAbout" @update:isDialogVisible="(value) => editAbout = value")
 </template>
 
 <script setup>
@@ -66,75 +55,9 @@ const contactPerson = ref([
 ]);
 
 const editAbout = ref(false)
-const { t } = useI18n()
-const form = ref(null)
 const formData = reactive({
   title: "Senior Product manager",
   description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis,"
-})
-
-// Rules 
-const rules = reactive({
-  required: [
-    v => !!v || t('required')
-  ]
-})
-
-
-// Function 
-
-const validate = async () => {
-  const {valid} = await form.value.validate()
-  if(valid) return updateUser()
-}
-const updateUser = () => {
-  myFetch('/api/users', {
-    method: "PATCH",
-    body: formData
-  })
-};
+});
 
 </script>
-
-<style lang="scss" scoped>
-.v-card-title {
-  border-bottom: 1px solid #E2E2E2;
-}
-
-.description {
-  color: $secondary;
-}
-
-
-.input {
-  background: #f7f7f7;
-  border-radius: 10px;
-  padding: 10px 10px;
-  width: 30%;
-  filter: drop-shadow(0 1px 1px rgb(0 0 0 / 0.05));
-
-  &:focus {
-    outline: none;
-  }
-}
-
-.v-input__control {
-  border-radius: 25px;
-}
-
-:deep(.v-text-field) {
-
-  .v-input__control {
-    box-shadow: none;
-    border: none;
-    background: transparent;
-   border-radius: 10px;
-  }
-
-  .v-field {
-    background-color: #fff !important;
-    border-radius: 10px;
-  }
-}
-
-</style>
