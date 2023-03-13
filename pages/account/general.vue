@@ -25,7 +25,7 @@ v-container
           v-col(cols="12" sm="6" v-for="item , index in contactPerson" :key="index" class="d-flex gap-10 align-items justify-start")
             v-icon(color="#707070") {{item.icon}}
             p(class="mb-0 font-weight-bold") {{item.text}}
-
+    //- GeneralAboutMe(:title="title" :description="description" :isDialogVisible="editAbout" @update:isDialogVisible="editAbout")
   v-dialog(:persistent="true" v-model="editAbout" min-height="500" width="500")
     CommonCard(color="#e4edf8")
       template(#title)
@@ -34,7 +34,7 @@ v-container
           v-icon mdi-close
       template(#body)
         div(class="d-flex flex-column")
-          input(v-model="title" class="input elevation-6 w-100")
+          v-text-field(density="comfortable" variant="solo" v-model="title")
           span(class="v-messages__message mt-3 pl-2 text-red-accent-4") Required
           textarea(class="input elevation-6 w-100 mt-4" rows="9" v-model="description")
           span(class="v-messages__message mt-3 pl-2 text-red-accent-4") Required
@@ -70,7 +70,7 @@ const contactPerson = ref([
   }
 ]);
 
-const editAbout = ref(true)
+const editAbout = ref(false)
 const title = ref('Senior Product manager')
 const description = ref('Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, ');
 
@@ -108,5 +108,23 @@ const updateUser = () => {
   }
 }
 
+.v-input__control {
+  border-radius: 25px;
+}
+
+:deep(.v-text-field) {
+
+  .v-input__control {
+    box-shadow: none;
+    border: none;
+    background: transparent;
+   border-radius: 10px;
+  }
+
+  .v-field {
+    background-color: #fff !important;
+    border-radius: 10px;
+  }
+}
 
 </style>
