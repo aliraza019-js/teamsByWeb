@@ -90,10 +90,7 @@ const validate = async () => {
 const updateUser = () => {
   myFetch('/api/users', {
     method: "PATCH",
-    body: {
-      title: title.value,
-      desc: description.value
-    }
+    body: formData
   })
 };
 
