@@ -7,9 +7,9 @@ v-container
         v-icon mdi-pencil
     template(#body)
       p(class="px-0 pt-5 font-weight-medium text-subtitle-1") {{$t('personAbout.title')}}
-      p(class="text-h6 font-weight-bold") {{title}}
+      p(class="text-h6 font-weight-bold") {{formData.title}}
       p(class="description py-3 text-body-1 font-weight-medium") {{$t('personAbout.description')}}
-      p(class="pt-2 text-justify") {{description}}
+      p(class="pt-2 text-justify") {{formData.description}}
 
   CommonCard 
     template(#title)
@@ -25,7 +25,6 @@ v-container
           v-col(cols="12" sm="6" v-for="item , index in contactPerson" :key="index" class="d-flex gap-10 align-items justify-start")
             v-icon(color="#707070") {{item.icon}}
             p(class="mb-0 font-weight-bold") {{item.text}}
-    //- GeneralAboutMe(:title="title" :description="description" :isDialogVisible="editAbout" @update:isDialogVisible="editAbout")
   v-dialog(:persistent="true" v-model="editAbout" min-height="500" width="500")
     CommonCard(color="#e4edf8")
       template(#title)
@@ -33,13 +32,11 @@ v-container
         v-btn(icon size="small" variant="plain" color="#06A69D" @click="editAbout = !editAbout")
           v-icon mdi-close
       template(#body)
-        div(class="d-flex flex-column")
-          v-text-field(density="comfortable" variant="solo" v-model="title")
-          span(class="v-messages__message mt-3 pl-2 text-red-accent-4") Required
-          textarea(class="input elevation-6 w-100 mt-4" rows="9" v-model="description")
-          span(class="v-messages__message mt-3 pl-2 text-red-accent-4") Required
+        v-form(class="d-flex flex-column" ref="form")
+          v-text-field(density="comfortable" variant="solo" :rules="rules.required" v-model="formData.title")
+          v-textarea(density="comfortable" variant="solo" :rules="rules.required" v-model="formData.description")
           div(class="d-flex justify-center mt-5")
-            v-btn(rounded="pill" size="large" color="secondary" width="65%" @click="updateUser") Save
+            v-btn(rounded="pill" size="large" color="secondary" width="65%" @click="validate") Save
 </template>
 
 <script setup>
@@ -48,8 +45,6 @@ definePageMeta({
 });
 
 const {data}  = useLazyAsyncData(() => myFetch('/api/users'))
-
-console.log(data.value)
 
 const contactPerson = ref([
   {
@@ -71,10 +66,27 @@ const contactPerson = ref([
 ]);
 
 const editAbout = ref(false)
-const title = ref('Senior Product manager')
-const description = ref('Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, ');
+const { t } = useI18n()
+const form = ref(null)
+const formData = reactive({
+  title: "Senior Product manager",
+  description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis,"
+})
+
+// Rules 
+const rules = reactive({
+  required: [
+    v => !!v || t('required')
+  ]
+})
+
 
 // Function 
+
+const validate = async () => {
+  const {valid} = await form.value.validate()
+  if(valid) return updateUser()
+}
 const updateUser = () => {
   myFetch('/api/users', {
     method: "PATCH",
@@ -84,6 +96,7 @@ const updateUser = () => {
     }
   })
 };
+
 </script>
 
 <style lang="scss" scoped>
