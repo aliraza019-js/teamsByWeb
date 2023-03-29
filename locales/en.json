@@ -29,6 +29,17 @@
       "login": "Sign Up"
     },
     "existingAccount1": "Already have an account?",
+    "existingAccount2": "Log in here"
+  },
+
+  "home": {
+    "home": "Home",
+    "team": "Team",
+    "projects": "Projects",
+    "search": "Search",
+    "account": "Account",
+    "setting": "Setting",
+    "logOut": "Log Out"
     "existingAccount2": "Log in here."
   },
   "password": {

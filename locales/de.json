@@ -82,5 +82,16 @@
   },
   "personContact": {
     "title": "Kontakt Informationen"
+    "existingAccount2": "Hier einloggen"
+  },
+
+  "home": {
+    "home": "Home",
+    "team": "Team",
+    "projects": "Projekte",
+    "search": "Suche",
+    "account": "Konte",
+    "setting": "Einstellung",
+    "logOut": "Abmelden"
   }
 }
