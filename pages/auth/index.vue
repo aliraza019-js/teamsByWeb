@@ -1,4 +1,6 @@
 <template lang="pug">
+div
+  p auth page
 </template>
 
 <script setup>

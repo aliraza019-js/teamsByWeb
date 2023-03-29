@@ -2,11 +2,17 @@ import { useUsersStore } from '~~/stores/users'
 import { NitroFetchRequest, TypedInternalResponse } from "nitropack"
 import { FetchOptions } from "ofetch"
 
+
+
+
+
 export const myFetch = async (url: string, options: FetchOptions) => {
   const userState = useUsersStore()
   const config = useRuntimeConfig()
-  
+
   return await $fetch(url, {
+    ...options,
+
     onRequest({ request, options }) {
       options.baseURL = config.public.apiURL
       if (userState && userState.accessToken) {

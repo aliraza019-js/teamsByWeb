@@ -12,7 +12,7 @@ v-container
       v-card-text.mt-5(v-if="!userState.isLoggedIn")
         layout-or-divider
         ClientOnly
-          comps-social-btns
+          CompsSocialBtns
       v-card-text.text-center
         nuxt-link(:to="localePath('/auth/sign-up')")
           span {{ $t('login.noAccount1') }} {{ ' ' }}
