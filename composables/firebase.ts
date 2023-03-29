@@ -1,5 +1,3 @@
-import { fbSignInWithFb } from './firebase';
-import { fbSignInWithMail } from './../../ts_web/composables/firebase';
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -7,7 +5,9 @@ import {
   sendPasswordResetEmail,
   onAuthStateChanged,
   FacebookAuthProvider,
-  signInWithPopup
+  signInWithPopup,
+  GoogleAuthProvider,
+  OAuthProvider
 } from 'firebase/auth';
 import { useUsersStore } from '~~/stores/users'
 
@@ -33,30 +33,56 @@ export const fbSignInWithMail = async (mail: string, pwd: string): Promise<any> 
   }
 }
 
-export const fbSignInWithFb = () => {
+export const fbSignInWithGoogle = async (): Promise<any> => {
+  const auth = getAuth()
+  const provider = new GoogleAuthProvider()
+
+  try {
+    const res = await signInWithPopup(auth, provider)
+    const credential = GoogleAuthProvider.credentialFromResult(res)
+    const token = credential?.accessToken
+    const user = res.user;
+    return user
+  }
+  catch (err) {
+    console.log('got error logging in with google', err)
+    throw err
+  }
+}
+
+export const fbSignInWithFb = async (): Promise<any> => {
   const auth = getAuth()
   const provider = new FacebookAuthProvider()
 
-  signInWithPopup(auth, provider)
-    .then((result) => {
-      const user = result.user
-      console.log('fb user', user)
+  try {
+    const res = await signInWithPopup(auth, provider)
+    const user = res.user
+    const credential = FacebookAuthProvider.credentialFromResult(res)
+    const token = credential?.accessToken
+    return user
+  }
+  catch (err) {
+    console.log('err fb login', err, err.code, err.message, err.customData.email)
+    throw err
+  }
+}
 
-      const credential = FacebookAuthProvider.credentialFromResult(result)
-      console.log('fb credentials', credential)
-      const accessToken = credential?.accessToken
-      console.log('accessToken', accessToken)
-      return user
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.customData.email;
-      // The AuthCredential type that was used.
-      const credential = FacebookAuthProvider.credentialFromError(error);
-      console.log('fb error', errorCode, errorMessage, email, credential)
-    })
+export const fbSignInWithApple = async (): Promise<any> => {
+  const auth = getAuth()
+  const provider = new OAuthProvider('apple.com')
+
+  try {
+    const res = await signInWithPopup(auth, provider)
+    const user = res.user
+    const credential = OAuthProvider.credentialFromResult(res)
+    const token = credential?.accessToken
+    const idToken = credential?.idToken
+    return user
+  }
+  catch (err) {
+    console.log('err apple login', err, err.code, err.message, err.customData.email)
+    throw err
+  }
 }
 
 export const fbSignOut = async (): Promise<any> => {

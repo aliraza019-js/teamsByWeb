@@ -1,18 +1,20 @@
 <template lang="pug">
 v-container
   .d-flex.align-center.justify-center
-    v-card.l-card.rounded-xl.mt-5.pa-10(flat width="100%" max-width="560px")
-      v-card-title.text-center.pt-10
+    v-card.l-card.mt-5.pa-10(flat width="100%" max-width="560px")
+      v-card-title.text-center
         span.text-h4 {{ $t('login.label.login') }}
+
+      v-card-text(v-if="!userState.isLoggedIn")
+        ClientOnly
+          CompsSocialBtns
+
+      layout-or-divider.my-5
       v-card-text
         ClientOnly
           forms-sign-in(v-if="!userState.isLoggedIn")
           forms-already-signed-in(v-if="userState.isLoggedIn")
 
-      v-card-text.mt-5(v-if="!userState.isLoggedIn")
-        layout-or-divider
-        ClientOnly
-          CompsSocialBtns
       v-card-text.text-center
         nuxt-link(:to="localePath('/auth/sign-up')")
           span {{ $t('login.noAccount1') }} {{ ' ' }}

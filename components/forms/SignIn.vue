@@ -8,7 +8,8 @@ v-form.d-flex.flex-column.align-center.justify-center.text-center(ref="form" v-m
       :loading="loading" 
       :disabled="loading"
       :rules="rules.mail"
-      prepend-inner-icon="mdi-email")
+      prepend-inner-icon="mdi-email"
+      variant="solo")
 
   v-row.stretch
     v-text-field.mb-2.stretch(
@@ -18,13 +19,14 @@ v-form.d-flex.flex-column.align-center.justify-center.text-center(ref="form" v-m
       :loading="loading" 
       :disabled="loading"
       :rules="rules.required"
-      prepend-inner-icon="mdi-lock")
+      prepend-inner-icon="mdi-lock"
+      variant="solo")
 
   v-row.align-center.justify-end.pb-5.stretch
     nuxt-link(:to="localePath('/auth/password')") {{ $t('login.forgotPassword') }}
 
   v-row.align-center.justify-center
-    v-alert.mb-3(:type="msgType" variant="tonal" v-show="msgIsVisible") {{msgText}}
+    v-alert.mb-3(:type="msgType" variant="tonal" v-show="msgIsVisible" closable) {{msgText}}
 
   v-row.align-center.justify-center.stretch
     v-btn.stretch(
@@ -67,25 +69,18 @@ const msgIsVisible = ref(false)
 const validate = async () => {
   loading.value = true
   const { valid } = await form.value.validate()
-  if (valid) return signUp()
+  if (valid) return signIn()
   loading.value = false
   return
 }
 
-const signUp = async () => {
+const signIn = async () => {
   try {
     await fbSignInWithMail(formData.mail, formData.pwd)
-    await fbInitUser()
-    navigateTo(localePath('/'))
+    // await fbInitUser()
     loading.value = false
+    navigateTo(localePath('/home'))
     await form.value.reset()
-    msgType.value = 'success'
-    msgText.value = 'erfolgreich angemeldet'
-    msgIsVisible.value = true
-    setTimeout(() => {
-      msgIsVisible.value = false
-    }, 2000)
-
   }
   catch (err) {
     console.log('err', err)
@@ -99,6 +94,4 @@ const signUp = async () => {
 }
 </script>
 
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>
