@@ -1,6 +1,4 @@
 <template lang="pug">
-div
-  p auth page
 </template>
 
 <script setup>
@@ -15,6 +13,5 @@ definePageMeta({
 })
 onMounted(() => {
   navigateTo(localePath('/auth/sign-in'))
-  console.log('mounted')
 })
 </script>
