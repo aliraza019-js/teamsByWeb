@@ -46,9 +46,6 @@
     "signout": "Abmelden",
     "admin": "Admin"
   },
-  "home": {
-    "home": "Start"
-  },
   "team": {
     "teams": "Teams",
     "colleagues": "Kollegen"
@@ -81,10 +78,9 @@
     "description": "Beschreibung"
   },
   "personContact": {
-    "title": "Kontakt Informationen"
+    "title": "Kontakt Informationen",
     "existingAccount2": "Hier einloggen"
   },
-
   "home": {
     "home": "Home",
     "team": "Team",
