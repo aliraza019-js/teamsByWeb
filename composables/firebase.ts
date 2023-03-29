@@ -116,11 +116,15 @@ export const fbResetPassword = async (mail: string): Promise<any> => {
 export const fbInitUser = async (): Promise<any> => {
   const auth = getAuth();
   const userStore = useUsersStore()
+  const localePath = useLocalePath()
   onAuthStateChanged(auth, (user) => {
     if (user) {
       userStore.setUser(user)
+      console.log('fbInitUser user')
     } else {
       userStore.reset()
+      navigateTo(localePath('/auth/sign-in'))
+      console.log('fbInitUser no user')
     }
   })
 }
