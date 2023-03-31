@@ -4,8 +4,6 @@ export default defineNuxtPlugin(nuxtApp => {
 
   const config = useRuntimeConfig();
 
-  console.log('fb key', config.public)
-
   const firebaseConfig = {
     apiKey: config.public.FIREBASE_API_KEY,
     authDomain: config.public.FIREBASE_AUTH_DOMAIN,

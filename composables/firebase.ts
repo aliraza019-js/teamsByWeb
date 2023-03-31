@@ -7,7 +7,7 @@ import {
   FacebookAuthProvider,
   signInWithPopup,
   GoogleAuthProvider,
-  OAuthProvider
+  OAuthProvider,
 } from 'firebase/auth';
 import { useUsersStore } from '~~/stores/users'
 
@@ -117,14 +117,22 @@ export const fbInitUser = async (): Promise<any> => {
   const auth = getAuth();
   const userStore = useUsersStore()
   const localePath = useLocalePath()
+
+  const checkUser = async () => {
+    const res: any = await myFetch('/auth/register', { method: 'GET' })
+    console.log('res', res)
+    if (!res.familyName) {
+      navigateTo(localePath('/init/user'))
+    }
+  }
+
   onAuthStateChanged(auth, (user) => {
     if (user) {
       userStore.setUser(user)
-      console.log('fbInitUser user')
+      checkUser()
     } else {
       userStore.reset()
       navigateTo(localePath('/auth/sign-in'))
-      console.log('fbInitUser no user')
     }
   })
 }

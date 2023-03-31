@@ -14,7 +14,7 @@ export const myFetch = async (url: string, options: FetchOptions) => {
     ...options,
 
     onRequest({ request, options }) {
-      options.baseURL = config.public.apiURL
+      options.baseURL = config.public.API_URL
       if (userState && userState.accessToken) {
         options.headers = {
           'Authorization': `Bearer ${userState.accessToken}`

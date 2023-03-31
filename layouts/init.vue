@@ -15,17 +15,14 @@ v-app
         span {{ $i18n.locale == 'de' ? 'EN' : 'DE' }}
 
       ClientOnly
-        LayoutHeadUserComp
-      //- v-btn.d-flex.d-md-none(icon @click="drawer = !drawer")
-        v-icon mdi-menu
+        //- LayoutHeadUserComp
+        //- v-btn.d-flex.d-md-none(icon @click="drawer = !drawer")
+          v-icon mdi-menu
   //- main
   v-main
     v-container.d-flex.flex-row
-      .d-none.d-md-flex
-        LayoutMainNav.mr-5(:nav-items="navItems")
       slot
 
-  LayoutFooterNav.d-flex.d-md-none(:navItems="navItems")
   //- footer
   v-footer.d-none.d-md-flex.my-footer(app height="45px")
     v-container
@@ -51,16 +48,8 @@ const navItems = [
 ]
 
 // methods
-const checkUser = async () => {
-  const user = await userGetUser()
-  console.log('user', user)
-}
-
-// hooks
 onMounted(async () => {
-  const fbInit = await fbInitUser()
-  console.log('fb init done', fbInit)
-
+  await fbInitUser()
 })
 
 </script>

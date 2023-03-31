@@ -89,5 +89,17 @@
     "account": "Konte",
     "setting": "Einstellung",
     "logOut": "Abmelden"
+  },
+  "init": {
+    "profileSetup": "Profile Einrichten",
+    "pleaseComplete": "Bitte ergänze deine Profil-Informationen"
+  },
+  "forms": {
+    "givenName": "Vorname",
+    "familyName": "Nachname",
+    "password": "Passwort",
+    "passwordRepeat": "Passwort wiederholen",
+    "next": "weiter",
+    "success": "Erfolgreich übertragen"
   }
 }

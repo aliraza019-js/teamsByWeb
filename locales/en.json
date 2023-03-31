@@ -89,5 +89,17 @@
   },
   "personContact": {
     "title": "Contact information"
+  },
+  "init": {
+    "profileSetup": "Profile SetUp",
+    "pleaseComplete": "Please complete your basic profile information"
+  },
+  "forms": {
+    "givenName": "Given Name",
+    "familyName": "Family Name",
+    "password": "Password",
+    "passwordRepeat": "Repeat Password",
+    "next": "next",
+    "success": "Successfully submitted"
   }
 }
