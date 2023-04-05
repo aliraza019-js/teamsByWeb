@@ -92,7 +92,23 @@
   },
   "init": {
     "profileSetup": "Profile Einrichten",
-    "pleaseComplete": "Bitte ergänze deine Profil-Informationen"
+    "pleaseComplete": "Bitte ergänze deine Profil-Informationen",
+    "teamSetup": "Einrichtung Team",
+    "youAreNot": "Bisher bist du keinem Team zugeordnet. Erstelle ein neues Team oder schließe dich einem an.",
+    "createNew": "Erstelle ein neues Team",
+    "useThisToCreate": "Nutze diesen Link, um einen neuen Mandanten zu erstellen. Im Anschluss kannst du Teams hinzufügen und Kollegen einladen.",
+    "joinTeam": "Tritt einem Team bei",
+    "findYourTeam": "Finde dein Team und werde Mitglied.",
+    "tenantName": "Name",
+    "tenantDesc1": "Kann frei vergeben werden, in der Regel der Name des Unternehmens oder der Unternehmensgruppe.",
+    "tenantTeams": "Teams",
+    "tenantDesc2": "Teams helfen dir, deine Organisation zu managen. Du kannst auch später Teams hinzufügen oder ändern.",
+    "tenantSkills": "Skills",
+    "tenantSkillsTemplate": "Skills Vorlagen",
+    "tenantDesc3": "Skills bilden hier eine unternehmensweite Struktur von Wissen und Erfahrung. Du kannst hier eine Vorlage wählen oder später Skills hinzufügen oder ändern.",
+    "tenantDone": "Fertig",
+    "tenantDesc4": "Sehr gut, du bist fertig. Lade als nächstes Kollegen ein, die in deiner Organisation arbeiten.",
+    "teamName": "Team name"
   },
   "forms": {
     "givenName": "Vorname",
@@ -100,6 +116,9 @@
     "password": "Passwort",
     "passwordRepeat": "Passwort wiederholen",
     "next": "weiter",
-    "success": "Erfolgreich übertragen"
+    "finish": "abschließen",
+    "back": "zurück",
+    "success": "Erfolgreich übertragen",
+    "required": "Pfichtfeld"
   }
 }

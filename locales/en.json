@@ -92,7 +92,23 @@
   },
   "init": {
     "profileSetup": "Profile SetUp",
-    "pleaseComplete": "Please complete your basic profile information"
+    "pleaseComplete": "Please complete your basic profile information",
+    "teamSetup": "Team SetUp",
+    "youAreNot": "You are not assigned to any team so far. Set up a new Team or join an existing one.",
+    "createNew": "Create a new team",
+    "useThisToCreate": "Use this to create a new tenant. After setting up you can add teams and invite colleagues.",
+    "joinTeam": "Join a team",
+    "findYourTeam": "Find your team and request membership. Perfect teams are waiting for you!",
+    "tenantName": "Name",
+    "tenantDesc1": "Can be chosen freely, it’s usually the name of the company or group",
+    "tenantTeams": "Teams",
+    "tenantDesc2": "Teams help you organize your workforce. You can add and edit later at any time as well.",
+    "tenantSkills": "Skills",
+    "tenantSkillsTemplate": "Skills templates",
+    "tenantDesc3": "Skills help you to structure the knowledge and experiences of your workforce. You can choose a template here or setup from scratch. Also you can add and edit later at any time.",
+    "tenantDone": "Done",
+    "tenantDesc4": "You are ready to go. Next you can setup your own profile and invite your colleagues",
+    "teamName": "Team name"
   },
   "forms": {
     "givenName": "Given Name",
@@ -100,6 +116,9 @@
     "password": "Password",
     "passwordRepeat": "Repeat Password",
     "next": "next",
-    "success": "Successfully submitted"
+    "finish": "finish",
+    "back": "back",
+    "success": "Successfully submitted",
+    "required": "required"
   }
 }

@@ -1,29 +1,59 @@
 <template lang="pug">
 v-container
   v-layout.d-flex.align-center.justify-center
-    v-card.shadow.ma-3(min-width="450")
-      v-form
-        v-card-title.text-center.my-5
-          h2 Set up tenant
+    v-card.shadow.ma-3(min-width="450" max-width="500")
+      v-window(v-model="step")
+        v-window-item(:value="1")
+          v-form(ref="formName" v-model="validName")
+            v-card-text.d-flex.flex-column.align-center.justify-center.streched.text-center
+              v-img.mb-5(src="https://ik.imagekit.io/teamstage/placeholder/tenant1_8xafBNAUF.png" width="190")
+              h2.text-h5 {{ $t('init.tenantName') }}
+              p.text-body-2 {{ $t('init.tenantDesc1') }}
+              v-text-field.streched.mt-5(
+                v-model="formData.name"
+                :label="t('init.tenantName')"
+                :rules="rules.required"
+                variant ="solo")
 
-        v-window(v-model="step")
-          v-window-item(:value="1")
-            v-card-text.d-flex.flex-column.align-center.justify-center.streched
-              v-text-field.streched(label="tenant name" variant ="solo")
-          v-window-item(:value="2")
-            v-card-text.d-flex.flex-column.align-center.justify-center.streched
-              v-text-field.streched(label="team name" variant="solo")
-              v-btn(icon)
-                v-icon mdi-plus
-          v-window-item(:value="3")
-            v-card-text.d-flex.flex-column.align-center.justify-center.streched
-              v-select.streched(variant="solo" :items="['California', 'Colorado', 'Florida', 'Georgia', 'Texas']")
+        v-window-item(:value="2")
+          v-card-text.d-flex.flex-column.align-center.justify-center.streched.text-center
+            v-img.mb-5(src="https://ik.imagekit.io/teamstage/placeholder/tenant2_Pyezkd3-i.png" width="300")
+            h2.text-h5 {{ $t('init.tenantTeams') }}
+            p.text-body-2.mb-5 {{ $t('init.tenantDesc2') }}
+            v-text-field.streched(
+              v-for="(item, index) in teamNames"
+              v-model="teamNames[index]"
+              :label="t('init.teamName')"
+              append-inner-icon="mdi-delete"
+              @click:append-inner="removeTeam(index)"
+              variant ="solo")
+            v-btn.primary-btn(icon @click="addTeam()")
+              v-icon mdi-plus
+
+        v-window-item(:value="3")
+          v-card-text.d-flex.flex-column.align-center.justify-center.streched.text-center
+            v-img.mb-5(src="https://ik.imagekit.io/teamstage/placeholder/tenant3_UaD9Qf9Gy.png" width="280")
+            h2.text-h5 {{ $t('init.tenantSkills') }}
+            p.text-body-2.mb-5 {{ $t('init.tenantDesc3') }}
+            v-select.streched(
+              chips 
+              multiple
+              clearable
+              :label="t('init.tenantSkillsTemplate')"
+              variant="solo" 
+              :items="skillsTemplateItems")
+
+        v-window-item(:value="4")
+          v-card-text.d-flex.flex-column.align-center.justify-center.streched.text-center
+            v-img.mb-5(src="https://ik.imagekit.io/teamstage/placeholder/tenant4_dmzkjKonO.png" width="280")
+            h2.text-h5 {{ $t('init.tenantDone') }}
+            p.text-body-2 {{ $t('init.tenantDesc4') }}
 
         v-card-actions.d-flex.align-center
-          v-btn.px-10(rounded variant="outlined" @click="step--" v-show="step > 1") zurück
+          v-btn.px-10(rounded variant="outlined" @click="step--" v-show="step > 1" color="secondary") {{ $t('forms.back') }}
           v-spacer
-          v-btn.bg-primary.px-10(rounded @click="step++" v-show="step < 3") weiter
-          v-btn.bg-primary.px-10(rounded v-show="step > 2") abschließen
+          v-btn.bg-secondary.px-10(rounded v-show="step < 4" @click="nextStep()") {{ $t('forms.next') }}
+          v-btn.bg-secondary.px-10(rounded v-show="step > 3") {{ $t('forms.finish') }}
         
 </template>
 
@@ -35,11 +65,61 @@ definePageMeta({
 })
 
 // data
+const { t } = useI18n()
 const step = ref(1)
+const skillsTemplateItems = reactive([
+  { value: 'devLangs', title: 'Development languages', disabled: false },
+  { value: 'devFrameworks', title: 'Development frameworks', disabled: false },
+  { value: 'ecmFrameworks', title: 'ECM frameworks', disabled: true },
+  { value: 'project', title: 'Project management', disabled: false },
+  { value: 'agile', title: 'Agile methods and frameworks', disabled: false },
+  { value: 'design', title: 'UX & design', disabled: false }
+])
+
+// form
+const formName = ref(null)
+const validName = ref(false)
+const loading = ref(false)
+const disabled = ref(false)
+const formData = reactive({
+  name: '',
+  teams: [],
+  skills: []
+})
+const teamNames = reactive([''])
+const rules = reactive({
+  required: [
+    v => !!v || t('forms.required')
+  ]
+})
+
+// form msg
 const msgText = ref('')
 const msgType = ref('error')
 const msgIsVisible = ref(true)
+
 // methods
+const nextStep = async () => {
+  if (step.value == 1) {
+    const { valid } = await formName.value.validate()
+    if (valid) { step.value++ }
+  } else if (step.value == 2) {
+    console.log('step 2')
+    step.value++
+  } else {
+    step.value++
+  }
+}
+
+const addTeam = () => {
+  teamNames.push('')
+}
+
+const removeTeam = (index) => {
+  console.log('slice it', index)
+  teamNames.splice(index, 1)
+}
+
 // hooks
 </script>
 
