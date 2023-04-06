@@ -1,5 +1,7 @@
 <template lang="pug">
 v-container
+  div(class="d-flex py-4 justify-end")
+    v-btn(variant="text" prepend-icon="mdi-plus" density="compact") Projekt hinzufügen
   v-row
     v-col(cols="12" v-for="item , index in projects" :key="index")
       CommonCard
@@ -60,8 +62,7 @@ const projects = ref(
 
 <style scoped lang="scss">
 .project-status {
-  // width: 95px;
   height: 48px;
-  background: #CFD8DC;
+  background: #ECEFF1;
 }
 </style>
