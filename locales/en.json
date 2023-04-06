@@ -108,7 +108,8 @@
     "tenantDesc3": "Skills help you to structure the knowledge and experiences of your workforce. You can choose a template here or setup from scratch. Also you can add and edit later at any time.",
     "tenantDone": "Done",
     "tenantDesc4": "You are ready to go. Next you can setup your own profile and invite your colleagues",
-    "teamName": "Team name"
+    "teamName": "Team name",
+    "skipForNow": "Skip for now"
   },
   "forms": {
     "givenName": "Given Name",

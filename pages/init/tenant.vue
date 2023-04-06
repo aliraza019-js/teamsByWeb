@@ -1,7 +1,7 @@
 <template lang="pug">
 v-container
   v-layout.d-flex.align-center.justify-center
-    v-card.shadow.ma-3(min-width="450" max-width="500")
+    v-card.shadow.ma-3(min-width="450" max-width="500" :loading="loading")
       v-window(v-model="step")
         v-window-item(:value="1")
           v-form(ref="formName" v-model="validName")
@@ -13,22 +13,28 @@ v-container
                 v-model="formData.name"
                 :label="t('init.tenantName')"
                 :rules="rules.required"
-                variant ="solo")
+                variant ="solo"
+                :disabled="disabled")
 
         v-window-item(:value="2")
-          v-card-text.d-flex.flex-column.align-center.justify-center.streched.text-center
-            v-img.mb-5(src="https://ik.imagekit.io/teamstage/placeholder/tenant2_Pyezkd3-i.png" width="300")
-            h2.text-h5 {{ $t('init.tenantTeams') }}
-            p.text-body-2.mb-5 {{ $t('init.tenantDesc2') }}
-            v-text-field.streched(
-              v-for="(item, index) in teamNames"
-              v-model="teamNames[index]"
-              :label="t('init.teamName')"
-              append-inner-icon="mdi-delete"
-              @click:append-inner="removeTeam(index)"
-              variant ="solo")
-            v-btn.primary-btn(icon @click="addTeam()")
-              v-icon mdi-plus
+          v-form(ref="formTeams" v-model="validTeams")
+            v-card-text.d-flex.flex-column.align-center.justify-center.streched.text-center
+              v-img.mb-5(src="https://ik.imagekit.io/teamstage/placeholder/tenant2_Pyezkd3-i.png" width="300")
+              h2.text-h5 {{ $t('init.tenantTeams') }}
+              p.text-body-2.mb-5 {{ $t('init.tenantDesc2') }}
+              v-text-field.streched(
+                v-for="(item, index) in teamNames"
+                v-model="teamNames[index]"
+                :label="t('init.teamName')"
+                :rules="rules.required"
+                append-inner-icon="mdi-delete"
+                @click:append-inner="removeTeam(index)"
+                variant ="solo"
+                :disabled="disabled")
+              v-btn.primary-btn.mt-2(icon @click="addTeam()")
+                v-icon mdi-plus
+              v-btn.mt-5(text variant="plain" @click="skipTeams()") 
+                span.text-decoration-underline {{ $t('init.skipForNow') }}
 
         v-window-item(:value="3")
           v-card-text.d-flex.flex-column.align-center.justify-center.streched.text-center
@@ -41,7 +47,8 @@ v-container
               clearable
               :label="t('init.tenantSkillsTemplate')"
               variant="solo" 
-              :items="skillsTemplateItems")
+              :items="skillsTemplateItems"
+              :disabled="disabled")
 
         v-window-item(:value="4")
           v-card-text.d-flex.flex-column.align-center.justify-center.streched.text-center
@@ -49,11 +56,14 @@ v-container
             h2.text-h5 {{ $t('init.tenantDone') }}
             p.text-body-2 {{ $t('init.tenantDesc4') }}
 
+        v-card-text(v-show="msgIsVisible")
+          v-alert(:type="msgType" variant="tonal" closable) {{ msgText }}
+
         v-card-actions.d-flex.align-center
-          v-btn.px-10(rounded variant="outlined" @click="step--" v-show="step > 1" color="secondary") {{ $t('forms.back') }}
+          v-btn.px-10(rounded variant="outlined" @click="step--" v-show="step > 1 && step < 4" color="secondary" :disabled="disabled") {{ $t('forms.back') }}
           v-spacer
-          v-btn.bg-secondary.px-10(rounded v-show="step < 4" @click="nextStep()") {{ $t('forms.next') }}
-          v-btn.bg-secondary.px-10(rounded v-show="step > 3") {{ $t('forms.finish') }}
+          v-btn.bg-secondary.px-10(rounded v-show="step < 4" @click="nextStep()" :disabled="disabled" :loading="loading") {{ $t('forms.next') }}
+          v-btn.bg-secondary.px-10(rounded v-show="step > 3" :disabled="disabled" :loading="loading" :to="localPath('/home')") {{ $t('forms.finish') }}
         
 </template>
 
@@ -66,6 +76,7 @@ definePageMeta({
 
 // data
 const { t } = useI18n()
+const localPath = useLocalePath()
 const step = ref(1)
 const skillsTemplateItems = reactive([
   { value: 'devLangs', title: 'Development languages', disabled: false },
@@ -79,14 +90,14 @@ const skillsTemplateItems = reactive([
 // form
 const formName = ref(null)
 const validName = ref(false)
+const formTeams = ref(null)
+const validTeams = ref(false)
 const loading = ref(false)
 const disabled = ref(false)
 const formData = reactive({
-  name: '',
-  teams: [],
-  skills: []
+  name: ''
 })
-const teamNames = reactive([''])
+const teamNames = ref([''])
 const rules = reactive({
   required: [
     v => !!v || t('forms.required')
@@ -96,7 +107,7 @@ const rules = reactive({
 // form msg
 const msgText = ref('')
 const msgType = ref('error')
-const msgIsVisible = ref(true)
+const msgIsVisible = ref(false)
 
 // methods
 const nextStep = async () => {
@@ -104,20 +115,65 @@ const nextStep = async () => {
     const { valid } = await formName.value.validate()
     if (valid) { step.value++ }
   } else if (step.value == 2) {
-    console.log('step 2')
-    step.value++
+    console.log('triggered second step')
+    const { valid } = await formTeams.value.validate()
+    if (valid) { step.value++ }
+  } else if (step.value == 3) {
+    // ToDo: handling skills template
+    initTenant()
   } else {
-    step.value++
+    console.log('should not appear')
   }
 }
 
 const addTeam = () => {
-  teamNames.push('')
+  teamNames.value.push('')
 }
 
 const removeTeam = (index) => {
-  console.log('slice it', index)
-  teamNames.splice(index, 1)
+  teamNames.value.splice(index, 1)
+}
+
+const skipTeams = () => {
+  teamNames.value = ['']
+  step.value++
+}
+
+const initTenant = async () => {
+  loading.value = true
+  disabled.value = true
+  // create request body
+  let clientObj = {
+    ...formData
+  }
+  // check for teams
+  if (teamNames.value.length > 2 || teamNames.value[0] != '') {
+    clientObj.teams = teamNames.value
+  }
+  try {
+    // push to backend //
+    await myFetch('/clients', {
+      method: 'POST',
+      body: clientObj
+    })
+    msgType.value = 'success'
+    msgText.value = t('forms.success')
+    msgIsVisible.value = true
+    loading.value = false
+    disabled.value = false
+    step.value++
+  }
+  catch (err) {
+    // handle error
+    msgType.value = 'error'
+    msgText.value = err.message
+    msgIsVisible.value = true
+    loading.value = false
+    disabled.value = flase
+  }
+
+
+
 }
 
 // hooks

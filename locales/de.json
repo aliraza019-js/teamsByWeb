@@ -108,7 +108,8 @@
     "tenantDesc3": "Skills bilden hier eine unternehmensweite Struktur von Wissen und Erfahrung. Du kannst hier eine Vorlage wählen oder später Skills hinzufügen oder ändern.",
     "tenantDone": "Fertig",
     "tenantDesc4": "Sehr gut, du bist fertig. Lade als nächstes Kollegen ein, die in deiner Organisation arbeiten.",
-    "teamName": "Team name"
+    "teamName": "Team name",
+    "skipForNow": "Überspringen"
   },
   "forms": {
     "givenName": "Vorname",

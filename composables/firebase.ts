@@ -122,7 +122,10 @@ export const fbInitUser = async (): Promise<any> => {
     const res: any = await myFetch('/auth/register', { method: 'GET' })
     console.log('res', res)
     if (!res.familyName) {
-      navigateTo(localePath('/init/user'))
+      return navigateTo(localePath('/init/user'))
+    }
+    if (!res.clients || res.clients.length < 1) {
+      return navigateTo(localePath('/init'))
     }
   }
 
