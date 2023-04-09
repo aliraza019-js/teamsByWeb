@@ -15,13 +15,13 @@ v-container
         template(#body)
           v-container(class="px-0")
             v-row 
-              v-col(cols="3" sm="3")
-                v-img(class="rounded-lg" cover height="120" src="https://images.unsplash.com/photo-1484807352052-23338990c6c6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80")
-              v-col(cols="9" sm="9" class="d-flex flex-column")
+              v-col(cols="12" sm="3")
+                v-img(class="rounded-lg" cover height="200" src="https://images.unsplash.com/photo-1484807352052-23338990c6c6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80")
+              v-col(cols="12" sm="9" class="d-flex justify-space-evenly flex-column")
                 div(class="d-flex mb-3 justify-space-between")
                   p {{item.timeFrame}}
                   p(class="text-capitalize") {{item.category}}
-                p Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec,.
+                p(class="text-justify") Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec,.
               v-col(cols="12" class="d-flex justify-space-between")
                 div(class="d-flex align-center")
                   v-icon(style="color: #06A69D" size="large" icon="mdi-message-reply-text")
