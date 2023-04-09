@@ -3,7 +3,7 @@ v-container
   div(class="d-flex py-4 justify-end")
     v-btn(variant="text" prepend-icon="mdi-plus" density="compact") Training hinzufügen
   v-row
-    v-col(cols="12" v-for="item, index in certificate" :key="index")
+    v-col(cols="12" v-for="item, index in trainings" :key="index")
       CommonCard
         template(#title)
           div(class="d-flex flex-column")
@@ -43,7 +43,7 @@ definePageMeta({
   activeRoute: 'account'
 });
 
-const certificate = ref(
+const trainings = ref(
   [
     {
       date: '16.05.2019 - 18.05.2019',
