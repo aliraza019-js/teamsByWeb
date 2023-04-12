@@ -118,6 +118,8 @@
     "passwordRepeat": "Repeat Password",
     "next": "next",
     "finish": "finish",
+    "save": "save",
+    "cancel": "cancel",
     "back": "back",
     "success": "Successfully submitted",
     "required": "required"

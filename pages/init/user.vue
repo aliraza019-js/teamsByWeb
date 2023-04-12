@@ -54,7 +54,7 @@ const formData = reactive({
 })
 const rules = reactive({
   required: [
-    v => !!v || 'required'
+    v => !!v || t('forms.required')
   ]
 })
 const msgText = ref('')

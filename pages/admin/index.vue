@@ -6,7 +6,16 @@ v-card(width="100%" flat)
       v-icon mdi-menu
 
   v-card-text
-    AdminTerms
+    CommonCard
+      template(#title)
+        span.text-secondary.d-flex.align-center Agreements
+      template(#body)
+        v-list
+          v-list-item(:to="localePath('/admin/terms')")
+            v-list-item-title Terms
+            template(v-slot:append)
+              v-icon mdi-arrow-right
+    //- AdminTerms
 </template>
 
 

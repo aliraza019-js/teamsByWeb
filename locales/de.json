@@ -118,6 +118,8 @@
     "passwordRepeat": "Passwort wiederholen",
     "next": "weiter",
     "finish": "abschließen",
+    "save": "speichern",
+    "cancel": "abbrechen",
     "back": "zurück",
     "success": "Erfolgreich übertragen",
     "required": "Pfichtfeld"
