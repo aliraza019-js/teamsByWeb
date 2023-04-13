@@ -80,7 +80,13 @@
     "settings": "Settings"
   },
   "admin": {
-    "admin": "Admin"
+    "admin": "Admin",
+    "version": "Version",
+    "validFrom": "Valid from",
+    "validUntil": "Valid until",
+    "content": "Content",
+    "newTerm": "New Version",
+    "editTerm": "Edit Version"
   },
   "personAbout": {
     "about": "About",

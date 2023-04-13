@@ -70,7 +70,13 @@
     "settings": "Einstellungen"
   },
   "admin": {
-    "admin": "Admin"
+    "admin": "Admin",
+    "version": "Version",
+    "validFrom": "Gültig von",
+    "validUntil": "Gültig bis",
+    "content": "Inhalt",
+    "newTerm": "Neue Version",
+    "editTerm": "Version editieren"
   },
   "personAbout": {
     "about": "Über",
