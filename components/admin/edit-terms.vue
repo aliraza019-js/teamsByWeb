@@ -18,23 +18,43 @@ ClientOnly
 
           .d-flex.align-center.justify-space-between
             span {{ $t('admin.validFrom') }}:
-            Datepicker.elevation-3.py-3.my-2.text-center.pointer(
-              v-model="formData.validFrom"
-              :locale="$i18n.locale == 'de' ? de : enUS"
-              :inputFormat="$i18n.locale == 'de' ? 'dd.MM.yyyy' : 'yyyy-MM-dd'"
-              typeable)
+            .popout-left
+              Datepicker.elevation-3.py-3.my-2.text-center.pointer(
+                v-model="formData.validFrom"
+                :lower-limit="new Date()"
+                :locale="$i18n.locale == 'de' ? de : enUS"
+                :inputFormat="$i18n.locale == 'de' ? 'dd.MM.yyyy' : 'yyyy-MM-dd'"
+                typeable)
 
           .d-flex.align-center.justify-space-between
             span {{ $t('admin.validUntil') }}:
-            Datepicker.elevation-3.py-3.my-2.text-center.pointer(
-              v-model="formData.validUntil" 
-              :locale="$i18n.locale == 'de' ? de : enUS"
-              :inputFormat="$i18n.locale == 'de' ? 'dd.MM.yyyy' : 'yyyy-MM-dd'"
-              typeable)
+            .popout-left
+              Datepicker.elevation-3.py-3.my-2.text-center.pointer(
+                v-model="formData.validUntil"
+                :lower-limit="new Date()"
+                :locale="$i18n.locale == 'de' ? de : enUS"
+                :inputFormat="$i18n.locale == 'de' ? 'dd.MM.yyyy' : 'yyyy-MM-dd'"
+                typeable)
 
-          p {{ $t('admin.content') }}
+          v-divider.my-5
+          .d-flex.algin-center
+            p.my-2 {{ $t('admin.content') }}
+            v-spacer
+            v-btn.mr-1(
+              size="small" 
+              variant="flat" 
+              :color="activeLang=='de' ? 'secondary' : ''"
+              @click="activeLang='de'") de
+            v-btn(
+              size="small" 
+              variant="flat" 
+              :color="activeLang=='en' ? 'secondary' : ''"
+              @click="activeLang='en'") en
 
-          ts-editor.pa-2.elevation-3.rounded(v-model="formData.content")
+          v-slide-x-transition
+            ts-editor.pa-2.elevation-3.rounded(v-model="formData.contentDe" v-if="activeLang=='de'" transition="scale-transition")
+          v-slide-x-reverse-transition
+            ts-editor.pa-2.elevation-3.rounded(v-model="formData.contentEn" v-if="activeLang=='en'" transition="scale-transition")
 
           v-alert.mt-3(v-if="msgIsVisable" variant="tonal" :type="msgType" closable) {{ msgText }} some msg
 
@@ -54,6 +74,7 @@ ClientOnly
 import Datepicker from 'vue3-datepicker';
 import { de, enUS } from 'date-fns/locale';
 import { DatetimeFormat } from 'vue-i18n';
+import { useLocale } from 'vuetify/lib/framework.mjs';
 
 // data
 const props = defineProps(['mode', 'size', 'dataObj'])
@@ -65,6 +86,7 @@ const dialog = ref(null)
 const msgType = ref('error')
 const msgText = ref('')
 const msgIsVisable = ref(false)
+const activeLang = ref('de')
 
 // form
 const form = ref(null)
@@ -125,9 +147,12 @@ onMounted(() => {
   msgIsVisable.value = false
   formData.value.version = props.dataObj?.version || ''
   formData.value.validFrom = new Date(props.dataObj?.validFrom) || new Date()
-  formData.value.content = props.dataObj?.content || ''
+  formData.value.contentDe = props.dataObj?.contentDe || ''
+  formData.value.contentEn = props.dataObj?.contentEn || ''
 
   if (props.dataObj?.validUntil) formData.value.validUntil = props.dataObj.validUntil
 
 })
 </script>
+
+<style lang="scss"></style>

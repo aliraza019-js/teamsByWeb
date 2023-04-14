@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "dev": "nuxi dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview"
   },
@@ -19,7 +19,6 @@
     "@tiptap/pm": "^2.0.2",
     "@tiptap/starter-kit": "^2.0.2",
     "@tiptap/vue-3": "^2.0.2",
-    "@vuepic/vue-datepicker": "^4.0.1",
     "date-fns": "^2.29.3",
     "firebase": "^9.15.0",
     "imagekitio-vue": "^1.0.9",

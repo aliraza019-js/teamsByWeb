@@ -11,8 +11,9 @@ v-card(width="100%" flat)
     v-list
       v-list-item(v-for="(item, index) in terms")
         v-list-item-subtitle.d-flex.align-center
-          v-icon.mr-2(size="x-small") mdi-arrow-right
-          span {{ item.validFrom }}
+          span {{ tsDate(item.validFrom) }} 
+          v-icon.mx-2(size="x-small") mdi-arrow-right
+          span {{ item.validUntil ? tsDate(item.validUntil) : '' }}
         v-list-item-title {{ item.version}}
         template(v-slot:append)
           AdminEditTerms(mode="edit", :data-obj="item" @updated="updated()")
@@ -24,17 +25,20 @@ v-card(width="100%" flat)
 definePageMeta({
   activeRoute: 'admin'
 })
+
 // data
 const terms = ref([])
+
 // methods
 const getTerms = async () => {
-  const res = await myFetch('/terms', { method: 'GET' })
+  const res = await myFetch('/priv/terms', { method: 'GET' })
   terms.value = res
 }
 
 const updated = () => {
   getTerms()
 }
+
 // hooks
 onMounted(() => {
   getTerms()

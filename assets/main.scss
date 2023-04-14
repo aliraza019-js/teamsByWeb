@@ -77,3 +77,10 @@ a {
     transform: translateY(0px);
     opacity: 0;
 }
+
+// popout alignment of datepicker
+.popout-left {
+    .v3dp__popout {
+        right: 0px !important;
+    }
+}
