@@ -1,6 +1,5 @@
 <template lang="pug">
-v-layout 
-  v-card.card.ma-4.elevation-2.d-flex.stretch
+v-card.card.elevation-2.d-flex.stretch
     v-card(min-width=80).d-flex.elevation-0
       v-img(:src="project.imgUrl").img
     v-card.ml-2.stretch.d-flex.elevation-0
@@ -10,13 +9,13 @@ v-layout
           | {{ project.orgName }}
     v-card(min-width="61").elevation-0.mr-2
      v-card.mt-4
-      div.iconCard
+      div.iconCard  
 
 
 </template>
 
 <script setup>
-const props = defineProps(['project'])
+const props = defineProps(['project']);
 </script>
 
 <style lang="scss" scoped>
