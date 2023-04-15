@@ -2,13 +2,13 @@
 v-card(height="65px" rounded="lg")
   div(class="d-flex h-100")
     div(class="rounded-s-lg image h-100" :style="{ width: '34%', backgroundImage: `url(${project.imgUrl})`}")
-    div(class="d-flex w-100 px-1 justify-space-between align-center")
+    div(class="d-flex w-100 px-2 justify-space-between align-center")
       div(class="d-flex flex-column")
         div(class="title") {{ project.title }}
         p(class="orgName") {{ project.orgName }}
       div(class="d-flex rounded-lg align-center project-status")
-        v-icon(icon="mdi-timer-sand" size="small" style="color: #06A69D") 
-        p(class="px-1") Project Finished
+        v-icon(:icon="project.status == 'done' ? 'mdi-check-circle' : 'mdi-timer-sand' " size="small" style="color: #06A69D") 
+        p(class="pl-1 text-capitalize") Project {{project.status}}
 </template>
 
 <script setup>
@@ -40,7 +40,7 @@ const props = defineProps(['project']);
 }
 
 .orgName {
-  font: normal normal bold 16px/22px Nunito;
+  font: normal normal bold 12px/20px Nunito;
   letter-spacing: 0px;
   color: #0966CB;
   opacity: 1;

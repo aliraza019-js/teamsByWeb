@@ -11,10 +11,14 @@ definePageMeta({
   activeRoute: 'project'
 })
 const projects = [
-  { title: 'project 1', orgName: 'org name 1', status: 'initiation', imgUrl: 'https://ik.imagekit.io/teamstage/image_picker7844532559891803069_gd9EOekZJx.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1671194068429' },
-  { title: 'project 2', orgName: 'org name 2', status: 'planning', imgUrl: 'https://ik.imagekit.io/teamstage/image_picker7844532559891803069_gd9EOekZJx.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1671194068429' },
-  { title: 'project 3', orgName: 'org name 3', status: 'excecuting', imgUrl: 'https://ik.imagekit.io/teamstage/image_picker7844532559891803069_gd9EOekZJx.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1671194068429' },
-  { title: 'project 4', orgName: 'org name 4', status: 'monitoring', imgUrl: 'https://ik.imagekit.io/teamstage/image_picker7844532559891803069_gd9EOekZJx.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1671194068429' },
-  { title: 'project 5', orgName: 'org name 5', status: 'done', imgUrl: 'https://ik.imagekit.io/teamstage/image_picker7844532559891803069_gd9EOekZJx.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1671194068429' }
+  { title: 'Metrohm AG', orgName: 'metrohm.com', status: 'initiation', imgUrl: 'https://ik.imagekit.io/teamstage/image_picker7844532559891803069_gd9EOekZJx.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1671194068429' },
+  { title: 'inTime GmbH', orgName: 'Finanzplanung', status: 'planning', imgUrl: 'https://ik.imagekit.io/teamstage/image_picker7844532559891803069_gd9EOekZJx.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1671194068429' },
+  { title: 'Spar ICS', orgName: 'Intranet', status: 'excecuting', imgUrl: 'https://ik.imagekit.io/teamstage/image_picker7844532559891803069_gd9EOekZJx.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1671194068429' },
+  { title: 'Spar ICS', orgName: 'DAM', status: 'monitoring', imgUrl: 'https://ik.imagekit.io/teamstage/image_picker7844532559891803069_gd9EOekZJx.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1671194068429' },
+  { title: 'Volkswagen AG', orgName: 'Marketing Platform', status: 'done', imgUrl: 'https://ik.imagekit.io/teamstage/image_picker7844532559891803069_gd9EOekZJx.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1671194068429' },
+  { title: 'Deutsche Bank', orgName: 'What so ever', status: 'excecuting', imgUrl: 'https://ik.imagekit.io/teamstage/image_picker7844532559891803069_gd9EOekZJx.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1671194068429' },
+  { title: 'DFB', orgName: 'Fussball.de', status: 'excecuting', imgUrl: 'https://ik.imagekit.io/teamstage/image_picker7844532559891803069_gd9EOekZJx.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1671194068429' },
+  { title: 'VHV', orgName: 'Doc Management', status: 'excecuting', imgUrl: 'https://ik.imagekit.io/teamstage/image_picker7844532559891803069_gd9EOekZJx.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1671194068429' },
+  { title: 'BMW', orgName: 'Car documentation', status: 'excecuting', imgUrl: 'https://ik.imagekit.io/teamstage/image_picker7844532559891803069_gd9EOekZJx.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1671194068429' },
 ];
 </script>
