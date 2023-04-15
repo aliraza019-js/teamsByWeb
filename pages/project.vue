@@ -5,17 +5,20 @@ v-card(width="100%" flat)
     v-btn(icon)
       v-icon mdi-menu
     template(v-slot:extension)
-      v-tabs.my-5
-        v-btn.tab-btn.ma-2(nuxt :to="localePath('/project/projects')") {{ $t('projects.projects') }}
-        v-btn.tab-btn.ma-2(nuxt :to="localePath('/project/orgs')") {{ $t('projects.clients') }}
-
+      div(class="d-flex justify-space-between w-100 align-center")
+        v-tabs.my-5
+          v-btn.tab-btn.ma-2(nuxt :to="localePath('/project/projects')") {{ $t('projects.projects') }}
+          v-btn.tab-btn.ma-2(nuxt :to="localePath('/project/orgs')") {{ $t('projects.clients') }}
+        div(class="d-flex gap-10 justify-space-between")
+          v-btn(size="regular" color="secondary" icon="mdi-magnify" plain)
+          v-btn(size="regular" color="blue-grey-lighten-2" icon="mdi-filter-variant" plain)
   NuxtPage
 </template>
 
 <script setup>
 definePageMeta({
   activeRoute: 'project'
-})
+});
 </script>
 
 <style lang="scss" scoped>
