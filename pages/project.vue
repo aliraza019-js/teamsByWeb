@@ -11,7 +11,19 @@ v-card(width="100%" flat)
           v-btn.tab-btn.ma-2(nuxt :to="localePath('/project/orgs')") {{ $t('projects.clients') }}
         div(class="d-flex gap-10 justify-space-between")
           v-btn(size="regular" color="secondary" icon="mdi-magnify" plain)
-          v-btn(size="regular" color="blue-grey-lighten-2" icon="mdi-filter-variant" plain)
+          v-menu(theme="light" location="start")
+            template(v-slot:activator="{props}")
+              v-btn(size="regular" v-bind="props" color="blue-grey-lighten-2" icon="mdi-filter-variant" plain)
+            v-list(density="compact" rounded="lg")
+                v-list-item(density="compact" value="a")
+                  template(v-slot:prepend)
+                    v-icon mdi-plus
+                  v-list-title Neues Projekt
+                v-divider(class="border-opacity-75" style="color: #06A69D")
+                v-list-item(density="compact" value="b")
+                  template(v-slot:prepend)
+                    v-icon mdi-plus
+                  v-list-title Neues Kunde
   NuxtPage
 </template>
 
