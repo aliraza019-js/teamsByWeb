@@ -18,12 +18,12 @@ v-card(width="100%" flat)
                 v-list-item(density="compact" value="a")
                   template(v-slot:prepend)
                     v-icon mdi-plus
-                  v-list-title Neues Projekt
+                  v-list-item-title Neues Projekt
                 v-divider(class="border-opacity-75" style="color: #06A69D")
                 v-list-item(density="compact" value="b")
                   template(v-slot:prepend)
                     v-icon mdi-plus
-                  v-list-title Neues Kunde
+                  v-list-item-title Neues Kunde
   NuxtPage
 </template>
 
