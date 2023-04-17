@@ -10,8 +10,14 @@ v-card(width="100%" flat)
           v-btn.tab-btn.ma-2(nuxt :to="localePath('/project/projects')") {{ $t('projects.projects') }}
           v-btn.tab-btn.ma-2(nuxt :to="localePath('/project/orgs')") {{ $t('projects.clients') }}
         div(class="d-flex gap-10 justify-space-between")
-          v-btn(size="regular" color="secondary" icon="mdi-magnify" plain)
-          v-menu(theme="light" location="start")
+          v-menu(theme="light" :close-on-content-click="false" eager location="start" offset="-22")
+            template(v-slot:activator="{props}")
+              v-btn(size="regular" v-bind="props" color="secondary" icon="mdi-magnify" plain)
+            v-card(min-width="300")
+              v-list
+                v-list-item
+                  v-text-field(variant="underlined" density="compact" single-line hide-details append-inner-icon="mdi-magnify" label="Search")
+          v-menu(theme="light" location="start" offset="-22")
             template(v-slot:activator="{props}")
               v-btn(size="regular" v-bind="props" color="blue-grey-lighten-2" icon="mdi-filter-variant" plain)
             v-list(density="compact" rounded="lg")
