@@ -56,12 +56,15 @@ const checkUser = async () => {
   console.log('user', user)
 }
 
-// hooks
-onMounted(async () => {
+const init = async () => {
   const fbInit = await fbInitUser()
   console.log('fb init done', fbInit)
+}
 
-})
+// hooks
+onMounted(() => {
+  init()
+});
 
 </script>
 
