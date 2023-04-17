@@ -15,7 +15,7 @@ v-app
   v-footer(app height="45px" color="#f1f1f1")
     v-container
       .d-flex.flex-row
-        span.text-caption copyright &copy; TeamStage 2022
+        span.text-caption copyright &copy; TeamStage {{new Date().getFullYear()}}
 </template>
 
 <script setup>
