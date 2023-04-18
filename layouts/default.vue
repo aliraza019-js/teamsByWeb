@@ -58,8 +58,8 @@ const checkUser = async () => {
 
 // hooks
 onMounted(async () => {
-  const fbInit = await fbInitUser()
-  console.log('fb init done', fbInit)
+  // const fbInit = await fbInitUser()
+  // console.log('fb init done', fbInit)
 
 })
 

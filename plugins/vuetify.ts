@@ -1,29 +1,15 @@
 import { createVuetify } from 'vuetify'
+import { aliases, mdi } from 'vuetify/iconsets/mdi'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
-import { createI18n, useI18n } from 'vue-i18n'
-import { createVueI18nAdapter } from 'vuetify/locale/adapters/vue-i18n'
-
-import en from '../locales/en.json'
-import de from '../locales/de.json'
 
 export default defineNuxtPlugin(nuxtApp => {
-
-    // const i18n = createI18n({
-    //     fallbackLocale: 'en',
-    //     messages: {
-    //         en,
-    //         de
-    //     }
-    // })
-
     const vuetify = createVuetify({
-        // locale: {
-        //     adapter: createVueI18nAdapter({
-        //         i18n,
-        //         useI18n
-        //     })
-        // },
+        icons: {
+            defaultSet: 'mdi',
+            aliases,
+            sets: { mdi }
+        },
         theme: {
             defaultTheme: 'light',
             themes: {

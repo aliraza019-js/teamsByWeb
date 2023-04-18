@@ -1,0 +1,133 @@
+{
+  "required": "Required",
+  "layout": {
+    "editAbout": "Edit About Me",
+    "or": "OR"
+  },
+  "login": {
+    "invalid": "Invalid credentials",
+    "label": {
+      "email": "Mail",
+      "password": "Password",
+      "login": "Sign In"
+    },
+    "noAccount1": "Don't have an account?",
+    "noAccount2": "Sign up here.",
+    "signInWithGoogle": "Sign in with Google",
+    "signInWithFacebook": "Sign in with Facebook",
+    "signInWithApple": "Sign in with Apple",
+    "alreadyLoggedIn": "You are already logged in",
+    "goToApp": "Go to app",
+    "forgotPassword": "Forgot password?"
+  },
+  "signUp": {
+    "invalid": "Mail already exists",
+    "label": {
+      "email": "Mail",
+      "password": "Password",
+      "password2": "Enter Password again",
+      "login": "Sign Up"
+    },
+    "existingAccount1": "Already have an account?",
+    "existingAccount2": "Log in here"
+  },
+  "home": {
+    "home": "Home",
+    "team": "Team",
+    "projects": "Projects",
+    "search": "Search",
+    "account": "Account",
+    "setting": "Setting",
+    "logOut": "Log Out",
+    "existingAccount2": "Log in here."
+  },
+  "password": {
+    "restorePassword": "Reset password",
+    "enterEmail": "Enter email to reset you password.",
+    "resetPassword": "reset password"
+  },
+  "navLinks": {
+    "home": "Home",
+    "team": "Team",
+    "projects": "Projects",
+    "search": "Search",
+    "account": "Account",
+    "settings": "Settings",
+    "signout": "Sign out",
+    "admin": "Admin"
+  },
+  "team": {
+    "teams": "Teams",
+    "colleagues": "Colleagues"
+  },
+  "projects": {
+    "projects": "Projects",
+    "clients": "Clients"
+  },
+  "search": {
+    "search": "Search"
+  },
+  "account": {
+    "account": "Account",
+    "teams": "Teams",
+    "general": "General",
+    "skills": "Skills",
+    "projects": "Projects",
+    "trainings": "Trainings",
+    "certifications": "Certifications"
+  },
+  "settings": {
+    "settings": "Settings"
+  },
+  "admin": {
+    "admin": "Admin",
+    "version": "Version",
+    "validFrom": "Valid from",
+    "validUntil": "Valid until",
+    "content": "Content",
+    "newTerm": "New Version",
+    "editTerm": "Edit Version"
+  },
+  "personAbout": {
+    "about": "About",
+    "title": "Title",
+    "description": "Description"
+  },
+  "personContact": {
+    "title": "Contact information"
+  },
+  "init": {
+    "profileSetup": "Profile SetUp",
+    "pleaseComplete": "Please complete your basic profile information",
+    "teamSetup": "Team SetUp",
+    "youAreNot": "You are not assigned to any team so far. Set up a new Team or join an existing one.",
+    "createNew": "Create a new team",
+    "useThisToCreate": "Use this to create a new tenant. After setting up you can add teams and invite colleagues.",
+    "joinTeam": "Join a team",
+    "findYourTeam": "Find your team and request membership. Perfect teams are waiting for you!",
+    "tenantName": "Name",
+    "tenantDesc1": "Can be chosen freely, it’s usually the name of the company or group",
+    "tenantTeams": "Teams",
+    "tenantDesc2": "Teams help you organize your workforce. You can add and edit later at any time as well.",
+    "tenantSkills": "Skills",
+    "tenantSkillsTemplate": "Skills templates",
+    "tenantDesc3": "Skills help you to structure the knowledge and experiences of your workforce. You can choose a template here or setup from scratch. Also you can add and edit later at any time.",
+    "tenantDone": "Done",
+    "tenantDesc4": "You are ready to go. Next you can setup your own profile and invite your colleagues",
+    "teamName": "Team name",
+    "skipForNow": "Skip for now"
+  },
+  "forms": {
+    "givenName": "Given Name",
+    "familyName": "Family Name",
+    "password": "Password",
+    "passwordRepeat": "Repeat Password",
+    "next": "next",
+    "finish": "finish",
+    "save": "save",
+    "cancel": "cancel",
+    "back": "back",
+    "success": "Successfully submitted",
+    "required": "required"
+  }
+}

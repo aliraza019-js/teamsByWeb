@@ -1,6 +1,6 @@
 <template lang="pug">
 v-container
-  AccountGeneralAbout
+  //- AccountGeneralAbout
 
   //- CommonCard 
     template(#title)
@@ -20,7 +20,7 @@ v-container
         v-btn(icon size="small" variant="plain" color="secondary")
           v-icon(color="") mdi-plus-circle-outline
         v-btn(icon size="small" variant="plain" color="#06A69D")
-          v-icon mdi-pencil 
+          v-icon mdi-pencil
     template(#body)
       v-container
         v-row
@@ -32,7 +32,7 @@ v-container
 
 <script setup>
 // imports
-import { useAccountStore } from '~~/stores/account';
+// import { useAccountStore } from '~~/stores/account';
 
 // page meta
 definePageMeta({
@@ -40,10 +40,10 @@ definePageMeta({
 });
 
 // data
-const accountStore = useAccountStore()
-const account = computed(() => {
-  return accountStore.account
-})
+// const accountStore = useAccountStore()
+// const account = computed(() => {
+//   return accountStore.account
+// })
 
 const contactPerson = ref([
   {
@@ -71,8 +71,7 @@ const formData = reactive({
 });
 
 onMounted(() => {
-
-  accountStore.fetchData()
+  // accountStore.fetchData()
 })
 
 </script>

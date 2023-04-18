@@ -9,16 +9,16 @@ v-menu(theme="light" location="left")
     v-list
       v-list-item(:to="localePath('/account')")
         template(v-slot:prepend)
-          v-icon mdi-arrow-right
+          v-icon(icon="mdi-arrow-right")
         v-list-item-title {{ $t('account.account') }}
       v-list-item(@click="signout()")
         template(v-slot:prepend)
-          v-icon mdi-logout-variant
+          v-icon(icon="mdi-logout-variant")
         v-list-item-title {{ $t('navLinks.signout') }}
 
       v-list-item(@click="toggleTheme()")
         template(v-slot:prepend)
-          v-icon mdi-theme-light-dark
+          v-icon(icon="mdi-theme-light-dark")
         v-list-item-title theme
 
 </template>

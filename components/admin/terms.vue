@@ -1,5 +1,5 @@
 <template lang="pug">
-ClientOnly
+div
   v-card(width="100%")
     v-card-title
       .d-flex
@@ -13,7 +13,7 @@ ClientOnly
         v-list-item-title Version 1
         template(v-slot:append)
           v-btn(icon flat @click="editTerm()")
-            v-icon mdi-pencil
+            v-icon(icon="mdi-pencil")
 
   v-dialog(v-model="dialog" max-width="650px" height="100%")
     v-card(height="100%")
