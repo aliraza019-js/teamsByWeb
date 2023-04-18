@@ -35,7 +35,8 @@ v-card(width="100%" flat)
 
 <script setup>
 definePageMeta({
-  activeRoute: 'project'
+  activeRoute: 'project',
+  middleware: 'redirect-router'
 });
 </script>
 
