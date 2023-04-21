@@ -34,10 +34,13 @@ v-card(width="100%" flat)
 </template>
 
 <script setup>
+// page
 definePageMeta({
   activeRoute: 'project',
   middleware: 'redirect-router'
 });
+// data
+const localePath = useLocalePath();
 </script>
 
 <style lang="scss" scoped>

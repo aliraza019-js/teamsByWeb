@@ -119,8 +119,8 @@ export const fbInitUser = async (): Promise<any> => {
   const localePath = useLocalePath()
 
   const checkUser = async () => {
-    const res: any = await myFetch('/auth/register', { method: 'GET' })
-    console.log('res', res)
+    const res = await myFetch('/auth/register', { method: 'GET' })
+    console.log('res fbInit', res)
     if (!res.familyName) {
       return navigateTo(localePath('/init/user'))
     }

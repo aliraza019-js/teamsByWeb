@@ -22,10 +22,14 @@ v-container
 <script setup>
 import { useUsersStore } from '~~/stores/users';
 
+// page
 definePageMeta({
   layout: 'login',
   ignoreAuth: true,
 })
+
+// data
+const localePath = useLocalePath()
 
 const userState = useUsersStore()
 

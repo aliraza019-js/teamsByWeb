@@ -1,6 +1,4 @@
-import { createVuetify } from "vuetify";
 import ImageKit from "imagekitio-vue"
-import {defineNuxtPlugin} from "#imports";
 
 export default defineNuxtPlugin(nuxtApp => {
     const options = {

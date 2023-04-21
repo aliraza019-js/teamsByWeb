@@ -9,9 +9,14 @@ v-container
 </template>
 
 <script setup>
+// page
 definePageMeta({
   activeRoute: 'team'
 })
+
+// data
+const localePath = useLocalePath()
+
 const teams = [
   { name: 'Amy Lee', title: 'Sales', imgUrl: '../img/team_pic_default.png' },
   { name: 'Frank Werner', title: 'Design', imgUrl: '../img/team_pic_default.png' },
@@ -21,6 +26,4 @@ const teams = [
 ]
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

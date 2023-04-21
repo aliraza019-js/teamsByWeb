@@ -9,7 +9,7 @@ v-card(width="100%" flat)
 
   v-card-text
     v-list
-      v-list-item(v-for="(item, index) in terms")
+      v-list-item(v-for="(item, index) in terms" v-if="terms.length>0")
         v-list-item-subtitle.d-flex.align-center
           span {{ tsDate(item.validFrom) }} 
           v-icon.mx-2(size="x-small") mdi-arrow-right
@@ -28,6 +28,7 @@ definePageMeta({
 
 // data
 const terms = ref([])
+const localePath = useLocalePath()
 
 // methods
 const getTerms = async () => {
