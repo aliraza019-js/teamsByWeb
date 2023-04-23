@@ -9,7 +9,7 @@ v-card(width="100%" flat)
       v-icon mdi-menu
     template(v-slot:extension)
       v-tabs(v-for="tab, index in tabs" :key="index" class="my-5")
-        v-btn(class="tab-btn ma-2" nuxt) {{ $t(tab.label) }}
+        v-btn(class="tab-btn ma-2" nuxt) {{ $t('projectdetails.general') }}
 
 
   v-card-text
