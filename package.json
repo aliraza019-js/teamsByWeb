@@ -31,9 +31,9 @@
     "@tiptap/vue-3": "^2.0.3",
     "firebase": "^9.19.1",
     "imagekitio-vue": "^1.0.9",
+    "mdi": "^2.2.43",
     "nuxt-icons": "^3.1.0",
     "vue3-datepicker": "^0.3.4",
-    "vuetify": "^3.1.14",
-    "mdi": "^2.2.43"
+    "vuetify": "^3.1.14"
   }
 }
