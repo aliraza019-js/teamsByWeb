@@ -2,43 +2,38 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxi dev",
+    "dev": "nuxt dev",
     "generate": "nuxt generate",
-    "preview": "nuxt preview"
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "nuxt": "^3.0.0"
+    "@nuxtjs/plausible": "^0.2.0",
+    "@types/node": "^18.15.11",
+    "nuxt": "^3.4.1",
+    "pug": "^3.0.2",
+    "sass": "^1.62.0",
+    "vite-plugin-pug": "^0.3.2"
   },
   "dependencies": {
     "@intlify/unplugin-vue-i18n": "^0.8.1",
-    "@nuxt/cli": "^2.15.8",
-    "@nuxtjs/i18n": "^8.0.0-beta.6",
-    "@nuxtjs/plausible": "^0.2.0",
-    "@pinia/nuxt": "^0.4.6",
-    "@tiptap/extension-bubble-menu": "^2.0.2",
+    "@nuxtjs/i18n": "^8.0.0-beta.11",
+    "@pinia/nuxt": "^0.4.8",
+    "@tiptap/extension-bubble-menu": "^2.0.3",
     "@tiptap/extension-bullet-list": "^2.0.3",
     "@tiptap/extension-document": "^2.0.3",
     "@tiptap/extension-heading": "^2.0.3",
     "@tiptap/extension-horizontal-rule": "^2.0.3",
     "@tiptap/extension-list-item": "^2.0.3",
     "@tiptap/extension-ordered-list": "^2.0.3",
-    "@tiptap/pm": "^2.0.2",
-    "@tiptap/starter-kit": "^2.0.2",
-    "@tiptap/vue-3": "^2.0.2",
-    "@vueup/vue-quill": "^1.1.1",
-    "date-fns": "^2.29.3",
-    "firebase": "^9.15.0",
+    "@tiptap/pm": "^2.0.3",
+    "@tiptap/starter-kit": "^2.0.3",
+    "@tiptap/vue-3": "^2.0.3",
+    "firebase": "^9.19.1",
     "imagekitio-vue": "^1.0.9",
     "mdi": "^2.2.43",
-    "nuxt-icons": "^3.0.0",
-    "sass": "^1.57.1",
-    "sass-loader": "^13.0.2",
-    "std-env": "^3.3.1",
-    "vite-plugin-pug": "^0.3.2",
+    "nuxt-icons": "^3.1.0",
     "vue3-datepicker": "^0.3.4",
-    "vuetify": "^3.0.6"
-  },
-  "overrides": {
-    "ufo": "^0.8.4"
+    "vuetify": "^3.1.14"
   }
 }

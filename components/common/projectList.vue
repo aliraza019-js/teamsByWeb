@@ -1,40 +1,36 @@
 <template lang="pug">
-v-layout 
-  v-card.card.ma-4.elevation-2.d-flex.stretch
-    v-card(min-width=80).d-flex.elevation-0
-      v-img(:src="project.imgUrl").img
-    v-card.ml-2.stretch.d-flex.elevation-0
-      div.title.mt-4
-        | {{ project.title }}
-        p.orgName
-          | {{ project.orgName }}
-    v-card(min-width="61").elevation-0.mr-2
-     v-card.mt-4
-      div.iconCard
-
-
+v-card(height="65px" rounded="lg")
+  div(class="d-flex h-100")
+    div(class="rounded-s-lg image h-100" :style="{ width: '34%', backgroundImage: `url(${project.imgUrl})`}")
+    div(class="d-flex w-100 px-2 justify-space-between align-center")
+      div(class="d-flex flex-column")
+        div(class="title") {{ project.title }}
+        p(class="orgName") {{ project.orgName }}
+      div(class="d-flex rounded-lg align-center project-status")
+        v-icon(:icon="project.status == 'done' ? 'mdi-check-circle' : 'mdi-timer-sand' " size="small" style="color: #06A69D") 
+        p(class="pl-1 text-capitalize") Project {{project.status}}
 </template>
 
 <script setup>
-const props = defineProps(['project'])
+const props = defineProps(['project']);
 </script>
 
 <style lang="scss" scoped>
 
-.card {
-  height:72px;
+.image {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; 
 }
 
-.border {
-  border: #1C1C1C;
+.project-status {
+  height: 36px;
+  p {
+    width: 51px;
+    font-size: 9px;
+  }
 }
 
-
-
-.img {
-  scale: 1.7;
-  border: 0px solid white;
-}
 
 .title {
   font: normal normal normal 12px/16px Nunito;
@@ -44,18 +40,10 @@ const props = defineProps(['project'])
 }
 
 .orgName {
-  font: normal normal bold 16px/22px Nunito;
+  font: normal normal bold 12px/20px Nunito;
   letter-spacing: 0px;
   color: #0966CB;
   opacity: 1;
-}
-
-.iconCard {
-  width: 61px;
-  height: 32px;
-  background-image: url("/img/icon_project_started.png");
-  border-radius: 4px;
-  background-size: 100% 100%;
 }
 
 </style>

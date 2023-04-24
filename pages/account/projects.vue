@@ -61,8 +61,5 @@ const projects = ref(
 
 
 <style scoped lang="scss">
-.project-status {
-  height: 48px;
-  background: #ECEFF1;
-}
+
 </style>

@@ -20,9 +20,12 @@ v-card(width="100%" flat)
 
 
 <script setup>
+// page
 definePageMeta({
   activeRoute: 'admin'
 })
+// data
+const localePath = useLocalePath()
 </script>
 
 <style lang="scss" scoped>

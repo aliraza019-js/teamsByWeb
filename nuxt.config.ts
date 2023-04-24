@@ -1,12 +1,5 @@
-import en from "./locales/en.json";
-import de from "./locales/de.json";
-import pugPlugin from "vite-plugin-pug"
-
-// https://v3.nuxtjs.org/api/configuration/nuxt.config
+// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-    experimental: {
-        writeEarlyHints: false,
-    },
     runtimeConfig: {
         public: {
             API_URL: process.env.API_URL,
@@ -37,9 +30,7 @@ export default defineNuxtConfig({
         '@nuxtjs/i18n',
         '@nuxtjs/plausible',
         'nuxt-icons',
-        ['@pinia/nuxt', {
-            autoImports: ['defineStore']
-        }],
+        '@pinia/nuxt',
     ],
     css: [
         'vuetify/lib/styles/main.sass',
@@ -52,27 +43,21 @@ export default defineNuxtConfig({
 
     },
     i18n: {
-        locales: ['en', 'de'],
+        strategy: 'prefix_except_default',
+        langDir: 'lang',
+        locales: [
+            { code: 'en', iso: 'en-US', file: 'en.json' },
+            { code: 'de', iso: 'de-De', file: 'de.json' }
+        ],
+        lazy: true,
         defaultLocale: 'en',
-        vueI18n: {
-            fallbackLocale: 'de',
-            messages: {
-                en,
-                de
-            }
-        }
+        baseUrl: process.env.BASE_URL,
+        // vueI18n: './i18n.config.ts'
     },
-    plausible: {
-        trackLocalhost: false,
-        autoOutboundTracking: true
+    nitro: {
+        logLevel: 1
     },
-    // nitro: {
-    //     preset: 'node-server'
-    // },
     vite: {
-        define: {
-            'process.env.DEBUG': false,
-        },
         css: {
             preprocessorOptions: {
                 scss: {
@@ -80,15 +65,5 @@ export default defineNuxtConfig({
                 }
             }
         },
-        plugins: [
-            pugPlugin(),
-            // VueI18nVitePlugin({
-            //     include: [
-            //         resolve(dirname(fileURLToPath(import.meta.url)), './locales/*.json')
-            //     ]
-            // })
-        ]
     }
-
 })
-

@@ -30,7 +30,7 @@ v-app
   v-footer.d-none.d-md-flex.my-footer(app height="45px")
     v-container
       .d-flex.flex-row
-        span.text-caption copyright &copy; TeamStage 2022
+        span.text-caption copyright &copy; TeamStage {{new Date().getFullYear()}}
 </template>
 
 <script setup>
@@ -56,12 +56,15 @@ const checkUser = async () => {
   console.log('user', user)
 }
 
-// hooks
-onMounted(async () => {
+const init = async () => {
   const fbInit = await fbInitUser()
   console.log('fb init done', fbInit)
+}
 
-})
+// hooks
+onMounted(() => {
+  init()
+});
 
 </script>
 

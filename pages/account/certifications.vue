@@ -15,7 +15,7 @@ v-container
               v-col(cols="12" sm="3")
                 v-sheet(border height="170" rounded="lg" class="d-flex align-center justify-center")
                   div(class="d-flex justify-center align-center")
-                    img(src="/img/badgecertificate.png" width="150px")
+                    v-img(src="/img/badgecertificate.png" eager width="150px")
               v-col(cols="12" sm="9")
                 p(class="text-justify") Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec,.
                 div(class="d-flex flex-wrap pt-4 align-center")

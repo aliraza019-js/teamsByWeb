@@ -21,7 +21,7 @@ v-layout
           .ml-1
         v-row.d-flex.ml-10.flex-row
           v-row.d-flex.ml-10.mb-10.mt-10.flex-row
-            v-col.d-flex.mb-2(md='6' sm='12')(v-for="items in skills").flex-sm-row.justify-center
+            v-col.d-flex.mb-2(md='6' sm='12' v-for="items in skills").flex-sm-row.justify-center
               v-row 
                 v-col(cols='6')
                   .small-title {{items.name}}

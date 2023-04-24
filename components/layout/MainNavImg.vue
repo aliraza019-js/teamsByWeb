@@ -1,14 +1,12 @@
 <template>
 
 <a :href="appUrl" v-if="userSet">
-    <v-img class="pointer" src="img/profile_pic_default.png" height="55px" width="55px" contain="contain"
-                     @click=""></v-img>
+    <v-img class="pointer" src="img/profile_pic_default.png" height="55px" width="55px" contain="contain" />
 </a>
  <!--  no-ssr Tag, da sonst ein Vue3 Bug auftritt der das Rendern der Seite verhindert-->
  <v-no-ssr>
     <div v-if="!userSet">
-        <v-img class="pointer" src="img/profile_pic_default.png" height="55px" width="55px" contain="contain"
-                     @click=""></v-img>
+        <v-img class="pointer" src="img/profile_pic_default.png" height="55px" width="55px" contain="contain" />
     </div>
  </v-no-ssr>
 
@@ -18,7 +16,7 @@
 
 <script setup lang="ts">
 
-import {useFirebase} from '~/composables/useFirebase';
+// import {useFirebase} from '~/composables/useFirebase';
 import {onMounted, ref} from '#imports';
 import {useRuntimeConfig} from '#app';
 import {onAuthStateChanged} from '@firebase/auth';
@@ -28,16 +26,16 @@ const runtimeConfig = useRuntimeConfig()
 const appUrl = runtimeConfig.public.appURL;
 let userSet = ref(false);
 
-onMounted(() => {
+// onMounted(() => {
 
-  const {app, auth} = useFirebase()
+//   const {app, auth} = useFirebase()
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      userSet.value = true;
-    }
-  })
-})
+//   onAuthStateChanged(auth, (user) => {
+//     if (user) {
+//       userSet.value = true;
+//     }
+//   })
+// })
 
 </script>
 
