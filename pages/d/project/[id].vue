@@ -47,7 +47,7 @@ v-card(width="100%" flat)
               v-col(cols="12" sm="4")
                 v-select(variant="solo" v-model="item" density="comfortable" single-line :items="items")
               v-col(cols="12" sm="4")
-                v-select(variant="solo" v-model="item" density="comfortable" single-line :items="items")
+                Datepicker(v-model="dateFrom")
 
 </template>
 
@@ -59,6 +59,7 @@ definePageMeta({
 })
 const route = useRoute();
 const item = ref('Executed')
+const dateFrom = ref(new Date())
 
 const tabs = ref(
   [
