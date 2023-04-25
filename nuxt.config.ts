@@ -53,7 +53,7 @@ export default defineNuxtConfig({
         ],
         lazy: true,
         defaultLocale: 'en',
-        //baseUrl: process.env.BASE_URL,
+        baseUrl: process.env.BASE_URL,
         // vueI18n: './i18n.config.ts'
     },
     nitro: {
