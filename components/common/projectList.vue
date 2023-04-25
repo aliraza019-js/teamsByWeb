@@ -7,7 +7,7 @@ v-card(height="65px" rounded="lg")
         div(class="title") {{ project.title }}
         p(class="orgName") {{ project.orgName }}
       div(class="d-flex rounded-lg align-center project-status")
-        v-icon(:icon="project.status == 'done' ? 'mdi-check-circle' : 'mdi-timer-sand' " size="small" style="color: #06A69D") 
+        v-icon(:icon="project.status == 'done' ? 'mdi-check-circle' : 'mdi-timer-sand'" size="small" style="color: #06A69D") 
         p(class="pl-1 text-capitalize") Project {{project.status}}
 </template>
 

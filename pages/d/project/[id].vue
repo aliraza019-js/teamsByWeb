@@ -33,13 +33,32 @@ v-card(width="100%" flat)
                 div(class="d-flex")
                   p(class="place") Herisau | Switzerland
                 p(class="orgName") Metrohm Schweiz AG
+      v-col(cols="12")
+        CommonCard
+          template(#title)
+            span(class="text-secondary d-flex align-center") Überblick
+            div(class="d-flex rounded-lg align-center project-status")
+              v-icon(icon="mdi-check-circle" style="color: #06A69D" size="small")
+              p(class="pl-1 text-capitalize text-center") Project Done
+          template(#body)
+            v-row(class="mt-4")
+              v-col(cols="12" sm="4") 
+                v-select(variant="solo" v-model="item" density="comfortable" single-line :items="items")
+              v-col(cols="12" sm="4")
+                v-select(variant="solo" v-model="item" density="comfortable" single-line :items="items")
+              v-col(cols="12" sm="4")
+                v-select(variant="solo" v-model="item" density="comfortable" single-line :items="items")
+
 </template>
 
 <script setup>
+import Datepicker from 'vue3-datepicker'
+
 definePageMeta({
   activeRoute: 'project'
 })
 const route = useRoute();
+const item = ref('Executed')
 
 const tabs = ref(
   [
@@ -54,6 +73,11 @@ const tabs = ref(
     }
   ]
 );
+
+
+const items= ref(
+  ['Executed']
+)
 
 
 const imgIcon = ref('https://ik.imagekit.io/teamstage/image_picker_3125430F-511F-43C9-B086-AB64D48351B8-2200-000002773AA5F329_PAgGU5JhU.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1669902515925');
@@ -78,5 +102,13 @@ const imgIcon = ref('https://ik.imagekit.io/teamstage/image_picker_3125430F-511F
 .v-btn--active.tab-btn {
   background-image: linear-gradient($secondary, $primary);
   color: #fff;
+}
+
+.project-status {
+  height: 36px;
+  p {
+    width: 51px;
+    font-size: 9px;
+  }
 }
 </style>
