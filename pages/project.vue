@@ -37,7 +37,6 @@ v-card(width="100%" flat)
 // page
 definePageMeta({
   activeRoute: 'project',
-  middleware: 'redirect-router'
 });
 // data
 const localePath = useLocalePath();

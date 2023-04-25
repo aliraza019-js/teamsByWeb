@@ -1,27 +1,19 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     runtimeConfig: {
-        API_URL: 'https://test.team-stage.com/api',
-        APP_BASE_URL: 'http://localhost:3000',
-        FIREBASE_API_KEY: 'AIzaSyAUQtH-du-W8We3I1LvN6e0HTOXh-D-OdI',
-        FIREBASE_AUTH_DOMAIN: 'teamstage-dev.firebaseapp.com',
-        FIREBASE_PROJECT_ID: 'teamstage-dev',
-        FIREBASE_STORAGE_BUCKET: 'teamstage-dev.appspot.com',
-        FIREBASE_MESSAGING_SENDER_ID: '1074253651684',
-        FIREBASE_APP_ID: '1:1074253651684:web:2247589de48557762c96f1',
-        FIREBASE_MEASUREMENT_ID: 'G-MBMW935BYG',
 
-        // public: {
-        //     API_URL: process.env.API_URL,
-        //     APP_BASE_URL: process.env.BASE_URL,
-        //     FIREBASE_API_KEY: process.env.FIREBASE_API_KEY,
-        //     FIREBASE_AUTH_DOMAIN: process.env.FIREBASE_AUTH_DOMAIN,
-        //     FIREBASE_PROJECT_ID: process.env.FIREBASE_PROJECT_ID,
-        //     FIREBASE_STORAGE_BUCKET: process.env.FIREBASE_STORAGE_BUCKET,
-        //     FIREBASE_MESSAGING_SENDER_ID: process.env.FIREBASE_MESSAGING_SENDER_ID,
-        //     FIREBASE_APP_ID: process.env.FIREBASE_APP_ID,
-        //     FIREBASE_MEASUREMENT_ID: process.env.FIREBASE_MEASUREMENT_ID
-        // }
+
+        public: {
+            API_URL: process.env.API_URL,
+            APP_BASE_URL: process.env.BASE_URL,
+            FIREBASE_API_KEY: process.env.FIREBASE_API_KEY,
+            FIREBASE_AUTH_DOMAIN: process.env.FIREBASE_AUTH_DOMAIN,
+            FIREBASE_PROJECT_ID: process.env.FIREBASE_PROJECT_ID,
+            FIREBASE_STORAGE_BUCKET: process.env.FIREBASE_STORAGE_BUCKET,
+            FIREBASE_MESSAGING_SENDER_ID: process.env.FIREBASE_MESSAGING_SENDER_ID,
+            FIREBASE_APP_ID: process.env.FIREBASE_APP_ID,
+            FIREBASE_MEASUREMENT_ID: process.env.FIREBASE_MEASUREMENT_ID
+        }
     },
     app: {
         baseURL: '/app/',
