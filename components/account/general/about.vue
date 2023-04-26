@@ -41,7 +41,6 @@ div
 
 <script setup>
 // imports
-import { validate } from '@babel/types';
 import { useAccountStore } from '~~/stores/account';
 
 // data - common

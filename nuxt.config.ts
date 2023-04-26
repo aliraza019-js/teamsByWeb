@@ -44,7 +44,7 @@ export default defineNuxtConfig({
     },
     i18n: {
         strategy: 'prefix_except_default',
-        langDir: 'lang',
+        langDir: 'locales',
         locales: [
             { code: 'en', iso: 'en-US', file: 'en.json' },
             { code: 'de', iso: 'de-De', file: 'de.json' }
