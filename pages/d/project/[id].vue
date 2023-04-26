@@ -1,8 +1,8 @@
 <template lang="pug">
 v-card(width="100%" flat)
   v-toolbar(flat color="transparent")
-    v-btn(icon class="ml-0" :to="localePath('project/projects')")
-        v-icon mdi-arrow-left
+    v-btn(icon class="ml-0" to="/project/projects")
+      v-icon mdi-arrow-left
     v-toolbar-title Metrohm.com
     .underline
     v-btn(icon)
@@ -39,7 +39,7 @@ v-card(width="100%" flat)
             span(class="text-secondary d-flex align-center") Überblick
             div(class="d-flex rounded-lg align-center project-status")
               v-icon(icon="mdi-check-circle" style="color: #06A69D" size="small")
-              p(class="pl-1 text-capitalize text-center") Project Done
+              p(class="px-1 text-capitalize text-center") Project Done
           template(#body)
             v-row(class="mt-4")
               v-col(cols="12" sm="4") 
@@ -108,7 +108,6 @@ const imgIcon = ref('https://ik.imagekit.io/teamstage/image_picker_3125430F-511F
 .project-status {
   height: 36px;
   p {
-    width: 51px;
     font-size: 9px;
   }
 }
