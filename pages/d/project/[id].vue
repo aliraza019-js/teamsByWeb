@@ -37,9 +37,9 @@ v-card(width="100%" flat)
         CommonCard
           template(#title)
             span(class="text-secondary d-flex align-center") Überblick
-            div(class="d-flex rounded-lg align-center project-status")
+            div(class="d-flex rounded-lg align-center project-status px-2")
               v-icon(icon="mdi-check-circle" style="color: #06A69D" size="small")
-              p(class="px-1 text-capitalize text-center") Project Done
+              p(class="px-2 text-capitalize text-center") Project Done
           template(#body)
             v-row(class="mt-4")
               v-col(cols="12" sm="4") 
@@ -108,7 +108,7 @@ const imgIcon = ref('https://ik.imagekit.io/teamstage/image_picker_3125430F-511F
 .project-status {
   height: 36px;
   p {
-    font-size: 9px;
+    font-size: 10px;
   }
 }
 </style>
