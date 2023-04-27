@@ -19,9 +19,6 @@ v-app
 </template>
 
 <script setup>
-onMounted(async () => {
-  await fbInitUser()
-})
 
 </script>
 
