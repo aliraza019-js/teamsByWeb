@@ -31,11 +31,11 @@ const tabs = ref(
     },
     {
       label: "projectdetails.teams",
-      url: '',
+      url: '/d/project/123/team',
     },
     {
       label: "projectdetails.comment",
-      url: ''
+      url: '/d/project/123/comment',
     }
   ]
 );
