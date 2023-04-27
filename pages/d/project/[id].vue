@@ -45,23 +45,19 @@ v-card(width="100%" flat)
               v-col(cols="12" sm="4") 
                 v-select(variant="solo" v-model="item" density="comfortable" single-line :items="items")
               v-col(cols="12" sm="4")
-                v-select(variant="solo" v-model="item" density="comfortable" single-line :items="items")
+                v-text-field(type="date" density="comfortable" single-line variant="solo" label="Date From")
               v-col(cols="12" sm="4" class="d-flex align")
-
-
-                
-
+                v-text-field(type="date" density="comfortable" single-line variant="solo" label="Date From")
 </template>
 
 <script setup>
-
 
 definePageMeta({
   activeRoute: 'project'
 })
 const route = useRoute();
 const item = ref('Executed')
-const dateFrom = ref()
+const dateFrom = ref(new Date())
 
 const tabs = ref(
   [
