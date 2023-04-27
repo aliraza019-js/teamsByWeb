@@ -1,5 +1,5 @@
 <template lang="pug">
-v-card(height="65px" rounded="lg")
+v-card(height="65px" rounded="lg" :to="localePath('/d/project/123/general')")
   div(class="d-flex h-100")
     div(class="rounded-s-lg image h-100" :style="{ width: '34%', backgroundImage: `url(${project.imgUrl})`}")
     div(class="d-flex w-100 px-2 justify-space-between align-center")
@@ -13,6 +13,7 @@ v-card(height="65px" rounded="lg")
 
 <script setup>
 const props = defineProps(['project']);
+const localePath = useLocalePath();
 </script>
 
 <style lang="scss" scoped>
