@@ -27,15 +27,15 @@ const tabs = ref(
   [
     {
       label: "projectdetails.general",
-      url: '/d/project/123/general'
+      url: `/d/project/${route.params.id}/general`
     },
     {
       label: "projectdetails.teams",
-      url: '/d/project/123/team',
+      url: `/d/project/${route.params.id}/team`,
     },
     {
       label: "projectdetails.comment",
-      url: '/d/project/123/comment',
+      url: `/d/project/${route.params.id}/comment`,
     }
   ]
 );
