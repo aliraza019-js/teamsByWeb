@@ -1,5 +1,5 @@
 <template lang="pug">
-v-card(height="65px" rounded="lg" :to="localePath('/d/project/123/general')")
+v-card(height="65px" rounded="lg" :to="localePath(`/d/project/${project.id}/general`)")
   div(class="d-flex h-100")
     div(class="rounded-s-lg image h-100" :style="{ width: '34%', backgroundImage: `url(${project.imgUrl})`}")
     div(class="d-flex w-100 px-2 justify-space-between align-center")

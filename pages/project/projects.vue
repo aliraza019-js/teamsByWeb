@@ -6,23 +6,12 @@ v-container
 </template>
 
 <script setup>
+import {projects} from "@/@fakeDb/database.json";
 // page
 definePageMeta({
   activeRoute: 'project'
 })
 
 // data
-const localePath = useLocalePath()
-
-const projects = [
-  { title: 'Metrohm AG', orgName: 'metrohm.com', status: 'initiation', imgUrl: 'https://ik.imagekit.io/teamstage/image_picker7844532559891803069_gd9EOekZJx.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1671194068429' },
-  { title: 'inTime GmbH', orgName: 'Finanzplanung', status: 'planning', imgUrl: 'https://ik.imagekit.io/teamstage/image_picker7844532559891803069_gd9EOekZJx.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1671194068429' },
-  { title: 'Spar ICS', orgName: 'Intranet', status: 'excecuting', imgUrl: 'https://ik.imagekit.io/teamstage/image_picker7844532559891803069_gd9EOekZJx.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1671194068429' },
-  { title: 'Spar ICS', orgName: 'DAM', status: 'monitoring', imgUrl: 'https://ik.imagekit.io/teamstage/image_picker7844532559891803069_gd9EOekZJx.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1671194068429' },
-  { title: 'Volkswagen AG', orgName: 'Marketing Platform', status: 'done', imgUrl: 'https://ik.imagekit.io/teamstage/image_picker7844532559891803069_gd9EOekZJx.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1671194068429' },
-  { title: 'Deutsche Bank', orgName: 'What so ever', status: 'excecuting', imgUrl: 'https://ik.imagekit.io/teamstage/image_picker7844532559891803069_gd9EOekZJx.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1671194068429' },
-  { title: 'DFB', orgName: 'Fussball.de', status: 'excecuting', imgUrl: 'https://ik.imagekit.io/teamstage/image_picker7844532559891803069_gd9EOekZJx.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1671194068429' },
-  { title: 'VHV', orgName: 'Doc Management', status: 'excecuting', imgUrl: 'https://ik.imagekit.io/teamstage/image_picker7844532559891803069_gd9EOekZJx.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1671194068429' },
-  { title: 'BMW', orgName: 'Car documentation', status: 'excecuting', imgUrl: 'https://ik.imagekit.io/teamstage/image_picker7844532559891803069_gd9EOekZJx.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1671194068429' },
-];
+const localePath = useLocalePath();
 </script>
