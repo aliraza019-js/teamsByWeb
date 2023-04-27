@@ -1,7 +1,7 @@
 <template lang="pug">
-v-row
+v-row(style="height: 500px" class="overflow-auto comment-container")
   v-col(cols="12" v-for="data in 3" :key="data")
-    v-card
+    v-card(class="elevation-4")
       v-card-text(class="d-flex flex-column")
         div(class="d-flex align-center justify-space-between")
           span(class="text-caption") 20.06.2021
@@ -21,3 +21,9 @@ definePageMeta({
 const img = ref('https://images.unsplash.com/photo-1488161628813-04466f872be2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80');
 
 </script>
+
+<style lang="scss" scoped>
+.comment-container {
+  scrollbar-color: #94a3b8 transparent;
+}
+</style>

@@ -1,7 +1,7 @@
 <template lang="pug">
 v-row
   v-col(cols="12" sm="4" v-for="item , index in items" :key="index")
-    v-card(rounded="lg")
+    v-card(rounded="lg" class="elevation-4")
       v-card-text(class="d-flex")
         v-avatar(size="60" :image="img")
         div(class="d-flex flex-column justify-center w-100 pl-3")
