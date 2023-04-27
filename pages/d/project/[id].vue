@@ -46,20 +46,22 @@ v-card(width="100%" flat)
                 v-select(variant="solo" v-model="item" density="comfortable" single-line :items="items")
               v-col(cols="12" sm="4")
                 v-select(variant="solo" v-model="item" density="comfortable" single-line :items="items")
-              v-col(cols="12" sm="4")
-                Datepicker(v-model="dateFrom")
+              v-col(cols="12" sm="4" class="d-flex align")
+
+
+                
 
 </template>
 
 <script setup>
-import Datepicker from 'vue3-datepicker'
+
 
 definePageMeta({
   activeRoute: 'project'
 })
 const route = useRoute();
 const item = ref('Executed')
-const dateFrom = ref(new Date())
+const dateFrom = ref()
 
 const tabs = ref(
   [
