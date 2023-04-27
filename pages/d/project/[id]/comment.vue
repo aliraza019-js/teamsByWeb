@@ -1,7 +1,7 @@
 <template lang="pug">
 v-row(style="height: 500px" class="overflow-auto comment-container")
   v-col(cols="12" v-for="data in 3" :key="data")
-    v-card(class="elevation-4")
+    v-card(class="elevation-4 rounded-lg")
       v-card-text(class="d-flex flex-column")
         div(class="d-flex align-center justify-space-between")
           span(class="text-caption") 20.06.2021
