@@ -3,7 +3,7 @@ v-card(width="100%" flat)
   v-toolbar(flat color="transparent")
     v-btn(icon class="ml-0" to="/project/projects")
       v-icon mdi-arrow-left
-    v-toolbar-title Metrohm.com
+    v-toolbar-title {{idTitle}}
     .underline
     v-btn(icon)
       v-icon mdi-menu
@@ -15,12 +15,14 @@ v-card(width="100%" flat)
 </template>
 
 <script setup>
+import {projects} from "@/@fakeDb/database.json";
+
 definePageMeta({
   activeRoute: 'project'
 })
 
 const route = useRoute();
-
+const idTitle = ref();
 const localePath = useLocalePath()
 
 const tabs = ref(
@@ -42,6 +44,12 @@ const tabs = ref(
 
 
 const imgIcon = ref('https://ik.imagekit.io/teamstage/image_picker_3125430F-511F-43C9-B086-AB64D48351B8-2200-000002773AA5F329_PAgGU5JhU.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1669902515925');
+
+onMounted(() => {
+  let getData = projects.find(item => item.id == route.params.id)
+
+  idTitle.value = getData.title
+});
 </script>
 
 <style lang="scss" scoped>
