@@ -1,6 +1,6 @@
 <template lang="pug">
 v-row
-  v-col(cols="12")
+  v-col(cols="12" v-for="data in 3" :key="data")
     v-card
       v-card-text(class="d-flex flex-column")
         div(class="d-flex align-center justify-space-between")
