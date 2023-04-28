@@ -57,7 +57,8 @@
   "projectdetails" : {
     "general": "General",
     "teams": "Teams",
-    "comment": "Comment"
+    "comment": "Comment",
+    "projects": "Projekte"
   },
   "search": {
     "search": "Suche"
