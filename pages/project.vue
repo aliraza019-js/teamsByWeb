@@ -39,11 +39,11 @@ const tabRoutes = ref(
   [
     {
       label: 'projects.projects',
-      route: '/project/projects'
+      link: '/project/projects'
     },
     {
       label: 'projects.clients',
-      route: '/project/orgs'
+      link: '/project/orgs'
     }
   ]
 );

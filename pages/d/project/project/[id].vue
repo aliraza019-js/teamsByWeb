@@ -1,15 +1,12 @@
 <template lang="pug">
-v-card(width="100%" flat)
-  v-toolbar(flat color="transparent")
+CommonCardContainer(:title="title" :tabRoutes="tabRoutes")
+  template(#prependTitleAtributes)
     v-btn(icon class="ml-0" to="/project/projects")
       v-icon mdi-arrow-left
-    v-toolbar-title {{idTitle}}
-    .underline
+  template(#titleAtributes)
     v-btn(icon)
       v-icon mdi-menu
-    template(v-slot:extension)
-      v-tabs(v-for="tab, index in tabs" :key="index" class="my-5")
-        v-btn(class="tab-btn ma-2" nuxt :to="localePath(tab.url)") {{ $t(tab.label) }}
+
   v-card-text
     NuxtPage
 </template>
@@ -22,22 +19,22 @@ definePageMeta({
 })
 
 const route = useRoute();
-const idTitle = ref();
+const title = ref();
 const localePath = useLocalePath()
 
-const tabs = ref(
+const tabRoutes = ref(
   [
     {
       label: "projectdetails.general",
-      url: `/d/project/project/${route.params.id}/general`
+      link: `/d/project/project/${route.params.id}/general`
     },
     {
       label: "projectdetails.teams",
-      url: `/d/project/project/${route.params.id}/team`,
+      link: `/d/project/project/${route.params.id}/team`,
     },
     {
       label: "projectdetails.comment",
-      url: `/d/project/project/${route.params.id}/comment`,
+      link: `/d/project/project/${route.params.id}/comment`,
     }
   ]
 );
@@ -48,28 +45,6 @@ const imgIcon = ref('https://ik.imagekit.io/teamstage/image_picker_3125430F-511F
 onMounted(() => {
   let getData = projects.find(item => item.id == route.params.id)
 
-  idTitle.value = getData.title
+  title.value = getData.title
 });
 </script>
-
-<style lang="scss" scoped>
-.underline {
-  position: absolute;
-  width: 100%;
-  left: 0px;
-  top: 56px;
-  right: 0px;
-  height: 1px;
-  background-color: rgb(204, 204, 204);
-}
-
-.v-btn.tab-btn {
-  border-radius: 24px;
-  background-color: rgba(28, 28, 28, 0.03);
-}
-
-.v-btn--active.tab-btn {
-  background-image: linear-gradient($secondary, $primary);
-  color: #fff;
-}
-</style>

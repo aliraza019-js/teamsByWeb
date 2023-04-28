@@ -1,13 +1,15 @@
 <template lang="pug">
 v-card(width="100%" flat)
-  v-toolbar(:title="title" color="transparent")
+  v-toolbar(flat color="transparent")
+    slot(name="prependTitleAtributes")
+    v-toolbar-title {{title}}
     .underline
     slot(name="titleAtributes")
 
     template(v-slot:extension)
       div(class="d-flex justify-space-between w-100 align-center")
         v-tabs(class="my-5")
-          v-btn(v-for="tab , index in tabRoutes" :key="index" :to="localePath(tab.route)"  class="tab-btn ma-2" nuxt) {{$t(tab.label)}}
+          v-btn(v-for="tab , index in tabRoutes" :key="index" :to="localePath(tab.link)"  class="tab-btn ma-2" nuxt) {{$t(tab.label)}}
         slot(name="tabsAtributes")
   slot
 </template>
