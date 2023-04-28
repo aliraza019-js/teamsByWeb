@@ -12,7 +12,7 @@ v-card(height="65px" rounded="lg" :to="localePath(`/d/project/project/${project.
 </template>
 
 <script setup>
-const props = defineProps(['project']);
+defineProps(['project']);
 const localePath = useLocalePath();
 </script>
 

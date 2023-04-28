@@ -55,9 +55,9 @@
     "clients": "Kunden"
   },
   "projectdetails" : {
-    "general": "General",
+    "general": "Allgemein",
     "teams": "Teams",
-    "comment": "Comment",
+    "comment": "Kommentar",
     "projects": "Projekte"
   },
   "search": {
