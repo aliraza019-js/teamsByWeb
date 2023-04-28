@@ -3,10 +3,10 @@ v-row
   v-col(cols="12" sm="4" v-for="item , index in items" :key="index")
     v-card(rounded="lg" class="elevation-4")
       v-card-text(class="d-flex")
-        v-avatar(size="60" :image="img")
+        v-avatar(size="40" :image="img")
         div(class="d-flex flex-column justify-center w-100 pl-3")
           span(style="width: 139px" class="truncate") {{item.title}}
-          p(class="font-weight-bold text-h6") {{item.name}}
+          p(class="font-weight-bold text-body-1") {{item.name}}
 </template>
 
 <script setup>
