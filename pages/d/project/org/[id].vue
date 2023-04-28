@@ -1,30 +1,47 @@
 <template lang="pug">
-v-card(width="100%" flat)
-  v-toolbar(:title="'org detail'" flat color="transparent")
-    .underline
+CommonCardContainer(:title="title" :tabRoutes="tabRoutes")
+  template(#prependTitleAtributes)
+    v-btn(icon class="ml-0" to="/project/orgs")
+      v-icon mdi-arrow-left
+  template(#titleAtributes)
     v-btn(icon)
       v-icon mdi-menu
 
   v-card-text
-    p.text-body-1 some content
+    NuxtPage
 </template>
 
 <script setup>
+import {orgs} from "@/@fakeDb/database.json";
+
 definePageMeta({
   activeRoute: 'project'
 })
-const route = useRoute()
-console.log(route.params.id)
-</script>
 
-<style lang="scss" scoped>
-.underline {
-  position: absolute;
-  width: 100%;
-  left: 0px;
-  top: 56px;
-  right: 0px;
-  height: 1px;
-  background-color: rgb(204, 204, 204);
-}
-</style>
+const route = useRoute();
+const title = ref()
+
+
+const tabRoutes = ref(
+  [
+    {
+      label: "projectdetails.general",
+      link: `/d/project/org/${route.params.id}/general`
+    },
+    {
+      label: "projectdetails.teams",
+      link: `/d/project/org/${route.params.id}/team`,
+    },
+    {
+      label: "projectdetails.comment",
+      link: `/d/project/org/${route.params.id}/project`,
+    }
+  ]
+);
+
+
+onMounted(() => {
+  let getData = orgs.find(item => item.id == route.params.id)
+  title.value = getData.name
+});
+</script>

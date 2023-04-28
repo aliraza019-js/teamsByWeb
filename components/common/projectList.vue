@@ -1,5 +1,5 @@
 <template lang="pug">
-v-card(height="65px" rounded="lg")
+v-card(height="65px" rounded="lg" :to="localePath(`/d/project/project/${project.id}/general`)")
   div(class="d-flex h-100")
     div(class="rounded-s-lg image h-100" :style="{ width: '34%', backgroundImage: `url(${project.imgUrl})`}")
     div(class="d-flex w-100 px-2 justify-space-between align-center")
@@ -7,12 +7,13 @@ v-card(height="65px" rounded="lg")
         div(class="title") {{ project.title }}
         p(class="orgName") {{ project.orgName }}
       div(class="d-flex rounded-lg align-center project-status")
-        v-icon(:icon="project.status == 'done' ? 'mdi-check-circle' : 'mdi-timer-sand' " size="small" style="color: #06A69D") 
+        v-icon(:icon="project.status == 'done' ? 'mdi-check-circle' : 'mdi-timer-sand'" size="small" style="color: #06A69D") 
         p(class="pl-1 text-capitalize") Project {{project.status}}
 </template>
 
 <script setup>
 const props = defineProps(['project']);
+const localePath = useLocalePath();
 </script>
 
 <style lang="scss" scoped>

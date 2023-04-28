@@ -90,7 +90,7 @@ const updateData = async () => {
   console.log('got res', res)
   accountStore.fetchData()
   showDialog.value = false
-}
+};
 
 // hooks
 </script>

@@ -1,6 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     runtimeConfig: {
+
+
         public: {
             API_URL: process.env.API_URL,
             APP_BASE_URL: process.env.BASE_URL,
@@ -36,10 +38,10 @@ export default defineNuxtConfig({
         'vuetify/lib/styles/main.sass',
         'mdi/css/materialdesignicons.min.css',
         '@/assets/main.scss',
-        '@/assets/comps.scss'
+        '@/assets/comps.scss',
     ],
     build: {
-        transpile: ['vuetify', '@vuepic/vue-datepicker'],
+        transpile: ['vuetify'],
 
     },
     i18n: {

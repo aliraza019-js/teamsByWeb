@@ -12,7 +12,7 @@ v-card(width="100%" flat)
 <script setup>
 definePageMeta({
   activeRoute: 'settings'
-})
+});
 </script>
 
 <style lang="scss" scoped>
