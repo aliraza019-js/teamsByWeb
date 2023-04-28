@@ -28,7 +28,7 @@ definePageMeta({
   activeRoute: 'account'
 });
 // data
-const localePath = useLocalePath()
+const localePath = useLocalePath();
 </script>
 
 <style lang="scss" scoped>

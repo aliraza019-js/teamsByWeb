@@ -25,7 +25,7 @@ definePageMeta({
   activeRoute: 'admin'
 })
 // data
-const localePath = useLocalePath()
+const localePath = useLocalePath();
 </script>
 
 <style lang="scss" scoped>
