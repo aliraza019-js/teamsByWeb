@@ -7,8 +7,8 @@ v-card(width="100%" flat)
     template(v-slot:extension)
       div(class="d-flex justify-space-between w-100 align-center")
         v-tabs(class="my-5")
-          v-btn(v-for="tab , index in tabRoutes" :key="index" :to="localePath(tab.route)"  class="tab-btn ma-2" nuxt) {{$t(tab.title)}}
-        slot(name="tabsArtributes")
+          v-btn(v-for="tab , index in tabRoutes" :key="index" :to="localePath(tab.route)"  class="tab-btn ma-2" nuxt) {{$t(tab.label)}}
+        slot(name="tabsAtributes")
   slot
 </template>
 
