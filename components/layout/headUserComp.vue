@@ -3,7 +3,8 @@ v-menu(theme="light" location="left")
   template(v-slot:activator="{props}")
     v-btn(icon v-bind="props")
       v-avatar(color="primary")
-        v-img(src="https://cdn.vuetifyjs.com/images/john.jpg")
+        //- v-img(src="https://cdn.vuetifyjs.com/images/john.jpg")
+        v-img(:src="user.profileImage.url + '?tr=h-50,w-50,fo-face'")
 
   v-card(min-width="230px")
     v-list
@@ -24,9 +25,16 @@ v-menu(theme="light" location="left")
 </template>
 
 <script setup>
+// imports
 import { useTheme } from 'vuetify'
+import { useUserStore } from '~/stores/user'
+
+// data
 const theme = useTheme()
 const localePath = useLocalePath()
+const { user } = useUserStore()
+
+//methods
 const signout = async () => {
   await fbSignOut()
   navigateTo(localePath('/auth'))

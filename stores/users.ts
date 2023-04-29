@@ -7,7 +7,7 @@ const defaultState = {
   uid: undefined
 }
 
-export const useUsersStore = defineStore('user', {
+export const useUsersStore = defineStore('userOld', {
   state: () => ({ ...defaultState }),
   getters: {
     status: state => state.isLoggedIn

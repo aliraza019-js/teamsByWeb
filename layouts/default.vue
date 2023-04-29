@@ -34,10 +34,13 @@ v-app
 </template>
 
 <script setup>
+// imports
+import { useUserStore } from '~/stores/user'
 
 // data
 const drawer = ref(false)
 const localPath = useLocalePath()
+const { updateUser } = useUserStore()
 
 // data
 const navItems = [
@@ -64,6 +67,10 @@ const init = async () => {
 // hooks
 onMounted(() => {
   init()
+  setTimeout(() => {
+    updateUser()
+  }, 2000)
+
 });
 
 </script>

@@ -15,17 +15,19 @@ v-card(width="100%" flat)
             v-list-item-title Terms
             template(v-slot:append)
               v-icon mdi-arrow-right
-    //- AdminTerms
 </template>
 
 
 <script setup>
+// imports
+import { useUserStore } from '~/stores/user';
 // page
 definePageMeta({
   activeRoute: 'admin'
 })
 // data
 const localePath = useLocalePath();
+const { user, updateUser } = useUserStore()
 </script>
 
 <style lang="scss" scoped>
