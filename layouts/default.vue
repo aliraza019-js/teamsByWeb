@@ -36,11 +36,13 @@ v-app
 <script setup>
 // imports
 import { useUserStore } from '~/stores/user'
+import { useAuthStore } from '~/stores/auth'
 
 // data
 const drawer = ref(false)
 const localPath = useLocalePath()
 const { updateUser } = useUserStore()
+const { initAuth } = useAuthStore()
 
 // data
 const navItems = [
@@ -59,18 +61,9 @@ const checkUser = async () => {
   console.log('user', user)
 }
 
-const init = async () => {
-  const fbInit = await fbInitUser()
-  console.log('fb init done', fbInit)
-}
-
 // hooks
 onMounted(() => {
-  init()
-  setTimeout(() => {
-    updateUser()
-  }, 2000)
-
+  initAuth()
 });
 
 </script>

@@ -12,7 +12,7 @@ v-menu(theme="light" location="left")
         template(v-slot:prepend)
           v-icon(icon="mdi-arrow-right")
         v-list-item-title {{ $t('account.account') }}
-      v-list-item(@click="signout()")
+      v-list-item(@click="signOut()")
         template(v-slot:prepend)
           v-icon(icon="mdi-logout-variant")
         v-list-item-title {{ $t('navLinks.signout') }}
@@ -28,17 +28,14 @@ v-menu(theme="light" location="left")
 // imports
 import { useTheme } from 'vuetify'
 import { useUserStore } from '~/stores/user'
+import { useAuthStore } from '~/stores/auth'
 
 // data
 const theme = useTheme()
-const localePath = useLocalePath()
 const { user } = useUserStore()
+const { signOut } = useAuthStore()
 
 //methods
-const signout = async () => {
-  await fbSignOut()
-  navigateTo(localePath('/auth'))
-}
 const toggleTheme = () => {
   theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark'
   console.log('toggled theme')

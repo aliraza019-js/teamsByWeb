@@ -77,7 +77,6 @@ const validate = async () => {
 const signIn = async () => {
   try {
     await fbSignInWithMail(formData.mail, formData.pwd)
-    // await fbInitUser()
     loading.value = false
     navigateTo(localePath('/home'))
     await form.value.reset()
