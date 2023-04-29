@@ -33,7 +33,7 @@ const tabRoutes = ref(
       link: `/d/project/org/${route.params.id}/team`,
     },
     {
-      label: "projectdetails.comment",
+      label: "projectdetails.projects",
       link: `/d/project/org/${route.params.id}/project`,
     }
   ]

@@ -1,5 +1,5 @@
 <template lang="pug">
-v-row(style="height: 500px" class="overflow-auto general-container")
+v-row(style="height: 500px" class="overflow-auto scroll-container")
   v-col(cols="12")
     CommonCard
       template(#title)
@@ -53,7 +53,7 @@ const imgIcon = ref('https://ik.imagekit.io/teamstage/image_picker_3125430F-511F
 </script>
 
 <style lang="scss" scoped>
-.general-container {
+.scroll-container {
   scrollbar-color: #94a3b8 transparent;
 }
 
