@@ -20,19 +20,11 @@ v-container
 </template>
 
 <script setup>
-import { useUsersStore } from '~~/stores/users';
-
 // page
 definePageMeta({
   layout: 'login',
   ignoreAuth: true,
 })
-
-// data
-const localePath = useLocalePath()
-
-const userState = useUsersStore()
-
 </script>
 
 <style lang="scss" scoped>

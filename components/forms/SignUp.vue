@@ -8,6 +8,7 @@ v-form.d-flex.flex-column.align-center.justify-center.text-center(ref="form")
     :loading="loading" 
     :disabled="loading"
     :rules="rules.mail"
+    @keydown.enter.prevent="validate()"
     prepend-inner-icon="mdi-email")
 
   v-text-field.mb-2(
@@ -45,6 +46,11 @@ v-form.d-flex.flex-column.align-center.justify-center.text-center(ref="form")
 </template>
 
 <script setup>
+// imports
+import { useAuthStore } from '~/stores/auth';
+
+// data
+const { initAuth } = useAuthStore()
 const config = useRuntimeConfig()
 const localePath = useLocalePath()
 let form = ref(null)
@@ -83,7 +89,7 @@ const validate = async () => {
 const signUp = async () => {
   try {
     await fbCreateUser(formData.mail, formData.pwd)
-    await fbInitUser()
+    initAuth()
     navigateTo(localePath('/'))
     loading.value = false
     await form.value.reset()
@@ -107,6 +113,4 @@ const signUp = async () => {
 }
 </script>
 
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>

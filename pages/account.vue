@@ -1,9 +1,9 @@
 <template lang="pug">
 v-card(width="100%" flat)
-  v-toolbar(title="Philipp Wicke" flat color="transparent" class="position-relative")
+  v-toolbar(:title="user.givenName + ' ' + user.familyName" flat color="transparent" class="position-relative")
     .underline
     v-avatar(size="70" class="user-profile position-absolute")
-      v-img(src="https://cdn.vuetifyjs.com/images/john.jpg")
+      v-img(:src="user.profileImage.url + '?tr=h-50,w-50,fo-face'")
     template(v-slot:extension)
       v-slide-group(:show-arrows="false")
         v-slide-group-item(v-slot="{ isSelected }")
@@ -23,12 +23,15 @@ v-card(width="100%" flat)
 </template>
 
 <script setup>
+// imports
+import { useUserStore } from '~/stores/user';
 // page
 definePageMeta({
   activeRoute: 'account'
 });
 // data
 const localePath = useLocalePath();
+const { user } = useUserStore();
 </script>
 
 <style lang="scss" scoped>

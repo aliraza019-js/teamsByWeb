@@ -1,9 +1,8 @@
-import { useUsersStore } from '~~/stores/users'
-import { FetchOptions } from "ofetch"
+import { useAuthStore } from '~/stores/auth'
 
 export const myFetch = async (url: string, options: any) => {
-  const userState = useUsersStore()
   const config = useRuntimeConfig()
+  const { auth } = useAuthStore()
 
   // const { data, pending, error, refresh }
 
@@ -37,10 +36,11 @@ export const myFetch = async (url: string, options: any) => {
     ...options,
 
     onRequest({ request, options }) {
+      console.log('about to fetch', auth)
       options.baseURL = config.public.API_URL
-      if (userState && userState.accessToken) {
+      if (auth && auth.accessToken) {
         options.headers = {
-          'Authorization': `Bearer ${userState.accessToken}`
+          'Authorization': `Bearer ${auth.accessToken}`
         }
       }
     }

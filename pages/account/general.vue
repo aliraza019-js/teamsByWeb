@@ -2,16 +2,16 @@
 v-container
   //- AccountGeneralAbout
 
-  //- CommonCard 
+  CommonCard 
     template(#title)
       span(class="text-secondary d-flex align-center") {{$t('personAbout.about')}}
       v-btn(icon size="small" variant="plain" color="#06A69D" @click="editAbout = !editAbout")
         v-icon mdi-pencil
     template(#body)
       p(class="px-0 pt-5 font-weight-medium text-subtitle-1") {{$t('personAbout.title')}}
-      p(class="text-h6 font-weight-bold") {{ account.title }}
+      p(class="text-h6 font-weight-bold") {{ user.title }}
       p(class="description py-3 text-body-1 font-weight-medium") {{$t('personAbout.description')}}
-      p(class="pt-2 text-justify") {{ account.desc }}
+      p(class="pt-2 text-justify") {{ user.desc }}
 
   CommonCard 
     template(#title)
@@ -32,7 +32,7 @@ v-container
 
 <script setup>
 // imports
-// import { useAccountStore } from '~~/stores/account';
+import { useUserStore } from '~/stores/user'
 
 // page meta
 definePageMeta({
@@ -40,10 +40,7 @@ definePageMeta({
 });
 
 // data
-// const accountStore = useAccountStore()
-// const account = computed(() => {
-//   return accountStore.account
-// })
+const { user } = useUserStore()
 
 const contactPerson = ref([
   {

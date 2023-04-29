@@ -12,7 +12,7 @@ v-card(:color="color" class="rounded-lg elevation-4 relative py-3 px-6 mb-3")
 defineProps({
   color: {
     type: String,
-    default:"white"
+    default: undefined
   }
 });
 </script>
@@ -29,6 +29,4 @@ defineProps({
   height: 48px;
   left: -17px;
 }
-
-
 </style>

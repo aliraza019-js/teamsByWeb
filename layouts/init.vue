@@ -31,8 +31,11 @@ v-app
 </template>
 
 <script setup>
+// imports
+import { useAuthStore } from '~/stores/auth'
 
 // data
+const { initAuth } = useAuthStore()
 const drawer = ref(false)
 const localPath = useLocalePath()
 
@@ -49,7 +52,7 @@ const navItems = [
 
 // methods
 onMounted(async () => {
-  await fbInitUser()
+  initAuth()
 })
 
 </script>

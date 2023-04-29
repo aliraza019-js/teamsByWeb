@@ -12,25 +12,19 @@ div.nav-card
         //- v-icon.mr-2 {{item.icon}}
         span.text-subtitle-1 {{ $t(`navLinks.${item.titleRef}`) }}
 
-      NuxtLink.nav-btn.signout-btn.d-flex.align-center.justify-start.mt-15.pointer(@click="signout()") 
+      NuxtLink.nav-btn.signout-btn.d-flex.align-center.justify-start.mt-15.pointer(@click="signOut()") 
         icon-feather.mr-2(icon="signout")
         //- v-icon.mr-2 mdi-logout-variant
         span.text-subtitle-1 {{ $t('navLinks.signout') }}
 </template>
 
 <script setup>
-const props = defineProps(['navItems'])
-const localePath = useLocalePath()
+// imports
+import { useAuthStore } from '~/stores/auth'
 
-const signout = async () => {
-  try {
-    await fbSignOut()
-    navigateTo(localePath('/auth'))
-  }
-  catch (err) {
-    console.log('err', err)
-  }
-}
+// data
+const { signOut } = useAuthStore()
+const props = defineProps(['navItems'])
 </script>
 
 <style lang="scss" scoped>
