@@ -8,9 +8,9 @@ div
         v-icon mdi-pencil
     template(#body)
       p.px-0.pt-5.font-weight-medium.text-subtitle-1 {{$t('personAbout.title')}}
-      p.text-h6.font-weight-bold {{ account.title }}
+      p.text-h6.font-weight-bold {{ user.title }}
       p.description.pt-3.text-body-1.font-weight-medium {{$t('personAbout.description')}}
-      p.pt-2.text-justify {{ account.desc }}
+      p.pt-2.text-justify {{ user.desc }}
 
   //- modal to edit
   v-dialog(v-model="showDialog" max-width="450px")
@@ -41,16 +41,13 @@ div
 
 <script setup>
 // imports
-import { useAccountStore } from '~~/stores/account';
+import { useUserStore } from '~/stores/user';
 
 // data - common
 const { t } = useI18n()
 
 // data - account
-const accountStore = useAccountStore()
-const account = computed(() => {
-  return accountStore.account
-})
+const { user } = useUserStore()
 
 // data - dialog
 const showDialog = ref(false)
