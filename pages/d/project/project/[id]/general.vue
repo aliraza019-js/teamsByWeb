@@ -53,10 +53,6 @@ const imgIcon = ref('https://ik.imagekit.io/teamstage/image_picker_3125430F-511F
 </script>
 
 <style lang="scss" scoped>
-.scroll-container {
-  scrollbar-color: #94a3b8 transparent;
-}
-
 .project-status {
   height: 36px;
   p {

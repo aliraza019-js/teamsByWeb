@@ -51,10 +51,6 @@ const contactPerson = ref([
 </script>
 
 <style lang="scss" scoped>
-.scroll-container {
-  scrollbar-color: #94a3b8 transparent;
-}
-
 .project-status {
   height: 36px;
   p {

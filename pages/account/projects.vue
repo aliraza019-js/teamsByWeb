@@ -29,7 +29,6 @@ v-container
                 div(class="d-flex align-center")
                   v-icon(style="color: #06A69D" size="large" icon="mdi-thumb-up-outline")
                   p(class="font-weight-bold ml-2") 1.2K likes
-
 </template>
 
 <script setup>
