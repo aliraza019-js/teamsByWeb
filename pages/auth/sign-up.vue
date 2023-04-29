@@ -6,10 +6,10 @@ v-container
         span.text-h4 {{ $t('signUp.label.login') }}
       v-card-text
         ClientOnly
-          FormsAlreadySignedIn(v-if="userState.isLoggedIn")
-          forms-sign-up(v-if="!userState.isLoggedIn")
+          FormsAlreadySignedIn(v-if="auth.isLoggedIn")
+          forms-sign-up(v-if="!auth.isLoggedIn")
 
-      v-card-text.mt-5(v-if="!userState.isLoggedIn")
+      v-card-text.mt-5(v-if="!auth.isLoggedIn")
         layout-or-divider
         comps-social-btns
 
@@ -20,11 +20,15 @@ v-container
 </template>
 
 <script setup>
+import { useAuthStore } from '~/stores/auth';
+
 // page
 definePageMeta({
   layout: 'login',
   ignoreAuth: true,
 })
+
+const { auth } = useAuthStore()
 </script>
 
 <style lang="scss" scoped>
