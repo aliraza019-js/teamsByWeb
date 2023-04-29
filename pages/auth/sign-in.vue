@@ -5,15 +5,15 @@ v-container
       v-card-title.text-center
         span.text-h4 {{ $t('login.label.login') }}
 
-      v-card-text(v-if="!userState.isLoggedIn")
+      v-card-text(v-if="!auth.isLoggedIn")
         ClientOnly
           CompsSocialBtns
 
       layout-or-divider.my-5
       v-card-text
         ClientOnly
-          forms-sign-in(v-if="!userState.isLoggedIn")
-          forms-already-signed-in(v-if="userState.isLoggedIn")
+          forms-sign-in(v-if="!auth.isLoggedIn")
+          forms-already-signed-in(v-if="auth.isLoggedIn")
 
       v-card-text.text-center
         nuxt-link(:to="localePath('/auth/sign-up')")
@@ -22,10 +22,14 @@ v-container
 </template>
 
 <script setup>
+import { useAuthStore } from '~/stores/auth';
+
 definePageMeta({
   layout: 'login',
   ignoreAuth: true,
 })
+
+const { auth } = useAuthStore()
 </script>
 
 <style lang="scss" scoped>
