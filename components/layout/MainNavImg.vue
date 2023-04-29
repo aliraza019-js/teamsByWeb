@@ -14,7 +14,7 @@
 </template>
 
 
-<script setup lang="ts">
+<script setup>
 
 // import {useFirebase} from '~/composables/useFirebase';
 import {onMounted, ref} from '#imports';

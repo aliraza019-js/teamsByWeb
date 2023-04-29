@@ -35,7 +35,7 @@ export const myFetch = async (url: string, options: any) => {
   return await $fetch(url, {
     ...options,
 
-    onRequest({ request, options }) {
+    onRequest() {
       console.log('about to fetch', auth)
       options.baseURL = config.public.API_URL
       if (auth && auth.accessToken) {
