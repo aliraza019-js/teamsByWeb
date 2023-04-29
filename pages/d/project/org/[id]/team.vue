@@ -1,12 +1,13 @@
 <template lang="pug">
-v-row
-  v-col(cols="12" sm="4" v-for="item , index in items" :key="index")
-    v-card(rounded="lg" class="elevation-4")
-      v-card-text(class="d-flex py-1")
-        v-avatar(size="60" :image="img")
-        div(class="d-flex flex-column justify-center w-100 pl-3")
-          span(style="width: 139px" class="truncate") {{item.title}}
-          p(class="font-weight-bold text-body-1") {{item.name}}
+v-container(class="pa-0" style="height: 500px")
+  v-row(class="overflow-auto scroll-container")
+    v-col(cols="12" sm="4" v-for="item , index in items" :key="index")
+      v-card(rounded="lg" class="elevation-4")
+        v-card-text(class="d-flex py-1")
+          v-avatar(size="60" :image="img")
+          div(class="d-flex flex-column justify-center w-100 pl-3")
+            span(style="width: 139px" class="truncate") {{item.title}}
+            p(class="font-weight-bold text-body-1") {{item.name}}
 </template>
 
 <script setup>
