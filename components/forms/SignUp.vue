@@ -8,6 +8,7 @@ v-form.d-flex.flex-column.align-center.justify-center.text-center(ref="form")
     :loading="loading" 
     :disabled="loading"
     :rules="rules.mail"
+    @keydown.enter.prevent="validate()"
     prepend-inner-icon="mdi-email")
 
   v-text-field.mb-2(

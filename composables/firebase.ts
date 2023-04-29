@@ -85,20 +85,6 @@ export const fbSignInWithApple = async (): Promise<any> => {
   }
 }
 
-export const fbSignOut = async (): Promise<any> => {
-  const auth = getAuth()
-  const userStore = useUsersStore()
-  try {
-    await auth.signOut()
-    await userStore.$reset()
-    return
-  }
-  catch (err) {
-    console.log('err', err);
-    throw err;
-  }
-}
-
 export const fbResetPassword = async (mail: string): Promise<any> => {
   const auth = getAuth()
   const userStore = useUsersStore()
@@ -111,31 +97,4 @@ export const fbResetPassword = async (mail: string): Promise<any> => {
     console.log('err', err)
     throw err
   }
-}
-
-export const fbInitUser = async (): Promise<any> => {
-  const auth = getAuth();
-  const userStore = useUsersStore()
-  const localePath = useLocalePath()
-
-  const checkUser = async () => {
-    const res = await myFetch('/auth/register', { method: 'GET' })
-    console.log('res fbInit', res)
-    if (!res.familyName) {
-      return navigateTo(localePath('/init/user'))
-    }
-    if (!res.clients || res.clients.length < 1) {
-      return navigateTo(localePath('/init'))
-    }
-  }
-
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      userStore.setUser(user)
-      checkUser()
-    } else {
-      userStore.reset()
-      navigateTo(localePath('/auth/sign-in'))
-    }
-  })
 }

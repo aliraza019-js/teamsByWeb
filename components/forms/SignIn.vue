@@ -9,6 +9,7 @@ v-form.d-flex.flex-column.align-center.justify-center.text-center(ref="form" v-m
       :disabled="loading"
       :rules="rules.mail"
       prepend-inner-icon="mdi-email"
+      @keydown.enter.prevent="validate()"
       variant="solo")
 
   v-row.stretch
@@ -20,6 +21,7 @@ v-form.d-flex.flex-column.align-center.justify-center.text-center(ref="form" v-m
       :disabled="loading"
       :rules="rules.required"
       prepend-inner-icon="mdi-lock"
+      @keydown.enter.prevent="validate()"
       variant="solo")
 
   v-row.align-center.justify-end.pb-5.stretch
