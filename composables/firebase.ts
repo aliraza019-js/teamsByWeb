@@ -9,7 +9,7 @@ import {
   GoogleAuthProvider,
   OAuthProvider,
 } from 'firebase/auth';
-import { useUsersStore } from '~~/stores/users'
+import { useAuthStore } from '~/stores/auth';
 
 export const fbCreateUser = async (mail: string, pwd: string): Promise<any> => {
   const auth = getAuth();
@@ -87,10 +87,9 @@ export const fbSignInWithApple = async (): Promise<any> => {
 
 export const fbResetPassword = async (mail: string): Promise<any> => {
   const auth = getAuth()
-  const userStore = useUsersStore()
-  console.log('mail', mail)
+  const { signOut } = useAuthStore()
   try {
-    await userStore.$reset()
+    signOut()
     return await sendPasswordResetEmail(auth, mail)
   }
   catch (err) {
