@@ -2,6 +2,7 @@ import { defineStore } from 'pinia';
 
 export const useUserStore = defineStore('user', () => {
 
+  // user state
   const defaultState = {
     givenName: '',
     familyName: '',
@@ -13,10 +14,16 @@ export const useUserStore = defineStore('user', () => {
       url: 'https://ik.imagekit.io/teamstage/placeholder/avatar-1606939_1280_qC6Wn0jVd.png?tr=h-50,w-50'
     }
   }
-  const userObj = reactive(defaultState)
+  const userState = reactive(defaultState)
 
-  const user = computed(() => userObj)
+  // loading state
+  const loadingUserState = ref(false)
 
+  // provided states
+  const user = computed(() => userState)
+  const loadingUser = computed(() => loadingUserState)
+
+  // provided methods
   const updateUser = () => {
     getUser()
   }
@@ -25,7 +32,9 @@ export const useUserStore = defineStore('user', () => {
     const localePath = useLocalePath()
 
     try {
+      loadingUserState.value = true
       const res: any = await myFetch('/users', { method: 'GET', server: false })
+      loadingUserState.value = false
 
       // handling case, when no family name is set
       if (!res.familyName) {
@@ -38,15 +47,15 @@ export const useUserStore = defineStore('user', () => {
       }
 
       // setting user properties
-      userObj.givenName = res.givenName || ''
-      userObj.familyName = res.familyName
-      userObj.profileImage = res.profileImage || {
+      userState.givenName = res.givenName || ''
+      userState.familyName = res.familyName
+      userState.profileImage = res.profileImage || {
         id: '',
         thumbnail: '',
         url: 'https://ik.imagekit.io/teamstage/placeholder/avatar-1606939_1280_qC6Wn0jVd.png?tr=h-50,w-50'
       }
-      userObj.title = res.title || ''
-      userObj.desc = res.desc || ''
+      userState.title = res.title || ''
+      userState.desc = res.desc || ''
     }
 
     catch (err: any) {
@@ -59,5 +68,5 @@ export const useUserStore = defineStore('user', () => {
     }
   }
 
-  return { user, updateUser }
+  return { user, loadingUser, updateUser }
 })
