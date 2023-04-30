@@ -1,7 +1,7 @@
 <template lang="pug">
 v-row(class="overflow-auto h-100")
   v-col(cols="12" class="d-flex justify-end pb-0")
-    v-btn(variant="text" prepend-icon="mdi-plus" density="compact") Training hinzufügen
+    v-btn(variant="text" prepend-icon="mdi-plus" density="compact") Zertifikat hinzufügen
   v-col(cols="12")
     v-row(class="overflow-auto scroll-container" style="height: 450px")
       v-col(cols="12" v-for="index in 2" :key="index")
