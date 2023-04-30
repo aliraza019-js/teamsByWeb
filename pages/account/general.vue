@@ -39,7 +39,7 @@ definePageMeta({
 });
 
 // data
-const { user } = useUserStore()
+const { user, loadingUser } = useUserStore()
 
 const contactPerson = ref([
   {

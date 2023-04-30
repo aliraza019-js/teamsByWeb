@@ -64,7 +64,7 @@
     "projects": "Projects",
     "clients": "Clients"
   },
-  "projectdetails" : {
+  "projectdetails": {
     "general": "General",
     "teams": "Teams",
     "comment": "Comment",
@@ -80,7 +80,10 @@
     "skills": "Skills",
     "projects": "Projects",
     "trainings": "Trainings",
-    "certifications": "Certifications"
+    "certifications": "Certifications",
+    "aboutMe": "About me",
+    "title": "Title",
+    "desc": "Description"
   },
   "settings": {
     "settings": "Settings"

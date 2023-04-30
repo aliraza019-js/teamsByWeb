@@ -1,5 +1,5 @@
 {
-  "required": "Pflichtpfeld",
+  "required": "Pflichtfeld",
   "layout": {
     "editAbout": "Bearbeite über mich",
     "or": "ODER"
@@ -70,7 +70,10 @@
     "skills": "Skills",
     "projects": "Projekte",
     "trainings": "Trainings",
-    "certifications": "Zertifizierungen"
+    "certifications": "Zertifizierungen",
+    "aboutMe": "Über mich",
+    "title": "Titel",
+    "desc": "Beschreibung"
   },
   "settings": {
     "settings": "Einstellungen"
