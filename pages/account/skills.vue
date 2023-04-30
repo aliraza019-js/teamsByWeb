@@ -1,20 +1,19 @@
 <template lang="pug">
-v-container
-  v-row(v-for="item, index in skills" :key="index") 
-    v-col(cols="12")
-      CommonCard
-        template(#title)
-          span.text-secondary.d-flex.align-center {{item.title}}
-          v-btn(icon size="small" variant="plain" color="#06A69D" )
-            v-icon mdi-pencil
-        template(#body)
-          v-container 
-            v-row 
-              v-col(cols="12" sm="6" class="d-flex justify-space-between align-center" v-for="dataSkill , index in item.items" :key="index")
-                div(class="d-flex flex-column") 
-                  span {{dataSkill.subtitle}}
-                  p(class="font-weight-bold ") {{dataSkill.title}}
-                v-rating(bg-color="orange-lighten-1" size="x-small" density="compact" v-model="dataSkill.rate" color="blue")
+v-row(class="overflow-auto h-100 scroll-container")
+  v-col(cols="12" v-for="item, index in skills" :key="index")
+    CommonCard
+      template(#title)
+        span.text-secondary.d-flex.align-center {{item.title}}
+        v-btn(icon size="small" variant="plain" color="#06A69D" )
+          v-icon mdi-pencil
+      template(#body)
+        v-container
+          v-row
+            v-col(cols="12" sm="6" class="d-flex justify-space-between align-center" v-for="dataSkill , index in item.items" :key="index")
+              div(class="d-flex flex-column")
+                span {{dataSkill.subtitle}}
+                p(class="font-weight-bold ") {{dataSkill.title}}
+              v-rating(bg-color="orange-lighten-1" size="x-small" density="compact" v-model="dataSkill.rate" color="blue")
 </template>
 
 <script setup>
