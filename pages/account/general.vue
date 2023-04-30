@@ -2,16 +2,18 @@
 v-container
   //- AccountGeneralAbout
 
-  CommonCard 
+  CommonCard(:loading="loadingUser")
     template(#title)
       span(class="text-secondary d-flex align-center") {{$t('personAbout.about')}}
-      v-btn(icon size="small" variant="plain" color="#06A69D" @click="editAbout = !editAbout")
+      // implement edit component
+      AccountGeneralEditAbout
+      //- v-btn(icon size="small" variant="plain" color="#06A69D" @click="editAbout = !editAbout")
         v-icon mdi-pencil
     template(#body)
-      p(class="px-0 pt-5 font-weight-medium text-subtitle-1") {{$t('personAbout.title')}}
-      p(class="text-h6 font-weight-bold") {{ user.title }}
-      p(class="description py-3 text-body-1 font-weight-medium") {{$t('personAbout.description')}}
-      p(class="pt-2 text-justify") {{ user.desc }}
+      p.px-0.pt-5.font-weight-medium.text-subtitle-1 {{$t('personAbout.title')}}
+      p.text-h6.font-weight-bold {{ user.title }}
+      p.description.pt-3.pb-1.text-body-1.font-weight-medium {{$t('personAbout.description')}}
+      p.text-justify {{ user.desc }}
 
   CommonCard 
     template(#title)
@@ -40,7 +42,7 @@ definePageMeta({
 });
 
 // data
-const { user } = useUserStore()
+const { user, loadingUser } = useUserStore()
 
 const contactPerson = ref([
   {
