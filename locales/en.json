@@ -137,6 +137,19 @@
     "cancel": "cancel",
     "back": "back",
     "success": "Successfully submitted",
-    "required": "required"
+    "required": "required",
+    "noValidMail": "No valid mail address",
+    "passwordMatch": "Password does not match",
+    "reallyDelete": "Do you want to delete? This can not be undone.",
+    "warning": "Warning",
+    "delete": "Delete"
+  },
+  "contacts": {
+    "contacts": "Contacts",
+    "type": "Type",
+    "value": "Value",
+    "privacy": "Privacy",
+    "editContact": "Edit contact",
+    "newContact": "New contact"
   }
 }

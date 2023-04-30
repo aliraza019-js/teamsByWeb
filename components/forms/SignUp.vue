@@ -50,11 +50,12 @@ v-form.d-flex.flex-column.align-center.justify-center.text-center(ref="form")
 import { useAuthStore } from '~/stores/auth';
 
 // data
+const { t } = useI18n()
 const { initAuth } = useAuthStore()
 const config = useRuntimeConfig()
 const localePath = useLocalePath()
-let form = ref(null)
-let valid = ref(false)
+const form = ref(null)
+const valid = ref(false)
 const loading = ref(false)
 const formData = reactive({
   mail: '',
@@ -63,15 +64,15 @@ const formData = reactive({
 })
 const rules = reactive({
   required: [
-    v => !!v || 'required'
+    v => !!v || t('forms.required')
   ],
   mail: [
-    v => !!v || 'required',
-    v => !v || /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
+    v => !!v || t('forms.required'),
+    v => !v || /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || t('forms.noValidMail')
   ],
   confirmation: [
-    v => !!v || "required",
-    v => v == formData.pwd || 'password must match'
+    v => !!v || t('forms.required'),
+    v => v == formData.pwd || t('forms.passwordMatch')
   ]
 })
 const msgType = ref('success')

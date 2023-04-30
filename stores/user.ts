@@ -12,7 +12,8 @@ export const useUserStore = defineStore('user', () => {
       id: '',
       thumbnail: '',
       url: 'https://ik.imagekit.io/teamstage/placeholder/avatar-1606939_1280_qC6Wn0jVd.png?tr=h-50,w-50'
-    }
+    },
+    contacts: []
   }
   const userState = reactive(defaultState)
 
@@ -28,12 +29,17 @@ export const useUserStore = defineStore('user', () => {
     getUser()
   }
 
+  const setLoadingUser = () => {
+    loadingUserState.value = true
+  }
+
   const getUser = async () => {
     const localePath = useLocalePath()
 
     try {
       loadingUserState.value = true
       const res: any = await myFetch('/users', { method: 'GET', server: false })
+      console.log('got the user', res)
       loadingUserState.value = false
 
       // handling case, when no family name is set
@@ -56,6 +62,7 @@ export const useUserStore = defineStore('user', () => {
       }
       userState.title = res.title || ''
       userState.desc = res.desc || ''
+      userState.contacts = res.contacts || []
     }
 
     catch (err: any) {
@@ -68,5 +75,5 @@ export const useUserStore = defineStore('user', () => {
     }
   }
 
-  return { user, loadingUser, updateUser }
+  return { user, loadingUser, setLoadingUser, updateUser }
 })
