@@ -4,7 +4,7 @@ v-row(class="overflow-auto h-100 scroll-container")
     CommonCard
       template(#title)
         span(class="text-secondary d-flex align-center") {{$t('personAbout.about')}}
-        v-btn(icon size="small" variant="plain" color="#06A69D" @click="editAbout = !editAbout")
+        v-btn(icon size="small" variant="plain" color="#06A69D" @click="openEditModal")
           v-icon mdi-pencil
       template(#body)
         p(class="px-0 pt-5 font-weight-medium text-subtitle-1") {{$t('personAbout.title')}}
@@ -26,7 +26,7 @@ v-row(class="overflow-auto h-100 scroll-container")
             //- v-col(cols="12" sm="6" v-for="item , index in contactPerson" :key="index" class="d-flex gap-10 align-items justify-start")
             //-   v-icon(color="#707070") {{item.icon}}
             //-   p(class="mb-0 font-weight-bold") {{item.text}}
-  GeneralEditAboutMe(:persistent="true" @refresh="updateUser" v-bind="user" min-height="500" width="500" :isDialogVisible="editAbout" @update:isDialogVisible="(value) => editAbout = value")
+  GeneralEditAboutMe(:persistent="true" @refresh="updateUser" :title="formData.title" :desc="formData.desc" min-height="500" width="500" :isDialogVisible="editAbout" @update:isDialogVisible="(value) => editAbout = value")
 </template>
 
 <script setup>
@@ -44,8 +44,8 @@ const testing = ref(false)
 
 const editAbout = ref(false)
 const formData = reactive({
-  title: user.title || '',
-  desc: user.desc || ''
+  title: '',
+  desc: ''
 });
 
 // methods
@@ -55,9 +55,19 @@ const updateContacts = async (newContactList) => {
   updateUser()
 };
 
+
+const openEditModal = () => {
+  formData.title = user.title
+  formData.desc = user.desc
+  editAbout.value = !editAbout.value
+}
+
 const refresh = async () => {
   await updateUser()
   editAbout.value = !editAbout.value
+
+  formData.title = ''
+  formData.desc = ''
 };
 
 
