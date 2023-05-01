@@ -137,6 +137,19 @@
     "cancel": "abbrechen",
     "back": "zurück",
     "success": "Erfolgreich übertragen",
-    "required": "Pfichtfeld"
+    "required": "Pfichtfeld",
+    "noValidMail": "Keine valide Mail-Adresse",
+    "passwordMatch": "Passwort stimmt nicht überein",
+    "reallyDelete": "Wirklich löschen? Dies kann nicht rückgängig gemacht werden.",
+    "warning": "Achtung",
+    "delete": "Löschen"
+  },
+  "contacts": {
+    "contacts": "Kontakte",
+    "type": "Typ",
+    "value": "Wert",
+    "privacy": "Sichtbarkeit",
+    "editContact": "Eintrag editieren",
+    "newContact": "Neuer Eintrag"
   }
 }

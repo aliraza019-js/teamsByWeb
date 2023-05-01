@@ -1,6 +1,6 @@
 <template lang="pug">
 div
-  v-btn(icon @click="openDialog()" variant="text" size="small" :disabled="loadingUser")
+  v-btn(icon @click="openDialog()" variant="text" size="small" :disabled="loadingUser" color="primaryTextPale")
     v-icon(size="small") mdi-pencil
 
   //- modal to edit

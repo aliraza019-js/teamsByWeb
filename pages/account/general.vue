@@ -39,32 +39,20 @@ definePageMeta({
 });
 
 // data
-const { user, loadingUser } = useUserStore()
-
-const contactPerson = ref([
-  {
-    icon: "mdi-pencil",
-    text: "+49 511 123456-0"
-  },
-  {
-    icon: "mdi-email",
-    text: "mail@mail.com"
-  },
-  {
-    icon: "mdi-cellphone",
-    text: "+49 511 123456-0"
-  },
-  {
-    icon: "mdi-instagram",
-    text: "@trusteddecisions.com"
-  }
-]);
+const { user, updateUser, setLoadingUser, loadingUser } = useUserStore()
+const testing = ref(false)
 
 const editAbout = ref(false)
 const formData = reactive({
-  title: "Senior Product manager",
-  description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis,"
+  title: '',
+  description: ''
 });
 
+// methods
+const updateContacts = async (newContactList) => {
+  setLoadingUser()
+  await myFetch('/users', { method: 'PATCH', body: { contacts: newContactList } })
+  updateUser()
+};
 
 </script>

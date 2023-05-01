@@ -27,7 +27,7 @@ v-app
 
   LayoutFooterNav.d-flex.d-md-none(:navItems="navItems")
   //- footer
-  v-footer.d-none.d-md-flex.my-footer(app height="45px")
+  v-footer.d-none.d-md-flex.my-footer(height="45px")
     v-container
       .d-flex.flex-row
         span.text-caption copyright &copy; TeamStage {{new Date().getFullYear()}}
