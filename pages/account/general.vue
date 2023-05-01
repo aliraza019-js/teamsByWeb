@@ -3,7 +3,7 @@ v-row(class="overflow-auto h-100 scroll-container")
   v-col(cols="12")
     CommonCard
       template(#title)
-        span(class="text-secondary d-flex align-center") {{$t('personAbout.about')}}
+        span(class="text-secondary d-flex align-center") {{$t('personAbout.about')}} {{editAbout}}
         v-btn(icon size="small" variant="plain" color="#06A69D" @click="editAbout = !editAbout")
           v-icon mdi-pencil
       template(#body)
@@ -23,10 +23,10 @@ v-row(class="overflow-auto h-100 scroll-container")
       template(#body)
         v-container
           v-row
-            v-col(cols="12" sm="6" v-for="item , index in contactPerson" :key="index" class="d-flex gap-10 align-items justify-start")
-              v-icon(color="#707070") {{item.icon}}
-              p(class="mb-0 font-weight-bold") {{item.text}}
-    GeneralEditAboutMe(:persistent="true" v-bind="formData" min-height="500" width="500" :isDialogVisible="editAbout" @update:isDialogVisible="(value) => editAbout = value")
+            //- v-col(cols="12" sm="6" v-for="item , index in contactPerson" :key="index" class="d-flex gap-10 align-items justify-start")
+            //-   v-icon(color="#707070") {{item.icon}}
+            //-   p(class="mb-0 font-weight-bold") {{item.text}}
+  GeneralEditAboutMe(:persistent="true" v-bind="formData" min-height="500" width="500" :isDialogVisible="editAbout" @update:isDialogVisible="(value) => editAbout = value")
 </template>
 
 <script setup>

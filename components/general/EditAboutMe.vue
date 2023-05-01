@@ -1,6 +1,6 @@
 <template lang="pug">
 ClientOnly
-  v-dialog(v-model="isDialogVisible")
+  v-dialog(v-model="props.isDialogVisible")
     CommonCard(color="#e4edf8")
       template(#title)
         span(class="text-secondary d-flex align-center") {{$t('layout.editAbout')}}
@@ -16,13 +16,23 @@ ClientOnly
 
 <script setup>
 // data
-const isDialogVisible = ref(false)
 const { t } = useI18n()
 const form = ref(null)
 const formData = reactive({
   title: '',
   description: ''
 })
+
+const props = defineProps({
+  isDialogVisible: false,
+  title: '',
+  desc: ''
+})
+
+const emit = defineEmits(
+  ['update:isDialogVisible' , 'refresh']
+)
+
 // Form Rules 
 const rules = reactive({
   required: [
