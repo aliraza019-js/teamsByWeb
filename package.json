@@ -10,7 +10,8 @@
   "devDependencies": {
     "@nuxtjs/plausible": "^0.2.0",
     "@types/node": "^18.15.11",
-    "nuxt": "^3.4.1",
+    "nuxi": "^3.4.3",
+    "nuxt": "^3.4.3",
     "pug": "^3.0.2",
     "sass": "^1.62.0",
     "vite-plugin-pug": "^0.3.2"

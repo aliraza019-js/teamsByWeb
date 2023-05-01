@@ -4,11 +4,8 @@ v-container
   //- AccountGeneralAbout
   CommonCard(:loading="loadingUser")
     template(#title)
-      span(class="text-secondary d-flex align-center") {{$t('personAbout.about')}}
-      // implement edit component
+      span(class="text-secondary d-flex align-center") {{ $t('personAbout.about') }}
       AccountGeneralEditAbout
-      //- v-btn(icon size="small" variant="plain" color="#06A69D" @click="editAbout = !editAbout")
-        v-icon mdi-pencil
     template(#body)
       p.px-0.pt-5.font-weight-medium.text-subtitle-1 {{$t('personAbout.title')}}
       p.text-h6.font-weight-bold {{ user.title }}
@@ -19,7 +16,7 @@ v-container
   CommonContacts(:contactList="user.contacts" :loading="loadingUser" :updateFkt="updateContacts")
 
 
-  GeneralEditAboutMe(:persistent="true" v-bind="formData" min-height="500" width="500" :isDialogVisible="editAbout" @update:isDialogVisible="(value) => editAbout = value")
+  //- GeneralEditAboutMe(:persistent="true" v-bind="formData" min-height="500" width="500" :isDialogVisible="editAbout" @update:isDialogVisible="(value) => editAbout = value")
 </template>
 
 <script setup>
@@ -35,7 +32,6 @@ definePageMeta({
 const { user, updateUser, setLoadingUser, loadingUser } = useUserStore()
 const testing = ref(false)
 
-const editAbout = ref(false)
 const formData = reactive({
   title: '',
   description: ''
