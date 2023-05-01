@@ -26,7 +26,7 @@ v-row(class="overflow-auto h-100 scroll-container")
             //- v-col(cols="12" sm="6" v-for="item , index in contactPerson" :key="index" class="d-flex gap-10 align-items justify-start")
             //-   v-icon(color="#707070") {{item.icon}}
             //-   p(class="mb-0 font-weight-bold") {{item.text}}
-  GeneralEditAboutMe(:persistent="true" v-bind="formData" min-height="500" width="500" :isDialogVisible="editAbout" @update:isDialogVisible="(value) => editAbout = value")
+  GeneralEditAboutMe(:persistent="true" @refresh="updateUser" v-bind="user" min-height="500" width="500" :isDialogVisible="editAbout" @update:isDialogVisible="(value) => editAbout = value")
 </template>
 
 <script setup>
@@ -44,8 +44,8 @@ const testing = ref(false)
 
 const editAbout = ref(false)
 const formData = reactive({
-  title: '',
-  description: ''
+  title: user.title || '',
+  desc: user.desc || ''
 });
 
 // methods
@@ -54,5 +54,11 @@ const updateContacts = async (newContactList) => {
   await myFetch('/users', { method: 'PATCH', body: { contacts: newContactList } })
   updateUser()
 };
+
+const refresh = async () => {
+  await updateUser()
+  editAbout.value = !editAbout.value
+};
+
 
 </script>

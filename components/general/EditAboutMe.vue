@@ -15,14 +15,6 @@ ClientOnly
 </template>
 
 <script setup>
-// data
-const { t } = useI18n()
-const form = ref(null)
-const formData = reactive({
-  title: '',
-  desc: ''
-})
-
 const props = defineProps({
   isDialogVisible: false,
   title: '',
@@ -32,6 +24,14 @@ const props = defineProps({
 const emit = defineEmits(
   ['update:isDialogVisible' , 'refresh']
 )
+
+// data
+const { t } = useI18n()
+const form = ref(null)
+const formData = reactive({
+  title: props.title || '',
+  desc: props.desc || ''
+})
 
 // Form Rules 
 const rules = reactive({
