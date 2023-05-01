@@ -1,6 +1,6 @@
 <template lang="pug">
 ClientOnly
-  v-dialog(v-model="props.isDialogVisible")
+  v-dialog(v-model="props.isDialogVisible" max-width="450px")
     CommonCard(color="#e4edf8")
       template(#title)
         span(class="text-secondary d-flex align-center") {{$t('layout.editAbout')}}
@@ -8,8 +8,8 @@ ClientOnly
           v-icon mdi-close
       template(#body)
         v-form(class="d-flex flex-column" ref="form")
-          v-text-field(density="comfortable" variant="solo" v-model="formData.title" :rules="rules.required")
-          v-textarea(density="comfortable" variant="solo" :rules="rules.required" v-model="formData.description")
+          v-text-field(density="comfortable" placeholder="Title" variant="solo" v-model="formData.title" :rules="rules.required")
+          v-textarea(density="comfortable" placeholder="Description" variant="solo" :rules="rules.required" v-model="formData.desc")
           div(class="d-flex justify-center mt-5")
             v-btn(rounded="pill" size="large" color="secondary" width="65%" @click="validate") Save
 </template>
@@ -20,7 +20,7 @@ const { t } = useI18n()
 const form = ref(null)
 const formData = reactive({
   title: '',
-  description: ''
+  desc: ''
 })
 
 const props = defineProps({
@@ -46,9 +46,11 @@ const validate = async () => {
   if (valid) return updateUser()
 }
 const updateUser = () => {
-  myFetch('/api/users', {
+  myFetch('/users', {
     method: "PATCH",
     body: formData
+  }).then(res => {
+    emit('refresh')
   })
 };
 </script>

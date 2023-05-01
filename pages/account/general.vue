@@ -3,7 +3,7 @@ v-row(class="overflow-auto h-100 scroll-container")
   v-col(cols="12")
     CommonCard
       template(#title)
-        span(class="text-secondary d-flex align-center") {{$t('personAbout.about')}} {{editAbout}}
+        span(class="text-secondary d-flex align-center") {{$t('personAbout.about')}}
         v-btn(icon size="small" variant="plain" color="#06A69D" @click="editAbout = !editAbout")
           v-icon mdi-pencil
       template(#body)
