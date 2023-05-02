@@ -4,7 +4,7 @@ v-row(class="overflow-auto h-100 scroll-container")
     CommonCard
       template(#title)
         span(class="text-secondary d-flex align-center") {{$t('personAbout.about')}}
-        v-btn(icon size="small" variant="plain" color="primaryTextPale" @click="openEditModal")
+        v-btn(icon size="small" variant="plain" color="primaryTextPale" @click="editAbout.value = !editAbout.value")
           v-icon mdi-pencil
       template(#body)
         p(class="px-0 pt-5 font-weight-medium text-subtitle-1") {{$t('personAbout.title')}}
@@ -42,10 +42,6 @@ definePageMeta({
 const { user, updateUser, setLoadingUser, loadingUser } = useUserStore()
 
 const editAbout = ref(false)
-const formData = reactive({
-  title: '',
-  desc: ''
-});
 
 // methods
 const updateContacts = async (newContactList) => {
@@ -54,12 +50,6 @@ const updateContacts = async (newContactList) => {
   updateUser()
 };
 
-
-const openEditModal = () => {
-  formData.title = user.title
-  formData.desc = user.desc
-  editAbout.value = !editAbout.value
-}
 
 const refresh = async () => {
   await updateUser()
