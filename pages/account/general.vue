@@ -1,22 +1,32 @@
 <template lang="pug">
-v-container
-
-  //- AccountGeneralAbout
-  CommonCard(:loading="loadingUser")
-    template(#title)
-      span(class="text-secondary d-flex align-center") {{ $t('personAbout.about') }}
-      AccountGeneralEditAbout
-    template(#body)
-      p.px-0.pt-5.font-weight-medium.text-subtitle-1 {{$t('personAbout.title')}}
-      p.text-h6.font-weight-bold {{ user.title }}
-      p.description.pt-3.pb-1.text-body-1.font-weight-medium {{$t('personAbout.description')}}
-      p.text-justify {{ user.desc }}
-
-  // contact list
-  CommonContacts(:contactList="user.contacts" :loading="loadingUser" :updateFkt="updateContacts")
-
-
-  //- GeneralEditAboutMe(:persistent="true" v-bind="formData" min-height="500" width="500" :isDialogVisible="editAbout" @update:isDialogVisible="(value) => editAbout = value")
+v-row(class="overflow-auto h-100 scroll-container")
+  v-col(cols="12")
+    CommonCard
+      template(#title)
+        span(class="text-secondary d-flex align-center") {{$t('personAbout.about')}}
+        v-btn(icon size="small" variant="plain" color="primaryTextPale" @click="editAbout = !editAbout")
+          v-icon mdi-pencil
+      template(#body)
+        p(class="px-0 pt-5 font-weight-medium text-subtitle-1") {{$t('personAbout.title')}}
+        p(class="text-h6 font-weight-bold") {{ user.title }}
+        p(class="description py-3 text-body-1 font-weight-medium") {{$t('personAbout.description')}}
+        p(class="pt-2 text-justify") {{ user.desc }}
+  v-col(cols="12")
+    CommonCard
+      template(#title)
+        span(class="text-secondary d-flex align-center") {{$t('personContact.title')}}
+        div(class="d-flex align-center")
+          v-btn(icon size="small" variant="plain" color="secondary")
+            v-icon(color="") mdi-plus-circle-outline
+          v-btn(icon size="small" variant="plain" color="primaryTextPale")
+            v-icon mdi-pencil
+      template(#body)
+        v-container
+          v-row
+            //- v-col(cols="12" sm="6" v-for="item , index in contactPerson" :key="index" class="d-flex gap-10 align-items justify-start")
+            //-   v-icon(color="#707070") {{item.icon}}
+            //-   p(class="mb-0 font-weight-bold") {{item.text}}
+  GeneralEditAboutMe(:persistent="true" @refresh="refresh" min-height="500" width="500" :isDialogVisible="editAbout" @update:isDialogVisible="(value) => editAbout = value")
 </template>
 
 <script setup>
@@ -30,18 +40,21 @@ definePageMeta({
 
 // data
 const { user, updateUser, setLoadingUser, loadingUser } = useUserStore()
-const testing = ref(false)
 
-const formData = reactive({
-  title: '',
-  description: ''
-});
+const editAbout = ref(false)
 
 // methods
 const updateContacts = async (newContactList) => {
   setLoadingUser()
   await myFetch('/users', { method: 'PATCH', body: { contacts: newContactList } })
   updateUser()
-}
+};
+
+
+const refresh = async () => {
+  await updateUser()
+  editAbout.value = !editAbout.value
+};
+
 
 </script>

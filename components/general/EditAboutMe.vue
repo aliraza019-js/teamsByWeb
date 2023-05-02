@@ -1,28 +1,51 @@
 <template lang="pug">
 ClientOnly
-  v-dialog(v-model="isDialogVisible")
-    CommonCard(color="#e4edf8")
+  v-dialog(v-model="props.isDialogVisible" max-width="450px")
+    CommonCard(color="lightBlue" :loading="loading")
       template(#title)
         span(class="text-secondary d-flex align-center") {{$t('layout.editAbout')}}
-        v-btn(icon size="small" variant="plain" color="#06A69D" @click="$emit('update:isDialogVisible', false)")
+        v-btn(icon size="small" variant="plain" color="primaryTextPale" @click="$emit('update:isDialogVisible', false)")
           v-icon mdi-close
       template(#body)
         v-form(class="d-flex flex-column" ref="form")
-          v-text-field(density="comfortable" variant="solo" v-model="formData.title" :rules="rules.required")
-          v-textarea(density="comfortable" variant="solo" :rules="rules.required" v-model="formData.description")
+          v-text-field(density="comfortable" placeholder="Title" variant="solo" v-model="formData.title" :rules="rules.required")
+          v-textarea(density="comfortable" placeholder="Description" variant="solo" :rules="rules.required" v-model="formData.desc")
           div(class="d-flex justify-center mt-5")
-            v-btn(rounded="pill" size="large" color="secondary" width="65%" @click="validate") Save
+            v-btn(rounded="pill" size="large" color="secondary" width="65%" @click="validate" :disabled="disabled") Save
 </template>
 
 <script setup>
+import { useUserStore } from '~/stores/user'
+
+const props = defineProps({
+  isDialogVisible: false,
+})
+
+const emit = defineEmits(
+  ['update:isDialogVisible' , 'refresh']
+)
+
 // data
-const isDialogVisible = ref(false)
 const { t } = useI18n()
 const form = ref(null)
+const modalDialog =  ref(props.isDialogVisible)
 const formData = reactive({
   title: '',
-  description: ''
+  desc: ''
 })
+const loading = ref(false)
+const disabled = ref(false)
+const { user } = useUserStore()
+
+
+watchEffect(() => {
+  if(props.isDialogVisible) {
+    formData.title = user.title
+    formData.desc = user.desc
+  }
+})
+
+
 // Form Rules 
 const rules = reactive({
   required: [
@@ -36,9 +59,16 @@ const validate = async () => {
   if (valid) return updateUser()
 }
 const updateUser = () => {
-  myFetch('/api/users', {
-    method: "PATCH",
-    body: formData
+
+  loading.value = true
+  disabled.value = true
+
+  myFetch('/users' , {method: "PATCH" , body: formData})
+    .then(res => {
+      emit('refresh')
+  }).finally(() => {
+    loading.value = false
+    disabled.value = false
   })
 };
 </script>

@@ -63,12 +63,12 @@ v-container
   text-align: left;
   font: normal normal normal 16px/22px Nunito;
   letter-spacing: 0.4px;
-  color: #06A69D;
+  color: primaryTextPale;
   opacity: 1;
 }
 
 .small-box {
-  background: #06A69D 0% 0% no-repeat padding-box;
+  background: primaryTextPale 0% 0% no-repeat padding-box;
   border-radius: 0px 4px 4px 0px;
   opacity: 1;
   top: 293px;

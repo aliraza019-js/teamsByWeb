@@ -1,5 +1,5 @@
 <template lang="pug">
-v-row(style="height: 500px" class="overflow-auto general-container")
+v-row(style="height: 500px" class="overflow-auto scroll-container")
   v-col(cols="12")
     CommonCard
       template(#title)
@@ -24,7 +24,7 @@ v-row(style="height: 500px" class="overflow-auto general-container")
       template(#title)
         span(class="text-secondary d-flex align-center") Überblick
         div(class="d-flex rounded-lg align-center project-status px-2")
-          v-icon(icon="mdi-check-circle" style="color: #06A69D" size="small")
+          v-icon(icon="mdi-check-circle" style="color: primaryTextPale" size="small")
           p(class="px-2 text-capitalize text-center") Project Done
       template(#body)
         v-row(class="mt-4")
@@ -53,10 +53,6 @@ const imgIcon = ref('https://ik.imagekit.io/teamstage/image_picker_3125430F-511F
 </script>
 
 <style lang="scss" scoped>
-.general-container {
-  scrollbar-color: #94a3b8 transparent;
-}
-
 .project-status {
   height: 36px;
   p {

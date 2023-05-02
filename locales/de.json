@@ -54,10 +54,10 @@
     "projects": "Projekte",
     "clients": "Kunden"
   },
-  "projectdetails": {
-    "general": "General",
+  "projectdetails" : {
+    "general": "Allgemein",
     "teams": "Teams",
-    "comment": "Comment",
+    "comment": "Kommentar",
     "projects": "Projekte"
   },
   "search": {

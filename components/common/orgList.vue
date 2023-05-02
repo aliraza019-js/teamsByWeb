@@ -1,5 +1,5 @@
 <template lang="pug">
-v-card(height="65px" rounded="lg")
+v-card(height="65px" rounded="lg" :to="localePath(`/d/project/org/${org.id}/general`)")
   div(class="d-flex w-100 justify-space-between align-center px-4 h-100")
     div(class="d-flex align-start flex-column") 
       div(class="d-flex")
@@ -10,5 +10,6 @@ v-card(height="65px" rounded="lg")
 </template>
 
 <script setup>
-const props = defineProps(['org']);
+defineProps(['org']);
+const localePath = useLocalePath();
 </script>

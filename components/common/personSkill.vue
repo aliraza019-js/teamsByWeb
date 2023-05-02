@@ -72,7 +72,7 @@ const skills = [
 }
 
 .small-box {
-  background: #06A69D 0% 0% no-repeat padding-box;
+  background: primaryTextPale 0% 0% no-repeat padding-box;
   border-radius: 0px 4px 4px 0px;
   opacity: 1;
   top: 293px;
@@ -107,7 +107,7 @@ const skills = [
 }
 
 .star {
-  color: #06A69D;
+  color: primaryTextPale;
   width: 16px;
   height: 15px;
 }

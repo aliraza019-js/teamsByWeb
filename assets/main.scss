@@ -97,6 +97,16 @@ ol {
     margin-left: 35px;
 }
 
+.truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.scroll-container {
+    scrollbar-color: #94a3b8 transparent;
+}  
+
 .place {
     font: normal normal normal 12px/16px Nunito;
     color: #1C1C1C;

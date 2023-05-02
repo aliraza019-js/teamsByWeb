@@ -113,6 +113,3 @@
   opacity: 1;
 }
 </style>
-<script setup lang="ts">
-import Home from "~/layouts/home.vue";
-</script>

@@ -12,6 +12,6 @@
   </v-card>
 </template>
 
-<script setup lang="ts">
-const props = defineProps(['title', 'icon'])
+<script setup>
+const props = defineProps(['title', 'icon']);
 </script>
