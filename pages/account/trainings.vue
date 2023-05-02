@@ -31,10 +31,10 @@ v-row(class="overflow-auto h-100")
                       p(class="pl-2 text-subtitle-2") {{item.certificate}}
                 v-col(cols="12" class="d-flex justify-space-between")
                   div(class="d-flex align-center")
-                    v-icon(style="color: primaryTextPale" size="large" icon="mdi-message-reply-text")
+                    v-icon(color="primaryTextPale" size="large" icon="mdi-message-reply-text")
                     p(class="font-weight-bold ml-2") 24 comments
                   div(class="d-flex align-center")
-                    v-icon(style="color: primaryTextPale" size="large" icon="mdi-thumb-up-outline")
+                    v-icon(color="primaryTextPale" size="large" icon="mdi-thumb-up-outline")
                     p(class="font-weight-bold ml-2") 1.2K likes
 </template>
 

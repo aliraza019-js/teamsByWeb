@@ -28,7 +28,7 @@ defineProps({
 
 
 .left-rounded {
-  background: primaryTextPale;
+  background: $text-link;
   width: 30px;
   height: 48px;
   left: -17px;

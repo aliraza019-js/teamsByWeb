@@ -11,7 +11,7 @@ v-row(class="overflow-auto h-100")
               span(class="text-body-2") {{item.company}}
               p(class="text-secondary") {{item.projectTitle}}
             div(class="d-flex px-2 rounded-lg align-center justify-space-around project-status")
-              v-icon(:icon="item.icon" class="mr-2" style="color: primaryTextPale")
+              v-icon(:icon="item.icon" class="mr-2" color="primaryTextPale")
               div(class="d-flex text-body-2") {{item.projectStatus}}
           template(#body)
             v-container(class="px-0")
@@ -25,10 +25,10 @@ v-row(class="overflow-auto h-100")
                   p(class="text-justify") Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec,.
                 v-col(cols="12" class="d-flex justify-space-between")
                   div(class="d-flex align-center")
-                    v-icon(style="color: primaryTextPale" size="large" icon="mdi-message-reply-text")
+                    v-icon(color="primaryTextPale" size="large" icon="mdi-message-reply-text")
                     p(class="font-weight-bold ml-2") 24 comments
                   div(class="d-flex align-center")
-                    v-icon(style="color: primaryTextPale" size="large" icon="mdi-thumb-up-outline")
+                    v-icon(color="primaryTextPale" size="large" icon="mdi-thumb-up-outline")
                     p(class="font-weight-bold ml-2") 1.2K likes
 </template>
 
