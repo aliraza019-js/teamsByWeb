@@ -4,7 +4,7 @@ v-row(class="overflow-auto h-100 scroll-container")
     CommonCard
       template(#title)
         span(class="text-secondary d-flex align-center") {{$t('personAbout.about')}}
-        v-btn(icon size="small" variant="plain" color="primaryTextPale" @click="editAbout.value = !editAbout.value")
+        v-btn(icon size="small" variant="plain" color="primaryTextPale" @click="editAbout = !editAbout")
           v-icon mdi-pencil
       template(#body)
         p(class="px-0 pt-5 font-weight-medium text-subtitle-1") {{$t('personAbout.title')}}
