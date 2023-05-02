@@ -8,17 +8,17 @@ ClientOnly
           v-icon mdi-close
       template(#body)
         v-form(class="d-flex flex-column" ref="form")
-          v-text-field(density="comfortable" placeholder="Title" variant="solo" v-model="formData.title" :rules="rules.required")
-          v-textarea(density="comfortable" placeholder="Description" variant="solo" :rules="rules.required" v-model="formData.desc")
+          v-text-field(density="comfortable" placeholder="Title" variant="solo" v-model="user.title" :rules="rules.required")
+          v-textarea(density="comfortable" placeholder="Description" variant="solo" :rules="rules.required" v-model="user.desc")
           div(class="d-flex justify-center mt-5")
             v-btn(rounded="pill" size="large" color="secondary" width="65%" @click="validate" :disabled="disabled") Save
 </template>
 
 <script setup>
+import { useUserStore } from '~/stores/user'
+
 const props = defineProps({
   isDialogVisible: false,
-  title: '',
-  desc: ''
 })
 
 const emit = defineEmits(
@@ -30,10 +30,8 @@ const { t } = useI18n()
 const form = ref(null)
 const loading = ref(false)
 const disabled = ref(false)
-const formData = reactive({
-  title: props.title || '',
-  desc: props.desc || ''
-})
+const { user } = useUserStore()
+
 
 // Form Rules 
 const rules = reactive({
@@ -48,13 +46,16 @@ const validate = async () => {
   if (valid) return updateUser()
 }
 const updateUser = () => {
+  let dataForm = {
+    title: user.title,
+    desc: user.desc
+  }
   loading.value = true
   disabled.value = true
-  myFetch('/users', {
-    method: "PATCH",
-    body: formData
-  }).then(res => {
-    emit('refresh')
+
+  myFetch('/users' , {method: "PATCH" , body: dataForm})
+    .then(res => {
+      emit('refresh')
   }).finally(() => {
     loading.value = false
     disabled.value = false
