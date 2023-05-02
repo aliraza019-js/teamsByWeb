@@ -8,8 +8,8 @@ ClientOnly
           v-icon mdi-close
       template(#body)
         v-form(class="d-flex flex-column" ref="form")
-          v-text-field(density="comfortable" placeholder="Title" variant="solo" v-model="user.title" :rules="rules.required")
-          v-textarea(density="comfortable" placeholder="Description" variant="solo" :rules="rules.required" v-model="user.desc")
+          v-text-field(density="comfortable" placeholder="Title" variant="solo" v-model="formData.title" :rules="rules.required")
+          v-textarea(density="comfortable" placeholder="Description" variant="solo" :rules="rules.required" v-model="formData.desc")
           div(class="d-flex justify-center mt-5")
             v-btn(rounded="pill" size="large" color="secondary" width="65%" @click="validate" :disabled="disabled") Save
 </template>
@@ -28,9 +28,32 @@ const emit = defineEmits(
 // data
 const { t } = useI18n()
 const form = ref(null)
+const modalDialog =  ref(props.isDialogVisible)
+const formData = reactive({
+  title: '',
+  desc: ''
+})
 const loading = ref(false)
 const disabled = ref(false)
 const { user } = useUserStore()
+
+
+watchEffect(() => {
+  if(props.isDialogVisible) {
+    formData.title = user.title
+    formData.desc = user.desc
+  }
+})
+
+// watch(props, (value) => {
+
+//   // if(value?.isDialogVisible) {
+//   //   formData.title = user.title
+//   //   formData.desc = user.desc
+//   // }
+//   console.log(value)
+
+// }, { immediate: true })
 
 
 // Form Rules 
@@ -46,14 +69,11 @@ const validate = async () => {
   if (valid) return updateUser()
 }
 const updateUser = () => {
-  let dataForm = {
-    title: user.title,
-    desc: user.desc
-  }
+
   loading.value = true
   disabled.value = true
 
-  myFetch('/users' , {method: "PATCH" , body: dataForm})
+  myFetch('/users' , {method: "PATCH" , body: formData})
     .then(res => {
       emit('refresh')
   }).finally(() => {
