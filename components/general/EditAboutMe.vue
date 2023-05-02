@@ -1,7 +1,7 @@
 <template lang="pug">
 ClientOnly
   v-dialog(v-model="props.isDialogVisible" max-width="450px")
-    CommonCard(color="#e4edf8")
+    CommonCard(color="lightBlue" :loading="loading")
       template(#title)
         span(class="text-secondary d-flex align-center") {{$t('layout.editAbout')}}
         v-btn(icon size="small" variant="plain" color="#06A69D" @click="$emit('update:isDialogVisible', false)")
@@ -11,7 +11,7 @@ ClientOnly
           v-text-field(density="comfortable" placeholder="Title" variant="solo" v-model="formData.title" :rules="rules.required")
           v-textarea(density="comfortable" placeholder="Description" variant="solo" :rules="rules.required" v-model="formData.desc")
           div(class="d-flex justify-center mt-5")
-            v-btn(rounded="pill" size="large" color="secondary" width="65%" @click="validate") Save
+            v-btn(rounded="pill" size="large" color="secondary" width="65%" @click="validate" :disabled="disabled") Save
 </template>
 
 <script setup>
@@ -28,6 +28,8 @@ const emit = defineEmits(
 // data
 const { t } = useI18n()
 const form = ref(null)
+const loading = ref(false)
+const disabled = ref(false)
 const formData = reactive({
   title: props.title || '',
   desc: props.desc || ''
@@ -46,11 +48,16 @@ const validate = async () => {
   if (valid) return updateUser()
 }
 const updateUser = () => {
+  loading.value = true
+  disabled.value = true
   myFetch('/users', {
     method: "PATCH",
     body: formData
   }).then(res => {
     emit('refresh')
+  }).finally(() => {
+    loading.value = false
+    disabled.value = false
   })
 };
 </script>
