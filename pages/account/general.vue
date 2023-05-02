@@ -4,7 +4,7 @@ v-row(class="overflow-auto h-100 scroll-container")
     CommonCard
       template(#title)
         span(class="text-secondary d-flex align-center") {{$t('personAbout.about')}}
-        v-btn(icon size="small" variant="plain" color="#06A69D" @click="openEditModal")
+        v-btn(icon size="small" variant="plain" color="primaryTextPale" @click="openEditModal")
           v-icon mdi-pencil
       template(#body)
         p(class="px-0 pt-5 font-weight-medium text-subtitle-1") {{$t('personAbout.title')}}
@@ -18,7 +18,7 @@ v-row(class="overflow-auto h-100 scroll-container")
         div(class="d-flex align-center")
           v-btn(icon size="small" variant="plain" color="secondary")
             v-icon(color="") mdi-plus-circle-outline
-          v-btn(icon size="small" variant="plain" color="#06A69D")
+          v-btn(icon size="small" variant="plain" color="primaryTextPale")
             v-icon mdi-pencil
       template(#body)
         v-container

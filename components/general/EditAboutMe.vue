@@ -4,7 +4,7 @@ ClientOnly
     CommonCard(color="lightBlue" :loading="loading")
       template(#title)
         span(class="text-secondary d-flex align-center") {{$t('layout.editAbout')}}
-        v-btn(icon size="small" variant="plain" color="#06A69D" @click="$emit('update:isDialogVisible', false)")
+        v-btn(icon size="small" variant="plain" color="primaryTextPale" @click="$emit('update:isDialogVisible', false)")
           v-icon mdi-close
       template(#body)
         v-form(class="d-flex flex-column" ref="form")

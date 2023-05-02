@@ -8,7 +8,7 @@ v-row(class="overflow-auto h-100")
         CommonCard
           template(#title)
             span.text-secondary.d-flex.align-center {{item.title}}
-            v-btn(icon size="small" variant="plain" color="#06A69D" )
+            v-btn(icon size="small" variant="plain" color="primaryTextPale" )
               v-icon mdi-pencil
           template(#body)
             v-container

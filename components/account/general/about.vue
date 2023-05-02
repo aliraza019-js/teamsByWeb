@@ -4,7 +4,7 @@ div
   CommonCard
     template(#title)
       span.text-secondary.d-flex.align-center {{$t('personAbout.about')}}
-      v-btn(icon size="small" variant="plain" color="#06A69D" @click="showDialog = !showDialog")
+      v-btn(icon size="small" variant="plain" color="primaryTextPale" @click="showDialog = !showDialog")
         v-icon mdi-pencil
     template(#body)
       p.px-0.pt-5.font-weight-medium.text-subtitle-1 {{$t('personAbout.title')}}

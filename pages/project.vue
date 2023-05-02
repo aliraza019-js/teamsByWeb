@@ -20,7 +20,7 @@ CommonCardContainer(:title="$t('projects.projects')" :tabRoutes="tabRoutes")
             template(v-slot:prepend)
               v-icon mdi-plus
             v-list-item-title Neues Projekt
-          v-divider(class="border-opacity-75" style="color: #06A69D")
+          v-divider(class="border-opacity-75" style="color: primaryTextPale")
           v-list-item(density="compact" value="b")
             template(v-slot:prepend)
               v-icon mdi-plus

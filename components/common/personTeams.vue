@@ -40,7 +40,7 @@ v-container
 }
 
 .small-box {
-  background: #06A69D 0% 0% no-repeat padding-box;
+  background: primaryTextPale 0% 0% no-repeat padding-box;
   border-radius: 0px 4px 4px 0px;
   opacity: 1;
   top: 186px;
