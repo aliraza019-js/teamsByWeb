@@ -35,7 +35,7 @@ const formData = reactive({
 })
 const loading = ref(false)
 const disabled = ref(false)
-const { user } = useUserStore()
+const { user, updateUserInfo } = useUserStore()
 
 
 watchEffect(() => {
@@ -62,10 +62,8 @@ const updateUser = () => {
 
   loading.value = true
   disabled.value = true
-
-  myFetch('/users' , {method: "PATCH" , body: formData})
-    .then(res => {
-      emit('refresh')
+   updateUserInfo(formData).then(() => {
+    emit('refresh')
   }).finally(() => {
     loading.value = false
     disabled.value = false

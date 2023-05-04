@@ -9,7 +9,7 @@ v-row(class="overflow-auto h-100 scroll-container")
       template(#body)
         p(class="px-0 pt-5 font-weight-medium text-subtitle-1") {{$t('personAbout.title')}}
         p(class="text-h6 font-weight-bold") {{ user.title }}
-        p(class="description py-3 text-body-1 font-weight-medium") {{$t('personAbout.description')}}
+        p(class="description pt-3 text-body-1 font-weight-medium text-green") {{$t('personAbout.description')}}
         p(class="pt-2 text-justify") {{ user.desc }}
   v-col(cols="12")
     CommonCard

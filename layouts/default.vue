@@ -74,7 +74,9 @@ onMounted(() => {
   border-bottom-left-radius: 50px;
   border-bottom-right-radius: 50px;
 }
-
+.v-main{
+  padding-bottom: 0;
+}
 .my-footer {
   bottom: 0px !important;
 }

@@ -151,5 +151,12 @@
     "privacy": "Sichtbarkeit",
     "editContact": "Eintrag editieren",
     "newContact": "Neuer Eintrag"
+  },
+  "certifications": {
+    "addCertification":  "Zertifikat hinzufügen",
+    "certificationAssociation": "Certification Association",
+    "comments": "Comments",
+    "likes": "Likes",
+    "date": "Date"
   }
 }

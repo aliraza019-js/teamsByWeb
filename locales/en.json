@@ -151,5 +151,12 @@
     "privacy": "Privacy",
     "editContact": "Edit contact",
     "newContact": "New contact"
+  },
+   "certifications": {
+    "addCertification":  "Add Certification",
+    "certificationAssociation": "Certification Association",
+    "comments": "Comments",
+    "likes": "Likes",
+    "date": "Date"
   }
 }
