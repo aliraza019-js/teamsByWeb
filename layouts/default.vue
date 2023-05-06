@@ -23,7 +23,7 @@ v-app
     v-container.d-flex.flex-row
       .d-none.d-md-flex
         LayoutMainNav.mr-5(:nav-items="navItems")
-      slot
+      slot(v-if="auth.isLoggedIn")
 
   LayoutFooterNav.d-flex.d-md-none(:navItems="navItems")
   //- footer
@@ -42,7 +42,7 @@ import { useAuthStore } from '~/stores/auth'
 const drawer = ref(false)
 const localPath = useLocalePath()
 const { updateUser } = useUserStore()
-const { initAuth } = useAuthStore()
+const { initAuth, auth } = useAuthStore()
 
 // data
 const navItems = [
@@ -76,6 +76,7 @@ onMounted(() => {
 }
 .v-main{
   padding-bottom: 0;
+  padding-top: 64px;
 }
 .my-footer {
   bottom: 0px !important;

@@ -4,6 +4,11 @@
     "editAbout": "Bearbeite über mich",
     "or": "ODER"
   },
+  "base": {
+    "areYouSureToDelete": "Are you sure you want to delete this?",
+    "cancel": "Cancel",
+    "confirm": "Confirm"
+  },
   "login": {
     "invalid": "Ungültige Zugangsdaten",
     "label": {
@@ -158,5 +163,14 @@
     "comments": "Comments",
     "likes": "Likes",
     "date": "Date"
+  },
+ "trainings": {
+    "title": "Trainings",
+    "add":  "Add Training",
+    "edit":  "Edit Training",
+    "dateFrom": "Date From",
+    "dateTo": "Date To",
+    "provider": "Provider",
+    "place": "Place"
   }
 }
