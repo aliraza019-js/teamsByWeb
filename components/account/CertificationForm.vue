@@ -3,7 +3,7 @@ ClientOnly
   v-dialog(:model-value="props.isDialogVisible" max-width="450px")
     CommonCard(color="lightBlue" :loading="loading")
       template(#title)
-        span(class="text-secondary d-flex align-center") {{$t('certifications.addCertification')}}
+        span(class="text-secondary d-flex align-center") {{isEdit? $t('certifications.edit'): $t('certifications.addCertification')}}
         v-btn(icon size="small" variant="plain" color="primaryTextPale" @click="$emit('update:isDialogVisible', false)")
             v-icon mdi-close
       template(#body)
@@ -22,13 +22,14 @@ import {useCertificationStore} from '~/stores/certifications'
 
 const props = defineProps({
     isDialogVisible: false,
+    editItem: {},
 })
 
 const emit = defineEmits(
     ['update:isDialogVisible', 'update:certifications']
 )
 
-const {addCertification}  = useCertificationStore()
+const {addCertification, updateCertification}  = useCertificationStore()
 // data
 const {t} = useI18n()
 const form = ref(null)
@@ -41,7 +42,6 @@ const formData = reactive({
     validUntil: '',
 })
 const loading = ref(false)
-const dateMenu = ref(false)
 const disabled = ref(false)
 
 
@@ -60,21 +60,49 @@ const validate = async () => {
 const submitData = () => {
     loading.value = true
     disabled.value = true
-  addCertification(formData).then(response=>{
-     emit('update:certifications', response)
-      emit('update:isDialogVisible')
-  }).finally(()=>{
-    loading.value = false
-    disabled.value = false
-  })
+    if(isEdit.value){
+        //update
+        updateCertification(formData, props.editItem._id).then(response=>{
+           emit('update:certifications', response.data)
+           emit('update:isDialogVisible')
+        }).finally(()=>{
+          loading.value = false
+          disabled.value = false
+        })
+    }else {
+        addCertification(formData).then(response => {
+            emit('update:certifications', response)
+            emit('update:isDialogVisible')
+        }).finally(() => {
+            loading.value = false
+            disabled.value = false
+        })
+    }
 
 };
-watch(() => props.isDialogVisible, (newValue, oldValue) => {
-    formData.title= ''
-    formData.desc= ''
-    formData.certAuthority= ''
-    formData.date= ''
-    formData.validUntil= ''
+watch(() => props.isDialogVisible, (newValue) => {
+    if(!newValue) {
+        formData.title = ''
+        formData.desc = ''
+        formData.certAuthority = ''
+        formData.date = ''
+        formData.validUntil = ''
+    }
+})
+
+watch(() => props.editItem, (newValue) => {
+    if(newValue){
+      formData.title= newValue.title
+      formData.desc= newValue.desc
+      formData.certAuthority= newValue.certAuthority
+      formData.date= newValue.date?newValue.date.split('T')[0]: ''
+      formData.validUntil= newValue.validUntil?newValue.validUntil.split('T')[0]: ''
+    }
+
+})
+
+const isEdit = computed(() => {
+    return  !!props.editItem
 })
 </script>
 

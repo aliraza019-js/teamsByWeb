@@ -159,6 +159,7 @@
   },
   "certifications": {
     "addCertification":  "Zertifikat hinzufügen",
+    "edit":  "Edit Certification",
     "certificationAssociation": "Certification Association",
     "comments": "Comments",
     "likes": "Likes",

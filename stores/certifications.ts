@@ -35,9 +35,32 @@ export const useCertificationStore = defineStore('certification', () => {
         })
     }
 
+    const updateCertification = (data: any, id: string) => {
+        return new Promise(async (resolve, reject) => {
+
+            myFetch('/certs/' + id, {method: "PATCH", body: data})
+                .then(res => {
+                    resolve(res)
+                }).catch(() => {
+                reject()
+            })
+        })
+    }
+
+    const deleteCertification = (id: string) => {
+        return new Promise(async (resolve, reject) => {
+
+            myFetch('/certs/' + id, {method: "DELETE"})
+                .then(res => {
+                    resolve(res)
+                }).catch(() => {
+                reject()
+            })
+        })
+    }
 
 
 
 
-    return {certifications, addCertification, getCertifications}
+    return {certifications, addCertification, getCertifications, updateCertification, deleteCertification}
 })
