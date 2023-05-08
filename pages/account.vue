@@ -3,7 +3,7 @@ CommonCardContainer(:title="username" :tabRoutes="tabRoutes")
   template(#titleAtributes)
     v-avatar(size="70" class="user-profile position-absolute")
       v-img(:src="user.profileImage.url + '?tr=h-50,w-50,fo-face'")
-  v-container(style="height: calc(100vh - 300px)")
+  v-container
     NuxtPage(:key="route.fullPath")
 </template>
 

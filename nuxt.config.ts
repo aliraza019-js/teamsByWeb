@@ -1,8 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+    ssr: false,
     runtimeConfig: {
-
-
         public: {
             API_URL: process.env.API_URL,
             APP_BASE_URL: process.env.BASE_URL,
@@ -42,7 +41,6 @@ export default defineNuxtConfig({
     ],
     build: {
         transpile: ['vuetify'],
-
     },
     i18n: {
         strategy: 'prefix_except_default',

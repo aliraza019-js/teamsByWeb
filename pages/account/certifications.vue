@@ -3,7 +3,7 @@ v-row(class="overflow-auto h-100")
   v-col(cols="12" class="d-flex justify-end pb-0")
     v-btn(variant="text" prepend-icon="mdi-plus" density="compact" @click="dialogAddCertification=true")  {{$t('certifications.addCertification')}}
   v-col(cols="12")
-    v-row(class="overflow-auto scroll-container" style="height: calc(100vh - 380px)" v-if="certifications" )
+    v-row(class="overflow-auto scroll-container" v-if="certifications" )
       v-col(cols="12" v-for="item in certifications" :key="item._id")
         CommonCard
           template(#title)

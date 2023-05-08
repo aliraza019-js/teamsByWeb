@@ -4,7 +4,7 @@ ClientOnly
       v-col(cols="12" class="d-flex justify-end pb-0")
         v-btn(variant="text" prepend-icon="mdi-plus" density="compact"  @click="dialogAddTraining = true") {{$t('trainings.add')}}
       v-col(cols="12")
-        v-row(class="overflow-auto scroll-container" style="height: calc(100vh - 380px)")
+        v-row(class="overflow-auto scroll-container" )
           v-col(cols="12" v-for="(item , index) in trainings" :key="index")
             CommonCard
               template(#title)
