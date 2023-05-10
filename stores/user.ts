@@ -14,7 +14,8 @@ export const useUserStore = defineStore('user', () => {
             url: 'https://ik.imagekit.io/teamstage/placeholder/avatar-1606939_1280_qC6Wn0jVd.png?tr=h-50,w-50'
         },
         contacts: [],
-        social: []
+        social: [],
+        skills: []
     }
     const userState = reactive(defaultState)
 
@@ -75,6 +76,8 @@ export const useUserStore = defineStore('user', () => {
             userState.desc = res.desc || ''
             userState.contacts = res.contacts || []
             userState.social = res.social || []
+            userState.skills = res.skills || []
+
         } catch (err: any) {
             // if the users registers, there is no user in the ts database, therefor the server responses with 404
             // by calling /auth/register the user is initially created in the ts db

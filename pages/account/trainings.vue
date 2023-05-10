@@ -12,9 +12,9 @@ ClientOnly
                   div(class="d-flex justify-space-between align-center w-100")
                     div(class="text-body-2") {{formatDate(item.dateTo)}}-{{formatDate(item.dateFrom)}}
                     div(class="d-flex")
-                      v-btn(icon variant="text" @click="editItem(item)" )
+                      v-btn(icon size="small" variant="plain" @click="editItem(item)" )
                         v-icon(icon="mdi-pencil" color="primaryTextPale" )
-                      v-btn(icon variant="text" @click="deleteTrainingAction(item)" )
+                      v-btn(icon size="small" variant="plain" @click="deleteTrainingAction(item)" )
                         v-icon(icon="mdi-delete" color="red" )
                   p(class="text-secondary") {{item.title}}
               template(#body)

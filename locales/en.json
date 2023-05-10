@@ -193,5 +193,13 @@
     "dateTo": "Date To",
     "provider": "Provider",
     "place": "Place"
+  },
+  "skills": {
+    "title": "Skills",
+    "categoryTitle": "Category Title",
+    "skillTitle": "Skill Title",
+    "add": "Add Skills",
+    "edit": "Edit Skills"
+
   }
 }
