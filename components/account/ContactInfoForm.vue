@@ -22,6 +22,9 @@ ClientOnly
                         v-col(cols="2" class="d-flex justify-end")
                             v-btn(color="secondary" @click="addRow")
                                 v-icon mdi-plus
+                    v-row( class="mt-0" )
+                        v-col(cols="12")
+                            div(v-if="error" class="text-center error-text") {{ error }}
                     div(class="d-flex justify-center mt-5")
                         v-btn(rounded="pill" size="large" color="secondary" width="65%" @click="validate" :disabled="disabled") Save
     </template>
@@ -68,6 +71,7 @@ ClientOnly
     })
     const loading = ref(false)
     const disabled = ref(false)
+    const error = ref('')
     
     
     // Form Rules
@@ -91,6 +95,7 @@ ClientOnly
     const submitData = () => {
         loading.value = true
         disabled.value = true
+        error.value = ''
         const social_types = ['linkedin','xing', 'facebook', 'instagram', 'tiktok', 'twitter', 'other',]
         const contacts_types = ['phone','mobile', 'mail', 'web', 'fax']
         const social = formData.contacts.filter(item=>social_types.includes(item.type))
@@ -98,6 +103,17 @@ ClientOnly
         updateUserInfo({social, contacts}).then(response=>{
            updateUser()
            emit('update:isDialogVisible')
+        }).catch(err=>{
+            if(err.response?._data?.message){
+                const errorType = err.response?._data?.message[0].split('.')[0]
+                const errorField = err.response?._data?.message[0].split('.')[1]
+                let errorMessage = err.response?._data?.message[0].split('.')[2]
+
+                if(errorType==='social'){
+                  errorMessage =   social[errorField].type + ' '+ errorMessage
+                  error.value = errorMessage
+                }
+            }
         }).finally(()=>{
           loading.value = false
           disabled.value = false
@@ -105,9 +121,11 @@ ClientOnly
     };
     watch(() => props.isDialogVisible, () => {
         if(user){
+            const contacts = JSON.parse(JSON.stringify(user.contacts))
+            const social =  JSON.parse(JSON.stringify(user.social))
           formData.contacts = [
-                ...user.contacts,
-                ...user.social,
+                ...contacts,
+                ...social
             ]
         }else{
             formData.contacts = [
@@ -139,5 +157,8 @@ ClientOnly
         background-color: #fff !important;
         border-radius: 10px;
       }
+    }
+    .error-text{
+        color: rgb(183,28,28);
     }
     </style>

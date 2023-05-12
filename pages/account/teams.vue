@@ -1,6 +1,6 @@
 <template lang="pug">
 v-container
-  div(v-if="loadingTeams") 
+  div(v-if="loadingTeams" class="d-flex justify-center mt-15") 
     <v-progress-circular indeterminate :size="64"></v-progress-circular>
   div(v-else)
     div(v-for="client in userTeams" :key="client._id")

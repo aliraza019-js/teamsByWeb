@@ -3,7 +3,7 @@ ClientOnly
     v-dialog(:model-value="isDialogVisible" max-width="450px" @update:model-value="$emit('update:isDialogVisible', false)")
         CommonCard(color="lightBlue" :loading="loading")
             template(#title)
-                span(class="text-secondary d-flex align-center") {{isEdit? $t('certifications.edit'): $t('certifications.addCertification')}}
+                span(class="text-secondary d-flex align-center") {{$t('teams.add')}}
                 v-btn(icon size="small" variant="plain" color="primaryTextPale" @click="$emit('update:isDialogVisible', false)")
                     v-icon mdi-close
             template(#body)

@@ -185,6 +185,9 @@
     "likes": "Likes",
     "date": "Date"
   },
+  "teams": {
+    "add": "Add Team"
+  },
   "trainings": {
     "title": "Trainings",
     "add": "Add Training",

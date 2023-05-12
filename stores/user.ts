@@ -37,6 +37,8 @@ export const useUserStore = defineStore('user', () => {
             myFetch('/users', {method: "PATCH", body: data})
                 .then(res => {
                     resolve(res)
+                }).catch(err=>{
+                    reject(err)
                 })
         })
     }
