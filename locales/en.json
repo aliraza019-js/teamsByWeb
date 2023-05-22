@@ -84,7 +84,9 @@
   },
   "projects": {
     "projects": "Projects",
-    "clients": "Clients"
+    "clients": "Clients",
+    "addClient":"Add Customer",
+    "selectClient":"Select Client"
   },
   "projectdetails": {
     "general": "General",
@@ -203,6 +205,5 @@
     "skillTitle": "Skill Title",
     "add": "Add Skills",
     "edit": "Edit Skills"
-
   }
 }
