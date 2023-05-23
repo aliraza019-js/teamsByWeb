@@ -30,6 +30,16 @@ export const useCustomerStore = defineStore('customer', () => {
         })
     }
 
+    const getCustomertById = (id:any) => {
+        return new Promise(async (resolve, reject) => {
+            myFetch('/orgs/'+id, { method: "GET", })
+                .then(res => {
+                    resolve(res)
+                }).catch(() => {
+                    reject()
+                })
+        })
+    }
 
     const addCustomer = (clientId:string, data: any) => {
         return new Promise(async (resolve, reject) => {
@@ -46,5 +56,5 @@ export const useCustomerStore = defineStore('customer', () => {
 
 
 
-    return { addCustomer, getCustomers, loadingCustomer, customers }
+    return { addCustomer, getCustomers, loadingCustomer, customers, getCustomertById }
 })

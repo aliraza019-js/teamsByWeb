@@ -1,5 +1,5 @@
 <template lang="pug">
-v-row(style="height: 500px" class="overflow-auto scroll-container")
+v-row()
   v-col(cols="12")
     CommonCard
       template(#title)
@@ -40,6 +40,9 @@ v-row(style="height: 500px" class="overflow-auto scroll-container")
 definePageMeta({
   activeRoute: 'project'
 })
+
+
+
 const route = useRoute()
 const item = ref('Executed')
 const dateFrom = ref(new Date())
@@ -50,6 +53,8 @@ const items= ref(
 
 
 const imgIcon = ref('https://ik.imagekit.io/teamstage/image_picker_3125430F-511F-43C9-B086-AB64D48351B8-2200-000002773AA5F329_PAgGU5JhU.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1669902515925');
+
+
 </script>
 
 <style lang="scss" scoped>

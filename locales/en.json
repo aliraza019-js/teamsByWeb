@@ -86,7 +86,10 @@
     "projects": "Projects",
     "clients": "Clients",
     "addClient":"Add Customer",
-    "selectClient":"Select Client"
+    "selectClient":"Select Client",
+    "selectCustomer":"Select Customer",
+    "addProject":"Add Project",
+    "projectName":"Project Name"
   },
   "projectdetails": {
     "general": "General",

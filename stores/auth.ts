@@ -10,7 +10,7 @@ export const useAuthStore = defineStore('auth', () => {
     email: undefined
   }
 
-  const authObj = reactive(defaultState)
+  const authObj = reactive({...defaultState})
 
   const auth = computed(() => authObj)
 

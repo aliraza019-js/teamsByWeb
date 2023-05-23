@@ -16,7 +16,7 @@ CommonCardContainer(:title="$t('projects.projects')" :tabRoutes="tabRoutes")
       template(v-slot:activator="{props}")
         v-btn(size="regular" v-bind="props"  icon="mdi-menu" plain)
       v-list(density="compact" rounded="lg")
-        v-list-item(density="compact" value="a")
+        v-list-item(density="compact" @click="showAddProject")
           template(v-slot:prepend)
             v-icon mdi-plus
           v-list-item-title New Project
@@ -27,6 +27,7 @@ CommonCardContainer(:title="$t('projects.projects')" :tabRoutes="tabRoutes")
           v-list-item-title New Client
   NuxtPage
   ProjectsCustomerForm(:persistent="true" min-height="500" width="500"   :isDialogVisible="dialogAddCustomer" @update:isDialogVisible="closeCustomerDialog" )
+  ProjectsProjectForm(:persistent="true" min-height="500" width="500"   :isDialogVisible="dialogAddProject" @update:isDialogVisible="closeAddProject" )
 </template>
 
 <script setup>
@@ -38,6 +39,8 @@ definePageMeta({
 const localePath = useLocalePath();
 
 const dialogAddCustomer = ref(false)
+const dialogAddProject = ref(false)
+
 const tabRoutes = ref(
   [
     {
@@ -58,4 +61,13 @@ const showAddCustomer = ()=>{
 const closeCustomerDialog = ()=>{
   dialogAddCustomer.value  =false
 }
+
+const showAddProject = ()=>{
+  dialogAddProject.value = true
+}
+
+const closeAddProject = ()=>{
+  dialogAddProject.value  =false
+}
+
 </script>

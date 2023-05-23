@@ -12,14 +12,14 @@ CommonCardContainer(:title="title" :tabRoutes="tabRoutes")
 </template>
 
 <script setup>
-import {orgs} from "@/@fakeDb/database.json";
-
+import { useCustomerStore } from "~/stores/customers";
 definePageMeta({
   activeRoute: 'project'
 })
 
+const {getCustomertById} = useCustomerStore()
 const route = useRoute();
-const title = ref()
+const title = ref('Customer 1')
 
 
 const tabRoutes = ref(
@@ -40,8 +40,8 @@ const tabRoutes = ref(
 );
 
 
-onMounted(() => {
-  let getData = orgs.find(item => item.id == route.params.id)
-  title.value = getData.name
+onMounted(async () => {
+  const customer = await getCustomertById(route.params.id)
+  console.log(customer)
 });
 </script>
