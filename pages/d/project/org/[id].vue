@@ -1,5 +1,6 @@
 <template lang="pug">
-CommonCardContainer(:title="title" :tabRoutes="tabRoutes")
+v-progress-circular( indeterminate v-if="!customer" :size="64")
+CommonCardContainer(v-else :title="customer.name" :tabRoutes="tabRoutes")
   template(#prependTitleAtributes)
     v-btn(icon class="ml-0" to="/project/orgs")
       v-icon mdi-arrow-left
@@ -8,7 +9,7 @@ CommonCardContainer(:title="title" :tabRoutes="tabRoutes")
       v-icon mdi-menu
 
   v-card-text
-    NuxtPage
+    NuxtPage(:customer="customer" @refresh="fetchCustomer")
 </template>
 
 <script setup>
@@ -20,7 +21,7 @@ definePageMeta({
 const {getCustomertById} = useCustomerStore()
 const route = useRoute();
 const title = ref('Customer 1')
-
+const customer = ref(null)
 
 const tabRoutes = ref(
   [
@@ -39,9 +40,12 @@ const tabRoutes = ref(
   ]
 );
 
+const fetchCustomer= async  ()=>{
+  customer.value = await getCustomertById(route.params.id)
+
+}
 
 onMounted(async () => {
-  const customer = await getCustomertById(route.params.id)
-  console.log(customer)
+  await fetchCustomer()
 });
 </script>

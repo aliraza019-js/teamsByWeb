@@ -52,9 +52,21 @@ export const useCustomerStore = defineStore('customer', () => {
         })
     }
 
+    const updateCustomer = (oid:string, data: any) => {
+        return new Promise(async (resolve, reject) => {
+
+            myFetch('/orgs/'+oid, {method: "PATCH", body: data})
+                .then(res => {
+                    resolve(res)
+                }).catch(err=>{
+                    reject(err)
+                })
+        })
+    }
 
 
 
 
-    return { addCustomer, getCustomers, loadingCustomer, customers, getCustomertById }
+
+    return { addCustomer, getCustomers, loadingCustomer, customers, getCustomertById, updateCustomer }
 })
