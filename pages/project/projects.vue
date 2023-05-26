@@ -6,11 +6,20 @@ v-container
 </template>
 
 <script setup>
-import {projects} from "@/@fakeDb/database.json";
+import {useProjectStore} from '~/stores/projects'
+
 // page
 definePageMeta({
   activeRoute: 'project'
+});
+
+const {getProjects, projects} = useProjectStore()
+
+
+onMounted(async () => {
+  await getProjects()
 })
+
 
 // data
 const localePath = useLocalePath();

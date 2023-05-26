@@ -1,6 +1,6 @@
 <template lang="pug">
 ClientOnly
-  v-dialog(v-model="props.isDialogVisible" max-width="450px")
+  v-dialog(:model-value="isDialogVisible" @update:modelValue="$emit('update:isDialogVisible', false)" max-width="450px")
     CommonCard(color="lightBlue" :loading="loading")
       template(#title)
         span(class="text-secondary d-flex align-center") {{$t('layout.editAbout')}}
@@ -8,40 +8,37 @@ ClientOnly
           v-icon mdi-close
       template(#body)
         v-form(class="d-flex flex-column" ref="form")
-          v-text-field(density="comfortable" placeholder="Title" variant="solo" v-model="formData.title" :rules="rules.required")
           v-textarea(density="comfortable" placeholder="Description" variant="solo" :rules="rules.required" v-model="formData.desc")
           div(class="d-flex justify-center mt-5")
             v-btn(rounded="pill" size="large" color="secondary" width="65%" @click="validate" :disabled="disabled") Save
 </template>
 
 <script setup>
-import { useUserStore } from '~/stores/user'
-
+import { useCustomerStore } from '~/stores/customers'
 const props = defineProps({
   isDialogVisible: false,
+  customer: {}
 })
 
 const emit = defineEmits(
   ['update:isDialogVisible' , 'refresh']
 )
 
+const {updateCustomer} = useCustomerStore()
+
 // data
 const { t } = useI18n()
 const form = ref(null)
-const modalDialog =  ref(props.isDialogVisible)
 const formData = reactive({
-  title: '',
   desc: ''
 })
 const loading = ref(false)
 const disabled = ref(false)
-const { user, updateUserInfo } = useUserStore()
 
 
 watchEffect(() => {
   if(props.isDialogVisible) {
-    formData.title = user.title
-    formData.desc = user.desc
+    formData.desc = props.customer?.desc
   }
 })
 
@@ -62,7 +59,7 @@ const updateUser = () => {
 
   loading.value = true
   disabled.value = true
-   updateUserInfo(formData).then(() => {
+  updateCustomer(props.customer._id, formData).then(() => {
     emit('refresh')
   }).finally(() => {
     loading.value = false

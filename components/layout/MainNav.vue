@@ -32,6 +32,9 @@ const props = defineProps(['navItems'])
   box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.09);
   border: 1px solid rgba(var(--v-theme-card-border), 0.45);
   width: 320px;
+  height: calc(100vh - 200px);
+  position: sticky;
+  top: 100px;
 }
 
 .nav-btn {

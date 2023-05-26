@@ -1,14 +1,14 @@
 <template lang="pug">
-v-card(height="65px" rounded="lg" :to="localePath(`/d/project/project/${project.id}/general`)")
+v-card(height="65px" rounded="lg" :to="localePath(`/d/project/project/${project._id}/general`)")
   div(class="d-flex h-100")
-    div(class="rounded-s-lg image h-100" :style="{ width: '34%', backgroundImage: `url(${project.imgUrl})`}")
+    div(class="rounded-s-lg image h-100" :style="{ width: '34%', backgroundImage: `url(https://ik.imagekit.io/teamstage/image_picker7844532559891803069_gd9EOekZJx.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1671194068429)`}")
     div(class="d-flex w-100 px-2 justify-space-between align-center")
       div(class="d-flex flex-column")
-        div(class="title") {{ project.title }}
-        p(class="orgName") {{ project.orgName }}
+        div(class="title") {{ project.name }}
+        //- p(class="orgName") {{ project.orgName }}
       div(class="d-flex rounded-lg align-center project-status")
-        v-icon(:icon="project.status == 'done' ? 'mdi-check-circle' : 'mdi-timer-sand'" size="small" style="color: primaryTextPale") 
-        p(class="pl-1 text-capitalize") Project {{project.status}}
+        //- v-icon(:icon="project.status == 'done' ? 'mdi-check-circle' : 'mdi-timer-sand'" size="small" style="color: primaryTextPale") 
+        //- p(class="pl-1 text-capitalize") Project {{project.status}}
 </template>
 
 <script setup>

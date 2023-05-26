@@ -4,22 +4,22 @@ v-container(class="pa-0")
     v-col(cols="12")
       CommonCard
         template(#title)
-          span(class="text-secondary d-flex align-center") Über den Kunden
+          span(class="text-secondary d-flex align-center") {{$t('personAbout.about')}}
+          v-btn(icon size="small" variant="plain" color="primaryTextPale" @click="editAbout = true")
+            v-icon mdi-pencil
         template(#body)
-          p(class="pt-3") Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eleifend erat et auctor elementum. Quisque quis condimentum eros. Etiam sit amet laoreet purus. Aenean nec mi eu justo sollicitudin mattis at id dui. Vestibulum tincidunt dui at orci finibus rutrum. Praesent dapibus pellentesque est et fermentum. Aenean nisl erat, consectetur id libero eget, viverra posuere purus. Nunc faucibus elit est, sit amet maximus neque sollicitudin vitae. In hac habitasse platea dictumst. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Phasellus pretium pulvinar volutpat.
+          p(class="pt-3") {{ customer.desc }}
     v-col(cols="12")
       CommonCard
         template(#title)
           span(class="text-secondary d-flex align-center") Kontakt Informationen
           div(class="d-flex align-center")
-            v-btn(icon size="small" variant="plain" color="secondary")
+            v-btn(icon size="small" variant="plain" color="secondary" @click="editContact = true")
               v-icon(color="") mdi-pencil
         template(#body)
-          v-container
-            v-row
-              v-col(cols="12" sm="6" v-for="item , index in contactPerson" :key="index" class="d-flex gap-10 align-items justify-start")
-                v-icon(color="#707070") {{item.icon}}
-                p(class="mb-0 font-weight-bold") {{item.text}}
+          CommonContactInformation(:data="customer")
+  ProjectsEditAboutCustomer(:persistent="true" :customer="customer" @refresh="refresh" min-height="500" width="500" :isDialogVisible="editAbout" @update:isDialogVisible="(value) => editAbout = false")
+  ProjectsCustomerContactForm(:persistent="true" :customer="customer" @refresh="refresh" min-height="500" width="500" :isDialogVisible="editContact" @update:isDialogVisible="(value) => editContact = false")
 </template>
 
 <script setup>
@@ -27,6 +27,13 @@ v-container(class="pa-0")
 definePageMeta({
   activeRoute: 'project',
 });
+
+defineProps(['customer'])
+const emit = defineEmits([ 'refresh'])
+
+
+const editAbout = ref(false)
+const editContact = ref(false)
 
 const contactPerson = ref([
   {
@@ -46,6 +53,11 @@ const contactPerson = ref([
     text: "@trusteddecisions.com"
   }
 ]);
+
+const refresh = ()=>{
+  emit('refresh')
+  editAbout.value = false
+}
 
 
 </script>

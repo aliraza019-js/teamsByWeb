@@ -12,15 +12,15 @@ CommonCardContainer(:title="title" :tabRoutes="tabRoutes")
 </template>
 
 <script setup>
-import {projects} from "@/@fakeDb/database.json";
+import { useProjectStore } from '~/stores/projects'
 
 definePageMeta({
   activeRoute: 'project'
 })
 
 const route = useRoute();
-const title = ref();
-const localePath = useLocalePath()
+const title = ref('test');
+const {getProjectById} = useProjectStore()
 
 const tabRoutes = ref(
   [
@@ -42,9 +42,8 @@ const tabRoutes = ref(
 
 const imgIcon = ref('https://ik.imagekit.io/teamstage/image_picker_3125430F-511F-43C9-B086-AB64D48351B8-2200-000002773AA5F329_PAgGU5JhU.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1669902515925');
 
-onMounted(() => {
-  let getData = projects.find(item => item.id == route.params.id)
-
-  title.value = getData.title
-});
+onMounted(async () => {
+  const response = await getProjectById(route.params.id)
+  console.log(response)
+})
 </script>
