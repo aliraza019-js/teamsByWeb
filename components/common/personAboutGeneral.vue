@@ -1,25 +1,16 @@
 <template lang="pug">
-v-container 
-  v-card(class="elevation-8 cards")
-    v-row(class="align-center mt-1")
-        v-col(class="d-flex align-center")
-          div(class="small-box")
-          div(class="blueH ml-6 ")  {{ $t('personAbout.about') }} Amy
-    v-card-text
-      v-divider.inset.mr-8.mb-7
-      
-      v-row.ml-1
-        p(class="title") {{ $t('personAbout.title') }}
-      v-row.ml-1.mb-4
-        p(class="title2") Senior Project Manager
-      v-row.ml-1.mb-2
-        p(class="blueDes") {{ $t('personAbout.description') }}
-      v-row.ml-1.mb-2.mr-1
-        p(class="text") Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget.
-
+CommonCard
+  template(#title)
+    span(class="text-secondary d-flex align-center") {{$t('personAbout.about') + " " + about.familyName}}
+  template(#body)
+    p(class="px-0 pt-5 font-weight-medium text-subtitle-1") {{$t('personAbout.title')}}
+    p(class="text-h6 font-weight-bold") {{about.title}}
+    p(class="description pt-3 text-body-1 font-weight-medium text-green") {{$t('personAbout.description')}}
+    p(class="pt-2 text-justify") {{ about.desc }}
 </template>
 
-<script>
+<script setup>
+const props = defineProps(['about'])
 
 </script>
 

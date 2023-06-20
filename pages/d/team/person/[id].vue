@@ -1,31 +1,60 @@
 <template lang="pug">
-v-card(width="100%" flat)
-  v-toolbar(:title="'person detail'" flat color="transparent")
-    .underline
-    v-btn(icon)
-      v-icon mdi-menu
+CommonCardContainer(:title="`${response.givenName} ${response.familyName}`" :tabRoutes="tabRoutes")
+  template(#prependTitleAtributes)
+    v-btn(icon class="ml-0" to="/team/persons")
+      v-icon mdi-arrow-left
+  template(#titleAtributes)
+    v-avatar(size="70" class="user-profile position-absolute")
+      v-img(v-if="response.profileImage && response.profileImage.url" :src="response.profileImage.url")
+      v-img(v-else src="response.profileImage.url")
 
-  CommonPersonAboutGeneral
-  CommonPersonContactInformation
-  CommonPersonTeams
+  v-container
+    NuxtPage
 </template>
-
+  
 <script setup>
-definePageMeta({
-  activeRoute: 'team'
-})
+import {useColleaguesStore} from '~/stores/colleages'
+const response = ref({});
 const route = useRoute()
-console.log(route.params.id);
-</script>
+const {getColleaguesById} = useColleaguesStore()
+onMounted(async () => {
+    response.value = await getColleaguesById(route.params.id)
+})
+definePageMeta({
+  activeRoute: 'person'
+})
+
+  const tabRoutes = ref(
+    [
+      {
+        label: "General",
+        link: `/d/team/person/${route.params.id}/general`
+      },
+      {
+        label: "Skills",
+        link: `/d/team/person/${route.params.id}/skills`
+      },
+      {
+        label: "Projects",
+        link: `/d/team/person/${route.params.id}/projects`
+      },
+      {
+        label: "Trainings",
+        link: `/d/team/person/${route.params.id}/trainings`
+      },
+      {
+        label: "Certifications",
+        link: `/d/team/person/${route.params.id}/certifications`
+      },
+    ]
+  );
+  
+  </script>
 
 <style lang="scss" scoped>
-.underline {
-  position: absolute;
-  width: 100%;
-  left: 0px;
-  top: 56px;
-  right: 0px;
-  height: 1px;
-  background-color: rgb(204, 204, 204);
+
+.user-profile {
+  right: 0;
+  top: 12px;
 }
 </style>
