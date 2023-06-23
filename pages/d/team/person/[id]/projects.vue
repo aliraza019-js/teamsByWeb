@@ -27,10 +27,10 @@ v-row(class="overflow-auto h-100")
                     v-col(cols="12" class="d-flex justify-space-between")
                       div(class="d-flex align-center")
                         v-icon(color="primaryTextPale" size="large" icon="mdi-message-reply-text")
-                        p(class="font-weight-bold ml-2") 24 comments
+                        p(class="font-weight-bold ml-2") {{ item.commentsCount? item.commentsCount: '0'  }} comments
                       div(class="d-flex align-center")
-                        v-icon(color="primaryTextPale" size="large" icon="mdi-thumb-up-outline")
-                        p(class="font-weight-bold ml-2") 1.2K likes
+                        v-icon(color="primaryTextPale" size="large" :icon="item.userLiked? 'mdi-thumb-up':'mdi-thumb-up-outline'")
+                        p(class="font-weight-bold ml-2") {{ item.likesCount ? item.likesCount+'K': '0K'}} likes
 </template>
     
     <script setup>

@@ -23,12 +23,48 @@ export const useTeamsStore = defineStore('Teams', () => {
         });
     });
   };
+  const getTeamsById = (id:any) => {
+    return new Promise(async (resolve, reject) => {
+        myFetch('/v2/teams/'+id, { method: "GET", })
+            .then(res => {
+                resolve(res)
+            }).catch(() => {
+                reject()
+            })
+    })
+    
+  };
+  const getProjectsByTeamId = (id:any) => {
+    return new Promise(async (resolve, reject) => {
+        myFetch(`/v2/projects?tid[]=${id}`, { method: "GET", })
+            .then(res => {
+                resolve(res.data)
+            }).catch(() => {
+                reject()
+            })
+    })
+    
+  };
+  const getTeamByTeamId = (id:any) => {
+    return new Promise(async (resolve, reject) => {
+        myFetch(`/v2/users?tid[]=${id}`, { method: "GET", })
+            .then(res => {
+                resolve(res.data)
+            }).catch(() => {
+                reject()
+            })
+    })
+    
+  };
 
 
   return {
 
     getTeams,
     teams,
-    loadingTeams
+    loadingTeams,
+    getTeamsById,
+    getProjectsByTeamId,
+    getTeamByTeamId
   };
 });
