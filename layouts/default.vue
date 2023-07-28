@@ -10,6 +10,7 @@ v-app
       //- logo
       v-img(src="/app/img/logo-white_sm.png" max-width="190px" contain)
       v-spacer
+      v-btn(@click.native="getFbToken()") token
       v-btn(nuxt :to="switchLocalePath($i18n.locale == 'de' ? 'en' : 'de')")
         v-icon.mr-2 mdi-web
         span {{ $i18n.locale == 'de' ? 'EN' : 'DE' }}
@@ -58,12 +59,12 @@ const navItems = [
 // methods
 const checkUser = async () => {
   const user = await userGetUser()
-  console.log('user', user)
 }
 
 // hooks
-onMounted(() => {
-  initAuth()
+onMounted(async () => {
+  await initAuth()
+  // await fcmInit()
 });
 
 </script>
@@ -74,10 +75,12 @@ onMounted(() => {
   border-bottom-left-radius: 50px;
   border-bottom-right-radius: 50px;
 }
-.v-main{
+
+.v-main {
   padding-bottom: 0;
   padding-top: 64px;
 }
+
 .my-footer {
   bottom: 0px !important;
 }

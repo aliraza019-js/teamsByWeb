@@ -34,11 +34,14 @@ export const useAuthStore = defineStore('auth', () => {
       if (user) {
         setAuth(user)
         updateUser()
+        // init firebase messaging
+        fcmInit()
       } else {
         setAuth(user)
         navigateTo(localePath('/auth/sign-in'))
       }
     })
+    // await fcmInit()
   }
 
   const signOut = () => {

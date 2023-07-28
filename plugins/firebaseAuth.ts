@@ -1,4 +1,5 @@
 import { initializeApp } from 'firebase/app';
+import { getMessaging, getToken } from "firebase/messaging";
 
 export default defineNuxtPlugin(nuxtApp => {
   const config = useRuntimeConfig();
@@ -14,5 +15,27 @@ export default defineNuxtPlugin(nuxtApp => {
   }
 
   const app = initializeApp(firebaseConfig);
+
+  // add firebase service worker for cloud messaging
+  const vapidKey = config.public.VAPID_KEY;
+
+  // Get registration token. Initially this makes a network call, once retrieved
+  // subsequent calls to getToken will return from cache.
+  
+  // const messaging = getMessaging();
+  // getToken(messaging, { vapidKey: vapidKey }).then((currentToken) => {
+  //   if (currentToken) {
+  //     // Send the token to your server and update the UI if necessary
+  //     // ...
+  //     console.log('got the token', currentToken);
+  //   } else {
+  //     // Show permission request UI
+  //     console.log('No registration token available. Request permission to generate one.');
+  //     // ...
+  //   }
+  // }).catch((err) => {
+  //   console.log('An error occurred while retrieving token. ', err);
+  //   // ...
+  // });
 
 })
