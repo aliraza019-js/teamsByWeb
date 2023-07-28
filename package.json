@@ -19,6 +19,7 @@
   "dependencies": {
     "@intlify/unplugin-vue-i18n": "^0.8.1",
     "@nuxtjs/i18n": "^8.0.0-beta.11",
+    "@nuxtjs/pwa": "^3.3.5",
     "@pinia/nuxt": "^0.4.8",
     "@tiptap/extension-bubble-menu": "^2.0.3",
     "@tiptap/extension-bullet-list": "^2.0.3",

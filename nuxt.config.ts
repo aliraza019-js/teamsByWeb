@@ -40,7 +40,7 @@ export default defineNuxtConfig({
         '@/assets/comps.scss',
     ],
     build: {
-        transpile: ['vuetify'],
+        transpile: ['vuetify']
     },
     i18n: {
         strategy: 'prefix_except_default',
