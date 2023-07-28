@@ -1,18 +1,18 @@
 <template lang="pug">
-v-card(class="d-flex flex-row rounded-l" width="100%" height="100%" elevation="3" style="align-items:center;")
-  v-col(class="imgCol")
-    v-avatar(size=56)
-      img(:src="person.imgUrl" class="profilePic") 
-  v-col()
-    v-row()
-      div(class="text-caption") {{ person.title }}
-    v-row()
-      h4 {{ person.name }}
+v-card(class="d-flex flex-row rounded-l" width="100%" height="100%" elevation="3" style="align-items:center;" :to="localePath(`/d/team/person/${person._id}/general`)")  
+    v-col(class="imgCol")
+      v-avatar(size=56)
+        img(:src="person.profileImage.url" class="profilePic") 
+    v-col()
+      v-row()
+        div(class="text-caption") {{ person.title }}
+      v-row()
+        h4 {{ person.givenName }}
 </template>
   
 <script setup>
 const props = defineProps(['person'])
-console.log('person', props.person)
+const localePath = useLocalePath();
 </script>
   
 <style lang="scss" scoped>

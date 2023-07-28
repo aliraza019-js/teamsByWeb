@@ -1,11 +1,8 @@
 <template lang="pug">
 v-container
   v-row
-    v-col(cols="12" sm=4 v-for="(person, index) in persons" :key="index")
-      CommonPersonList(:person="person")
-  v-row.my-5
-    v-divider
-    v-btn.mt-5(nuxt :to="localePath('/d/team/person/123')") detail page
+    v-col(cols="12" sm=4 v-for="(colleague, index) in colleagues" :key="index")
+      CommonPersonList(:person="colleague")
 
   v-row.my-5
     v-divider
@@ -15,13 +12,21 @@ v-container
 </template>
   
 <script setup>
+import {useColleaguesStore} from '~/stores/colleages'
 // page
 definePageMeta({
-  activeRoute: 'team'
+  activeRoute: 'colleages'
 })
 
-// data
-const localePath = useLocalePath()
+const {getColleagues, colleagues} = useColleaguesStore()
+
+
+onMounted(async () => {
+  await getColleagues()
+
+})
+
+
 
 const persons = [
   { name: 'Amy Lee', title: 'Senior Project Manager', imgUrl: 'https://cdn.vuetifyjs.com/images/john.jpg' },

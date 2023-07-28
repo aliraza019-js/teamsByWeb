@@ -1,32 +1,57 @@
 <template lang="pug">
-v-container
-  v-card.elevation-8
-    v-row.align-center.mt-1
-      v-col(class="d-flex align-center")
-        div(class="small-box")
-        div(class="blueH").ml-6 {{ $t('personContact.title') }}
-    v-card-text
-      v-divider.inset.mr-8.mb-10
-
-      div(class="ml-15 mb-10")
-        v-row
-          v-col(cols="12" md="6" sm="6")
-            v-row.mt-sm-0
-              v-icon(color="#1C1C1C") mdi-phone
-              div(class="text ml-5") +49 511 123456-0
-            v-row.mt-12
-              v-icon(color="#1C1C1C" ) mdi-cellphone
-              div(class="text ml-5") +49 172 12345678
-          v-col(cols="12" md="6" sm="6")
-            v-row.mt-6.mt-sm-0
-              v-icon(color="#1C1C1C") mdi-email
-              div(class="text ml-5") spaus@27apps.com
-            v-row.mt-12
-              v-icon(color="#1C1C1C") mdi-instagram
-              a(href="###" class="text ml-5") @27appsCom
+CommonCard
+  template(#title)
+    span(class="text-secondary d-flex align-center") {{ $t('personContact.title') }}
+    v-btn(icon size="small" variant="plain" color="primaryTextPale" @click="dialogAddContact = true") 
+     v-icon mdi-pencil
+  template(#body)
+    v-container
+            v-row
+                v-col(cols="12" sm="6" )
+                  div(v-for="(item, index) in contactInfo.contacts" :key="index" class="d-flex my-4 gap-10 align-items justify-start")
+                    v-icon(color="#707070") {{getIcon(item.type)}}
+                    p(class="mb-0 font-weight-bold") {{ item.value }}
+                v-col(cols="12" sm="6" )
+                  div(v-for="(item, index) in contactInfo.social" :key="index" class="d-flex my-4 gap-10 align-items justify-start")
+                    v-icon(color="#707070") {{getIcon(item.type)}}
+                    p(class="mb-0 font-weight-bold") {{ item.value }}
 
 </template>
+<script setup>
 
+
+const props = defineProps(['contactInfo']);
+
+const getIcon = (type)=>{
+  switch (type) {
+
+      case 'phone':
+          return 'mdi-phone-classic' ;
+       case 'mobile':
+          return 'mdi-phone' ;
+      case 'mail':
+          return 'mdi-email-outline' ;
+      case 'web':
+          return 'mdi-web' ;
+      case 'fax':
+          return 'mdi-fax' ;
+      case 'linkedin':
+          return 'mdi-linkedin' ;
+      case 'xing':
+          return 'mdi-xing' ;
+      case 'facebook':
+          return 'mdi-facebook' ;
+      case 'instagram':
+        return 'mdi-instagram' ;
+      case 'tiktok':
+          return 'mdi-music-note-eighth' ;
+      case 'twitter':
+          return 'mdi-twitter' ;
+      case 'other':
+        return 'mdi-link'
+  }
+}
+</script>
 <style lang="scss" scoped>
 
 @import url('https://fonts.googleapis.com/css?family=Nunito');

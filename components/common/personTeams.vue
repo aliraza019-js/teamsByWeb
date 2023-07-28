@@ -1,13 +1,10 @@
 <template lang="pug">
-v-container
-  v-card(class="elevation-8")
-    v-row.align-center.mt-1
-      v-col(class="d-flex align-center")
-        div(class="small-box")
-        div(class="blueH").ml-6 Teams
+CommonCard
+  template(#title)
+    span(class="text-secondary d-flex align-center") Teams
+  template(#body)
     v-card-text
-      v-divider.inset.mr-8.mb-7
-      
+
       v-row(class="mt-5 mb-5")
 
         v-col(cols="12" sm="4" v-for="(t, index) in 3" key="index")
@@ -22,8 +19,8 @@ v-container
 </template>
 
 
-<script>
-
+<script setup>
+const props = defineProps(['teams']);
 </script>
 
 
