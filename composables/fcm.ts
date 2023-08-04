@@ -1,9 +1,8 @@
 import { getMessaging, getToken } from "firebase/messaging";
 
-export const fcmPostToken = async (token: string): Promise<any> => {
+export const fcmPostToken = async (token: string, appVersion: any, deviceType: string): Promise<any> => {
   try {
-    const res = await myFetch('/v2/accounts/fcm', { method: 'POST', body: { fcmToken: token } });
-    console.log('posted fcm token', res);
+    const res = await myFetch('/v2/accounts/fcm', { method: 'POST', body: { fcmToken: token, appVersion: appVersion || '123', deviceType: deviceType } });
     return res;
   }
   catch (err) {
@@ -19,7 +18,8 @@ export const fcmInit = async (): Promise<any> => {
   try {
     const fcmToken = await getToken(messaging, { vapidKey: config.public.VAPID_KEY });
     console.log('got fcm token', fcmToken);
-    if (fcmToken) await fcmPostToken(fcmToken);
+    console.log('appVersion', config.public.APP_VERSION);
+    if (fcmToken) await fcmPostToken(fcmToken, config.public.APP_VERSION, 'browser');
     return 'OK';
   }
   catch (err) {

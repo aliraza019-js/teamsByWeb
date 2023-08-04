@@ -5,6 +5,7 @@ export default defineNuxtConfig({
         public: {
             API_URL: process.env.API_URL,
             APP_BASE_URL: process.env.BASE_URL,
+            APP_VERSION: process.env.APP_VERSION || '0.0.0',
             FIREBASE_API_KEY: process.env.FIREBASE_API_KEY,
             FIREBASE_AUTH_DOMAIN: process.env.FIREBASE_AUTH_DOMAIN,
             FIREBASE_PROJECT_ID: process.env.FIREBASE_PROJECT_ID,
