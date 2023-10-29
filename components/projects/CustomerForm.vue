@@ -8,15 +8,15 @@ ClientOnly
                     v-icon mdi-close
             template(#body)
                 v-form(class="d-flex flex-column" ref="form")
-                    v-select(:label="$t('projects.selectClient')" item-title="name" item-value="_id" variant="solo" :items="clients" v-model="clientId" :rules="rules.required")
+                    v-select(v-if="clients.length > 0" :label="$t('projects.selectClient')" item-title="name" item-value="_id" variant="solo" :items="clients" v-model="clientId" :rules="rules.required")
                     v-text-field(density="comfortable" :label="$t('init.tenantName')" variant="solo" v-model="formData.name" :rules="rules.required")
                     div(class="d-flex justify-center mt-5")
                         v-btn(rounded="pill" size="large" color="secondary" width="65%" @click="validate" :disabled="disabled") Save
 </template>
     
 <script setup>
-import {useClientStore} from '~/stores/clients'
-import {useCustomerStore} from '~/stores/customers'
+import { useClientStore } from '~/stores/clients'
+import { useCustomerStore } from '~/stores/customers'
 
 const props = defineProps({
     isDialogVisible: false,
@@ -27,8 +27,8 @@ const emit = defineEmits(
     ['update:isDialogVisible']
 )
 
-const  {getClientsList} = useClientStore()
-const {addCustomer} = useCustomerStore()
+const { getClientsList } = useClientStore()
+const { addCustomer } = useCustomerStore()
 // data
 const { t } = useI18n()
 const form = ref(null)
@@ -36,7 +36,7 @@ const form = ref(null)
 const formData = reactive({
     name: '',
 })
-const clientId = ref(null) 
+const clientId = ref(null)
 const loading = ref(false)
 const disabled = ref(false)
 const clients = ref([])
@@ -56,7 +56,7 @@ const validate = async () => {
 const submitData = () => {
     loading.value = true
     disabled.value = true
-    addCustomer(clientId.value, formData).finally(()=>{
+    addCustomer(clientId.value, formData).finally(() => {
         loading.value = false
         disabled.value = false
         formData.name = ''
@@ -72,9 +72,10 @@ watch(() => props.isDialogVisible, (newValue) => {
     }
 })
 
-onMounted(async() => {
+onMounted(async () => {
     const response = await getClientsList()
     clients.value = response.data
+    console.log('clients', clients.value)
 })
 
 </script>

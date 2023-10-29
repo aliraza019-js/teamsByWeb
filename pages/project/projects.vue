@@ -2,7 +2,7 @@
 v-container
   v-row(class="mb-3")
     v-col(cols="12" sm="4" v-for="(project, index) in projects" :key="index")
-      CommonProjectList(:project="project")
+      CommonProjectList(:project="project") asdad
 </template>
 
 <script setup>

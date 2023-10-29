@@ -60,14 +60,28 @@ v-container
           v-alert(:type="msgType" variant="tonal" closable) {{ msgText }}
 
         v-card-actions.d-flex.align-center
-          v-btn.px-10(rounded variant="outlined" @click="step--" v-show="step > 1 && step < 4" color="secondary" :disabled="disabled") {{ $t('forms.back') }}
+          v-btn.px-10(rounded variant="outlined" @click="step--" v-show="showBackButton" color="secondary" :disabled="disabled") {{ $t('forms.back') }}
           v-spacer
-          v-btn.bg-secondary.px-10(rounded v-show="step < 4" @click="nextStep()" :disabled="disabled" :loading="loading") {{ $t('forms.next') }}
-          v-btn.bg-secondary.px-10(rounded v-show="step > 3" :disabled="disabled" :loading="loading" :to="localPath('/home')") {{ $t('forms.finish') }}
+          v-btn.bg-secondary.px-10(rounded v-show="showNextButton" @click="nextStep()" :disabled="disabled" :loading="loading") {{ $t('forms.next') }}
+          v-btn.bg-secondary.px-10(rounded v-show="showFinishButton" :disabled="disabled" :loading="loading" :to="localPath('/home')") {{ $t('forms.finish') }}
         
 </template>
 
 <script setup>
+import { ref, reactive, computed } from 'vue';
+
+
+const showBackButton = computed(() => {
+  return step.value > 1 && step.value < 4;
+});
+
+const showNextButton = computed(() => {
+  return step.value < 4;
+});
+
+const showFinishButton = computed(() => {
+  return step.value > 3;
+});
 // imports
 // page definition
 definePageMeta({
@@ -86,6 +100,7 @@ const skillsTemplateItems = reactive([
   { value: 'agile', title: 'Agile methods and frameworks', disabled: false },
   { value: 'design', title: 'UX & design', disabled: false }
 ])
+
 
 // form
 const formName = ref(null)

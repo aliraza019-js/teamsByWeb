@@ -9,6 +9,7 @@ export const useClientStore = defineStore('client', () => {
 
             myFetch('/clients', {method: "GET", })
                 .then(res => {
+                    console.log('asd', res.data)
                     resolve(res)
                 }).catch(()=>{
                     reject()
