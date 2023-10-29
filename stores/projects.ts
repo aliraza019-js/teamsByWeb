@@ -16,7 +16,7 @@ export const useProjectStore = defineStore('project', () => {
     const getProjects = () => {
         return new Promise(async (resolve, reject) => {
             loadingProjectState.value = true
-            myFetch('/projects', { method: "GET", })
+            myFetch('/v2/projects', { method: "GET", })
                 .then(res => {
                     console.log(res)
                     projectState.value = res.data
@@ -32,7 +32,7 @@ export const useProjectStore = defineStore('project', () => {
 
     const getProjectById = (id:any) => {
         return new Promise(async (resolve, reject) => {
-            myFetch('/projects/'+id, { method: "GET", })
+            myFetch('/v2/projects/'+id, { method: "GET", })
                 .then(res => {
                     resolve(res)
                 }).catch(() => {
@@ -45,7 +45,7 @@ export const useProjectStore = defineStore('project', () => {
     const addProject = (clientId:string, data: any) => {
         return new Promise(async (resolve, reject) => {
 
-            myFetch(`/projects?cid=${clientId}`, {method: "POST", body: data})
+            myFetch(`/v2/projects?oid=${clientId}`, {method: "POST", body: data})
                 .then(() => {
                     getProjects()
                     resolve(true)

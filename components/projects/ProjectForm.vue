@@ -15,8 +15,8 @@ ClientOnly
 </template>
     
 <script setup>
-import {useCustomerStore} from '~/stores/customers'
-import {useProjectStore} from '~/stores/projects'
+import { useCustomerStore } from '~/stores/customers'
+import { useProjectStore } from '~/stores/projects'
 const props = defineProps({
     isDialogVisible: false,
     // clientId: null,
@@ -25,9 +25,8 @@ const props = defineProps({
 const emit = defineEmits(
     ['update:isDialogVisible']
 )
-
-const  {addProject} = useProjectStore()
-const {customers, getCustomers} = useCustomerStore()
+const { addProject } = useProjectStore()
+const { customers, getCustomers } = useCustomerStore()
 // data
 const { t } = useI18n()
 const form = ref(null)
@@ -35,7 +34,7 @@ const form = ref(null)
 const formData = reactive({
     name: '',
 })
-const clientId = ref(null) 
+const clientId = ref('')
 const loading = ref(false)
 const disabled = ref(false)
 
@@ -54,7 +53,7 @@ const validate = async () => {
 const submitData = () => {
     loading.value = true
     disabled.value = true
-    addProject(clientId.value, formData).finally(()=>{
+    addProject(clientId.value, formData).finally(() => {
         loading.value = false
         disabled.value = false
         formData.name = ''
@@ -72,9 +71,8 @@ watch(() => props.isDialogVisible, (newValue) => {
 
 
 onMounted(() => {
-    if(!customers.value){
-      getCustomers()  
-    }
+    console.log('customers abc', customers)
+    getCustomers()
 })
 
 </script>

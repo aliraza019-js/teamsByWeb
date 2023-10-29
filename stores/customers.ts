@@ -16,7 +16,7 @@ export const useCustomerStore = defineStore('customer', () => {
     const getCustomers = () => {
         return new Promise(async (resolve, reject) => {
             loadingCustomerState.value = true
-            myFetch('/orgs', { method: "GET", })
+            myFetch('/v2/orgs', { method: "GET", })
                 .then(res => {
                     console.log(res)
                     customerState.value = res.data
@@ -32,7 +32,7 @@ export const useCustomerStore = defineStore('customer', () => {
 
     const getCustomertById = (id:any) => {
         return new Promise(async (resolve, reject) => {
-            myFetch('/orgs/'+id, { method: "GET", })
+            myFetch('/v2/orgs/'+id, { method: "GET", })
                 .then(res => {
                     resolve(res)
                 }).catch(() => {
@@ -44,7 +44,7 @@ export const useCustomerStore = defineStore('customer', () => {
     const addCustomer = (clientId:string, data: any) => {
         return new Promise(async (resolve, reject) => {
 
-            myFetch(`/orgs?cid=${clientId}`, {method: "POST", body: data})
+            myFetch(`/v2/orgs?cid=${clientId}`, {method: "POST", body: data})
                 .then(() => {
                     getCustomers()
                     resolve(true)
@@ -55,7 +55,7 @@ export const useCustomerStore = defineStore('customer', () => {
     const updateCustomer = (oid:string, data: any) => {
         return new Promise(async (resolve, reject) => {
 
-            myFetch('/orgs/'+oid, {method: "PATCH", body: data})
+            myFetch('/v2/orgs/'+oid, {method: "PATCH", body: data})
                 .then(res => {
                     resolve(res)
                 }).catch(err=>{
