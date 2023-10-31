@@ -13,17 +13,17 @@
     "mail": "Mail",
     "web": "Web",
     "fax": "Fax",
-     "hidden": "Hidden",
-      "team": "Team",
-      "client": "Client",
-      "public": "Public",
-      "linkedin": "Linkedin",
-      "xing": "Xing",
-      "facebook": "Facebook",
-      "instagram": "Instagram",
-      "tiktok": "Tiktok",
-      "twitter": "Twitter",
-      "other": "Other"
+    "hidden": "Hidden",
+    "team": "Team",
+    "client": "Client",
+    "public": "Public",
+    "linkedin": "Linkedin",
+    "xing": "Xing",
+    "facebook": "Facebook",
+    "instagram": "Instagram",
+    "tiktok": "Tiktok",
+    "twitter": "Twitter",
+    "other": "Other"
   },
   "login": {
     "invalid": "Invalid credentials",
@@ -31,7 +31,6 @@
       "email": "Mail",
       "password": "Password",
       "login": "Sign In"
-
     },
     "noAccount1": "Don't have an account?",
     "noAccount2": "Sign up here.",
@@ -85,17 +84,18 @@
   "projects": {
     "projects": "Projects",
     "clients": "Clients",
-    "addClient":"Add Customer",
-    "selectClient":"Select Client",
-    "selectCustomer":"Select Customer",
-    "addProject":"Add Project",
-    "projectName":"Project Name"
+    "addClient": "Add Customer",
+    "selectClient": "Select Client",
+    "selectCustomer": "Select Customer",
+    "addProject": "Add Project",
+    "projectName": "Project Name"
   },
   "projectdetails": {
     "general": "General",
     "teams": "Teams",
     "comment": "Comment",
-    "projects": "Projects"
+    "projects": "Projects",
+    "projectOverview": "Overview"
   },
   "search": {
     "search": "Search"

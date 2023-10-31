@@ -1,7 +1,7 @@
 <template lang="pug">
 v-card(height="65px" rounded="lg" :to="localePath(`/d/project/project/${project._id}/general`)")
   div(class="d-flex h-100")
-    div(class="rounded-s-lg image h-100" :style="{ width: '34%', backgroundImage: `url(https://ik.imagekit.io/teamstage/image_picker7844532559891803069_gd9EOekZJx.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1671194068429)`}")
+    div(class="rounded-s-lg image h-100" :style="{ width: '34%', backgroundImage: `url(${project && project.profileImage && project.profileImage.url ? project.profileImage.url :  imgIcon})`}")
     div(class="d-flex w-100 px-2 justify-space-between align-center")
       div(class="d-flex flex-column")
         div(class="title") {{ project.name }}
@@ -14,18 +14,20 @@ v-card(height="65px" rounded="lg" :to="localePath(`/d/project/project/${project.
 <script setup>
 defineProps(['project']);
 const localePath = useLocalePath();
+const imgIcon = ref('https://ik.imagekit.io/teamstage/image_picker7844532559891803069_gd9EOekZJx.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1671194068429')
+
 </script>
 
 <style lang="scss" scoped>
-
 .image {
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover; 
+  background-size: cover;
 }
 
 .project-status {
   height: 36px;
+
   p {
     width: 51px;
     font-size: 9px;
@@ -46,5 +48,4 @@ const localePath = useLocalePath();
   color: #0966CB;
   opacity: 1;
 }
-
 </style>

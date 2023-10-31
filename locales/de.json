@@ -63,7 +63,8 @@
     "general": "Allgemein",
     "teams": "Teams",
     "comment": "Kommentar",
-    "projects": "Projekte"
+    "projects": "Projekte",
+    "projectOverview": "overzicht "
   },
   "search": {
     "search": "Suche"

@@ -3,14 +3,14 @@ v-row()
   v-col(cols="12")
     CommonCard
       template(#title)
-        span(class="text-secondary d-flex align-center") Über das Projekt
+        span(class="text-secondary d-flex align-center") {{ projectsData && projectsData[0].name }}
       template(#body)
         v-container(class="px-0")
-          p lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu, Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu,Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+          p {{ projectsData && projectsData[0].desc  }}
   v-col(cols="12")
     CommonCard
       template(#title)
-        span(class="text-secondary d-flex align-center") Kunde
+        span(class="text-secondary d-flex align-center") {{projectsData && projectsData[0].org.name}}
         div(class="d-flex align-center")
           img(:src="imgIcon" height="35")
       template(#body)
@@ -22,44 +22,77 @@ v-row()
   v-col(cols="12")
     CommonCard
       template(#title)
-        span(class="text-secondary d-flex align-center") Überblick
+        span(class="text-secondary d-flex align-center") {{$t('projectdetails.projectOverview')}}
         div(class="d-flex rounded-lg align-center project-status px-2")
           v-icon(icon="mdi-check-circle" style="color: primaryTextPale" size="small")
           p(class="px-2 text-capitalize text-center") Project Done
       template(#body)
         v-row(class="mt-4")
           v-col(cols="12" sm="4")
-            v-select(variant="solo" v-model="item" density="comfortable" single-line :items="items")
+            v-select(variant="solo" v-model="selectedStatus" item-title="name" item-value="value" density="comfortable" single-line :items="items")
           v-col(cols="12" sm="4")
-            v-text-field(type="date" density="comfortable" single-line variant="solo")
+            v-text-field(type="date" v-model="dateFrom" density="comfortable" single-line variant="solo")
           v-col(cols="12" sm="4")
-            v-text-field(type="date" density="comfortable" single-line variant="solo")
+            v-text-field(type="date" v-model="dateTo" density="comfortable" single-line variant="solo")
 </template>
 
 <script setup>
+import { defineProps, onMounted, ref } from 'vue'
+import { useProjectStore } from '~/stores/projects'
+import { useRoute } from 'vue-router'
 definePageMeta({
   activeRoute: 'project'
 })
-
-
-
-const route = useRoute()
-const item = ref('Executed')
+const { getProjectById } = useProjectStore()
+const route = useRoute();
+const projectValueData = ref(null)
+const projects = defineProps(['projectsData'])
 const dateFrom = ref(new Date())
-
-const items= ref(
-  ['Executed']
+const dateTo = ref(new Date())
+const selectedStatus = ref('')
+const items = ref(
+  [{ name: 'Planned', value: 'planning' }, { name: 'Preparation', value: 'preparation' }, { name: 'Ongoing', value: 'ongoing' }]
 )
 
 
+onMounted(async () => {
+  // getting value of project detial
+  projectValueData.value = await getProjectById(route.params.id)
+  // For Status
+  if (projectValueData.value && projectValueData.value.length > 0 && projectValueData.value[0].status) {
+    selectedStatus.value = projectValueData.value[0].status
+  } else {
+    selectedStatus.value = 'Executed'
+
+  }
+  // Date From
+  if (projectValueData.value && projectValueData.value.length > 0 && projectValueData.value[0].dateFrom) {
+    const dateStr = new Date(projectValueData.value[0].dateFrom);
+    dateFrom.value = dateStr.toISOString().split('T')[0];
+  } else {
+    dateFrom.value = new Date()
+  }
+  // For Date To
+  if (projectValueData.value && projectValueData.value.length > 0 && projectValueData.value[0].dateTo) {
+    const dateStrTo = new Date(projectValueData.value[0].dateTo);
+    dateTo.value = dateStrTo.toISOString().split('T')[0];
+  } else {
+    dateTo.value = new Date()
+  }
+})
+
+watch(selectedStatus, (newStatus) => {
+  if (projects && projects.length > 0) {
+    projects[0].status = newStatus;
+  }
+})
 const imgIcon = ref('https://ik.imagekit.io/teamstage/image_picker_3125430F-511F-43C9-B086-AB64D48351B8-2200-000002773AA5F329_PAgGU5JhU.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1669902515925');
-
-
 </script>
 
 <style lang="scss" scoped>
 .project-status {
   height: 36px;
+
   p {
     font-size: 10px;
   }
