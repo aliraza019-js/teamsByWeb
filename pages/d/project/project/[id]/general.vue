@@ -4,6 +4,8 @@ v-row()
     CommonCard
       template(#title)
         span(class="text-secondary d-flex align-center") {{ projectsData && projectsData[0].name }}
+        v-btn(icon size="small" variant="plain" color="primaryTextPale" @click="editDesc = true")
+          v-icon mdi-pencil
       template(#body)
         v-container(class="px-0")
           p {{ projectsData && projectsData[0].desc  }}
@@ -34,6 +36,8 @@ v-row()
             v-text-field(type="date" v-model="dateFrom" density="comfortable" single-line variant="solo")
           v-col(cols="12" sm="4")
             v-text-field(type="date" v-model="dateTo" density="comfortable" single-line variant="solo")
+            v-btn(rounded="pill" size="large" color="secondary" width="100%" @click="updateStatus") Update
+        ProjectsEditProjectDescription(:persistent="true" :project="projectsData && projectsData[0]" @refresh="refresh" min-height="500" width="500" :isDialogVisible="editDesc" @update:isDialogVisible="(value) => editDesc = false")
 </template>
 
 <script setup>
@@ -43,16 +47,27 @@ import { useRoute } from 'vue-router'
 definePageMeta({
   activeRoute: 'project'
 })
+const editDesc = ref(false)
+const emit = defineEmits(['refresh'])
 const { getProjectById } = useProjectStore()
+const { updateProjectDescription } = useProjectStore()
+
 const route = useRoute();
 const projectValueData = ref(null)
 const projects = defineProps(['projectsData'])
 const dateFrom = ref(new Date())
 const dateTo = ref(new Date())
+const disabled = ref(false)
+const loading = ref(false)
 const selectedStatus = ref('')
 const items = ref(
   [{ name: 'Planned', value: 'planning' }, { name: 'Preparation', value: 'preparation' }, { name: 'Ongoing', value: 'ongoing' }]
 )
+
+const refresh = () => {
+  emit('refresh')
+  editDesc.value = false
+}
 
 
 onMounted(async () => {
@@ -82,10 +97,26 @@ onMounted(async () => {
 })
 
 watch(selectedStatus, (newStatus) => {
+  console.log('newStatus', newStatus)
   if (projects && projects.length > 0) {
     projects[0].status = newStatus;
   }
 })
+
+const updateStatus = () => {
+
+  loading.value = true
+  disabled.value = true
+  const statusData = {
+    status: selectedStatus.value,
+  }
+  updateProjectDescription(projectValueData.value[0]._id, {...statusData}).then(() => {
+    emit('refresh')
+  }).finally(() => {
+    loading.value = false
+    disabled.value = false
+  })
+};
 const imgIcon = ref('https://ik.imagekit.io/teamstage/image_picker_3125430F-511F-43C9-B086-AB64D48351B8-2200-000002773AA5F329_PAgGU5JhU.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1669902515925');
 </script>
 

@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia';
 
 export const useProjectStore = defineStore('project', () => {
-     // user state
+    // user state
     // const defaultState:any = []
-    const projectState:any = ref([])
+    const projectState: any = ref([])
 
     // loading state
     const loadingProjectState = ref(false)
@@ -23,16 +23,16 @@ export const useProjectStore = defineStore('project', () => {
                     resolve(res)
                 }).catch(() => {
                     reject()
-                }).finally(()=>{
+                }).finally(() => {
                     loadingProjectState.value = false
 
                 })
         })
     }
 
-    const getProjectById = (id:any) => {
+    const getProjectById = (id: any) => {
         return new Promise(async (resolve, reject) => {
-            myFetch('/v2/projects/'+id, { method: "GET", })
+            myFetch('/v2/projects/' + id, { method: "GET", })
                 .then(res => {
                     resolve(res)
                 }).catch(() => {
@@ -42,13 +42,25 @@ export const useProjectStore = defineStore('project', () => {
     }
 
 
-    const addProject = (clientId:string, data: any) => {
+    const addProject = (clientId: string, data: any) => {
         return new Promise(async (resolve, reject) => {
 
-            myFetch(`/v2/projects?oid=${clientId}`, {method: "POST", body: data})
+            myFetch(`/v2/projects?oid=${clientId}`, { method: "POST", body: data })
                 .then(() => {
                     getProjects()
                     resolve(true)
+                })
+        })
+    }
+
+    const updateProjectDescription = (oid: string, data: any) => {
+        return new Promise(async (resolve, reject) => {
+
+            myFetch('/v2/projects/' + oid, { method: "PATCH", body: data })
+                .then(res => {
+                    resolve(res)
+                }).catch(err => {
+                    reject(err)
                 })
         })
     }
@@ -57,5 +69,5 @@ export const useProjectStore = defineStore('project', () => {
 
 
 
-    return { addProject, getProjects, loadingProject, projects, getProjectById }
+    return { addProject, getProjects, loadingProject, projects, getProjectById, updateProjectDescription }
 })
