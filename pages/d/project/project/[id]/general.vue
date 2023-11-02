@@ -61,7 +61,7 @@ const disabled = ref(false)
 const loading = ref(false)
 const selectedStatus = ref('')
 const items = ref(
-  [{ name: 'Planned', value: 'planning' }, { name: 'Preparation', value: 'preparation' }, { name: 'Ongoing', value: 'ongoing' }]
+  [{ name: 'Initiation', value: 'initiation' }, { name: 'Planning', value: 'planning' }, { name: 'Excecuting', value: 'excecuting' } , { name: 'Monitoring', value: 'monitoring' }, { name: 'Done', value: 'done' }]
 )
 
 const refresh = () => {
