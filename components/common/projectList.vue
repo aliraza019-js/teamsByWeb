@@ -4,11 +4,11 @@ v-card(height="65px" rounded="lg" :to="localePath(`/d/project/project/${project.
     div(class="rounded-s-lg image h-100" :style="{ width: '34%', backgroundImage: `url(${project && project.profileImage && project.profileImage.url ? project.profileImage.url :  imgIcon})`}")
     div(class="d-flex w-100 px-2 justify-space-between align-center")
       div(class="d-flex flex-column")
-        div(class="title") {{ project.name }}
-        //- p(class="orgName") {{ project.orgName }}
+        div(class="title") {{project.org && project.org.name }}
+        p(class="orgName") {{ project.name }}
       div(class="d-flex rounded-lg align-center project-status")
-        //- v-icon(:icon="project.status == 'done' ? 'mdi-check-circle' : 'mdi-timer-sand'" size="small" style="color: primaryTextPale") 
-        //- p(class="pl-1 text-capitalize") Project {{project.status}}
+        v-icon(:icon="project.status == 'done' ? 'mdi-check-circle' : 'mdi-timer-sand'" size="x-small" style="color: primaryTextPale") 
+        p(class="pl-1 text-capitalize") Project {{project.status}}
 </template>
 
 <script setup>
@@ -27,7 +27,7 @@ const imgIcon = ref('https://ik.imagekit.io/teamstage/image_picker78445325598918
 
 .project-status {
   height: 36px;
-
+  background: transparent !important;
   p {
     width: 51px;
     font-size: 9px;
@@ -36,7 +36,7 @@ const imgIcon = ref('https://ik.imagekit.io/teamstage/image_picker78445325598918
 
 
 .title {
-  font: normal normal normal 12px/16px Nunito;
+  font: normal normal normal 10px/20px Nunito;
   letter-spacing: 0px;
   color: #1C1C1C;
   opacity: 1;

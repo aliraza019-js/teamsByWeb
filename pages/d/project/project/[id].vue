@@ -1,5 +1,5 @@
 <template lang="pug">
-CommonCardContainer(:title="title" :tabRoutes="tabRoutes")
+CommonCardContainer(:title="projects ? projects[0].name : title" :tabRoutes="tabRoutes")
   template(#prependTitleAtributes)
     v-btn(icon class="ml-0" to="/project/projects")
       v-icon mdi-arrow-left

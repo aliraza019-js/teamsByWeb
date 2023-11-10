@@ -41,6 +41,17 @@ export const useProjectStore = defineStore('project', () => {
         })
     }
 
+    const getCommentsByProjectId = (projectId: any) => {
+        return new Promise(async (resolve, reject) => {
+            myFetch(`/v2/comments?pid=${projectId}&limit=99`, { method: "GET", })
+                .then(res => {
+                    resolve(res.data)
+                }).catch(() => {
+                    reject()
+                })
+        })
+    }
+
 
     const addProject = (clientId: string, data: any) => {
         return new Promise(async (resolve, reject) => {
@@ -48,6 +59,16 @@ export const useProjectStore = defineStore('project', () => {
             myFetch(`/v2/projects?oid=${clientId}`, { method: "POST", body: data })
                 .then(() => {
                     getProjects()
+                    resolve(true)
+                })
+        })
+    }
+
+    const addComment = (data: any) => {
+        return new Promise(async (resolve, reject) => {
+
+            myFetch(`/v2/comments`, { method: "POST", body: data })
+                .then(() => {
                     resolve(true)
                 })
         })
@@ -69,5 +90,5 @@ export const useProjectStore = defineStore('project', () => {
 
 
 
-    return { addProject, getProjects, loadingProject, projects, getProjectById, updateProjectDescription }
+    return { addProject, getProjects, loadingProject, projects, getProjectById, updateProjectDescription, getCommentsByProjectId, addComment }
 })

@@ -85,8 +85,10 @@
     "projects": "Projects",
     "clients": "Clients",
     "addClient": "Add Customer",
+    "addComment": "Add Comment",
     "selectClient": "Select Client",
     "selectCustomer": "Select Customer",
+    "aboutProject": "About Project",
     "addProject": "Add Project",
     "projectName": "Project Name"
   },
@@ -95,7 +97,8 @@
     "teams": "Teams",
     "comment": "Comment",
     "projects": "Projects",
-    "projectOverview": "Overview"
+    "projectOverview": "Overview",
+    "Organization": "Organization"
   },
   "search": {
     "search": "Search"
@@ -131,6 +134,7 @@
   },
   "personContact": {
     "title": "Contact information",
+    "social": "Social",
     "type": "Type",
     "visibility": "Visibility",
     "value": "Value"
