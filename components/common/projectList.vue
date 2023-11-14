@@ -5,13 +5,16 @@ v-card(height="65px" rounded="lg" :to="localePath(`/d/project/project/${project.
     div(class="d-flex w-100 px-2 justify-space-between align-center")
       div(class="d-flex flex-column")
         div(class="title") {{project.org && project.org.name }}
-        p(class="orgName") {{ project.name }}
+        p(class="orgName") {{ project.name && project.name.slice(0, 10) + '...' }}
       div(class="d-flex rounded-lg align-center project-status")
-        v-icon(:icon="project.status == 'done' ? 'mdi-check-circle' : 'mdi-timer-sand'" size="x-small" style="color: primaryTextPale") 
-        p(class="pl-1 text-capitalize") Project {{project.status}}
+        //- v-icon(:icon="project.status == 'done' ? 'mdi-check-circle' : 'mdi-timer-sand'" size="x-small" style="color: primaryTextPale") 
+        v-img(class="pl-2" :src="project.status == 'done' ? done : timer")
+        p(class="pl-1 text-capitalize") Project {{project.status ? project.status : 'Excecuting'}}
 </template>
 
 <script setup>
+import done from '@/assets/icons/project/done.svg';
+import timer from '@/assets/icons/project/timer.svg';
 defineProps(['project']);
 const localePath = useLocalePath();
 const imgIcon = ref('https://ik.imagekit.io/teamstage/image_picker7844532559891803069_gd9EOekZJx.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1671194068429')
@@ -27,10 +30,12 @@ const imgIcon = ref('https://ik.imagekit.io/teamstage/image_picker78445325598918
 
 .project-status {
   height: 36px;
-  background: transparent !important;
+  width: 63px;
+
   p {
-    width: 51px;
-    font-size: 9px;
+    width: 44px;
+    font-size: 8px;
+    font-weight: 300;
   }
 }
 

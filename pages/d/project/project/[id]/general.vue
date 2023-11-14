@@ -25,9 +25,9 @@ v-row()
     CommonCard
       template(#title)
         span(class="text-secondary d-flex align-center") {{$t('projectdetails.projectOverview')}}
-        div(class="d-flex rounded-lg align-center project-status px-2")
-          v-icon(:icon="projectsData && projectsData[0].status == 'done' ? 'mdi-check-circle' : 'mdi-timer-sand'" style="color: primaryTextPale" size="small")
-          p(class="px-2 text-capitalize text-center") Project {{ projectsData && projectsData[0].status}}
+        div(class="d-flex rounded-lg project-status px-2")
+          v-img(class="pl-2" :src="projectsData && projectsData[0].status == 'done' ? done : timer")
+          p(class="px-2 text-capitalize text-center") Project {{ projectsData && projectsData[0].status ? projectsData[0].status : 'Excecuting'}}
       template(#body)
         v-row(class="mt-4")
           v-col(cols="12" sm="6")
@@ -45,6 +45,8 @@ v-row()
 import { defineProps, onMounted, ref } from 'vue'
 import { useProjectStore } from '~/stores/projects'
 import { useRoute } from 'vue-router'
+import done from '@/assets/icons/project/done.svg';
+import timer from '@/assets/icons/project/timer.svg';
 definePageMeta({
   activeRoute: 'project'
 })
@@ -84,7 +86,7 @@ onMounted(async () => {
   if (projectValueData.value && projectValueData.value.length > 0 && projectValueData.value[0].status) {
     selectedStatus.value = projectValueData.value[0].status
   } else {
-    selectedStatus.value = 'Executed'
+    selectedStatus.value = 'Excecuting'
 
   }
   // Date From
@@ -147,9 +149,13 @@ const imgIcon = ref('https://ik.imagekit.io/teamstage/image_picker_3125430F-511F
 <style lang="scss" scoped>
 .project-status {
   height: 36px;
+  width: 120px;
 
   p {
     font-size: 10px;
+    margin-top: 2px;
+    width: 90px;
+    font-weight: 300;
   }
 }
 </style>

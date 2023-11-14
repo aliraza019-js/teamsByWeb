@@ -13,10 +13,10 @@ export const useProjectStore = defineStore('project', () => {
 
     const loadingProject = computed(() => loadingProjectState)
 
-    const getProjects = () => {
+    const getProjects = (limit: any) => {
         return new Promise(async (resolve, reject) => {
             loadingProjectState.value = true
-            myFetch('/v2/projects', { method: "GET", })
+            myFetch(`/v2/projects?limit=${limit}`, { method: "GET", })
                 .then(res => {
                     console.log(res)
                     projectState.value = res.data
@@ -57,9 +57,13 @@ export const useProjectStore = defineStore('project', () => {
         return new Promise(async (resolve, reject) => {
 
             myFetch(`/v2/projects?oid=${clientId}`, { method: "POST", body: data })
-                .then(() => {
-                    getProjects()
-                    resolve(true)
+                .then((res) => {
+                    console.log('res.data._id', res)
+                    // getProjects(10)
+                    resolve(res)
+                }).catch((err) => {
+                    console.log('err', err)
+                    reject()
                 })
         })
     }

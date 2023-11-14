@@ -12,15 +12,22 @@ ClientOnly
                     v-text-field(density="comfortable" :label="$t('projects.projectName')" variant="solo" v-model="formData.name" :rules="rules.required")
                     div(class="d-flex justify-center mt-5")
                         v-btn(rounded="pill" size="large" color="secondary" width="65%" @click="validate" :disabled="disabled") Save
+        CommonSnackbar(v-if="showSnackbar" :message="snackbarMessage" :success="snackbarSuccess")
 </template>
     
 <script setup>
 import { useCustomerStore } from '~/stores/customers'
 import { useProjectStore } from '~/stores/projects'
+import { useRouter } from 'vue-router';
 const props = defineProps({
     isDialogVisible: false,
     // clientId: null,
 })
+const showError = ref('')
+const router = useRouter();
+const showSnackbar = ref(false)
+const snackbarMessage = ref('')
+const snackbarSuccess = ref(false)
 
 const emit = defineEmits(
     ['update:isDialogVisible']
@@ -53,18 +60,35 @@ const validate = async () => {
 const submitData = () => {
     loading.value = true
     disabled.value = true
-    addProject(clientId.value, formData).finally(() => {
+    addProject(clientId.value, formData).then(response => {
+        console.log('response addProject', response)
+        console.log('response status', response.status)
+        if (response.status === 400) {
+            showSnackbar.value = true
+            snackbarMessage.value = response.message
+            snackbarSuccess.value = false
+            emit('update:isError', response.message)
+        } else {
+            router.push(`/d/project/project/${response._id}/general`)
+        }
+        setTimeout(() => {
+            emit('update:isDialogVisible', false)
+        }, 5000);
+    }).finally(() => {
         loading.value = false
         disabled.value = false
         formData.name = ''
         clientId.value = null
-        emit('update:isDialogVisible', false)
+    }).catch(() => {
+        console.log('err', err)
     })
 
 };
 
 watch(() => props.isDialogVisible, (newValue) => {
     if (!newValue) {
+        showSnackbar.value = false
+        snackbarMessage.value = ''
         formData.name = ''
     }
 })
