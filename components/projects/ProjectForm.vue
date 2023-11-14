@@ -73,7 +73,7 @@ const submitData = () => {
         }
         setTimeout(() => {
             emit('update:isDialogVisible', false)
-        }, 5000);
+        }, 1000);
     }).finally(() => {
         loading.value = false
         disabled.value = false
