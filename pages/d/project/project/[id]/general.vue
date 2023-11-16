@@ -31,10 +31,10 @@ v-row()
       template(#body)
         v-row(class="mt-4")
           v-col(cols="12" sm="6")
-            v-select(variant="solo" v-model="selectedStatus" item-title="name" item-value="value" density="comfortable" single-line :items="items")
+            v-select(v-model="selectedStatus" @update:model-value="updateStatus" :loading="loading" item-title="name" item-value="value" density="comfortable" single-line :items="items")
           v-col(cols="12" sm="6")
             v-text-field(type="date" v-model="dateFrom" density="comfortable" single-line variant="solo")
-            v-btn(rounded="pill" size="large" :loading="loading" :disabled="disabled" color="secondary" width="100%" @click="updateStatus") Update
+            //- v-btn(rounded="pill" size="large" :loading="loading" :disabled="disabled" color="secondary" width="100%" @click="updateStatus") Update
             CommonSnackbar(v-if="showSnackbar" :message="snackbarMessage" :success="snackbarSuccess")
         ProjectsEditProjectDescription(:persistent="true" :project="projectsData && projectsData[0]" @refresh="refresh" min-height="500" width="500" :isDialogVisible="editDesc" @update:isDialogVisible="(value) => editDesc = false")
 </template>
@@ -106,19 +106,14 @@ onMounted(async () => {
 })
 
 watch(selectedStatus, (newStatus) => {
-  console.log('newStatus', newStatus)
-  console.log('projectValueData.value[0].status newStatus', projectValueData.value[0].status)
-  if (projects && projects.length > 0) {
+  if (projects && projects.length) {
     projects[0].status = newStatus;
-  }
-  if (newStatus == projectValueData.value[0].status) {
-    disabled.value = true
-  } else {
-    disabled.value = false
+    projectsData[0].status = newStatus
   }
 })
 
 const updateStatus = () => {
+  console.log('Updating status...', selectedStatus.value);
 
   loading.value = true
   disabled.value = true

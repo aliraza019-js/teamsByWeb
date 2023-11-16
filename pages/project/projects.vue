@@ -1,42 +1,57 @@
 <template lang="pug">
 v-container
   v-row(class="mb-3")
-    v-col(cols="12" sm="4" v-for="(project, index) in projects" :key="index")
+    v-col(cols="12" sm="4" v-for="(project, index) in projects.data" :key="index")
       CommonProjectList(:project="project")
   v-row(class="my-3 d-flex justify-center align-center")
-    v-col(cols="12" sm="4")
-      v-btn(v-if="projects.length" :loading="loading" @click="load") {{ getButtonText }}
+    v-col(cols="12" sm="4" v-if="showLoadMoreButton")
+      v-btn(:loading="loading" @click="load") {{ getButtonText }}
 </template>
 
 <script setup>
+import { watch } from 'vue';
 import { useProjectStore } from '~/stores/projects'
 
 // page
 definePageMeta({
   activeRoute: 'project'
 });
+
 const loading = ref(false)
+const showLoadMoreButton = ref(false)
 
 const { getProjects, projects } = useProjectStore()
 
+const limit = ref(10)
+const skip = ref(0)
+
 function load() {
   loading.value = true
-  let limit = projects.value.length > 10 ? 10 : 99;
+  skip.value += limit.value
   setTimeout(async () => {
-    await getProjects(limit)
+    await getProjects(limit.value, skip.value)
     loading.value = false
   }, 1000)
 }
 
+watch(() => projects.value.data ?? [], (newData, oldData) => {
+  if (newData && newData.length !== oldData.length) {
+    if (newData.length >= 10) {
+      showLoadMoreButton.value = true
+    } else {
+      showLoadMoreButton.value = false
+    }
+  }
+});
+
 const getButtonText = computed(() => {
-  return projects.value.length > 10 ? 'Show Less' : 'Show More';
+  return skip.value == 0 ? 'Load More' : 'THE NEXT 10';
 });
 
 onMounted(async () => {
-  await getProjects(10)
+  await getProjects(limit.value, skip.value)
+  showLoadMoreButton.value = projects.value.data && projects.value.data.length >= 10 ? true : false
 })
 
 const localePath = useLocalePath();
-
-// data
 </script>
