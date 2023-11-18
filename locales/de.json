@@ -57,13 +57,17 @@
   },
   "projects": {
     "projects": "Projekte",
-    "clients": "Kunden"
+    "clients": "Kunden",
+    "addComment": "Einen Kommentar hinzufügen",
+    "aboutProject": "Über Projekte"
   },
-  "projectdetails" : {
+  "projectdetails": {
     "general": "Allgemein",
     "teams": "Teams",
     "comment": "Kommentar",
-    "projects": "Projekte"
+    "projects": "Projekte",
+    "projectOverview": "overzicht",
+    "Organization": "Organisation"
   },
   "search": {
     "search": "Suche"
@@ -99,6 +103,7 @@
   },
   "personContact": {
     "title": "Kontakt Informationen",
+    "social": "Social",
     "existingAccount2": "Hier einloggen"
   },
   "home": {
@@ -158,17 +163,17 @@
     "newContact": "Neuer Eintrag"
   },
   "certifications": {
-    "addCertification":  "Zertifikat hinzufügen",
-    "edit":  "Edit Certification",
+    "addCertification": "Zertifikat hinzufügen",
+    "edit": "Edit Certification",
     "certificationAssociation": "Certification Association",
     "comments": "Comments",
     "likes": "Likes",
     "date": "Date"
   },
- "trainings": {
+  "trainings": {
     "title": "Trainings",
-    "add":  "Add Training",
-    "edit":  "Edit Training",
+    "add": "Add Training",
+    "edit": "Edit Training",
     "dateFrom": "Date From",
     "dateTo": "Date To",
     "provider": "Provider",

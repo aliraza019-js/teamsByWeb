@@ -1,21 +1,42 @@
 <template lang="pug">
 v-row(style="height: 500px" class="overflow-auto comment-container")
-  v-col(cols="12" v-for="data in 3" :key="data")
+  v-col(cols="12" class="d-flex justify-end py-2")
+    v-btn(variant="text" prepend-icon="mdi-plus" density="compact" @click="dialogAddComment = true") {{ $t('projects.addComment')}}
+  v-col(cols="12" v-for="(data, index) in comments" :key="index")
     v-card(class="elevation-4 rounded-lg")
       v-card-text(class="d-flex flex-column")
         div(class="d-flex align-center justify-space-between")
-          span(class="text-caption") 20.06.2021
-          v-avatar(size="30" :image="img")
-        p(class="mt-3 text-justify") Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer semper tincidunt massa. Suspendisse sapien turpis, hendrerit nec eros vel, luctus tincidunt orci. Cras ac nisi aliquam, sollicitudin turpis et, interdum ante. Aliquam erat volutpat. Proin eget commodo purus, nec pharetra libero. Etiam id ultrices libero, a porta massa. Curabitur vulputate urna ut neque vulputate, eu aliquam turpis sollicitudin. Praesent sollicitudin euismod hendrerit. Phasellus semper tincidunt ligula sit amet lacinia. Morbi consectetur enim vel tortor blandit euismod. Ut sed vestibulum ex.
+          span(class="text-caption") {{data && data.createdAt ? data.createdAt.substring(0, 10) : 'No Date Found'}}
+          v-avatar(size="30" :image="data.profileImage ? data.profileImage.url : img")
+        p(class="mt-3 text-justify") {{data ? data.text : 'No Comment Found'}}
         div(class="d-flex mt-3 justify-end")
           div(class="d-flex gap-10")
             v-icon(style="color: primaryTextPale") mdi-thumb-up-outline
-            span(class="font-weight-bold") 1.2K likes
+            span(class="font-weight-bold") {{ data ? data.likesCount : '0'}} likes
+  ProjectsCommentForm(:persistent="true" min-height="500" width="500" :projectId="route.params.id"  :isCommentDialog="dialogAddComment" @update:comments="fetchprojectComments" @update:isCommentDialog="closeDialog")
 </template>
 
 <script setup>
+import { useProjectStore } from '~/stores/projects'
 definePageMeta({
   activeRoute: 'project'
+});
+const route = useRoute();
+const { getCommentsByProjectId } = useProjectStore()
+const localePath = useLocalePath();
+const comments = ref(null)
+const dialogAddComment = ref(false)
+const closeDialog = () => {
+  dialogAddComment.value = false
+}
+
+const fetchprojectComments = async () => {
+  comments.value = await getCommentsByProjectId(route.params.id)
+  console.log('comments', comments.value)
+}
+
+onMounted(async () => {
+  await fetchprojectComments()
 });
 
 const img = ref('https://images.unsplash.com/photo-1488161628813-04466f872be2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80');

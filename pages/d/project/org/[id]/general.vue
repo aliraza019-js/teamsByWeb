@@ -8,18 +8,18 @@ v-container(class="pa-0")
           v-btn(icon size="small" variant="plain" color="primaryTextPale" @click="editAbout = true")
             v-icon mdi-pencil
         template(#body)
-          p(class="pt-3") {{ customer.desc }}
+          p(class="pt-3") {{ customer && customer[0].desc }}
     v-col(cols="12")
       CommonCard
         template(#title)
-          span(class="text-secondary d-flex align-center") Kontakt Informationen
+          span(class="text-secondary d-flex align-center") {{ customer && customer[0].name }}
           div(class="d-flex align-center")
             v-btn(icon size="small" variant="plain" color="secondary" @click="editContact = true")
               v-icon(color="") mdi-pencil
         template(#body)
-          CommonContactInformation(:data="customer")
-  ProjectsEditAboutCustomer(:persistent="true" :customer="customer" @refresh="refresh" min-height="500" width="500" :isDialogVisible="editAbout" @update:isDialogVisible="(value) => editAbout = false")
-  ProjectsCustomerContactForm(:persistent="true" :customer="customer" @refresh="refresh" min-height="500" width="500" :isDialogVisible="editContact" @update:isDialogVisible="(value) => editContact = false")
+          CommonContactInformation(:data="customer && customer[0]")
+  ProjectsEditAboutCustomer(:persistent="true" :customer="customer && customer[0]" @refresh="refresh" min-height="500" width="500" :isDialogVisible="editAbout" @update:isDialogVisible="(value) => editAbout = false")
+  ProjectsCustomerContactForm(:persistent="true" :customer="customer && customer[0]" @refresh="refresh" min-height="500" width="500" :isDialogVisible="editContact" @update:isDialogVisible="(value) => editContact = false")
 </template>
 
 <script setup>
@@ -29,7 +29,7 @@ definePageMeta({
 });
 
 defineProps(['customer'])
-const emit = defineEmits([ 'refresh'])
+const emit = defineEmits(['refresh'])
 
 
 const editAbout = ref(false)
@@ -54,7 +54,7 @@ const contactPerson = ref([
   }
 ]);
 
-const refresh = ()=>{
+const refresh = () => {
   emit('refresh')
   editAbout.value = false
 }
@@ -65,6 +65,7 @@ const refresh = ()=>{
 <style lang="scss" scoped>
 .project-status {
   height: 36px;
+
   p {
     font-size: 10px;
   }

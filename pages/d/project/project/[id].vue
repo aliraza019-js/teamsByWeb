@@ -1,5 +1,5 @@
 <template lang="pug">
-CommonCardContainer(:title="title" :tabRoutes="tabRoutes")
+CommonCardContainer(:title="projects ? projects[0].name : title" :tabRoutes="tabRoutes")
   template(#prependTitleAtributes)
     v-btn(icon class="ml-0" to="/project/projects")
       v-icon mdi-arrow-left
@@ -8,7 +8,7 @@ CommonCardContainer(:title="title" :tabRoutes="tabRoutes")
       v-icon mdi-menu
 
   v-card-text
-    NuxtPage
+    NuxtPage(:projectsData="projects" @refresh="fetchproject")
 </template>
 
 <script setup>
@@ -20,7 +20,8 @@ definePageMeta({
 
 const route = useRoute();
 const title = ref('test');
-const {getProjectById} = useProjectStore()
+const projects = ref(null)
+const { getProjectById } = useProjectStore()
 
 const tabRoutes = ref(
   [
@@ -39,11 +40,16 @@ const tabRoutes = ref(
   ]
 );
 
+const fetchproject = async () => {
+  projects.value = await getProjectById(route.params.id)
+
+}
+
+onMounted(async () => {
+  await fetchproject()
+});
+
 
 const imgIcon = ref('https://ik.imagekit.io/teamstage/image_picker_3125430F-511F-43C9-B086-AB64D48351B8-2200-000002773AA5F329_PAgGU5JhU.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1669902515925');
 
-onMounted(async () => {
-  const response = await getProjectById(route.params.id)
-  console.log(response)
-})
 </script>
