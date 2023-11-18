@@ -27,7 +27,8 @@ const skip = ref(0)
 
 function load() {
   loading.value = true
-  skip.value += limit.value
+  // skip.value += limit.value
+  limit.value += 10
   setTimeout(async () => {
     await getProjects(limit.value, skip.value)
     loading.value = false
@@ -36,7 +37,7 @@ function load() {
 
 watch(() => projects.value.data ?? [], (newData, oldData) => {
   if (newData && newData.length !== oldData.length) {
-    if (newData.length >= 10) {
+    if (newData.length >= 10 && projects.value.count >= projects.value.limit) {
       showLoadMoreButton.value = true
     } else {
       showLoadMoreButton.value = false
@@ -45,7 +46,7 @@ watch(() => projects.value.data ?? [], (newData, oldData) => {
 });
 
 const getButtonText = computed(() => {
-  return skip.value == 0 ? 'Load More' : 'THE NEXT 10';
+  return limit.value == 10 ? 'Load More' : 'THE NEXT 10';
 });
 
 onMounted(async () => {
