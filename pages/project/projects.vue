@@ -1,7 +1,7 @@
 <template lang="pug">
 v-container
   v-row(class="mb-3")
-    v-col(cols="12" sm="4" v-for="(project, index) in projects.data" :key="index")
+    v-col(cols="12" sm="4" v-for="(project, index) in projectsData" :key="index")
       CommonProjectList(:project="project")
   v-row(class="my-3 d-flex justify-center align-center")
     v-col(cols="12" sm="4" v-if="showLoadMoreButton")
@@ -24,13 +24,17 @@ const { getProjects, projects } = useProjectStore()
 
 const limit = ref(10)
 const skip = ref(0)
+const projectsData = ref([])
 
 function load() {
   loading.value = true
-  // skip.value += limit.value
-  limit.value += 10
+  skip.value += limit.value
   setTimeout(async () => {
     await getProjects(limit.value, skip.value)
+    console.log('projects', projects.value.data)
+    projects.value.data.map(item => {
+      projectsData.value.push(item)
+    })
     loading.value = false
   }, 1000)
 }
@@ -46,11 +50,12 @@ watch(() => projects.value.data ?? [], (newData, oldData) => {
 });
 
 const getButtonText = computed(() => {
-  return limit.value == 10 ? 'Load More' : 'THE NEXT 10';
+  return skip.value == 0 ? 'Load More' : 'THE NEXT 10';
 });
 
 onMounted(async () => {
   await getProjects(limit.value, skip.value)
+  projectsData.value = projects.value.data
   showLoadMoreButton.value = projects.value.data && projects.value.data.length >= 10 ? true : false
 })
 
