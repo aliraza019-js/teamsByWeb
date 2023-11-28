@@ -57,9 +57,22 @@
   },
   "projects": {
     "projects": "Projekte",
-    "clients": "Kunden",
+    "clientsName": "Kunden",
     "addComment": "Einen Kommentar hinzufügen",
-    "aboutProject": "Über Projekte"
+    "aboutProject": "Über Projekte",
+    "addLocation": "Add Location",
+    "clients": {
+      "about": "About Client",
+      "contactInfo": "Contact Information",
+      "location": "Location",
+      "Social": "Social"
+    },
+    "location": {
+      "address": "Address",
+      "street": "Street",
+      "zip": "Zip Code",
+      "ChooseOnMap": "Choose on map"
+    }
   },
   "projectdetails": {
     "general": "Allgemein",

@@ -13,13 +13,13 @@ export const useCustomerStore = defineStore('customer', () => {
 
     const loadingCustomer = computed(() => loadingCustomerState)
 
-    const getCustomers = () => {
+    const getCustomers = (limit: any, skip: any) => {
         return new Promise(async (resolve, reject) => {
             loadingCustomerState.value = true
-            myFetch('/v2/orgs', { method: "GET", })
+            myFetch(`/v2/orgs?limit=${limit}&skip=${skip}`, { method: "GET", })
                 .then(res => {
                     console.log(res)
-                    customerState.value = res.data
+                    customerState.value = res
                     resolve(res)
                 }).catch(() => {
                     reject()
@@ -46,7 +46,7 @@ export const useCustomerStore = defineStore('customer', () => {
 
             myFetch(`/v2/orgs?cid=${clientId}`, {method: "POST", body: data})
                 .then(() => {
-                    getCustomers()
+                    getCustomers(20,0)
                     resolve(true)
                 })
         })

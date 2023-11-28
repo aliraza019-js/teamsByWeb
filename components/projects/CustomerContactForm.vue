@@ -51,14 +51,6 @@ ClientOnly
         {type: 'contact', value: 'mail', text: t('base.mail')},
         {type: 'contact', value: 'web', text: t('base.web')},
         {type: 'contact', value: 'fax', text: t('base.fax')},
-        {type: 'social', value: 'linkedin', text: t('base.linkedin')},
-        {type: 'social', value: 'xing', text: t('base.xing')},
-        {type: 'social', value: 'facebook', text: t('base.facebook')},
-        {type: 'social', value: 'instagram', text: t('base.instagram')},
-        {type: 'social', value: 'tiktok', text: t('base.tiktok')},
-        {type: 'social', value: 'twitter', text: t('base.twitter')},
-        {type: 'social', value: 'other', text: t('base.other')},
-
     ])
     const contactVisibility = ref([
         {value: 'hidden', text: t('base.hidden')},
@@ -98,11 +90,9 @@ ClientOnly
         loading.value = true
         disabled.value = true
         error.value = ''
-        const social_types = ['linkedin','xing', 'facebook', 'instagram', 'tiktok', 'twitter', 'other',]
         const contacts_types = ['phone','mobile', 'mail', 'web', 'fax']
-        const social = formData.contacts.filter(item=>social_types.includes(item.type))
         const contacts = formData.contacts.filter(item=>contacts_types.includes(item.type))
-        updateCustomer(props.customer._id, {social, contacts}).then(response=>{
+        updateCustomer(props.customer._id, {contacts}).then(response=>{
             emit('refresh')
            emit('update:isDialogVisible')
         }).catch(err=>{
@@ -124,10 +114,8 @@ ClientOnly
     watch(() => props.isDialogVisible, () => {
         if(props.customer){
             const contacts = JSON.parse(JSON.stringify(props.customer.contacts))
-            const social =  JSON.parse(JSON.stringify(props.customer.social))
           formData.contacts = [
                 ...contacts,
-                ...social
             ]
         }else{
             formData.contacts = [

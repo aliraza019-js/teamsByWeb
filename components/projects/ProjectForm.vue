@@ -96,7 +96,7 @@ watch(() => props.isDialogVisible, (newValue) => {
 
 onMounted(() => {
     console.log('customers abc', customers)
-    getCustomers()
+    getCustomers(20,0)
 })
 
 </script>

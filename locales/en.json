@@ -83,14 +83,27 @@
   },
   "projects": {
     "projects": "Projects",
-    "clients": "Clients",
+    "clientsName": "Clients",
     "addClient": "Add Customer",
     "addComment": "Add Comment",
     "selectClient": "Select Client",
     "selectCustomer": "Select Customer",
     "aboutProject": "About Project",
     "addProject": "Add Project",
-    "projectName": "Project Name"
+    "projectName": "Project Name",
+    "addLocation": "Add Location",
+    "clients": {
+      "about": "About Client",
+      "contactInfo": "Contact Information",
+      "location": "Location",
+      "Social": "Social"
+    },
+    "location": {
+      "address": "Address",
+      "street": "Street",
+      "zip": "Zip Code",
+      "ChooseOnMap": "Choose on map"
+    }
   },
   "projectdetails": {
     "general": "General",

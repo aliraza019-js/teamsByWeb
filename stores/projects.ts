@@ -13,6 +13,18 @@ export const useProjectStore = defineStore('project', () => {
 
     const loadingProject = computed(() => loadingProjectState)
 
+    const getTeamsByClientId = (clientId: string) => {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const teams = await myFetch(`/v2/teams?cid[]=${clientId}`, { method: "GET" });
+                console.log('teams.data', teams)
+                resolve(teams);
+            } catch (error) {
+                reject(error);
+            }
+        });
+    };
+
     const getProjects = (limit: any, skip: any) => {
         return new Promise(async (resolve, reject) => {
             loadingProjectState.value = true
@@ -44,6 +56,17 @@ export const useProjectStore = defineStore('project', () => {
     const getCommentsByProjectId = (projectId: any) => {
         return new Promise(async (resolve, reject) => {
             myFetch(`/v2/comments?pid=${projectId}&limit=99`, { method: "GET", })
+                .then(res => {
+                    resolve(res.data)
+                }).catch(() => {
+                    reject()
+                })
+        })
+    }
+
+    const getProjectsByOrgId = (orgId: any) => {
+        return new Promise(async (resolve, reject) => {
+            myFetch(`/v2/projects?oid[]=${orgId}`, { method: "GET", })
                 .then(res => {
                     resolve(res.data)
                 }).catch(() => {
@@ -90,9 +113,15 @@ export const useProjectStore = defineStore('project', () => {
         })
     }
 
-
-
-
-
-    return { addProject, getProjects, loadingProject, projects, getProjectById, updateProjectDescription, getCommentsByProjectId, addComment }
+    return { 
+        addProject, 
+        getProjects, 
+        loadingProject, 
+        projects, 
+        getProjectById, 
+        updateProjectDescription, 
+        getCommentsByProjectId, 
+        addComment, 
+        getTeamsByClientId, 
+        getProjectsByOrgId }
 })
