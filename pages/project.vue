@@ -48,7 +48,7 @@ const tabRoutes = ref(
       link: '/project/projects'
     },
     {
-      label: 'projects.clients',
+      label: 'projects.clientsName',
       link: '/project/orgs'
     }
   ]
