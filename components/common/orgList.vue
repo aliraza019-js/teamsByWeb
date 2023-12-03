@@ -3,7 +3,7 @@ v-card(height="65px" rounded="lg" :to="localePath(`/d/project/org/${org._id}/gen
   div(class="d-flex w-100 justify-space-between align-center px-4 h-100")
     div(class="d-flex align-start flex-column") 
       div(class="d-flex")
-        p(class="place") {{org.location && org.location.address ? getAddressDetails(org.location.address).city + ' | ' + getAddressDetails(org.location.address).country : 'Member'}}
+        p(class="place") {{org.location && org.location.address ? getAddressDetails(org.location.address).city + ' | ' + getAddressDetails(org.location.address).country : ''}}
       p(class="orgName") {{org.name}}
     div(class="border rounded-lg pa-2")
       v-img(width="50px" :src="org && org.profileImage ? org.profileImage.url : imageIcon")

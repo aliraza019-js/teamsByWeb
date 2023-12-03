@@ -2,11 +2,11 @@
 v-container(class="pa-0")
   v-row(style="height: 500px" class="overflow-auto scroll-container")
     v-col(cols="12" v-for="item , index in projects" :key="index")
-      CommonCard
+      CommonCard(height="250px")
         template(#title)
           div(class="d-flex flex-column")
+            p(class="text-secondary") {{item.org && item.org.name}}
             span(class="text-body-2") {{item.name}}
-            //- p(class="text-secondary") {{item.projectTitle}}
           div(v-if="item.status" class="d-flex px-2 rounded-lg align-center justify-space-around project-status")
             v-img(class="image_width" :src="item.status == 'done' ? done : timer")
             div(class="d-flex text-capitalize text-start text-body-2") {{item.status}}

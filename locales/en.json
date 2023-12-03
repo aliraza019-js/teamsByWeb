@@ -99,10 +99,13 @@
       "Social": "Social"
     },
     "location": {
-      "address": "Address",
-      "street": "Street",
+      "address": "Street Address",
+      "street": "Street No",
+      "city": "City",
       "zip": "Zip Code",
-      "ChooseOnMap": "Choose on map"
+      "ChooseOnMap": "Choose on map",
+      "country": "country",
+      "currentLocation": "Use your current Location"
     }
   },
   "projectdetails": {
