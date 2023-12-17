@@ -1,7 +1,7 @@
 <template lang="pug">
 v-row(class="overflow-auto h-100")
-      v-col(cols="12" class="d-flex justify-end pb-0")
-        v-btn(variant="text" prepend-icon="mdi-plus" density="compact" @click="dialogSkills = true") {{$t('skills.add')}}
+      //- v-col(cols="12" class="d-flex justify-end pb-0")
+      //-   v-btn(variant="text" prepend-icon="mdi-plus" density="compact" @click="dialogSkills = true") {{$t('skills.add')}}
       v-col(cols="12")
         v-row
           v-col(cols="12") {{ loadingUserState }}
@@ -10,11 +10,11 @@ v-row(class="overflow-auto h-100")
             CommonCard
               template(#title)
                 span.text-secondary.d-flex.align-center {{item.title}}
-                div(class="d-flex")
-                  v-btn(icon size="small" variant="plain" color="primaryTextPale" @click="editSkill(index)" )
-                    v-icon(icon="mdi-pencil" color="primaryTextPale" )
-                  v-btn(icon size="small" variant="plain" @click="deleteAction(index)" )
-                    v-icon(icon="mdi-delete" color="red" )
+                //- div(class="d-flex")
+                //-   v-btn(icon size="small" variant="plain" color="primaryTextPale" @click="editSkill(index)" )
+                //-     v-icon(icon="mdi-pencil" color="primaryTextPale" )
+                //-   v-btn(icon size="small" variant="plain" @click="deleteAction(index)" )
+                //-     v-icon(icon="mdi-delete" color="red" )
               template(#body)
                 v-container
                   v-row

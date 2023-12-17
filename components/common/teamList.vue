@@ -19,10 +19,8 @@ console.log('team', props.team)
 <style lang="scss" scoped> 
     
   .teamPic{
-    width: 90%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center center;
+    width: 60px;
+    height: 60px;
   }
     
   .imgCol{

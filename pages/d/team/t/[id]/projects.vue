@@ -27,7 +27,7 @@ v-row(class="overflow-auto h-100")
                 v-col(cols="12" class="d-flex justify-space-between")
                   div(class="d-flex align-center")
                     v-icon(color="primaryTextPale" size="large" icon="mdi-message-reply-text")
-                    p(class="font-weight-bold ml-2") {{ item.commentsCount? item.commentsCount: '0'  }} comments
+                    p(class="font-weight-bold ml-2 cursor-pointer" @click="navigateToProjectComments(item._id)") {{ item.commentsCount? item.commentsCount: '0'  }} comments
                   div(class="d-flex align-center")
                     v-icon(color="primaryTextPale" size="large" :icon="item.userLiked ? 'mdi-thumb-up':'mdi-thumb-up-outline'")
                     p(class="font-weight-bold ml-2") {{ item.likesCount ? item.likesCount+'K': '0K'}} likes
@@ -37,11 +37,22 @@ v-row(class="overflow-auto h-100")
 import { useTeamsStore } from '~/stores/teams'
 const response = ref({});
 const route = useRoute()
+const localePath = useLocalePath()
+const canLoadCommentsComponent = ref(false)
 const { getProjectsByTeamId } = useTeamsStore()
 onMounted(async () => {
   response.value = await getProjectsByTeamId(route.params.id)
   console.log(response.value)
 })
+
+const navigateToProjectComments = (id) => {
+  const router = useRouter();
+  console.log('id navigateToProjectComments', id)
+  const projectId = id;
+  const path = `/d/project/project/${projectId}/comment`;
+
+  router.replace({ path });
+};
 definePageMeta({
   activeRoute: 'team'
 })
@@ -49,4 +60,8 @@ definePageMeta({
 </script>
       
       
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.cursor-pointer {
+  cursor: pointer !important;
+}
+</style>
