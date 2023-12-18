@@ -32,7 +32,7 @@ const closeDialog = () => {
 
 const fetchprojectComments = async () => {
     comments.value = await getCommentsByProjectId(route.params.id)
-    console.log('comments', comments.value)
+    // console.log('comments', comments.value)
 }
 
 onMounted(async () => {

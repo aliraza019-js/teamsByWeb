@@ -16,15 +16,15 @@ const localePath = useLocalePath();
 const addressToShow = ref('')
 
 function getAddressDetails(address) {
-  console.log('address')
+  // console.log('address')
   // Your implementation to extract city and country from the address
   // This is a simple example, and you might need to adjust it based on the structure of your addresses
   const addressParts = address.split(',').map(part => part.trim());
-  console.log('addressParts', addressParts)
+  // console.log('addressParts', addressParts)
   const city = addressParts[0] ? addressParts[0] : addressParts[1];
   const country = addressParts[addressParts.length - 1];
-  console.log('city', city)
-  console.log('country', country)
+  // console.log('city', city)
+  // console.log('country', country)
 
   return { city, country };
 }

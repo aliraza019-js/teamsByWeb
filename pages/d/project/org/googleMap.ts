@@ -7,8 +7,8 @@ export function useGoogleMap(apiKey: string, placeData: any) {
     onMounted(() => {
         // Load the Google Maps API script
         const script = document.createElement('script');
-        console.log('apiKey', apiKey);
-        console.log('placeData', placeData);
+        // console.log('apiKey', apiKey);
+        // console.log('placeData', placeData);
 
         script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
         script.async = true;

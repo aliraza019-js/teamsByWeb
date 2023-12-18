@@ -21,10 +21,10 @@ const props = defineProps({
 })
 
 const emit = defineEmits(
-  ['update:isDialogVisible' , 'refresh']
+  ['update:isDialogVisible', 'refresh']
 )
 
-const {updateCustomer} = useCustomerStore()
+const { updateCustomer } = useCustomerStore()
 
 // data
 const { t } = useI18n()
@@ -37,7 +37,7 @@ const disabled = ref(false)
 
 
 watchEffect(() => {
-  if(props.isDialogVisible) {
+  if (props.isDialogVisible) {
     formData.desc = props.customer?.desc
   }
 })
@@ -56,15 +56,24 @@ const validate = async () => {
   if (valid) return updateUser()
 }
 const updateUser = () => {
+  loading.value = true;
+  disabled.value = true;
 
-  loading.value = true
-  disabled.value = true
-  updateCustomer(props.customer._id, formData).then(() => {
-    emit('refresh')
-  }).finally(() => {
-    loading.value = false
-    disabled.value = false
-  })
+  updateCustomer(props.customer._id, formData)
+    .then((res) => {
+      // console.log('API call successful. Response:', res);
+      if (res.status == 400) {
+        emit('show-snack-bar', res)
+      }
+      emit('refresh');
+    })
+    .catch((error) => {
+      console.error('Error updating customer:', error);
+    })
+    .finally(() => {
+      loading.value = false;
+      disabled.value = false;
+    });
 };
 </script>
 

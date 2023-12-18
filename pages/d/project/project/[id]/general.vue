@@ -113,7 +113,7 @@ watch(selectedStatus, (newStatus) => {
 })
 
 const updateStatus = () => {
-  console.log('Updating status...', selectedStatus.value);
+  // console.log('Updating status...', selectedStatus.value);
 
   loading.value = true
   disabled.value = true

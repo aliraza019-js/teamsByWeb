@@ -95,7 +95,10 @@ const submitData = () => {
             isVerified: true,
         }
     }).then(response => {
-        console.log('updatedData', response.address.geometry)
+        // console.log('updatedData', response.address.geometry)
+        if (response.status == 400) {
+            emit('show-snack-bar', response)
+        }
         if (response.address.geometry) {
             emit('refresh', response.address.geometry)
         }
@@ -114,7 +117,7 @@ const submitData = () => {
 
 function handlePanelToggle() {
     isPanelOpen.value = !isPanelOpen.value
-    console.log(' handlePanelToggle(value) ', isPanelOpen.value)
+    // console.log(' handlePanelToggle(value) ', isPanelOpen.value)
 }
 
 onMounted(() => {
@@ -127,7 +130,7 @@ onMounted(() => {
                     lng: position.coords.longitude,
                 }
                 currentLocation.value = { location: location }
-                console.log('currentLocation', currentLocation.value)
+                // console.log('currentLocation', currentLocation.value)
 
             },
             (error) => {

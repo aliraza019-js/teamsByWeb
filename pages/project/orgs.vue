@@ -60,7 +60,7 @@ const getButtonText = computed(() => {
 });
 
 function handleScroll() {
-  console.log('Handling scroll...');
+  // console.log('Handling scroll...');
   const scrollPosition = window.scrollY || document.documentElement.scrollTop;
 
   const triggerHeight = 100;

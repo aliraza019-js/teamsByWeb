@@ -67,7 +67,7 @@ const projects = ref(
 onMounted(async () => {
   const projectsData = await getProjectsByOrgId(route.params.id);
   projects.value = projectsData
-  console.log('projects projects', projectsData)
+  // console.log('projects projects', projectsData)
 })
 </script>
 <style lang="scss">

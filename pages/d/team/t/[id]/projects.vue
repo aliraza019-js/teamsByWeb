@@ -42,12 +42,12 @@ const canLoadCommentsComponent = ref(false)
 const { getProjectsByTeamId } = useTeamsStore()
 onMounted(async () => {
   response.value = await getProjectsByTeamId(route.params.id)
-  console.log(response.value)
+  // console.log(response.value)
 })
 
 const navigateToProjectComments = (id) => {
   const router = useRouter();
-  console.log('id navigateToProjectComments', id)
+  // console.log('id navigateToProjectComments', id)
   const projectId = id;
   const path = `/d/project/project/${projectId}/comment`;
 

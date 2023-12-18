@@ -36,7 +36,7 @@ v-layout
     
 <script setup>
 const props = defineProps(['skills'])
-console.log('projects', props.project)
+// console.log('projects', props.project)
 
 const skills = [
   { name: 'Agile1', title: 'Agile Coach', rating: 5 },

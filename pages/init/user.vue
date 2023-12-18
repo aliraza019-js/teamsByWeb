@@ -85,7 +85,7 @@ const transfer = async () => {
     }, 2000)
   }
   catch (err) {
-    console.log('error pushing to user', err)
+    // console.log('error pushing to user', err)
     loading.value = false
     msgType.value = 'error'
     msgText.value = err.message

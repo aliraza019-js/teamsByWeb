@@ -101,6 +101,9 @@ const submitData = () => {
     const social_types = ['linkedin', 'xing', 'facebook', 'instagram', 'tiktok', 'twitter', 'other',]
     const social = formData.social.filter(item => social_types.includes(item.type))
     updateCustomer(props.customer._id, { social }).then(response => {
+        if (response.status == 400) {
+            emit('show-snack-bar', response)
+        }
         emit('refresh')
         emit('update:isDialogVisible')
     }).catch(err => {

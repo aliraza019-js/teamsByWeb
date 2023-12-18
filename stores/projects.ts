@@ -17,7 +17,7 @@ export const useProjectStore = defineStore('project', () => {
         return new Promise(async (resolve, reject) => {
             try {
                 const teams = await myFetch(`/v2/teams?cid[]=${clientId}`, { method: "GET" });
-                console.log('teams.data', teams)
+                // console.log('teams.data', teams)
                 resolve(teams);
             } catch (error) {
                 reject(error);
@@ -30,7 +30,7 @@ export const useProjectStore = defineStore('project', () => {
             loadingProjectState.value = true
             myFetch(`/v2/projects?limit=${limit}&skip=${skip}`, { method: "GET", })
                 .then(res => {
-                    console.log(res)
+                    // console.log(res)
                     projectState.value = res
                     resolve(res)
                 }).catch(() => {
@@ -81,11 +81,11 @@ export const useProjectStore = defineStore('project', () => {
 
             myFetch(`/v2/projects?oid=${clientId}`, { method: "POST", body: data })
                 .then((res) => {
-                    console.log('res.data._id', res)
+                    // console.log('res.data._id', res)
                     // getProjects(10)
                     resolve(res)
                 }).catch((err) => {
-                    console.log('err', err)
+                    // console.log('err', err)
                     reject()
                 })
         })

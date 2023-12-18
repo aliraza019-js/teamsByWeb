@@ -46,12 +46,12 @@ const items = ref(
 
 onMounted(async () => {
   try {
-    console.log('customer customer customer', props.customer[0].clientId)
+    // console.log('customer customer customer', props.customer[0].clientId)
     const teamsData = await getTeamsByClientId(props.customer[0].clientId);
     teams.value = teamsData.data
-    console.log('teams.value', teams.value)
+    // console.log('teams.value', teams.value)
   } catch (error) {
-    console.error('Error fetching teams:', error);
+    // console.error('Error fetching teams:', error);
   }
 })
 

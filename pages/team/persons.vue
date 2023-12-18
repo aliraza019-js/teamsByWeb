@@ -57,7 +57,7 @@ const getPdf = async () => {
     window.open(fileURL)
   }
   catch (err) {
-    console.log('err', err)
+    // console.log('err', err)
   }
 }
 </script>

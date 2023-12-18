@@ -130,14 +130,14 @@ const nextStep = async () => {
     const { valid } = await formName.value.validate()
     if (valid) { step.value++ }
   } else if (step.value == 2) {
-    console.log('triggered second step')
+    // console.log('triggered second step')
     const { valid } = await formTeams.value.validate()
     if (valid) { step.value++ }
   } else if (step.value == 3) {
     // ToDo: handling skills template
     initTenant()
   } else {
-    console.log('should not appear')
+    // console.log('should not appear')
   }
 }
 

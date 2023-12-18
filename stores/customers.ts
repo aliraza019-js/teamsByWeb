@@ -18,7 +18,7 @@ export const useCustomerStore = defineStore('customer', () => {
             loadingCustomerState.value = true
             myFetch(`/v2/orgs?limit=${limit}&skip=${skip}`, { method: "GET", })
                 .then(res => {
-                    console.log(res)
+                    // console.log(res)
                     customerState.value = res
                     resolve(res)
                 }).catch(() => {

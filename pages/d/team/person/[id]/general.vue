@@ -40,7 +40,7 @@ const { getColleaguesById } = useColleaguesStore()
 
 onMounted(async () => {
   response.value = await getColleaguesById(route.params.id)
-  console.log('teams.value in colleagues', teams.value)
+  // console.log('teams.value in colleagues', teams.value)
   placeData.value = {
     location: {
       lat: parseInt(response.value.location.latitude),

@@ -13,7 +13,7 @@ v-card(class="d-flex rounded-l" width="100%" height="100%" elevation="3" style="
 <script setup>
 const props = defineProps(['team'])
 const localePath = useLocalePath();
-console.log('team', props.team)
+// console.log('team', props.team)
 </script>
     
 <style lang="scss" scoped> 

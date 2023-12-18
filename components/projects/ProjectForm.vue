@@ -61,8 +61,8 @@ const submitData = () => {
     loading.value = true
     disabled.value = true
     addProject(clientId.value, formData).then(response => {
-        console.log('response addProject', response)
-        console.log('response status', response.status)
+        // console.log('response addProject', response)
+        // console.log('response status', response.status)
         if (response.status === 400) {
             showSnackbar.value = true
             snackbarMessage.value = response.message
@@ -80,7 +80,7 @@ const submitData = () => {
         formData.name = ''
         clientId.value = null
     }).catch(() => {
-        console.log('err', err)
+        // console.log('err', err)
     })
 
 };
@@ -95,7 +95,7 @@ watch(() => props.isDialogVisible, (newValue) => {
 
 
 onMounted(() => {
-    console.log('customers abc', customers)
+    // console.log('customers abc', customers)
     getCustomers(20,0)
 })
 

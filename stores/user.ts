@@ -54,7 +54,7 @@ export const useUserStore = defineStore('user', () => {
         try {
             loadingUserState.value = true
             const res: any = await myFetch('/users', { method: 'GET', server: false })
-            console.log('got the user', res)
+            // console.log('got the user', res)
             loadingUserState.value = false
 
             // handling case, when no family name is set

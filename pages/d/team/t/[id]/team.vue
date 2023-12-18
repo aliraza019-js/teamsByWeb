@@ -22,7 +22,7 @@ const route = useRoute()
 const { getTeamByTeamId } = useTeamsStore()
 onMounted(async () => {
   response.value = await getTeamByTeamId(route.params.id)
-  console.log(response.value)
+  // console.log(response.value)
 })
 // page
 definePageMeta({
