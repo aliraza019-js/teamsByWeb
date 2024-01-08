@@ -26,5 +26,19 @@ export const useMasterLangsStore = defineStore('langs', () => {
     }
   }
 
-  return { langs, loadingLangs, getLangs };
+  // Method to get international title based on locale
+  const getIntTitle = (langCode: string, locale: string) => {
+    console.log('get intTitel', langCode, locale);
+    if (langsLoadedState.value != true && loadingLangsState.value != true) getLangs();
+    // Find the lang by code
+    const lang = langsState.value.find((lang: any) => lang.code === langCode);
+    console.log('found lang', lang);
+    if (!lang) return null; // or a default value
+
+    // Find the internationalized title
+    const intTitleObj = lang.intTitle.find((item: any) => item[locale]);
+    return intTitleObj ? intTitleObj[locale] : lang.title;
+  };
+
+  return { langs, loadingLangs, getLangs, getIntTitle };
 })

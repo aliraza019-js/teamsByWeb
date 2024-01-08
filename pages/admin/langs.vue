@@ -1,6 +1,6 @@
 <template lang="pug">
 v-card(width="100%" flat :loading="loadingLangs")
-  v-toolbar(title="Supported Languages" flat color="transparent")
+  v-toolbar(:title="$t('admin.supportedLangs')" flat color="transparent")
     .underline
     template(v-slot:prepend)
       v-btn(icon :to="localePath('/admin')")
@@ -9,7 +9,7 @@ v-card(width="100%" flat :loading="loadingLangs")
   v-card-text
     v-list
       v-list-item(v-for="(item, index) in langs" :kex="index")
-        v-list-item-title {{ item.title }}
+        v-list-item-title {{ getIntTitle(item.code, $i18n.locale ) }}
         template(v-slot:append)
           v-btn(icon flat)
             v-icon mdi-pencil
@@ -27,7 +27,7 @@ definePageMeta({
 })
 
 // data
-const { langs, loadingLangs, getLangs } = useMasterLangsStore();
+const { langs, loadingLangs, getLangs, getIntTitle } = useMasterLangsStore();
 const localePath = useLocalePath();
 
 // methods

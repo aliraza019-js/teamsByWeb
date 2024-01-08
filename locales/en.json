@@ -125,7 +125,10 @@
     "validUntil": "Valid until",
     "content": "Content",
     "newTerm": "New Version",
-    "editTerm": "Edit Version"
+    "editTerm": "Edit Version",
+    "supportedLangs": "Supported Languages",
+    "industries": "Industries",
+    "skills": "Skills"
   },
   "personAbout": {
     "about": "About",

@@ -18,14 +18,16 @@ v-card(width="100%" flat :loading="loadingSkills")
       v-card-text
         v-list
           v-list-item
-            v-list-item-subtitle industries
-            v-list-item-title 
-              span(v-for="(ind, indexInd) in cat.industries" :key="indexInd")  {{ getIndustryIntTitle(ind, $i18n.locale) }}
+            v-list-item-subtitle {{ $t('admin.industries') }}
+            v-list-item-title(v-for="(ind, indexInd) in cat.industries" :key="indexInd") {{ getIndustryIntTitle(ind, $i18n.locale) }}
 
           v-expansion-panels(color="transparent")
             v-expansion-panel(color="transparent" elevation="0")
-              v-expansion-panel-title skills
-              v-expansion-panel-text {{ getIntTitle(cat, $i18n.locale) }}
+              v-expansion-panel-title {{ $t('admin.skills') }}
+              v-expansion-panel-text
+                v-list
+                  v-list-item(v-for="(skill, indexS) in getSkillsByCategoryId(cat._id)") {{ getIntTitleSkill(skill, $i18n.locale) }}
+              
 
 
 </template>
@@ -42,7 +44,7 @@ definePageMeta({
 
 // data
 const localePath = useLocalePath()
-const { skills, skillGroups, skillCats, loadingSkills, getSkills, getSkillCats, getIntTitle } = useMasterSkillsStore();
+const { skills, skillGroups, skillCats, loadingSkills, getSkills, getSkillCats, getIntTitle, getSkillsByCategoryId, getIntTitleSkill } = useMasterSkillsStore();
 const { getIntTitle: getIndustryIntTitle } = useMasterIndustriesStore();
 
 // grouping the skills

@@ -94,7 +94,10 @@
     "validUntil": "Gültig bis",
     "content": "Inhalt",
     "newTerm": "Neue Version",
-    "editTerm": "Version editieren"
+    "editTerm": "Version editieren",
+    "supportedLangs": "Unterstützte Sprachen",
+    "industries": "Branchen",
+    "skills": "Skills"
   },
   "personAbout": {
     "about": "Über",

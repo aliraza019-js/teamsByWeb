@@ -1,6 +1,6 @@
 <template lang="pug">
 v-card(width="100%" flat :loading="loadingIndustries")
-  v-toolbar(title="Industries" flat color="transparent")
+  v-toolbar(:title="$t('admin.industries')" flat color="transparent")
     .underline
     template(v-slot:prepend)
       v-btn(icon :to="localePath('/admin')")
@@ -9,7 +9,7 @@ v-card(width="100%" flat :loading="loadingIndustries")
   v-card-text
     v-card.ma-5(v-for="(item, index) in industries" :key="index" variant="tonal")
       v-toolbar
-        v-toolbar-title {{ item.title }}
+        v-toolbar-title {{ getIntTitle(item.code, $i18n.locale) }}
         v-spacer
         v-btn(icon)
           v-icon mdi-pencil
@@ -42,7 +42,7 @@ definePageMeta({
 })
 
 // data
-const { industries, loadingIndustries, getIndustries } = useMasterIndustriesStore();
+const { industries, loadingIndustries, getIndustries, getIntTitle } = useMasterIndustriesStore();
 const localePath = useLocalePath();
 
 const getKeyValues = (obj) => {

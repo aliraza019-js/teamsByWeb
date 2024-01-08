@@ -46,11 +46,19 @@ export const useMasterSkillsStore = defineStore('skills', () => {
     }
   }
 
-  const getIntTitle = (skillCat, locale) => {
-    const intTitleObj = skillCat.intTitle.find(item => item[locale]);
+  const getIntTitle = (skillCat: any, locale: string) => {
+    const intTitleObj = skillCat.intTitle.find((item: any) => item[locale]);
     return intTitleObj ? intTitleObj[locale] : skillCat.title;
   };
 
+  const getSkillsByCategoryId = (categoryId: string) => {
+    return skillsState.value.filter((skill: any) => skill.categories.includes(categoryId));
+  };
+
+  const getIntTitleSkill = (skill: any, locale: string) => {
+    const intTitleObj = skill.intTitle.find((item: any) => item[locale]);
+    return intTitleObj ? intTitleObj[locale] : skill.title;
+  };
   
   // grouping the skills
   const skillGroups = computed(() => {
@@ -66,5 +74,5 @@ export const useMasterSkillsStore = defineStore('skills', () => {
     return grouped;
   })
 
-  return { skills, skillGroups, skillCats, loadingSkills, getSkills, getSkillCats, getIntTitle };
+  return { skills, skillGroups, skillCats, loadingSkills, getSkills, getSkillCats, getIntTitle, getSkillsByCategoryId, getIntTitleSkill };
 })
