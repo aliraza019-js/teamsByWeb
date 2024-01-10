@@ -18,7 +18,7 @@ const localePath = useLocalePath();
 const { user } = useUserStore()
 const router = useRouter();
 
-const personImage = ref('https://ik.imagekit.io/teamstage/image_picker7844532559891803069_gd9EOekZJx.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1671194068429')
+const personImage = ref('https://img.team-stage.com/placeholder/new/avatar_diverse_L0mtzuk4-.png')
 
 </script>
   

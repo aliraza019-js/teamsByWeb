@@ -1,7 +1,9 @@
 <template lang="pug">
 v-container
   v-row
-    v-col(cols="12" sm=4 v-for="(team, index) in response" :key="index")
+    v-col(v-if="!response?.length" class="text-center" cols="12")
+      v-img(width="75%" class="mx-auto my-10" style="opacity: 0.5; border-radius: 10px;" src="https://img.team-stage.com/placeholder/new/team1_oVhR_PZdI.webp")
+    v-col(v-else cols="12" sm=4 v-for="(team, index) in response" :key="index")
       v-card(class="d-flex flex-row rounded-l" width="100%" height="100%" elevation="3" style="align-items:center;" :to="localePath(`${user._id == team._id ? `/account/general`: `/d/team/person/${team._id}/general` }`)" )  
         v-col(class="imgCol")
           v-avatar(size=56)
