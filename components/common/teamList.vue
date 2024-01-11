@@ -2,7 +2,7 @@
 v-card(class="d-flex rounded-l" width="100%" height="100%" elevation="3" style="align-items:center;" :to="localePath(`/d/team/t/${team._id}/about`)")
   v-col(class="imgCol")   
     img(v-if="team.profileImage && team.profileImage.url" :src="team.profileImage.url" class="teamPic")
-    img(v-else src="‘https://img.team-stage.com/placeholder/new/team1_oVhR_PZdI.webp" class="teamPic")
+    img(v-else src="https://img.team-stage.com/placeholder/new/team1_oVhR_PZdI.webp" class="teamPic")
   v-col()
     v-row() 
       body-2 {{ team.title }}
