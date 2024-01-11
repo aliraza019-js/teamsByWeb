@@ -7,7 +7,7 @@ CommonCard
 
       v-row(class="mt-5 mb-5")
 
-        v-col(cols="12" sm="4" v-for="(t, index) in 3" key="index")
+        v-col(cols="12" sm="4" v-for="(team, index) in teams" key="index")
           v-card(outlined max-width="400")
             v-row
               v-img(src="/app/img/team_pic_default.png").d-sm-none.d-md-flex.d-lg-none.d-xl-flex
@@ -25,7 +25,6 @@ const props = defineProps(['teams']);
 
 
 <style lang="scss" scoped>
-
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
 .blueH {
@@ -54,12 +53,11 @@ const props = defineProps(['teams']);
   opacity: 1;
 }
 
-.text{
+.text {
   text-align: left;
   font: normal normal normal 12px/16px Nunito;
   letter-spacing: 0px;
   color: #1C1C1C;
   opacity: 1;
 }
-
 </style>

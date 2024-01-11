@@ -1,12 +1,12 @@
 <template lang="pug">
-CommonCardContainer(:title="`${response.givenName} ${response.familyName}`" :tabRoutes="tabRoutes")
+CommonCardContainer(:title="response && response.givenName" :tabRoutes="tabRoutes")
   template(#prependTitleAtributes)
     v-btn(icon class="ml-0" to="/team/persons")
       v-icon mdi-arrow-left
-  template(#titleAtributes)
-    v-avatar(size="70" class="user-profile position-absolute")
-      v-img(v-if="response.profileImage && response.profileImage.url" :src="response.profileImage.url")
-      v-img(v-else src="response.profileImage.url")
+  //- template(#titleAtributes)
+  //-   v-avatar(size="70" class="user-profile position-absolute")
+  //-     v-img(v-if="response.profileImage && response.profileImage.url" :src="response.profileImage.url")
+  //-     v-img(v-else src="response.profileImage.url")
 
   v-container
     NuxtPage

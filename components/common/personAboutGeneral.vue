@@ -1,11 +1,12 @@
 <template lang="pug">
 CommonCard
+  //- + " " + about.familyName
   template(#title)
-    span(class="text-secondary d-flex align-center") {{$t('personAbout.about') + " " + about.familyName}}
+    span(class="text-secondary d-flex align-center") {{$t('personAbout.about')}}
   template(#body)
     p(class="px-0 pt-5 font-weight-medium text-subtitle-1") {{$t('personAbout.title')}}
     p(class="text-h6 font-weight-bold") {{about.title}}
-    p(class="description pt-3 text-body-1 font-weight-medium text-green") {{$t('personAbout.description')}}
+    p(class="description pt-3 text-body-1 font-weight-medium text-green mt-4") {{$t('personAbout.description')}}
     p(class="pt-2 text-justify") {{ about.desc }}
 </template>
 

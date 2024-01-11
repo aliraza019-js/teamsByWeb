@@ -4,21 +4,21 @@ v-container
     v-col(cols="12" sm=4 v-for="(colleague, index) in colleagues" :key="index")
       CommonPersonList(:person="colleague")
 
-  v-row.my-5
-    v-divider
-    v-btn.mt-5(color="primary" @click="getPdf()")
-      v-icon.mr-2 mdi-file-pdf
-      span get pdf
+  //- v-row.my-5
+  //-   v-divider
+  //-   v-btn.mt-5(color="primary" @click="getPdf()")
+  //-     v-icon.mr-2 mdi-file-pdf
+  //-     span get pdf
 </template>
   
 <script setup>
-import {useColleaguesStore} from '~/stores/colleages'
+import { useColleaguesStore } from '~/stores/colleages'
 // page
 definePageMeta({
   activeRoute: 'colleages'
 })
 
-const {getColleagues, colleagues} = useColleaguesStore()
+const { getColleagues, colleagues } = useColleaguesStore()
 
 
 onMounted(async () => {
@@ -57,7 +57,7 @@ const getPdf = async () => {
     window.open(fileURL)
   }
   catch (err) {
-    console.log('err', err)
+    // console.log('err', err)
   }
 }
 </script>

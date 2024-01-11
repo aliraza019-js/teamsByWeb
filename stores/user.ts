@@ -1,4 +1,4 @@
-import {defineStore} from 'pinia';
+import { defineStore } from 'pinia';
 
 export const useUserStore = defineStore('user', () => {
 
@@ -15,7 +15,8 @@ export const useUserStore = defineStore('user', () => {
         },
         contacts: [],
         social: [],
-        skills: []
+        skills: [],
+        _id: '',
     }
     const userState = reactive(defaultState)
 
@@ -34,10 +35,10 @@ export const useUserStore = defineStore('user', () => {
     const updateUserInfo = (data: any) => {
         return new Promise(async (resolve, reject) => {
 
-            myFetch('/users', {method: "PATCH", body: data})
+            myFetch('/users', { method: "PATCH", body: data })
                 .then(res => {
                     resolve(res)
-                }).catch(err=>{
+                }).catch(err => {
                     reject(err)
                 })
         })
@@ -52,8 +53,8 @@ export const useUserStore = defineStore('user', () => {
 
         try {
             loadingUserState.value = true
-            const res: any = await myFetch('/users', {method: 'GET', server: false})
-            console.log('got the user', res)
+            const res: any = await myFetch('/users', { method: 'GET', server: false })
+            // console.log('got the user', res)
             loadingUserState.value = false
 
             // handling case, when no family name is set
@@ -76,6 +77,7 @@ export const useUserStore = defineStore('user', () => {
             }
             userState.title = res.title || ''
             userState.desc = res.desc || ''
+            userState._id = res._id || ''
             userState.contacts = res.contacts || []
             userState.social = res.social || []
             userState.skills = res.skills || []
@@ -84,11 +86,11 @@ export const useUserStore = defineStore('user', () => {
             // if the users registers, there is no user in the ts database, therefor the server responses with 404
             // by calling /auth/register the user is initially created in the ts db
             if (err.status == 404) {
-                await myFetch('/auth/register', {method: 'GET', server: false})
+                await myFetch('/auth/register', { method: 'GET', server: false })
                 return navigateTo(localePath('/init/user'))
             }
         }
     }
 
-    return {user, loadingUser, setLoadingUser, updateUser, updateUserInfo}
+    return { user, loadingUser, setLoadingUser, updateUser, updateUserInfo }
 })

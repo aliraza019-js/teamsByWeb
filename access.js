@@ -20,7 +20,7 @@ async function getToken() {
     // let res = await signInWithEmailAndPassword(auth, 'spaus@team-stage.com', 'sep1sep@')
     let res = await signInWithEmailAndPassword(auth, 'spaus@ptnc.de', 'sep1sep@')
     console.log(res.user.accessToken)
-    console.log(auth.currentUser.uid)
+    // console.log(auth.currentUser.uid)
   } catch (err) {
     console.error(err)
   }

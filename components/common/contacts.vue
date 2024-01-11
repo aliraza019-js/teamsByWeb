@@ -157,7 +157,7 @@ const openEditDialog = (index) => {
 }
 
 const confirmDeleteItem = (index) => {
-  console.log('del item with index', index)
+  // console.log('del item with index', index)
   delIndex.value = index
   deleteDialog.value = true
 }

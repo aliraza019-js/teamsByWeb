@@ -18,7 +18,7 @@ export const useUserTeamStore = defineStore('user-teams', () => {
             loadingUserState.value = true
             myFetch('/users-teams', { method: "GET", })
                 .then(res => {
-                    console.log(res)
+                    // console.log(res)
                     teamState.value = res
                     resolve(res)
                 }).catch(() => {

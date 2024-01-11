@@ -51,7 +51,7 @@ onMounted(() => {
 
 
 const addTeam = (clientId)=>{
-  console.log('clientId', clientId)
+  // console.log('clientId', clientId)
   selectedClientId.value = clientId
   dialogNewTeam.value = true
 

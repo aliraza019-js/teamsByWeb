@@ -38,6 +38,6 @@ const { signOut } = useAuthStore()
 //methods
 const toggleTheme = () => {
   theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark'
-  console.log('toggled theme')
+  // console.log('toggled theme')
 }
 </script>

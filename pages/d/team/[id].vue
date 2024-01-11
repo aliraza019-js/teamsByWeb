@@ -14,7 +14,7 @@ definePageMeta({
   activeRoute: 'team'
 })
 const route = useRoute()
-console.log(route.params.id);
+// console.log(route.params.id);
 </script>
 
 <style lang="scss" scoped>

@@ -1,5 +1,5 @@
 <template lang="pug">
-v-snackbar(:color="color" :timeout="timeout" v-model="snackbar" @input="onSnackbarClose") {{ message }}
+v-snackbar(class="text-capitalize" :color="color" :timeout="timeout" v-model="snackbar" @input="onSnackbarClose") {{ message }}
 </template>
   
 <script lang="ts">
@@ -13,12 +13,12 @@ export default defineComponent({
     data() {
         return {
             snackbar: true,
-            timeout: 1000, // Set your preferred timeout
+            timeout: 5000, // Set your preferred timeout
             color: this.success ? 'success' : 'error',
         };
     },
     mounted() {
-        console.log('message', this.message)
+        // console.log('message', this.message)
     },
     methods: {
         onSnackbarClose() {

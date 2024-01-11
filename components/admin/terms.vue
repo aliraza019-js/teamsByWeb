@@ -70,7 +70,7 @@ const picked = ref(new Date())
 
 // methods
 const getTerms = async () => {
-  console.log('try to get terms')
+  // console.log('try to get terms')
 }
 
 const editTerm = () => {

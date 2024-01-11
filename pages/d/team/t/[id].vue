@@ -24,7 +24,7 @@ CommonCardContainer(:title="response.name" :tabRoutes="tabRoutes" )
       activeRoute: 't'
     })
 
-    console.log(route.params.id);
+    // console.log(route.params.id);
 
 
     const tabRoutes = ref(

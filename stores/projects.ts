@@ -13,12 +13,24 @@ export const useProjectStore = defineStore('project', () => {
 
     const loadingProject = computed(() => loadingProjectState)
 
+    const getTeamsByClientId = (clientId: string) => {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const teams = await myFetch(`/v2/teams?cid[]=${clientId}`, { method: "GET" });
+                // console.log('teams.data', teams)
+                resolve(teams);
+            } catch (error) {
+                reject(error);
+            }
+        });
+    };
+
     const getProjects = (limit: any, skip: any) => {
         return new Promise(async (resolve, reject) => {
             loadingProjectState.value = true
             myFetch(`/v2/projects?limit=${limit}&skip=${skip}`, { method: "GET", })
                 .then(res => {
-                    console.log(res)
+                    // console.log(res)
                     projectState.value = res
                     resolve(res)
                 }).catch(() => {
@@ -52,17 +64,28 @@ export const useProjectStore = defineStore('project', () => {
         })
     }
 
+    const getProjectsByOrgId = (orgId: any) => {
+        return new Promise(async (resolve, reject) => {
+            myFetch(`/v2/projects?oid[]=${orgId}`, { method: "GET", })
+                .then(res => {
+                    resolve(res.data)
+                }).catch(() => {
+                    reject()
+                })
+        })
+    }
+
 
     const addProject = (clientId: string, data: any) => {
         return new Promise(async (resolve, reject) => {
 
             myFetch(`/v2/projects?oid=${clientId}`, { method: "POST", body: data })
                 .then((res) => {
-                    console.log('res.data._id', res)
+                    // console.log('res.data._id', res)
                     // getProjects(10)
                     resolve(res)
                 }).catch((err) => {
-                    console.log('err', err)
+                    // console.log('err', err)
                     reject()
                 })
         })
@@ -90,9 +113,15 @@ export const useProjectStore = defineStore('project', () => {
         })
     }
 
-
-
-
-
-    return { addProject, getProjects, loadingProject, projects, getProjectById, updateProjectDescription, getCommentsByProjectId, addComment }
+    return { 
+        addProject, 
+        getProjects, 
+        loadingProject, 
+        projects, 
+        getProjectById, 
+        updateProjectDescription, 
+        getCommentsByProjectId, 
+        addComment, 
+        getTeamsByClientId, 
+        getProjectsByOrgId }
 })

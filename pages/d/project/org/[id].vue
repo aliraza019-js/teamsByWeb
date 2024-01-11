@@ -1,5 +1,5 @@
 <template lang="pug">
-v-progress-circular( indeterminate v-if="!customer" :size="64")
+v-progress-linear( indeterminate v-if="!customer" :size="64")
 CommonCardContainer(v-else :title="customer.name" :tabRoutes="tabRoutes")
   template(#prependTitleAtributes)
     v-btn(icon class="ml-0" to="/project/orgs")

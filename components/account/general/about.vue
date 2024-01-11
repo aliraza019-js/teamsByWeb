@@ -84,7 +84,7 @@ const updateData = async () => {
     method: 'PATCH',
     body: formData
   })
-  console.log('got res', res)
+  // console.log('got res', res)
   accountStore.fetchData()
   showDialog.value = false
 };
