@@ -28,7 +28,6 @@ export const useMasterIndustriesStore = defineStore('industries', () => {
   }
 
   const locIndustries = (locale: string) => {
-    console.log('passed local', locale);
     return computed(() => {
       return industriesState.value.map((industry: any) => {
         const intTitleObj = industry.intTitle.find((item: any) => item[locale]);

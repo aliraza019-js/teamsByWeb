@@ -17,18 +17,26 @@ v-card(width="100%" flat :loading="loadingSkills")
   v-card-text
     v-card.ma-5(v-for="(cat, index) in skillCats" :key="index" variant="tonal")
       v-toolbar
-        v-toolbar-title {{ getIntTitle(cat, $i18n.locale) }}
+        v-toolbar-title {{ getCatIntTitle(cat, $i18n.locale) }}
         v-spacer 
         lazy-admin-edit-skill-group(:data-obj="cat" icon-size="small")
         v-btn(icon)
           v-icon mdi-plus
       v-card-text
         v-list
+          // title in different languages
+          v-list-item(v-for="(title, indexTitle) in cat.intTitle")
+            v-list-item-subtitle {{ $t('forms.title') }} {{ getIntLangTitle(title.key, $i18n.locale) }}
+            v-list-item-title {{ title.value }}
+
+          // industries
           v-list-item
             v-list-item-subtitle {{ $t('admin.industries') }}
             v-list-item-title(v-for="(ind, indexInd) in cat.industries" :key="indexInd") {{ getIndustryIntTitle(ind, $i18n.locale) }}
 
-          v-expansion-panels(color="transparent")
+
+
+          v-expansion-panels.mt-5(color="transparent")
             v-expansion-panel(color="transparent" elevation="0")
               v-expansion-panel-title {{ $t('admin.skills') }}
               v-expansion-panel-text
@@ -42,6 +50,7 @@ v-card(width="100%" flat :loading="loadingSkills")
 // imports
 import { useMasterIndustriesStore } from '~/stores/master-industries';
 import { useMasterSkillsStore } from '~/stores/master-skills';
+import { useMasterLangsStore } from '@/stores/master-langs';
 
 // page definition
 definePageMeta({
@@ -51,8 +60,9 @@ definePageMeta({
 // data
 const localePath = useLocalePath()
 const { locale } = useI18n()
-const { skills, skillGroups, skillCats, loadingSkills, getSkills, getSkillCats, getIntTitle, getSkillsByCategoryId, getIntTitleSkill } = useMasterSkillsStore();
+const { skills, skillGroups, skillCats, loadingSkills, getSkills, getSkillCats, getCatIntTitle, getSkillsByCategoryId, getIntTitleSkill } = useMasterSkillsStore();
 const { industries, locIndustries, getIntTitle: getIndustryIntTitle } = useMasterIndustriesStore();
+const { getIntTitle: getIntLangTitle } = useMasterLangsStore();
 const localizedIndustries = locIndustries(locale.value);
 const indSelect = ref()
 const showEditSkillGroup = ref(false);
