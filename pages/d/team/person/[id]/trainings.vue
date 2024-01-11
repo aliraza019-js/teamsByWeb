@@ -4,7 +4,7 @@ div
     v-row(class="overflow-auto h-100")
       //- v-col(cols="12" class="d-flex justify-end pb-0")
       //-   v-btn(variant="text" prepend-icon="mdi-plus" density="compact") {{$t('trainings.add')}} //
-      v-col(v-if="!response.trainings?.length" class="text-center" cols="12")
+      v-col(v-if="canShowTrainings" class="text-center" cols="12")
         v-img(width="75%" class="mx-auto my-10" style="opacity: 0.5; border-radius: 10px;" src="https://img.team-stage.com/placeholder/new/training1_dNsMAcdoo.png")
       v-col(v-else cols="12")
         v-row(class="overflow-auto scroll-container" )
@@ -51,6 +51,7 @@ div
 
 import { useColleaguesStore } from '~/stores/colleages'
 const response = ref({});
+const canShowTrainings = ref(false)
 
 const route = useRoute()
 const { getColleaguesById } = useColleaguesStore()
@@ -67,6 +68,11 @@ const formatDateRange = (dateTo, dateFrom) => {
 
 onMounted(async () => {
   response.value = await getColleaguesById(route.params.id)
+  if (response.value.trainings?.length) {
+    canShowTrainings.value = false
+  } else {
+    canShowTrainings.value = true
+  }
 })
 
 definePageMeta({

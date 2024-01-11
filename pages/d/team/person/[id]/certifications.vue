@@ -4,7 +4,7 @@ v-row(class="overflow-auto h-100")
   //-   v-btn(variant="text" prepend-icon="mdi-plus" density="compact" )  {{$t('certifications.addCertification')}}
   v-col(cols="12")
     v-row(class="overflow-auto scroll-container" )
-      v-col(v-if="response.certs?.length" cols="12" v-for="item in response.certs" :key="item._id")
+      v-col(v-if="canShowCert" cols="12" v-for="item in response.certs" :key="item._id")
         CommonCard
           template(#title)
             div(class="d-flex flex-column w-100")
@@ -47,6 +47,7 @@ v-row(class="overflow-auto h-100")
 
 import { useColleaguesStore } from '~/stores/colleages'
 const response = ref({});
+const canShowCert = ref(true)
 
 const route = useRoute()
 const { getColleaguesById } = useColleaguesStore()
@@ -54,6 +55,13 @@ const { getColleaguesById } = useColleaguesStore()
 
 onMounted(async () => {
   response.value = await getColleaguesById(route.params.id)
+  if (response.value.certs?.length) {
+    console.log('if')
+    canShowCert.value = true
+  } else {
+    console.log('else')
+    canShowCert.value = false
+  }
 })
 
 definePageMeta({

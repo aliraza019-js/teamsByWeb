@@ -7,7 +7,7 @@ v-row(class="overflow-auto h-100")
       v-col(cols="12") {{ loadingUserState }}
     v-row(class="overflow-auto scroll-container" v-if="response")
 
-      v-col(v-if="!response.skills?.length" class="text-center" cols="12")
+      v-col(v-if="canShowskills" class="text-center" cols="12")
         v-img(width="75%" class="mx-auto my-10" style="opacity: 0.5; border-radius: 10px;" src="https://img.team-stage.com/placeholder/new/training1_dNsMAcdoo.png")
       v-col(v-else cols="12" v-for="(item, index) in response.skills" :key="index")
         CommonCard
@@ -33,6 +33,7 @@ v-row(class="overflow-auto h-100")
 <script setup>
 import { useColleaguesStore } from '~/stores/colleages'
 const response = ref({});
+const canShowskills = ref(false)
 
 const route = useRoute()
 const { getColleaguesById } = useColleaguesStore()
@@ -40,6 +41,11 @@ const { getColleaguesById } = useColleaguesStore()
 
 onMounted(async () => {
   response.value = await getColleaguesById(route.params.id)
+  if (response.skills?.length) {
+    canShowskills.value = false
+  } else {
+    canShowskills.value = true
+  }
 })
 
 definePageMeta({
