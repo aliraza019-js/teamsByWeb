@@ -27,17 +27,30 @@ export const useMasterIndustriesStore = defineStore('industries', () => {
     }
   }
 
+  const locIndustries = (locale: string) => {
+    console.log('passed local', locale);
+    return computed(() => {
+      return industriesState.value.map((industry: any) => {
+        const intTitleObj = industry.intTitle.find((item: any) => item[locale]);
+        return {
+          ...industry,
+          localizedTitle: intTitleObj ? intTitleObj[locale] : industry.title,
+        };
+      });
+    });
+  };
+
   // Method to get international title based on locale
   const getIntTitle = (industryCode: string, locale: string) => {
     if (industriesLoadedState.value != true && loadingIndustriesState.value != true) getIndustries();
     // Find the industry by code
     const industry = industriesState.value.find((ind: any) => ind.code === industryCode);
     if (!industry) return null; // or a default value
+    console.log('found the ind', industry);
 
-    // Find the internationalized title
-    const intTitleObj = industry.intTitle.find((item: any) => item[locale]);
-    return intTitleObj ? intTitleObj[locale] : industry.title;
+    const intTitle = industry.intTitle.find((e: any) => e.key == locale);
+    return intTitle ? intTitle.value : industry.title;
   };
 
-  return { industries, loadingIndustries, getIndustries, getIntTitle };
+  return { industries, locIndustries, loadingIndustries, getIndustries, getIntTitle };
 })

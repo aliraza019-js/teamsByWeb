@@ -7,8 +7,14 @@ export const useMasterLangsStore = defineStore('langs', () => {
   const langsLoadedState = ref(false);
 
   // provider
-  const langs = computed(() => langsState);
+  const langs = computed(() => {
+    if (langsLoadedState.value != true) {
+      getLangs();
+    }
+    return langsState;
+  });
   const loadingLangs = computed(() => loadingLangsState);
+  const langsLoaded = computed(() => langsLoadedState);
 
   // methods
   const getLangs = async () => {
@@ -27,18 +33,16 @@ export const useMasterLangsStore = defineStore('langs', () => {
   }
 
   // Method to get international title based on locale
+  // should be obsolet by now - hopefully
   const getIntTitle = (langCode: string, locale: string) => {
-    console.log('get intTitel', langCode, locale);
     if (langsLoadedState.value != true && loadingLangsState.value != true) getLangs();
     // Find the lang by code
     const lang = langsState.value.find((lang: any) => lang.code === langCode);
-    console.log('found lang', lang);
     if (!lang) return null; // or a default value
-
-    // Find the internationalized title
-    const intTitleObj = lang.intTitle.find((item: any) => item[locale]);
-    return intTitleObj ? intTitleObj[locale] : lang.title;
+    const intTitle = lang.intTitle.find((e: any) => e.key === locale);
+    return intTitle ? intTitle.value : lang.title;
   };
+  // end of obsolet
 
-  return { langs, loadingLangs, getLangs, getIntTitle };
+  return { langs, loadingLangs, getLangs, getIntTitle, langsLoaded };
 })

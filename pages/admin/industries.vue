@@ -16,25 +16,18 @@ v-card(width="100%" flat :loading="loadingIndustries")
       v-card-text
         v-list
           v-list-item
-            v-list-item-title code: {{ item.code }}
+            v-list-item-subtitle Code
+            v-list-item-title {{ item.code }}
           v-list-item(v-for="(lang, index2) in item.intTitle" :key="index2")
-            v-list-item-title Title {{ getKeyValues(lang).key  }}: {{ getKeyValues(lang).value }}
-
-    //- v-expansion-panels
-      v-expansion-panel(v-for="(item, index) in industries" :kex="index")
-        v-expansion-panel-title {{ item.title }} - ({{ item.code }})
-
-        v-expansion-panel-text
-          v-list
-            v-list-item(v-for="(lang, index2) in item.intTitle" :key="index2")
-              v-list-item-subtitle code
-              v-list-item-title {{ lang }}
+            v-list-item-subtitle {{ $t('forms.title') }} {{ getIntLangTitle(lang.key, $i18n.locale) }}
+            v-list-item-title {{ lang.value }}
 
 </template>
 
 <script setup>
 // imports
 import { useMasterIndustriesStore } from '@/stores/master-industries';
+import { useMasterLangsStore } from '@/stores/master-langs';
 
 // page definition
 definePageMeta({
@@ -43,6 +36,7 @@ definePageMeta({
 
 // data
 const { industries, loadingIndustries, getIndustries, getIntTitle } = useMasterIndustriesStore();
+const { getIntTitle: getIntLangTitle } = useMasterLangsStore();
 const localePath = useLocalePath();
 
 const getKeyValues = (obj) => {

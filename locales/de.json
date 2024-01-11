@@ -155,7 +155,8 @@
     "passwordMatch": "Passwort stimmt nicht überein",
     "reallyDelete": "Wirklich löschen? Dies kann nicht rückgängig gemacht werden.",
     "warning": "Achtung",
-    "delete": "Löschen"
+    "delete": "Löschen",
+    "title": "Titel"
   },
   "contacts": {
     "contacts": "Kontakte",

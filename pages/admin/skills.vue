@@ -5,14 +5,21 @@ v-card(width="100%" flat :loading="loadingSkills")
     template(v-slot:prepend)
       v-btn(icon :to="localePath('/admin')")
         v-icon mdi-arrow-left
+    template(v-slot:append)
+      lazy-admin-edit-skill-group(isNew="true")
+
+  v-select(v-model="indSelect" :items="localizedIndustries" :label="$t('admin.industries')" multiple clearable item-value="code" title="localizedTitle")
+    template(v-slot:selection="{item, index}")
+      v-chip(v-if="index < 2")
+        span {{ item.title }}
+      span.text-grey.text-caption.align-self-center(v-if="index === 2") (+{{ indSelect.length - 2 }} others)
 
   v-card-text
     v-card.ma-5(v-for="(cat, index) in skillCats" :key="index" variant="tonal")
       v-toolbar
         v-toolbar-title {{ getIntTitle(cat, $i18n.locale) }}
-        v-spacer
-        v-btn(icon)
-          v-icon mdi-pencil
+        v-spacer 
+        lazy-admin-edit-skill-group(:data-obj="cat" icon-size="small")
         v-btn(icon)
           v-icon mdi-plus
       v-card-text
@@ -26,8 +33,7 @@ v-card(width="100%" flat :loading="loadingSkills")
               v-expansion-panel-title {{ $t('admin.skills') }}
               v-expansion-panel-text
                 v-list
-                  v-list-item(v-for="(skill, indexS) in getSkillsByCategoryId(cat._id)") {{ getIntTitleSkill(skill, $i18n.locale) }}
-              
+                  v-list-item(v-for="(skill, indexS) in getSkillsByCategoryId(cat._id)") {{ getIntTitleSkill(skill, $i18n.locale) }}          
 
 
 </template>
@@ -44,13 +50,14 @@ definePageMeta({
 
 // data
 const localePath = useLocalePath()
+const { locale } = useI18n()
 const { skills, skillGroups, skillCats, loadingSkills, getSkills, getSkillCats, getIntTitle, getSkillsByCategoryId, getIntTitleSkill } = useMasterSkillsStore();
-const { getIntTitle: getIndustryIntTitle } = useMasterIndustriesStore();
+const { industries, locIndustries, getIntTitle: getIndustryIntTitle } = useMasterIndustriesStore();
+const localizedIndustries = locIndustries(locale.value);
+const indSelect = ref()
+const showEditSkillGroup = ref(false);
 
-// grouping the skills
-
-
-// methods
+//methods
 
 // hooks
 onMounted(async () => {

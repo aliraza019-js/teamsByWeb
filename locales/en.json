@@ -179,7 +179,8 @@
     "passwordMatch": "Password does not match",
     "reallyDelete": "Do you want to delete? This can not be undone.",
     "warning": "Warning",
-    "delete": "Delete"
+    "delete": "Delete",
+    "title": "Title"
   },
   "contacts": {
     "contacts": "Contacts",
