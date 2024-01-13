@@ -1,7 +1,7 @@
 <template lang="pug">  
 v-card(class="d-flex rounded-l" width="100%" height="90%" elevation="3" style="align-items:center;" :to="localePath(`/d/team/t/${team._id}/about`)")
   v-col(class="imgCol")   
-    img(v-if="team.profileImage && team.profileImage.url" :src="transformImageURL(team.profileImage.url)" class="teamPic")
+    img(v-if="team.profileImage && team.profileImage.url" @error="handleImageError" :src="transformImageURL(team.profileImage.url)" class="teamPic")
     img(v-else src="https://img.team-stage.com/placeholder/new/tr:ar-4-3,w-400/team1_oVhR_PZdI.webp" class="teamPic")
   v-col()
     v-row() 
@@ -16,11 +16,22 @@ const localePath = useLocalePath();
 
 const transformImageURL = (url) => {
   const baseTransform = "tr:ar-0-1,w-1200";
-  const [baseUrl, restOfUrl] = url.split('/teamstage/');
+  const modifiedUrl = url.replace(/\/user\//, '/');
+  const [baseUrl, restOfUrl] = modifiedUrl.split('/teamstage/');
   const transformedURL = `${baseUrl}/teamstage/${baseTransform}/${restOfUrl}`;
+  console.log('transformedURL', transformedURL)
   return transformedURL
-
 };
+
+const handleImageError = (event) => {
+  console.log('handleImageError', event)
+  event.target.src = 'https://img.team-stage.com/placeholder/new/tr:ar-4-3,w-400/team1_oVhR_PZdI.webp'; // Replace with your actual fallback image URL
+};
+
+
+onMounted(() => {
+  console.log('team.profileImage.url', props.team && props.team.profileImage && props.team.profileImage.url)
+})
 // console.log('team', props.team)
 </script>
     

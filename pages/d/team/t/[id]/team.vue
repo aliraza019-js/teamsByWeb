@@ -7,10 +7,10 @@ v-container
       v-card(class="d-flex flex-row rounded-l" width="100%" height="100%" elevation="3" style="align-items:center;" :to="localePath(`${user._id == team._id ? `/account/general`: `/d/team/person/${team._id}/general` }`)" )  
         v-col(class="imgCol")
           v-avatar(size=56)
-            img(:src="team && team.pprofileImage && team.profileImage.url" class="profilePic") 
+            img(:src="team && team.profileImage ? transformImageURL(team.profileImage.url) : teamImage" class="profilePic") 
         v-col()
           v-row()
-            div(class="text-caption") {{ team && team.title }}
+            div(class="text-caption") {{ team && team.title ? team.title : 'No title given yet' }}
           v-row()
             h4 {{ team && team.givenName }}
 </template>
@@ -20,6 +20,7 @@ import { useUserStore } from "~/stores/user";
 import { useTeamsStore } from '~/stores/teams'
 const { user } = useUserStore()
 const response = ref({});
+const teamImage = ref('https://img.team-stage.com/placeholder/new/tr:w-150,h-150,fo-face/avatar_diverse_L0mtzuk4-.png')
 const canShowTeams = ref(false)
 const route = useRoute()
 const { getTeamByTeamId } = useTeamsStore()
@@ -32,6 +33,13 @@ onMounted(async () => {
   }
   // console.log(response.value)
 })
+const transformImageURL = (url) => {
+
+  const baseTransform = "tr:w-150,h-150,fo-face";
+  const [baseUrl, restOfUrl] = url.split('/teamstage/');
+  const transformedURL = `${baseUrl}/teamstage/${baseTransform}/${restOfUrl}`;
+  return transformedURL
+};
 // page
 definePageMeta({
   activeRoute: 'team'
