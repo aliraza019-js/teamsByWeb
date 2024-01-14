@@ -54,6 +54,12 @@ onMounted(async () => {
   }
 })
 
+/**
+ * Navigates to the project comments page.
+ *
+ * @param {number} id - The ID of the project.
+ * @return {void} 
+ */
 const navigateToProjectComments = (id) => {
   const router = useRouter();
   // console.log('id navigateToProjectComments', id)
@@ -63,6 +69,12 @@ const navigateToProjectComments = (id) => {
   router.replace({ path });
 };
 
+/**
+ * Adds a like to a project.
+ *
+ * @param {Object} project - The project to add a like to.
+ * @return {Promise} - A promise that resolves when the like is added.
+ */
 const addProjectLike = async (project) => {
   const payload = {
     oid: route.params.id,

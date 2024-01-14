@@ -56,10 +56,8 @@ const { getColleaguesById } = useColleaguesStore()
 onMounted(async () => {
   response.value = await getColleaguesById(route.params.id)
   if (response.value.certs?.length) {
-    console.log('if')
     canShowCert.value = true
   } else {
-    console.log('else')
     canShowCert.value = false
   }
 })

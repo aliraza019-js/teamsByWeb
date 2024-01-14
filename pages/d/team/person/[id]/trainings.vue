@@ -56,6 +56,13 @@ const canShowTrainings = ref(false)
 const route = useRoute()
 const { getColleaguesById } = useColleaguesStore()
 
+/**
+ * Formats a date range into a string.
+ *
+ * @param {string} dateTo - The end date of the range.
+ * @param {string} dateFrom - The start date of the range.
+ * @return {string} The formatted date range string.
+ */
 const formatDateRange = (dateTo, dateFrom) => {
   const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
 

@@ -33,6 +33,13 @@ onMounted(async () => {
   }
   // console.log(response.value)
 })
+
+/**
+ * Transforms the given image URL into a modified version with a smaller size and a specific face focus.
+ *
+ * @param {string} url - The original image URL.
+ * @return {string} The transformed image URL.
+ */
 const transformImageURL = (url) => {
 
   const baseTransform = "tr:w-150,h-150,fo-face";

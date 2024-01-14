@@ -39,7 +39,11 @@ const tabRoutes = ref(
     }
   ]
 );
-
+/**
+ * Fetches a customer by their ID and updates the customer value.
+ *
+ * @return {Promise<void>} A promise that resolves once the customer value is updated.
+ */
 const fetchCustomer= async  ()=>{
   customer.value = await getCustomertById(route.params.id)
 

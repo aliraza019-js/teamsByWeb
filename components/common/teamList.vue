@@ -14,6 +14,13 @@ v-card(class="d-flex rounded-l" width="100%" height="70px" elevation="3" style="
 const props = defineProps(['team'])
 const localePath = useLocalePath();
 
+/**
+ * Transforms an image URL by adding a base transformation and modifying the URL structure.
+ *
+ * @param {string} url - The original URL of the image.
+ * @return {string} The transformed URL with the base transformation applied.
+ */
+
 const transformImageURL = (url) => {
   const baseTransform = "tr:ar-2-1,w-400";
   const modifiedUrl = url.replace(/\/user\//, '/');
@@ -23,6 +30,11 @@ const transformImageURL = (url) => {
   return transformedURL
 };
 
+/**
+ * Handles the error event for an image element.
+ *
+ * @param {Event} event - The error event object.
+ */
 const handleImageError = (event) => {
   console.log('handleImageError', event)
   event.target.src = 'https://img.team-stage.com/placeholder/new/tr:ar-4-3,w-400/team1_oVhR_PZdI.webp'; // Replace with your actual fallback image URL

@@ -30,6 +30,11 @@ const closeDialog = () => {
   dialogAddComment.value = false
 }
 
+/**
+ * Fetches project comments asynchronously.
+ *
+ * @return {Promise<void>} A promise that resolves with no value.
+ */
 const fetchprojectComments = async () => {
   comments.value = await getCommentsByProjectId(route.params.id)
   // console.log('comments', comments.value)

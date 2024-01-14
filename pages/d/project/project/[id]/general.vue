@@ -112,6 +112,11 @@ watch(selectedStatus, (newStatus) => {
   }
 })
 
+/**
+ * Updates the status of the project.
+ *
+ * @return {void}
+ */
 const updateStatus = () => {
   // console.log('Updating status...', selectedStatus.value);
 
