@@ -6,20 +6,22 @@ v-card(width="100%" flat :loading="loadingIndustries")
       v-btn(icon :to="localePath('/admin')")
         v-icon mdi-arrow-left
     template(v-slot:append)
-      //- AdminEditIndustries
+      AdminEditIndustries
 
   v-card-text
     v-text-field(
+      clearable @click:clear="clearFilter()"
       v-model="indFilter"
       placeholder="Filter industries...")
 
   v-card-text
-    v-card.ma-5(v-for="(item, index) in filteredIndustries" :key="index" variant="tonal")
+    v-card.ma-5(v-for="(item, index) in filteredIndustries" :key="item.code" variant="tonal")
       v-toolbar
         v-toolbar-title {{ getIntTitle(item.code, $i18n.locale) }}
         v-spacer
-        v-btn(icon)
-          v-icon mdi-pencil
+        FormsConfirmDelete(icon-size="small" @on-confirmed="delInd(item)")
+        AdminEditIndustries(:data-obj="item", icon-size="small")
+
       v-card-text
         v-list
           v-list-item
@@ -42,7 +44,7 @@ definePageMeta({
 })
 
 // data
-const { industries, loadingIndustries, getIndustries, getIntTitle } = useMasterIndustriesStore();
+const { industries, loadingIndustries, getIndustries, getIntTitle, deleteInd } = useMasterIndustriesStore();
 const { getIntTitle: getIntLangTitle } = useMasterLangsStore();
 const localePath = useLocalePath();
 const { locale } = useI18n();
@@ -65,6 +67,15 @@ const filteredIndustries = computed(() => {
     return matchesTitleOrCode || matchesIntTitle;
   });
 });
+
+// methods
+const clearFilter = () => {
+  indFilter.value = ''
+}
+
+const delInd = async (ind) => {
+  await deleteInd(ind._id)
+}
 
 // hooks
 onMounted(async () => {

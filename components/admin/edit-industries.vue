@@ -4,22 +4,22 @@ v-dialog(max-width="600" v-model="dialog")
     v-btn(icon flat v-bind="props")
       v-icon(:size="iconSize") {{ dataObj !== undefined ? 'mdi-pencil' : 'mdi-plus' }}
   template(v-slot:default="{ isActive }")
-    v-card(title="dialog" :loading="loading")
+    v-card(:title="dataObj ?  $t('admin.editIndustry') : $t('admin.addIndustry') " :loading="loading")
       v-card-text
         v-form(ref="form" v-model="valid" lazy-validation)
-
-          // code
-          v-text-field.streched(
-            :label="$t('admin.code')"
-            v-model="formData.code"
-            :rules="rules.required"
-            :disabled="disabled"
-            variant="solo")
 
           // title
           v-text-field.streched(
             :label="$t('forms.title')"
             v-model="formData.title"
+            :rules="rules.required"
+            :disabled="disabled"
+            variant="solo")
+
+          // code
+          v-text-field.streched(
+            :label="$t('admin.code')"
+            v-model="formData.code"
             :rules="rules.required"
             :disabled="disabled"
             variant="solo")

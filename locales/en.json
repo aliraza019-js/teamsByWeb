@@ -145,7 +145,15 @@
     "supportedLangs": "Supported Languages",
     "industries": "Industries",
     "skills": "Skills",
-    "code": "Code"
+    "code": "Code",
+    "addIndustry": "Add industry",
+    "editIndustry": "Edit industry",
+    "addLang": "Add language",
+    "editLang": "Edit language",
+    "addSkillCat": "Add skill category",
+    "editSkillCat": "Edit skill category",
+    "addSkill": "Add skill",
+    "editSkill": "Edit skill"
   },
   "personAbout": {
     "about": "About",

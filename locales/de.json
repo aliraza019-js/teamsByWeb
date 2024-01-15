@@ -114,7 +114,15 @@
     "supportedLangs": "Unterstützte Sprachen",
     "industries": "Branchen",
     "skills": "Skills",
-    "code": "Code"
+    "code": "Code",
+    "addIndustry": "Neue Branche",
+    "editIndustry": "Branche editieren",
+    "addLang": "Neue Sprache",
+    "editLang": "Sprache editieren",
+    "addSkillCat": "Neue Skill-Kategorie",
+    "editSkillCat": "Skill-Kategorie editieren",
+    "addSkill": "Neue Fähigkeit",
+    "editSkill": "Fähigkeit editieren"
   },
   "personAbout": {
     "about": "Über",

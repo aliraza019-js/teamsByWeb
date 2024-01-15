@@ -37,7 +37,6 @@ const localePath = useLocalePath();
 // methods
 const deleteLang = async (lang) => {
   await delLang(lang._id);
-  console.log('deleted', lang);
 }
 
 // hooks

@@ -17,9 +17,9 @@ export const useMasterIndustriesStore = defineStore('industries', () => {
   const loadingIndustries = computed(() => loadingIndustriesState);
 
   // methods
-  const getIndustries = async () => {
+  const getIndustries = async (refresh: boolean) => {
     // Check if industries are already loaded
-    if (industriesLoadedState.value) return;
+    if (industriesLoadedState.value && !refresh) return;
 
     loadingIndustriesState.value = true;
     try {
