@@ -14,9 +14,9 @@ export const useMasterSkillsStore = defineStore('skills', () => {
   const loadingSkills = computed(() => loadingSkillsState);
 
   // methods
-  const getSkills = async () => {
+  const getSkills = async (refresh: boolean) => {
     // Check if already loaded
-    if (skillsLoadedState.value) return;
+    if (skillsLoadedState.value && !refresh) return;
 
     loadingSkillsState.value = true;
     try {
@@ -28,6 +28,24 @@ export const useMasterSkillsStore = defineStore('skills', () => {
       loadingSkillsState.value = false;
     }
   }
+
+  const createSkill = async (skill: any) => {
+    await myFetch('/v2/master/skills', { method: 'POST', body: skill });
+    return await getSkills(true);
+  }
+  
+  const updateSkill = async (skill: any, id: string) => {
+    console.log('update skill called', skill, id);
+    if (!id) throw 'no id provided';
+    await myFetch(`/v2/master/skills/${id}`, { method: 'PUT', body: skill });
+    return await getSkills(true);
+  }
+  
+  const deleteSkill = async (skillId: string) => {
+    await myFetch(`/v2/master/industries/${skillId}` , { method: 'DELETE' });
+    await getSkills(true);
+    return;
+  } 
 
   const getSkillCats = async () => {
     // Check if already loaded
@@ -74,5 +92,18 @@ export const useMasterSkillsStore = defineStore('skills', () => {
     return grouped;
   })
 
-  return { skills, skillGroups, skillCats, loadingSkills, getSkills, getSkillCats, getCatIntTitle, getSkillsByCategoryId, getIntTitleSkill };
+  return {
+    skills,
+    createSkill,
+    updateSkill,
+    deleteSkill,
+    skillGroups,
+    skillCats,
+    loadingSkills,
+    getSkills,
+    getSkillCats,
+    getCatIntTitle,
+    getSkillsByCategoryId,
+    getIntTitleSkill
+  };
 })

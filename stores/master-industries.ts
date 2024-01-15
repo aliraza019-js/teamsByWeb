@@ -64,7 +64,9 @@ export const useMasterIndustriesStore = defineStore('industries', () => {
 
   // Method to get international title based on locale
   const getIntTitle = (industryCode: string, locale: string) => {
-    if (industriesLoadedState.value != true && loadingIndustriesState.value != true) getIndustries();
+    if (industriesLoadedState.value != true && loadingIndustriesState.value != true) {
+      getIndustries(false);
+    }
     // Find the industry by code
     const industry = industriesState.value.find((ind: any) => ind.code === industryCode);
     if (!industry) return null; // or a default value

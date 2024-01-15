@@ -1,20 +1,13 @@
 <template lang="pug">
 v-dialog(max-width="600" v-model="dialog")
   template(v-slot:activator="{ props }")
-    v-btn(icon flat v-bind="props")
+    v-btn(icon v-bind="props")
       v-icon(:size="iconSize") {{ dataObj !== undefined ? 'mdi-pencil' : 'mdi-plus' }}
   template(v-slot:default="{ isActive }")
-    v-card(:title="dataObj ?  $t('admin.editLang') : $t('admin.addLang')" :loading="loading")
+    v-card(title="dialog" :loading="loading")
+      // here we put the form
       v-card-text
         v-form(ref="form" v-model="valid" lazy-validation)
-
-          // code
-          v-text-field.streched(
-            :label="$t('admin.code')"
-            v-model="formData.code"
-            :rules="rules.required"
-            :disabled="disabled"
-            variant="solo")
 
           // title
           v-text-field.streched(
@@ -24,23 +17,17 @@ v-dialog(max-width="600" v-model="dialog")
             :disabled="disabled"
             variant="solo")
 
-          // intTitle
+          //- category select
+          //- multi
+
+
           v-text-field.streched(
             v-for="(intTitle, intTitleIndex) in formData.intTitle" :key="intTitleIndex"
             :label="`${$t('forms.title')} ${getIntTitle(intTitle.key, $i18n.locale)}`"
             v-model="formData.intTitle[intTitleIndex].value"
             :disabled="disabled"
-            :rules="rules.required"
-          )
-          v-text-field.streched(
-            v-if="props.isNew"
-            :label="`${$t('forms.title')} ${formData.title || '...'}`"
-            v-model="newIntTitle"
-            :disabled="disabled"
-            :rules="rules.required"
-          )
+            :rules="rules.required")
 
-      // actions
       v-card-actions
         v-btn(variant="text" @click="closeDialog()" :disabled="disabled") {{ $t('forms.cancel') }}
         v-btn(variant="elevated" color="primary" @click="validateForm()" :disabled="disabled") {{ $t('forms.save') }}
@@ -49,11 +36,14 @@ v-dialog(max-width="600" v-model="dialog")
 <script setup>
 // imports
 import { useMasterLangsStore } from '~/stores/master-langs';
+import { useMasterSkillsStore } from '~/stores/master-skills';
 
 // data
-const { langs, loadingLangs, langsLoaded, getLangs, getIntTitle, createLang, updateLang } = useMasterLangsStore();
-const props = defineProps(['dataObj', 'iconSize', 'isNew']);
+const props = defineProps(['isNew', 'iconSize', 'dataObj']);
 const { t } = useI18n();
+const emit = defineEmits(['onUpdate']);
+const { langs, getIntTitle, langsLoaded, getLangs } = useMasterLangsStore();
+const { createSkill, updateSkill } = useMasterSkillsStore();
 
 // dialog
 const dialog = ref(null);
@@ -67,12 +57,10 @@ const valid = ref(false)
 const loading = ref(false)
 const disabled = ref(false)
 const formData = ref({ intTitle: {} })
-const newIntTitle = ref(null);
 const rules = reactive({
   required: [v => !!v || t('forms.required')],
   reqList: [(v) => v.length > 0 || t('forms.required')],
 })
-
 
 // methods
 const closeDialog = () => {
@@ -90,9 +78,9 @@ const pushForm = async () => {
   loading.value = true;
   disabled.value = true;
   try {
-    props.dataObj ? await updateLang(formData.value, props.dataObj._id) : await createLang(formData.value);
+    props.dataObj ? await updateSkill(formData.value, props.dataObj._id) : await createSkill(formData.value);
   } catch (e) {
-    console.log('error updating lang', e);
+    console.log('error updating industry', e);
   } finally {
     loading.value = false;
     disabled.value = false;
@@ -102,16 +90,14 @@ const pushForm = async () => {
 
 // hooks
 onMounted(async () => {
-  if (langsLoaded != true) {
-    await getLangs();
-  }
-  formData.value = {}
-  newIntTitle.value = null;
+  console.log('props.dataObj', props.dataObj);
   disabled.value = false;
   loading.value = false;
   msgIsVisable.value = false;
   formData.value.title = props.dataObj?.title || '';
-  formData.value.code = props.dataObj?.code || '';
+  if (langsLoaded.value != true) {
+    await getLangs();
+  }
   // setting intTitle
   formData.value.intTitle = [];
   for (let i = 0; i < langs.value.length; i++) {
@@ -124,7 +110,6 @@ onMounted(async () => {
       if (propsLang) formData.value.intTitle[j].value = propsLang.value;
     }
   }
-
 })
 </script>
 

@@ -5,50 +5,36 @@ v-card(width="100%" flat :loading="loadingSkills")
     template(v-slot:prepend)
       v-btn(icon :to="localePath('/admin')")
         v-icon mdi-arrow-left
-    template(v-slot:append)
+    //- template(v-slot:append)
       lazy-admin-edit-skill-group(isNew="true")
 
-  v-select(v-model="indSelect" :items="localizedIndustries" :label="$t('admin.industries')" multiple clearable item-value="code" title="localizedTitle")
-    template(v-slot:selection="{item, index}")
-      v-chip(v-if="index < 2")
-        span {{ item.title }}
-      span.text-grey.text-caption.align-self-center(v-if="index === 2") (+{{ indSelect.length - 2 }} others)
+  v-text-field(
+    clearable @click:clear="clearFilter()"
+    v-model="skillsFilter"
+    :placeholder="$t('admin.filterSkills')")
 
-  v-card-text
-    v-card.ma-5(v-for="(cat, index) in skillCats" :key="index" variant="tonal")
+  v-card-text.px-0
+    v-card.my-5(v-for="(skill, index) in filteredSkills" :key="skill._id" variant="tonal")
       v-toolbar
-        v-toolbar-title {{ getCatIntTitle(cat, $i18n.locale) }}
-        v-spacer 
-        lazy-admin-edit-skill-group(:data-obj="cat" icon-size="small")
-        v-btn(icon)
-          v-icon mdi-plus
+        v-toolbar-title {{ getIntTitleSkill(skill, $i18n.locale) }}
+        v-spacer
+        LazyAdminEditSkill(:data-obj="skill" icon-size="small")
       v-card-text
         v-list
-          // title in different languages
-          v-list-item(v-for="(title, indexTitle) in cat.intTitle")
-            v-list-item-subtitle {{ $t('forms.title') }} {{ getIntLangTitle(title.key, $i18n.locale) }}
-            v-list-item-title {{ title.value }}
-
-          // industries
           v-list-item
-            v-list-item-subtitle {{ $t('admin.industries') }}
-            v-list-item-title(v-for="(ind, indexInd) in cat.industries" :key="indexInd") {{ getIndustryIntTitle(ind, $i18n.locale) }}
-
-
-
-          v-expansion-panels.mt-5(color="transparent")
-            v-expansion-panel(color="transparent" elevation="0")
-              v-expansion-panel-title {{ $t('admin.skills') }}
-              v-expansion-panel-text
-                v-list
-                  v-list-item(v-for="(skill, indexS) in getSkillsByCategoryId(cat._id)") {{ getIntTitleSkill(skill, $i18n.locale) }}          
-
+            v-list-item-subtitle title
+            v-list-item-title {{ skill.title }}
+          v-list-item
+            v-list-item-subtitle categories
+            v-list-item-title(v-for="(cat, catIndex) in skill.categories" :key="cat") {{ cat }}
+          v-list-item(v-for="(lang, index2) in skill.intTitle" :key="index2")
+            v-list-item-subtitle {{ $t('forms.title') }} {{ getIntLangTitle(lang.key, $i18n.locale) }}
+            v-list-item-title {{ lang.value }}
 
 </template>
 
 <script setup>
 // imports
-import { useMasterIndustriesStore } from '~/stores/master-industries';
 import { useMasterSkillsStore } from '~/stores/master-skills';
 import { useMasterLangsStore } from '@/stores/master-langs';
 
@@ -60,19 +46,32 @@ definePageMeta({
 // data
 const localePath = useLocalePath()
 const { locale } = useI18n()
-const { skills, skillGroups, skillCats, loadingSkills, getSkills, getSkillCats, getCatIntTitle, getSkillsByCategoryId, getIntTitleSkill } = useMasterSkillsStore();
-const { industries, locIndustries, getIntTitle: getIndustryIntTitle } = useMasterIndustriesStore();
+const { skills, getSkills, loadingSkills, getCatIntTitle, getIntTitleSkill } = useMasterSkillsStore();
 const { getIntTitle: getIntLangTitle } = useMasterLangsStore();
-const localizedIndustries = locIndustries(locale.value);
-const indSelect = ref()
-const showEditSkillGroup = ref(false);
+const skillsFilter = ref('');
+const filteredSkills = computed(() => {
+  const filterText = skillsFilter.value.toLowerCase();
+
+  return skills.value.filter(skill => {
+    // Check if the skill title or code includes the filter text
+    const matchesSkillTitle = skill.title.toLowerCase().includes(filterText) ||
+      (skill.intTitle.some(title => title.value.toLowerCase().includes(filterText)));
+
+    return matchesSkillTitle;
+  });
+});
+
 
 //methods
+const clearFilter = () => {
+  skillsFilter.value = ''
+}
+
+const delSkill = async () => { }
 
 // hooks
 onMounted(async () => {
   getSkills();
-  getSkillCats();
 })
 </script>
 

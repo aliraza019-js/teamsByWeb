@@ -148,12 +148,14 @@
     "code": "Code",
     "addIndustry": "Add industry",
     "editIndustry": "Edit industry",
+    "filterIndustries": "filter industries ...",
     "addLang": "Add language",
     "editLang": "Edit language",
     "addSkillCat": "Add skill category",
     "editSkillCat": "Edit skill category",
     "addSkill": "Add skill",
-    "editSkill": "Edit skill"
+    "editSkill": "Edit skill",
+    "filterSkills": "filter skills ..."
   },
   "personAbout": {
     "about": "About",

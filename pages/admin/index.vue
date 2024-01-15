@@ -29,6 +29,10 @@ v-card(width="100%" flat)
             v-list-item-title Industries
             template(v-slot:append)
               v-icon mdi-arrow-right
+          v-list-item(:to="localePath('/admin/skill-cats')")
+            v-list-item-title Categories
+            template(v-slot:append)
+              v-icon mdi-arrow-right
           v-list-item(:to="localePath('/admin/skills')")
             v-list-item-title Skills
             template(v-slot:append)

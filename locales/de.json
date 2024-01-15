@@ -117,12 +117,14 @@
     "code": "Code",
     "addIndustry": "Neue Branche",
     "editIndustry": "Branche editieren",
+    "filterIndustries": "Branchen filtern ...",
     "addLang": "Neue Sprache",
     "editLang": "Sprache editieren",
     "addSkillCat": "Neue Skill-Kategorie",
     "editSkillCat": "Skill-Kategorie editieren",
     "addSkill": "Neue Fähigkeit",
-    "editSkill": "Fähigkeit editieren"
+    "editSkill": "Fähigkeit editieren",
+    "filterSkills": "Skills filtern ..."
   },
   "personAbout": {
     "about": "Über",

@@ -12,7 +12,7 @@ v-card(width="100%" flat :loading="loadingIndustries")
     v-text-field(
       clearable @click:clear="clearFilter()"
       v-model="indFilter"
-      placeholder="Filter industries...")
+      :placeholder="$t('admin.filterIndustries')")
 
   v-card-text
     v-card.ma-5(v-for="(item, index) in filteredIndustries" :key="item.code" variant="tonal")
