@@ -5,9 +5,15 @@ export const useMasterIndustriesStore = defineStore('industries', () => {
   const industriesState: any = ref([]);
   const loadingIndustriesState = ref(false);
   const industriesLoadedState = ref(false);
-
+  
   // provider
-  const industries = computed(() => industriesState);
+  const industries = computed(() => {
+    // const filterText = indFilter.value.toLowerCase();
+    // return industriesState.value.filter(industry => {
+    //   return industry.title.toLowerCase().includes(filterText);
+    // });
+    return industriesState;
+  });
   const loadingIndustries = computed(() => loadingIndustriesState);
 
   // methods
@@ -27,6 +33,23 @@ export const useMasterIndustriesStore = defineStore('industries', () => {
     }
   }
 
+  const createInd = async (ind: any) => {
+    await myFetch('/v2/master/industries', { method: 'POST', body: ind });
+    return await getIndustries(true);
+  }
+  
+  const updateInd = async (ind: any, id: string) => {
+    if (!id) throw 'no id provided';
+    await myFetch(`/v2/master/industries/${id}`, { method: 'PUT', body: ind });
+    return await getIndustries(true);
+  }
+  
+  const deleteInd = async (indId: string) => {
+    await myFetch(`/v2/master/industries/${indId}` , { method: 'DELETE' });
+    await getIndustries(true);
+    return;
+  } 
+
   const locIndustries = (locale: string) => {
     return computed(() => {
       return industriesState.value.map((industry: any) => {
@@ -45,11 +68,18 @@ export const useMasterIndustriesStore = defineStore('industries', () => {
     // Find the industry by code
     const industry = industriesState.value.find((ind: any) => ind.code === industryCode);
     if (!industry) return null; // or a default value
-    console.log('found the ind', industry);
-
     const intTitle = industry.intTitle.find((e: any) => e.key == locale);
     return intTitle ? intTitle.value : industry.title;
   };
 
-  return { industries, locIndustries, loadingIndustries, getIndustries, getIntTitle };
+  return {
+    industries,
+    locIndustries,
+    loadingIndustries,
+    getIndustries,
+    getIntTitle,
+    createInd,
+    updateInd,
+    deleteInd
+  };
 })

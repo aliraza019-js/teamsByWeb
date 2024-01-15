@@ -144,7 +144,8 @@
     "editTerm": "Edit Version",
     "supportedLangs": "Supported Languages",
     "industries": "Industries",
-    "skills": "Skills"
+    "skills": "Skills",
+    "code": "Code"
   },
   "personAbout": {
     "about": "About",
@@ -196,7 +197,8 @@
     "reallyDelete": "Do you want to delete? This can not be undone.",
     "warning": "Warning",
     "delete": "Delete",
-    "title": "Title"
+    "title": "Title",
+    "ok": "OK"
   },
   "contacts": {
     "contacts": "Contacts",

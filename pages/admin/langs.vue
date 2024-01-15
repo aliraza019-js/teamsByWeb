@@ -5,14 +5,18 @@ v-card(width="100%" flat :loading="loadingLangs")
     template(v-slot:prepend)
       v-btn(icon :to="localePath('/admin')")
         v-icon mdi-arrow-left
+    template(v-slot:append)
+      LazyAdminEditLangs(is-new="true")
 
   v-card-text
     v-list
       v-list-item(v-for="(item, index) in langs" :kex="index")
         v-list-item-title {{ getIntTitle(item.code, $i18n.locale ) }}
         template(v-slot:append)
-          v-btn(icon flat)
-            v-icon mdi-pencil
+          FormsConfirmDelete(icon-size="small" @on-confirmed="deleteLang(item)")
+          //- v-btn(icon flat size="small")
+            v-icon mdi-delete
+          LazyAdminEditLangs(:dataObj="item" iconSize="small")
 
 
 </template>
@@ -27,10 +31,14 @@ definePageMeta({
 })
 
 // data
-const { langs, loadingLangs, getLangs, getIntTitle } = useMasterLangsStore();
+const { langs, loadingLangs, getLangs, getIntTitle, deleteLang: delLang } = useMasterLangsStore();
 const localePath = useLocalePath();
 
 // methods
+const deleteLang = async (lang) => {
+  await delLang(lang._id);
+  console.log('deleted', lang);
+}
 
 // hooks
 onMounted(async () => {

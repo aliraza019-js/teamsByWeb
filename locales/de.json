@@ -113,7 +113,8 @@
     "editTerm": "Version editieren",
     "supportedLangs": "Unterstützte Sprachen",
     "industries": "Branchen",
-    "skills": "Skills"
+    "skills": "Skills",
+    "code": "Code"
   },
   "personAbout": {
     "about": "Über",
@@ -172,7 +173,8 @@
     "reallyDelete": "Wirklich löschen? Dies kann nicht rückgängig gemacht werden.",
     "warning": "Achtung",
     "delete": "Löschen",
-    "title": "Titel"
+    "title": "Titel",
+    "ok": "OK"
   },
   "contacts": {
     "contacts": "Kontakte",

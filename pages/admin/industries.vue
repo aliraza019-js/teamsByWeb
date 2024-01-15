@@ -5,9 +5,16 @@ v-card(width="100%" flat :loading="loadingIndustries")
     template(v-slot:prepend)
       v-btn(icon :to="localePath('/admin')")
         v-icon mdi-arrow-left
+    template(v-slot:append)
+      //- AdminEditIndustries
 
   v-card-text
-    v-card.ma-5(v-for="(item, index) in industries" :key="index" variant="tonal")
+    v-text-field(
+      v-model="indFilter"
+      placeholder="Filter industries...")
+
+  v-card-text
+    v-card.ma-5(v-for="(item, index) in filteredIndustries" :key="index" variant="tonal")
       v-toolbar
         v-toolbar-title {{ getIntTitle(item.code, $i18n.locale) }}
         v-spacer
@@ -38,12 +45,26 @@ definePageMeta({
 const { industries, loadingIndustries, getIndustries, getIntTitle } = useMasterIndustriesStore();
 const { getIntTitle: getIntLangTitle } = useMasterLangsStore();
 const localePath = useLocalePath();
+const { locale } = useI18n();
+const indFilter = ref('');
+const filteredIndustries = computed(() => {
+  const filterText = indFilter.value.toLowerCase();
 
-const getKeyValues = (obj) => {
-  for (const [key, value] of Object.entries(obj)) {
-    return { key: key, value: value };
-  }
-}
+  return industries.value.filter(industry => {
+    // Check if the title or code includes the filter text
+    const matchesTitleOrCode = industry.title.toLowerCase().includes(filterText) ||
+      industry.code.toLowerCase().includes(filterText);
+
+    // Find the international title for the current locale
+    const intTitleObj = industry.intTitle.find(t => t.key === locale.value);
+    const intTitle = intTitleObj ? intTitleObj.value.toLowerCase() : '';
+
+    // Check if the international title includes the filter text
+    const matchesIntTitle = intTitle.includes(filterText);
+
+    return matchesTitleOrCode || matchesIntTitle;
+  });
+});
 
 // hooks
 onMounted(async () => {
