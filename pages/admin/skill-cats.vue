@@ -8,20 +8,27 @@ v-card(width="100%" flat :loading="loadingSkills")
     template(v-slot:append)
       lazy-admin-edit-skill-group(isNew="true")
 
-  v-select(v-model="indSelect" :items="localizedIndustries" :label="$t('admin.industries')" multiple clearable item-value="code" title="localizedTitle")
+  v-select(
+    v-model="indSelect" 
+    :items="localizedIndustries" 
+    :label="$t('admin.industries')" 
+    multiple clearable 
+    item-value="code" 
+    title="localizedTitle")
     template(v-slot:selection="{item, index}")
       v-chip(v-if="index < 2")
         span {{ item.title }}
       span.text-grey.text-caption.align-self-center(v-if="index === 2") (+{{ indSelect.length - 2 }} others)
 
-  v-card-text
+  //- text search
+  //- v-card-text
     v-text-field(
       clearable @click:clear="clearFilter()"
       v-model="skillsFilter"
       :placeholder="$t('admin.filterSkills')")
 
   v-card-text
-    v-card.ma-5(v-for="(cat, index) in skillCats" :key="index" variant="tonal")
+    v-card.ma-5(v-for="(cat, index) in filteredSkillCats" :key="cat._id" variant="tonal")
       v-toolbar
         v-toolbar-title {{ getCatIntTitle(cat, $i18n.locale) }}
         v-spacer 
@@ -67,34 +74,20 @@ definePageMeta({
 const localePath = useLocalePath()
 const { locale } = useI18n()
 const { skills, skillGroups, skillCats, loadingSkills, getSkills, getSkillCats, getCatIntTitle, getSkillsByCategoryId, getIntTitleSkill } = useMasterSkillsStore();
-const { industries, locIndustries, getIntTitle: getIndustryIntTitle } = useMasterIndustriesStore();
+const { industries, getIndustries, locIndustries, getIntTitle: getIndustryIntTitle } = useMasterIndustriesStore();
 const { getIntTitle: getIntLangTitle } = useMasterLangsStore();
 const localizedIndustries = locIndustries(locale.value);
 const indSelect = ref()
 const showEditSkillGroup = ref(false);
 const skillsFilter = ref('');
-const filteredSkills = computed(() => {
-  const filterText = skillsFilter.value.toLowerCase();
+const filteredSkillCats = computed(() => {
+  if (!indSelect.value || indSelect.value.length === 0) {
+    return skillCats.value; // Return all skill categories if no industry is selected
+  }
 
-  return skills.value.filter(skill => {
-    // Check if the skill title or code includes the filter text
-    const matchesSkillTitle = skill.title.toLowerCase().includes(filterText) ||
-      (skill.intTitle.some(title => title.value.toLowerCase().includes(filterText)));
-
-    // Check against categories
-    const matchesCategory = skill.categoryDetails.some(cat =>
-      cat.title.toLowerCase().includes(filterText) ||
-      cat.intTitle.some(title => title.value.toLowerCase().includes(filterText))
-    );
-
-    // Check against industries
-    const matchesIndustry = skill.industries.some(industryCode => {
-      const industry = industries.value.find(ind => ind.code === industryCode);
-      return industry && (industry.title.toLowerCase().includes(filterText) ||
-        industry.intTitle.some(title => title.value.toLowerCase().includes(filterText)));
-    });
-
-    return matchesSkillTitle || matchesCategory || matchesIndustry;
+  return skillCats.value.filter(cat => {
+    // Check if any of the selected industries is included in the category's industries
+    return cat.industries.some(industry => indSelect.value.includes(industry));
   });
 });
 
@@ -109,8 +102,9 @@ const delSkill = async () => { }
 
 // hooks
 onMounted(async () => {
-  getSkills();
-  getSkillCats();
+  await getSkills();
+  await getSkillCats();
+  await getIndustries();
 })
 </script>
 

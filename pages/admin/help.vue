@@ -5,6 +5,11 @@ v-card(width="100%" flat)
     template(v-slot:prepend)
       v-btn(icon :to="localePath('/admin')")
         v-icon mdi-arrow-left
+    template(v-slot:append)
+      LazyAdminEditHelp
+
+  v-card-text
+    LazyAdminEditHelpInline
 
 
 </template>

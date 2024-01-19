@@ -124,7 +124,9 @@
     "editSkillCat": "Skill-Kategorie editieren",
     "addSkill": "Neue Fähigkeit",
     "editSkill": "Fähigkeit editieren",
-    "filterSkills": "Skills filtern ..."
+    "filterSkills": "Skills filtern ...",
+    "addHelp": "Hilfe hinzufügen",
+    "editHelp": "Hilfe editieren"
   },
   "personAbout": {
     "about": "Über",

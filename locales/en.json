@@ -155,7 +155,9 @@
     "editSkillCat": "Edit skill category",
     "addSkill": "Add skill",
     "editSkill": "Edit skill",
-    "filterSkills": "filter skills ..."
+    "filterSkills": "filter skills ...",
+    "addHelp": "Add help",
+    "editHelp": "Edit help"
   },
   "personAbout": {
     "about": "About",

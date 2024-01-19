@@ -2,7 +2,7 @@
 div.flex-flex-column
   bubble-menu(:editor="editor" :tippy-options="{ duration: 100 }" v-if="editor")
     // Heading
-    v-btn.mr-1(variant="elevated" size="small" :color="editor.isActive('heading') ? 'secondary' : ''" @click="editor.chain().focus().setHeading({Level: 2}).run()" :class="{ 'is-active': editor.isActive('heading', { level: 2 }) }")
+    v-btn.mr-1(variant="elevated" size="small" :color="editor.isActive('heading') ? 'secondary' : ''" @click="editor.chain().focus().toggleHeading({Level: 2}).run()" :class="{ 'is-active': editor.isActive('heading', { level: 2 }) }")
       //- v-icon(size="small") mdi-format-h2
       span.bold H
     // Format
