@@ -35,7 +35,6 @@ export const useMasterSkillsStore = defineStore('skills', () => {
   }
   
   const updateSkill = async (skill: any, id: string) => {
-    console.log('update skill called', skill, id);
     if (!id) throw 'no id provided';
     await myFetch(`/v2/master/skills/${id}`, { method: 'PUT', body: skill });
     return await getSkills(true);
@@ -47,14 +46,13 @@ export const useMasterSkillsStore = defineStore('skills', () => {
     return;
   } 
 
-  const getSkillCats = async () => {
+  const getSkillCats = async (refresh: boolean) => {
     // Check if already loaded
-    if (skillCatsLoadedState.value) return;
+    if (skillCatsLoadedState.value && !refresh) return;
 
     loadingSkillsState.value = true;
     try {
       const res = await myFetch('/v2/master/skill-cats', {method: 'GET'});
-      console.log('res', res);
       skillCatsState.value = res;
       skillCatsLoadedState.value = true;
     } catch (error) {
@@ -92,6 +90,25 @@ export const useMasterSkillsStore = defineStore('skills', () => {
     return grouped;
   })
 
+  const skillGroupsByInd = (indId: string) => {
+    return skillCatsState.value.filter((cat: any) => cat.indId == indId);
+  }
+
+  const skillsByCat = (catId: string) => {
+    console.log('trigger get cats by ind', catId);
+    return skillsState.value.filter((skill: any) => skill.catId == catId);
+  }
+
+  // get single category
+  const getCat = (id: string) => {
+    if (skillCatsLoadedState.value != true && loadingSkillsState.value != true) {
+      getSkillCats(false);
+    }
+    const cat = skillCatsState.value.find((cat: any) => cat._id == id);
+    if (!cat) return null;
+    return cat;
+  }
+
   return {
     skills,
     createSkill,
@@ -104,6 +121,9 @@ export const useMasterSkillsStore = defineStore('skills', () => {
     getSkillCats,
     getCatIntTitle,
     getSkillsByCategoryId,
-    getIntTitleSkill
+    getIntTitleSkill,
+    skillGroupsByInd,
+    getCat,
+    skillsByCat
   };
 })

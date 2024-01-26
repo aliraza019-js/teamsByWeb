@@ -142,9 +142,11 @@
     "content": "Content",
     "newTerm": "New Version",
     "editTerm": "Edit Version",
-    "supportedLangs": "Supported Languages",
+    "supportedLangs": "Supported languages",
+    "supportedCountries": "Supported countries",
     "industries": "Industries",
     "skills": "Skills",
+    "skillCats": "Skill categories",
     "code": "Code",
     "addIndustry": "Add industry",
     "editIndustry": "Edit industry",
@@ -157,7 +159,8 @@
     "editSkill": "Edit skill",
     "filterSkills": "filter skills ...",
     "addHelp": "Add help",
-    "editHelp": "Edit help"
+    "editHelp": "Edit help",
+    "master": "Master data"
   },
   "personAbout": {
     "about": "About",

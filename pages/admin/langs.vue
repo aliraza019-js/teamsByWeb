@@ -9,15 +9,19 @@ v-card(width="100%" flat :loading="loadingLangs")
       LazyAdminEditLangs(is-new="true")
 
   v-card-text
-    v-list
-      v-list-item(v-for="(item, index) in langs" :kex="index")
-        v-list-item-title {{ getIntTitle(item.code, $i18n.locale ) }}
+    v-card.ma-5(v-for="(lang, index) in langs" :key="index" variant="tonal")
+      v-toolbar(:title="getIntTitle(lang.code, $i18n.locale )")
         template(v-slot:append)
           FormsConfirmDelete(icon-size="small" @on-confirmed="deleteLang(item)")
-          //- v-btn(icon flat size="small")
-            v-icon mdi-delete
-          LazyAdminEditLangs(:dataObj="item" iconSize="small")
-
+          LazyAdminEditLangs(:dataObj="lang" iconSize="small")
+      v-card-text
+        v-list
+          v-list-item
+            v-list-item-subtitle Code
+            v-list-item-title {{ lang.code }}
+          v-list-item(v-for="(intTitle, index) in lang.intTitle" :key="index")
+            v-list-item-subtitle {{ $t('forms.title') }} {{ getIntTitle(intTitle.key, $i18n.locale) }}
+            v-list-item-title {{ intTitle.value }}
 
 </template>
 

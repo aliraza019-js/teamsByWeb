@@ -16,11 +16,10 @@ v-card(width="100%" flat :loading="loadingIndustries")
 
   v-card-text
     v-card.ma-5(v-for="(item, index) in filteredIndustries" :key="item.code" variant="tonal")
-      v-toolbar
-        v-toolbar-title {{ getIntTitle(item.code, $i18n.locale) }}
-        v-spacer
-        FormsConfirmDelete(icon-size="small" @on-confirmed="delInd(item)")
+      v-toolbar(:title="getIntTitle(item.code, $i18n.locale)")
         AdminEditIndustries(:data-obj="item", icon-size="small")
+        v-btn(flat icon :to="`/admin/industries/${item._id}`")
+          v-icon mdi-arrow-right
 
       v-card-text
         v-list

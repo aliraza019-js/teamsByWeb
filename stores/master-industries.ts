@@ -74,6 +74,16 @@ export const useMasterIndustriesStore = defineStore('industries', () => {
     return intTitle ? intTitle.value : industry.title;
   };
 
+  // get single industry
+  const getInd = (id: string) => {
+    if (industriesLoadedState.value != true && loadingIndustriesState.value != true) {
+      getIndustries(false);
+    }
+    const industry = industriesState.value.find((ind: any) => ind._id == id);
+    if (!industry) return null;
+    return industry;
+  }
+
   return {
     industries,
     locIndustries,
@@ -82,6 +92,7 @@ export const useMasterIndustriesStore = defineStore('industries', () => {
     getIntTitle,
     createInd,
     updateInd,
-    deleteInd
+    deleteInd,
+    getInd
   };
 })

@@ -18,23 +18,27 @@ v-card(width="100%" flat)
 
     CommonCard
       template(#title)
-        span.text-secondary.d-flex.align-center Master
+        span.text-secondary.d-flex.align-center {{ $t('admin.master') }}
       template(#body)
         v-list
           v-list-item(:to="localePath('/admin/langs')")
-            v-list-item-title Supported Languages
+            v-list-item-title {{ $t('admin.supportedLangs') }}
+            template(v-slot:append)
+              v-icon mdi-arrow-right
+          v-list-item(:to="localePath('/admin/langs')")
+            v-list-item-title {{ $t('admin.supportedCountries') }}
             template(v-slot:append)
               v-icon mdi-arrow-right
           v-list-item(:to="localePath('/admin/industries')")
-            v-list-item-title Industries
+            v-list-item-title {{ $t('admin.industries') }}
             template(v-slot:append)
               v-icon mdi-arrow-right
           v-list-item(:to="localePath('/admin/skill-cats')")
-            v-list-item-title Categories
+            v-list-item-title {{ $t('admin.skillCats') }}
             template(v-slot:append)
               v-icon mdi-arrow-right
           v-list-item(:to="localePath('/admin/skills')")
-            v-list-item-title Skills
+            v-list-item-title {{ $t('admin.skills') }}
             template(v-slot:append)
               v-icon mdi-arrow-right
 

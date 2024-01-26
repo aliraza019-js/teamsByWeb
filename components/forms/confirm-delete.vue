@@ -4,9 +4,9 @@ v-dialog(max-width="600" v-model="dialog")
     v-btn(icon flat v-bind="props")
       v-icon(:size="iconSize") mdi-delete
   template(v-slot:default="{ isActive }")
-    v-card(title="dialog")
+    v-card(:title="$t('forms.warning')")
       v-card-text
-        p Delete? This can not be reversed.
+        p {{ $t('forms.reallyDelete') }}
       v-card-actions
         v-btn(variant="text" @click="closeDialog()") {{ $t('forms.cancel') }}
         v-btn(variant="elevated" color="primary" @click="confirmed()") {{ $t('forms.ok') }}

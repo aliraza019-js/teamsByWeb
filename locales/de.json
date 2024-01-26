@@ -112,8 +112,10 @@
     "newTerm": "Neue Version",
     "editTerm": "Version editieren",
     "supportedLangs": "Unterstützte Sprachen",
+    "supportedCountries": "Unterstützte Länder",
     "industries": "Branchen",
     "skills": "Skills",
+    "skillCats": "Skill-Kategorien",
     "code": "Code",
     "addIndustry": "Neue Branche",
     "editIndustry": "Branche editieren",
@@ -126,7 +128,8 @@
     "editSkill": "Fähigkeit editieren",
     "filterSkills": "Skills filtern ...",
     "addHelp": "Hilfe hinzufügen",
-    "editHelp": "Hilfe editieren"
+    "editHelp": "Hilfe editieren",
+    "master": "Stammdaten"
   },
   "personAbout": {
     "about": "Über",

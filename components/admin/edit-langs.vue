@@ -102,16 +102,13 @@ const pushForm = async () => {
 
 // hooks
 onMounted(async () => {
-  if (langsLoaded != true) {
-    await getLangs();
-  }
-  formData.value = {}
-  newIntTitle.value = null;
   disabled.value = false;
   loading.value = false;
   msgIsVisable.value = false;
+  await getLangs();
   formData.value.title = props.dataObj?.title || '';
   formData.value.code = props.dataObj?.code || '';
+  newIntTitle.value = null;
   // setting intTitle
   formData.value.intTitle = [];
   for (let i = 0; i < langs.value.length; i++) {
