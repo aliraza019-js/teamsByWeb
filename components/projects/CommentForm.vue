@@ -19,7 +19,8 @@ const props = defineProps({
     isCommentDialog: false,
     persistent: true,
     editItem: {},
-    projectId: null
+    projectId: null,
+    relId: null
 })
 
 
@@ -56,8 +57,8 @@ const submitData = () => {
     disabled.value = true
     let commentsPayload = {
         text: formData.desc,
-        relId: props.projectId,
-        type: 'project'
+        relId: props.relId,
+        type: 'person'
     }
     addComment({ ...commentsPayload }).then(response => {
         emit('update:comments', response)

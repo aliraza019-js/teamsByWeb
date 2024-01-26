@@ -6,10 +6,11 @@ v-card(width="100%" flat)
       v-icon mdi-menu
 
   v-card-text
-    p.text-body-1 some content
+    news
 </template>
 
 <script setup>
+import news from './home/homelisting/news.vue';
 definePageMeta({
   activeRoute: 'home'
 });
