@@ -90,12 +90,23 @@ const contactPerson = ref([
   }
 ]);
 
+/**
+ * Opens the location dialog after a delay of 10 milliseconds.
+ *
+ * @param {none} none - This function does not take any parameters.
+ * @return {none} This function does not return any value.
+ */
 function openLocationDialog() {
   setTimeout(() => {
     editLocation.value = true
   }, 10);
 }
 
+/**
+ * Shows a snackbar with the given event data.
+ *
+ * @param {Object} event - The event data.
+ */
 const showSnackBar = (event) => {
   // console.log('responseData', event)
   showSnackbar.value = true
@@ -103,6 +114,12 @@ const showSnackBar = (event) => {
   snackbarSuccess.value = false
 }
 
+/**
+ * Refreshes the data of the component.
+ *
+ * @param {any} updatedData - The updated data to be displayed.
+ * @return {void} This function does not return a value.
+ */
 const refresh = (updatedData) => {
   // console.log('updatedData', updatedData)
   if (updatedData) {

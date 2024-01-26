@@ -57,6 +57,12 @@ definePageMeta({
   activeRoute: 'team'
 })
 
+/**
+ * Returns the corresponding icon for the given type.
+ *
+ * @param {string} type - The type of icon to retrieve.
+ * @return {string} The icon class for the given type.
+ */
 const getIcon = (type) => {
   switch (type) {
 

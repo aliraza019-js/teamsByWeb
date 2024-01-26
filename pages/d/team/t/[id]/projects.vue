@@ -4,7 +4,7 @@ v-row(class="overflow-auto h-100")
     //- v-btn(variant="text" prepend-icon="mdi-plus" density="compact") Projekt hinzufügen
   v-col(cols="12")
     v-row(class="overflow-auto scroll-container" )
-      v-col(v-if="!response?.length" class="text-center" cols="12")
+      v-col(v-if="canShowTeamsProjects" class="text-center" cols="12")
         v-img(width="75%" class="mx-auto my-10" style="opacity: 0.5; border-radius: 10px;" src="https://img.team-stage.com/placeholder/new/project1_VlnFvTXmD.webp")
       v-col(v-else cols="12" v-for="item , index in response" :key="index")
         CommonCard
@@ -38,15 +38,27 @@ v-row(class="overflow-auto h-100")
 <script setup>
 import { useTeamsStore } from '~/stores/teams'
 const response = ref({});
+const canShowTeamsProjects = ref(false)
 const route = useRoute()
 const localePath = useLocalePath()
 const canLoadCommentsComponent = ref(false)
 const { getProjectsByTeamId } = useTeamsStore()
 onMounted(async () => {
   response.value = await getProjectsByTeamId(route.params.id)
+  if (response.value?.length) {
+    canShowTeamsProjects.value = false
+  } else {
+    canShowTeamsProjects.value = true
+  }
   // console.log(response.value)
 })
 
+/**
+ * Navigates to the project comments page.
+ *
+ * @param {number} id - The ID of the project.
+ * @return {void} This function does not return anything.
+ */
 const navigateToProjectComments = (id) => {
   const router = useRouter();
   // console.log('id navigateToProjectComments', id)
@@ -56,6 +68,12 @@ const navigateToProjectComments = (id) => {
   router.replace({ path });
 };
 
+/**
+ * Adds a like to a project.
+ *
+ * @param {Object} project - The project object to add a like to.
+ * @return {Promise<void>} - A promise that resolves when the like is added.
+ */
 const addProjectLike = async (project) => {
   const payload = {
     oid: route.params.id,

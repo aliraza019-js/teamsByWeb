@@ -4,7 +4,7 @@ v-row(class="overflow-auto h-100")
   //-   v-btn(variant="text" prepend-icon="mdi-plus" density="compact") Projekt hinzufügen
   v-col(cols="12")
     v-row(class="overflow-auto scroll-container" )
-      v-col(v-if="!response.projects?.length" class="text-center" cols="12")
+      v-col(v-if="canShowProjects" class="text-center" cols="12")
         v-img(width="75%" class="mx-auto my-10" style="opacity: 0.5; border-radius: 10px;" src="https://img.team-stage.com/placeholder/new/project1_VlnFvTXmD.webp")
       v-col(v-else cols="12" v-for="item , index in response.projects" :key="index")
         CommonCard
@@ -39,14 +39,27 @@ v-row(class="overflow-auto h-100")
 import { useColleaguesStore } from '~/stores/colleages'
 const response = ref({});
 const localePath = useLocalePath()
+const canShowProjects = ref(false)
 const route = useRoute()
 const { getColleaguesById } = useColleaguesStore()
 
 
 onMounted(async () => {
   response.value = await getColleaguesById(route.params.id)
+  // !response.projects?.length
+  if (response.projects?.length) {
+    canShowProjects.value = false
+  } else {
+    canShowProjects.value = true
+  }
 })
 
+/**
+ * Navigates to the project comments page.
+ *
+ * @param {number} id - The ID of the project.
+ * @return {void} 
+ */
 const navigateToProjectComments = (id) => {
   const router = useRouter();
   // console.log('id navigateToProjectComments', id)
@@ -56,6 +69,12 @@ const navigateToProjectComments = (id) => {
   router.replace({ path });
 };
 
+/**
+ * Adds a like to a project.
+ *
+ * @param {Object} project - The project to add a like to.
+ * @return {Promise} - A promise that resolves when the like is added.
+ */
 const addProjectLike = async (project) => {
   const payload = {
     oid: route.params.id,
@@ -65,10 +84,9 @@ const addProjectLike = async (project) => {
   const resLikes = await myFetch('/v2/likes/toggle', { method: 'POST', body: { ...payload } })
   if (resLikes) {
     const ProjectData = response.value.projects.find(item => {
-      console.log('item', item)
       if (item.projectId === project.projectId) {
         item.userLiked = true,
-        item.likesCount = item.likesCount ? item.likesCount + 1 : 1
+          item.likesCount = item.likesCount ? item.likesCount + 1 : 1
       }
     })
 

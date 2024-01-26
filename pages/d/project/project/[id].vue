@@ -39,7 +39,12 @@ const tabRoutes = ref(
     }
   ]
 );
-
+/**
+ * Fetches a project by its ID and assigns the result to the "projects" variable.
+ *
+ * @param {number} route.params.id - The ID of the project to fetch.
+ * @return {Promise<void>} A promise that resolves when the project is fetched and assigned.
+ */
 const fetchproject = async () => {
   projects.value = await getProjectById(route.params.id)
 
