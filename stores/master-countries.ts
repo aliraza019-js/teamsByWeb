@@ -12,6 +12,8 @@ export const useMasterCountriesStore = defineStore('countries', () => {
     }
     return countriesState;
   })
+  const loadingCountries = computed(() => loadingCountriesState);
+  const countriesLoaded = computed(() => countriesLoadedState);
 
   // methods
   const getCountries = async (refresh: boolean) => {
@@ -29,12 +31,38 @@ export const useMasterCountriesStore = defineStore('countries', () => {
     }
   }
 
-  const createCountry = async (country: any) => { }
-  const updateCountry = async (country: any) => { }
-  const deleteCountry = async (countryId: any) => {}
+  const createCountry = async (country: any) => {
+    await myFetch('/v2/master/countries', { method: 'POST', body: country });
+    return await getCountries(true);
+  }
+  const updateCountry = async (country: any, id: string) => {
+    if (!id) throw 'no id provided';
+    await myFetch(`/v2/master/countries/${id}`, { method: 'PUT', body: country });
+    return await getCountries(true);
+  }
+  const deleteCountry = async (countryId: any) => {
+    await myFetch(`/v2/master/countries/${countryId}`, { method: 'DELETE' });
+    await getCountries(true);
+    return;
+  }
+
+  const intTitle = (cId: string, locale: string) => {
+    if (countriesLoadedState.value != true && loadingCountriesState.value != true) geCountries(false);
+    // Find the lang by code
+    const country = countriesState.value.find((c: any) => c._id === cId);
+    if (!country) return null;
+    const intTitle = country.intTitle.find((e: any) => e.key === locale);
+    return intTitle ? intTitle.value : country.title;
+  };
 
   return {
     countries,
-    getCountries
+    getCountries,
+    loadingCountries,
+    countriesLoaded,
+    createCountry,
+    updateCountry,
+    deleteCountry,
+    intTitle
   };
 })

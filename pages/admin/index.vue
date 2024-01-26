@@ -25,7 +25,7 @@ v-card(width="100%" flat)
             v-list-item-title {{ $t('admin.supportedLangs') }}
             template(v-slot:append)
               v-icon mdi-arrow-right
-          v-list-item(:to="localePath('/admin/langs')")
+          v-list-item(:to="localePath('/admin/countries')")
             v-list-item-title {{ $t('admin.supportedCountries') }}
             template(v-slot:append)
               v-icon mdi-arrow-right

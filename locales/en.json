@@ -153,6 +153,8 @@
     "filterIndustries": "filter industries ...",
     "addLang": "Add language",
     "editLang": "Edit language",
+    "addCountry": "Add country",
+    "editCountry": "Edit country",
     "addSkillCat": "Add skill category",
     "editSkillCat": "Edit skill category",
     "addSkill": "Add skill",
