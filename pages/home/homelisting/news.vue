@@ -36,9 +36,9 @@ v-row(class="overflow-auto h-100")
                                 div(class="d-flex align-center")
                                     v-icon(color="primaryTextPale" size="large" icon="mdi-message-reply-text")
                                     p(class="font-weight-bold cursor-pointer ml-2" @click.stop="loadDynamicComponent(item.data?._id)") {{ item.commentsCount? item.commentsCount: '0'  }} comments
-                                div(class="d-flex align-center")
+                                div(class="d-flex align-center" @click.stop="addLiked(item)")
                                     v-icon(color="primaryTextPale" size="large" :icon="item.userLiked? 'mdi-thumb-up':'mdi-thumb-up-outline'")
-                                    p(class="font-weight-bold cursor-pointer ml-2" @click.stop="addLiked(item)" ) {{ item.likesCount ? item.likesCount+'': '0'}} likes
+                                    p(class="font-weight-bold cursor-pointer ml-2") {{ loading ? 'Loading....' : item.likesCount ? item.likesCount+'': '0'}} likes
         component(:is="dynamicComponent")
 </template>
         
@@ -53,6 +53,7 @@ const localePath = useLocalePath()
 const route = useRoute()
 const { getAllnews } = userHomeStore()
 const newsData = ref([]);
+const loading = ref(false)
 const relationalId = ref("")
 
 const dynamicComponent = ref(null);
@@ -149,17 +150,19 @@ const formatDateRange = (dateTo, dateFrom) => {
  */
 const addLiked = async (itemData) => {
     console.log('itemData', itemData)
+    loading.value = true
     const payload = {
         oid: itemData._id,
         type: itemData.type
     }
     const resLikes = await myFetch('/v2/likes/toggle', { method: 'POST', body: { ...payload } })
     if (resLikes) {
+        loading.value = false
         const ProjectData = newsData.value.find(item => {
             console.log('item ProjectData', item)
             if (item._id === itemData._id) {
-                item.userLiked = true,
-                    item.likesCount = item.likesCount ? item.likesCount + 1 : 1
+                item.userLiked = !item.userLiked,
+                    item.likesCount = item.userLiked ? 1 : 0
             }
         })
 
