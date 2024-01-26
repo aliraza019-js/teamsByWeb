@@ -153,7 +153,7 @@ const addLiked = async (itemData) => {
     loading.value = true
     const payload = {
         oid: itemData._id,
-        type: itemData.type
+        type: 'news'
     }
     const resLikes = await myFetch('/v2/likes/toggle', { method: 'POST', body: { ...payload } })
     if (resLikes) {
