@@ -64,9 +64,5 @@ export const useCustomerStore = defineStore('customer', () => {
         })
     }
 
-
-
-
-
     return { addCustomer, getCustomers, loadingCustomer, customers, getCustomertById, updateCustomer }
 })

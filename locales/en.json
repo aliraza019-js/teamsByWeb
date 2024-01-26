@@ -141,7 +141,26 @@
     "validUntil": "Valid until",
     "content": "Content",
     "newTerm": "New Version",
-    "editTerm": "Edit Version"
+    "editTerm": "Edit Version",
+    "supportedLangs": "Supported languages",
+    "supportedCountries": "Supported countries",
+    "industries": "Industries",
+    "skills": "Skills",
+    "skillCats": "Skill categories",
+    "code": "Code",
+    "addIndustry": "Add industry",
+    "editIndustry": "Edit industry",
+    "filterIndustries": "filter industries ...",
+    "addLang": "Add language",
+    "editLang": "Edit language",
+    "addSkillCat": "Add skill category",
+    "editSkillCat": "Edit skill category",
+    "addSkill": "Add skill",
+    "editSkill": "Edit skill",
+    "filterSkills": "filter skills ...",
+    "addHelp": "Add help",
+    "editHelp": "Edit help",
+    "master": "Master data"
   },
   "personAbout": {
     "about": "About",
@@ -192,7 +211,9 @@
     "passwordMatch": "Password does not match",
     "reallyDelete": "Do you want to delete? This can not be undone.",
     "warning": "Warning",
-    "delete": "Delete"
+    "delete": "Delete",
+    "title": "Title",
+    "ok": "OK"
   },
   "contacts": {
     "contacts": "Contacts",

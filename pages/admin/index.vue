@@ -15,6 +15,51 @@ v-card(width="100%" flat)
             v-list-item-title Terms
             template(v-slot:append)
               v-icon mdi-arrow-right
+
+    CommonCard
+      template(#title)
+        span.text-secondary.d-flex.align-center {{ $t('admin.master') }}
+      template(#body)
+        v-list
+          v-list-item(:to="localePath('/admin/langs')")
+            v-list-item-title {{ $t('admin.supportedLangs') }}
+            template(v-slot:append)
+              v-icon mdi-arrow-right
+          v-list-item(:to="localePath('/admin/langs')")
+            v-list-item-title {{ $t('admin.supportedCountries') }}
+            template(v-slot:append)
+              v-icon mdi-arrow-right
+          v-list-item(:to="localePath('/admin/industries')")
+            v-list-item-title {{ $t('admin.industries') }}
+            template(v-slot:append)
+              v-icon mdi-arrow-right
+          v-list-item(:to="localePath('/admin/skill-cats')")
+            v-list-item-title {{ $t('admin.skillCats') }}
+            template(v-slot:append)
+              v-icon mdi-arrow-right
+          v-list-item(:to="localePath('/admin/skills')")
+            v-list-item-title {{ $t('admin.skills') }}
+            template(v-slot:append)
+              v-icon mdi-arrow-right
+
+    CommonCard
+      template(#title)
+        span.text-secondary.d-flex.align-center Corporate
+      template(#body)
+        v-list
+          v-list-item(:to="localePath('/admin/help')")
+            v-list-item-title Help
+            template(v-slot:append)
+              v-icon mdi-arrow-right
+          v-list-item(:to="localePath('/admin/about')")
+            v-list-item-title About TeamStage
+            template(v-slot:append)
+              v-icon mdi-arrow-right
+          v-list-item(:to="localePath('/admin/privacy')")
+            v-list-item-title Privacy
+            template(v-slot:append)
+              v-icon mdi-arrow-right
+
 </template>
 
 
