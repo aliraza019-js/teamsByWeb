@@ -1,8 +1,8 @@
 <template lang="pug">
-v-card(width="100%" flat)
+v-card(width="100%" flat color="transparent")
   v-toolbar(:title="$t('admin.admin')" flat color="transparent")
     .underline
-    v-btn(icon)
+    //- v-btn(icon)
       v-icon mdi-menu
 
   v-card-text

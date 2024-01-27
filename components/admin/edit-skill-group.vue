@@ -1,10 +1,10 @@
 <template lang="pug">
 v-dialog(max-width="600" v-model="dialog")
   template(v-slot:activator="{ props }")
-    v-btn(icon v-bind="props")
+    v-btn(icon v-bind="props" flat)
       v-icon(:size="iconSize") {{ dataObj !== undefined ? 'mdi-pencil' : 'mdi-plus' }}
   template(v-slot:default="{ isActive }")
-    v-card(title="dialog" :loading="loading")
+    v-card(:title="dataObj ? $t('admin.editSkillCat') : $t('admin.addSkillCat')" :loading="loading")
       // here we put the form
       v-card-text
         v-form(ref="form" v-model="valid" lazy-validation)
@@ -19,28 +19,20 @@ v-dialog(max-width="600" v-model="dialog")
 
           //- industry
           v-select(
-            v-model="formData.industries" 
+            v-model="formData.indId" 
             :items="localizedIndustries" 
             :label="$t('admin.industries')" 
-            multiple clearable 
-            item-value="code" 
+            item-value="_id" 
             :disabled="disabled"
             title="localizedTitle" 
-            :rules="rules.reqList")
-            template(v-slot:selection="{item, index}")
-              v-chip(v-if="index < 2")
-                span {{ item.title }}
-              span.text-grey.text-caption.align-self-center(v-if="index === 2") (+{{ indSelect.length - 2 }} others)
-
-
+            :rules="rules.required")
 
           v-text-field.streched(
             v-for="(intTitle, intTitleIndex) in formData.intTitle" :key="intTitleIndex"
-            :label="`${$t('forms.title')} ${getIntTitle(intTitleIndex, $i18n.locale)}`"
-            v-model="formData.intTitle[intTitleIndex]"
+            :label="`${$t('forms.title')} ${getIntTitle(intTitle.key, $i18n.locale)}`"
+            v-model="formData.intTitle[intTitleIndex].value"
             :disabled="disabled"
-            :rules="rules.required"
-          )
+            :rules="rules.required")
 
       v-card-actions
         v-btn(variant="text" @click="closeDialog()" :disabled="disabled") {{ $t('forms.cancel') }}
@@ -51,14 +43,15 @@ v-dialog(max-width="600" v-model="dialog")
 // imports
 import { useMasterIndustriesStore } from '~/stores/master-industries';
 import { useMasterLangsStore } from '~/stores/master-langs';
+import { useMasterSkillsStore } from '~/stores/master-skills';
 
 // data
 const props = defineProps(['isNew', 'iconSize', 'dataObj']);
-const { locale } = useI18n()
-const emit = defineEmits(['onUpdate']);
-const { locIndustries } = useMasterIndustriesStore();
-const localizedIndustries = locIndustries(locale.value);
+const { locale, t } = useI18n()
 const { langs, getIntTitle, langsLoaded, getLangs } = useMasterLangsStore();
+const { locIndustries, getIndustries } = useMasterIndustriesStore();
+const { createSkillCat, updateSkillCat } = useMasterSkillsStore();
+const localizedIndustries = locIndustries(locale.value);
 
 // dialog
 const dialog = ref(null);
@@ -71,7 +64,7 @@ const form = ref(null)
 const valid = ref(false)
 const loading = ref(false)
 const disabled = ref(false)
-const formData = ref({ intTitle: {} })
+const formData = ref({})
 const rules = reactive({
   required: [v => !!v || t('forms.required')],
   reqList: [(v) => v.length > 0 || t('forms.required')],
@@ -92,17 +85,15 @@ const validateForm = async () => {
 const pushForm = async () => {
   loading.value = true;
   disabled.value = true;
-  // convert intTitle object into array
-  let newObj = {
-    ...formData.value
+  try {
+    props.dataObj ? await updateSkillCat(formData.value, props.dataObj._id) : await createSkillCat(formData.value);
+  } catch (e) {
+    console.log('error updating skill cat', e);
+  } finally {
+    loading.value = false;
+    disabled.value = false;
+    closeDialog();
   }
-  let newIntTitle = []
-  Object.keys(formData.value.intTitle).forEach(key => {
-    newIntTitle.push({ [key]: formData.value.intTitle[key] });
-  });
-  newObj.intTitle = newIntTitle
-  console.log('form', newObj);
-  // push to db (via store)
 }
 
 // hooks
@@ -110,20 +101,19 @@ onMounted(async () => {
   disabled.value = false;
   loading.value = false;
   msgIsVisable.value = false;
+  await getLangs();
+  await getIndustries();
   formData.value.title = props.dataObj?.title || '';
-  formData.value.industries = props.dataObj?.industries || [];
-  if (langsLoaded.value != true) {
-    await getLangs();
+  formData.value.indId = props.dataObj?.indId || null;
+  formData.value.intTitle = [];
+  for (let i = 0; i < langs.value.length; i++) {
+    formData.value.intTitle.push({ key: langs.value[i].code, value: '' })
   }
-  // // setting intTitle
-  if (props.dataObj) {
-    for (let i = 0; i < props.dataObj.intTitle.length; i++) {
-      const thisKey = Object.keys(props.dataObj.intTitle[i])[0];
-      formData.value.intTitle[thisKey] = props.dataObj.intTitle[i][thisKey];
-    }
-  } else {
-    for (let i = 0; i < langs.value.length; i++) {
-      formData.value.intTitle[langs.value[i].code] = ''
+  // if props.dataObj is provided
+  if (props.dataObj?.intTitle) {
+    for (let j = 0; j < formData.value.intTitle.length; j++) {
+      const propsLang = props.dataObj.intTitle.find((e) => e.key == formData.value.intTitle[j].key);
+      if (propsLang) formData.value.intTitle[j].value = propsLang.value;
     }
   }
 })

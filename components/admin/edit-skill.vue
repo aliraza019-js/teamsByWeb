@@ -1,11 +1,10 @@
 <template lang="pug">
 v-dialog(max-width="600" v-model="dialog")
   template(v-slot:activator="{ props }")
-    v-btn(icon v-bind="props")
+    v-btn(icon v-bind="props" flat)
       v-icon(:size="iconSize") {{ dataObj !== undefined ? 'mdi-pencil' : 'mdi-plus' }}
   template(v-slot:default="{ isActive }")
-    v-card(title="dialog" :loading="loading")
-      // here we put the form
+    v-card(:title="dataObj ? $t('admin.editSkill') : $t('admin.addSkill')" :loading="loading")
       v-card-text
         v-form(ref="form" v-model="valid" lazy-validation)
 
@@ -17,8 +16,17 @@ v-dialog(max-width="600" v-model="dialog")
             :disabled="disabled"
             variant="solo")
 
-          //- category select
-          //- multi
+          //- industry select
+          v-select(
+            v-model="formData.catId"
+            :items="localizedCats"
+            :item-props="itemProps"
+            :label="$t('admin.skillCats')" 
+            item-value="_id"
+            :disabled="disabled"
+            title="localizedTitle"
+            @update:modelValue="catSelected()"
+            :rules="rules.required")
 
 
           v-text-field.streched(
@@ -36,14 +44,17 @@ v-dialog(max-width="600" v-model="dialog")
 <script setup>
 // imports
 import { useMasterLangsStore } from '~/stores/master-langs';
+import { useMasterIndustriesStore } from '~/stores/master-industries';
 import { useMasterSkillsStore } from '~/stores/master-skills';
+import { isProxy, toRaw } from 'vue';
 
 // data
 const props = defineProps(['isNew', 'iconSize', 'dataObj']);
-const { t } = useI18n();
-const emit = defineEmits(['onUpdate']);
+const { locale, t } = useI18n();
 const { langs, getIntTitle, langsLoaded, getLangs } = useMasterLangsStore();
-const { createSkill, updateSkill } = useMasterSkillsStore();
+const { locIndustries, getIndustries, getIndIntTitle } = useMasterIndustriesStore();
+const { createSkill, updateSkill, getSkillCats, locCats, catById } = useMasterSkillsStore();
+const localizedCats = locCats(locale.value);
 
 // dialog
 const dialog = ref(null);
@@ -56,7 +67,7 @@ const form = ref(null)
 const valid = ref(false)
 const loading = ref(false)
 const disabled = ref(false)
-const formData = ref({ intTitle: {} })
+const formData = ref({})
 const rules = reactive({
   required: [v => !!v || t('forms.required')],
   reqList: [(v) => v.length > 0 || t('forms.required')],
@@ -69,16 +80,29 @@ const closeDialog = () => {
   dialog.value = false
 }
 
+const itemProps = (item) => {
+  return {
+    title: item.localizedTitle,
+    subtitle: getIndIntTitle(item.indId, locale.value)
+  }
+}
+
+const catSelected = () => {
+  const selectedCat = catById(formData.value.catId);
+  formData.value.indId = selectedCat.indId;
+}
+
 const validateForm = async () => {
   const { valid } = await form.value.validate();
   if (valid) return pushForm();
 }
 
 const pushForm = async () => {
+  console.log('push skill', formData.value);
   loading.value = true;
   disabled.value = true;
   try {
-    props.dataObj ? await updateSkill(formData.value, props.dataObj._id) : await createSkill(formData.value);
+    // props.dataObj ? await updateSkill(formData.value, props.dataObj._id) : await createSkill(formData.value);
   } catch (e) {
     console.log('error updating industry', e);
   } finally {
@@ -90,15 +114,15 @@ const pushForm = async () => {
 
 // hooks
 onMounted(async () => {
-  console.log('props.dataObj', props.dataObj);
   disabled.value = false;
   loading.value = false;
   msgIsVisable.value = false;
+  await getLangs();
+  await getIndustries();
+  await getSkillCats();
   formData.value.title = props.dataObj?.title || '';
-  if (langsLoaded.value != true) {
-    await getLangs();
-  }
-  // setting intTitle
+  formData.value.indId = props.dataObj?.indId || null;
+  formData.value.catId = props.dataObj?.catId || null;
   formData.value.intTitle = [];
   for (let i = 0; i < langs.value.length; i++) {
     formData.value.intTitle.push({ key: langs.value[i].code, value: '' })

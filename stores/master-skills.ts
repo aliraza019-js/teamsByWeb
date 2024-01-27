@@ -41,10 +41,10 @@ export const useMasterSkillsStore = defineStore('skills', () => {
   }
   
   const deleteSkill = async (skillId: string) => {
-    await myFetch(`/v2/master/industries/${skillId}` , { method: 'DELETE' });
+    await myFetch(`/v2/master/skills/${skillId}` , { method: 'DELETE' });
     await getSkills(true);
     return;
-  } 
+  }
 
   const getSkillCats = async (refresh: boolean) => {
     // Check if already loaded
@@ -62,6 +62,23 @@ export const useMasterSkillsStore = defineStore('skills', () => {
     }
   }
 
+  const createSkillCat = async (cat: any) => {
+    await myFetch('/v2/master/skill-cats', { method: 'POST', body: cat });
+    return await getSkillCats(true);
+  }
+  
+  const updateSkillCat = async (cat: any, id: string) => {
+    if (!id) throw 'no id provided';
+    await myFetch(`/v2/master/skill-cats/${id}`, { method: 'PUT', body: cat });
+    return await getSkillCats(true);
+  }
+  
+  const deleteSkillCat = async (catId: string) => {
+    await myFetch(`/v2/master/skill-cats/${catId}` , { method: 'DELETE' });
+    await getSkillCats(true);
+    return;
+  }
+
   const getCatIntTitle = (skillCat: any, locale: string) => {
     const intTitleObj = skillCat.intTitle.find((item: any) => item.key == locale);
     return intTitleObj ? intTitleObj.value : skillCat.title;
@@ -75,6 +92,13 @@ export const useMasterSkillsStore = defineStore('skills', () => {
     const intTitleObj = skill.intTitle.find((item: any) => item.key == locale);
     return intTitleObj ? intTitleObj.value : skill.title;
   };
+
+  const skillCatIntTitle = (skillCatId: string, locale: string) => {
+    const cat = skillCatsState.value.find((cat: any) => cat._id == skillCatId);
+    if (!cat) return null;
+    const catIntTitle = cat.intTitle.find((e: any) => e.key == locale);
+    return catIntTitle ? catIntTitle.value : cat.title;
+  } 
   
   // grouping the skills
   const skillGroups = computed(() => {
@@ -95,8 +119,11 @@ export const useMasterSkillsStore = defineStore('skills', () => {
   }
 
   const skillsByCat = (catId: string) => {
-    console.log('trigger get cats by ind', catId);
     return skillsState.value.filter((skill: any) => skill.catId == catId);
+  }
+
+  const catById = (catId: string) => {
+    return skillCatsState.value.find((e: any) => e._id == catId);
   }
 
   // get single category
@@ -109,6 +136,18 @@ export const useMasterSkillsStore = defineStore('skills', () => {
     return cat;
   }
 
+  const locCats = (locale: string) => {
+    return computed(() => {
+      return skillCatsState.value.map((cat: any) => {
+        const intTitleObj = cat.intTitle.find((item: any) => item[locale]);
+        return {
+          ...cat,
+          localizedTitle: intTitleObj ? intTitleObj[locale] : cat.title,
+        };
+      });
+    });
+  };
+
   return {
     skills,
     createSkill,
@@ -116,14 +155,20 @@ export const useMasterSkillsStore = defineStore('skills', () => {
     deleteSkill,
     skillGroups,
     skillCats,
+    skillCatIntTitle,
     loadingSkills,
     getSkills,
     getSkillCats,
+    createSkillCat,
+    updateSkillCat,
+    deleteSkillCat,
     getCatIntTitle,
     getSkillsByCategoryId,
     getIntTitleSkill,
     skillGroupsByInd,
     getCat,
-    skillsByCat
+    skillsByCat,
+    locCats,
+    catById
   };
 })

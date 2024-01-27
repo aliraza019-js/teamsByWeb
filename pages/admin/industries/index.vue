@@ -1,5 +1,5 @@
 <template lang="pug">
-v-card(width="100%" flat :loading="loadingIndustries")
+v-card(width="100%" flat :loading="loadingIndustries" color="transparent")
   v-toolbar(:title="$t('admin.industries')" flat color="transparent")
     .underline
     template(v-slot:prepend)
@@ -7,6 +7,8 @@ v-card(width="100%" flat :loading="loadingIndustries")
         v-icon mdi-arrow-left
     template(v-slot:append)
       AdminEditIndustries
+      v-btn(icon flat @click="showDetails =  !showDetails")
+        v-icon {{showDetails ? 'mdi-eye-off-outline' : 'mdi-eye-outline'}}
 
   v-card-text
     v-text-field(
@@ -15,20 +17,43 @@ v-card(width="100%" flat :loading="loadingIndustries")
       :placeholder="$t('admin.filterIndustries')")
 
   v-card-text
-    v-card.ma-5(v-for="(item, index) in filteredIndustries" :key="item.code" variant="tonal")
-      v-toolbar(:title="getIntTitle(item.code, $i18n.locale)")
-        AdminEditIndustries(:data-obj="item", icon-size="small")
-        v-btn(flat icon :to="`/admin/industries/${item._id}`")
-          v-icon mdi-arrow-right
+    CommonCard(v-for="(item, index) in filteredIndustries" :key="item.code")
+      template(#title)
+        h2.text-h6.overflow-hidden {{ getIntTitle(item.code, $i18n.locale) }}
+        div
+          AdminEditIndustries(:data-obj="item", icon-size="small")
+          v-btn(flat icon :to="`/admin/industries/${item._id}`")
+            v-icon mdi-arrow-right
 
-      v-card-text
-        v-list
+      template(#body)
+        v-list(v-if="showDetails")
           v-list-item
-            v-list-item-subtitle Code
+            v-list-item-subtitle {{ $t('forms.title') }}
+            v-list-item-title {{ item.title }}
+          v-list-item
+            v-list-item-subtitle {{ $t('admin.code') }}
             v-list-item-title {{ item.code }}
           v-list-item(v-for="(lang, index2) in item.intTitle" :key="index2")
             v-list-item-subtitle {{ $t('forms.title') }} {{ getIntLangTitle(lang.key, $i18n.locale) }}
             v-list-item-title {{ lang.value }}
+
+  v-card.ma-5(v-for="(item, index) in filteredIndustries" :key="item.code" variant="tonal")
+    v-toolbar(:title="getIntTitle(item.code, $i18n.locale)")
+      AdminEditIndustries(:data-obj="item", icon-size="small")
+      v-btn(flat icon :to="`/admin/industries/${item._id}`")
+        v-icon mdi-arrow-right
+
+    v-divider
+    v-list(v-if="showDetails")
+      v-list-item
+        v-list-item-subtitle {{ $t('forms.title') }}
+        v-list-item-title {{ item.title }}
+      v-list-item
+        v-list-item-subtitle {{ $t('admin.code') }}
+        v-list-item-title {{ item.code }}
+      v-list-item(v-for="(lang, index2) in item.intTitle" :key="index2")
+        v-list-item-subtitle {{ $t('forms.title') }} {{ getIntLangTitle(lang.key, $i18n.locale) }}
+        v-list-item-title {{ lang.value }}
 
 </template>
 
@@ -66,6 +91,7 @@ const filteredIndustries = computed(() => {
     return matchesTitleOrCode || matchesIntTitle;
   });
 });
+const showDetails = ref(true);
 
 // methods
 const clearFilter = () => {
