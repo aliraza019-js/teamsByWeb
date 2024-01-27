@@ -4,7 +4,7 @@ v-dialog(max-width="600" v-model="dialog")
     v-btn(icon flat v-bind="props")
       v-icon(:size="iconSize") {{ dataObj !== undefined ? 'mdi-pencil' : 'mdi-plus' }}
   template(v-slot:default="{ isActive }")
-    v-card(:title="dataObj ?  $t('admin.editLang') : $t('admin.addLang')" :loading="loading")
+    v-card(:title="dataObj ?  $t('admin.editCountry') : $t('admin.addCountry')" :loading="loading")
       v-card-text
         v-form(ref="form" v-model="valid" lazy-validation)
 
@@ -32,14 +32,6 @@ v-dialog(max-width="600" v-model="dialog")
             :disabled="disabled"
             :rules="rules.required"
           )
-          v-text-field.streched(
-            v-if="props.isNew"
-            :label="`${$t('forms.title')} ${formData.title || '...'}`"
-            v-model="newIntTitle"
-            :disabled="disabled"
-            :rules="rules.required"
-          )
-
       // actions
       v-card-actions
         v-btn(variant="text" @click="closeDialog()" :disabled="disabled") {{ $t('forms.cancel') }}
@@ -48,17 +40,19 @@ v-dialog(max-width="600" v-model="dialog")
 
 <script setup>
 // imports
+import { useMasterCountriesStore } from '~/stores/master-countries'
 import { useMasterLangsStore } from '~/stores/master-langs';
 
 // data
-const { langs, loadingLangs, langsLoaded, getLangs, getIntTitle, createLang, updateLang } = useMasterLangsStore();
 const props = defineProps(['dataObj', 'iconSize', 'isNew']);
+const { updateCountry, createCountry, getCountries } = useMasterCountriesStore();
+const { langs, getLangs, getIntTitle } = useMasterLangsStore();
 const { t } = useI18n();
 
 // dialog
 const dialog = ref(null);
 const msgType = ref('error');
-const msgIsVisable = ref(false)
+const msgIsVisable = ref(false);
 const msgText = ref('');
 
 // form
@@ -67,12 +61,10 @@ const valid = ref(false)
 const loading = ref(false)
 const disabled = ref(false)
 const formData = ref({ intTitle: {} })
-const newIntTitle = ref(null);
 const rules = reactive({
   required: [v => !!v || t('forms.required')],
   reqList: [(v) => v.length > 0 || t('forms.required')],
 })
-
 
 // methods
 const closeDialog = () => {
@@ -90,7 +82,7 @@ const pushForm = async () => {
   loading.value = true;
   disabled.value = true;
   try {
-    props.dataObj ? await updateLang(formData.value, props.dataObj._id) : await createLang(formData.value);
+    props.dataObj ? await updateCountry(formData.value, props.dataObj._id) : await createCountry(formData.value);
   } catch (e) {
     console.log('error updating lang', e);
   } finally {
@@ -106,9 +98,9 @@ onMounted(async () => {
   loading.value = false;
   msgIsVisable.value = false;
   await getLangs();
+  await getCountries();
   formData.value.title = props.dataObj?.title || '';
   formData.value.code = props.dataObj?.code || '';
-  newIntTitle.value = null;
   // setting intTitle
   formData.value.intTitle = [];
   for (let i = 0; i < langs.value.length; i++) {
@@ -122,6 +114,5 @@ onMounted(async () => {
     }
   }
 })
-</script>
 
-<style lang="scss" scoped></style>
+</script>

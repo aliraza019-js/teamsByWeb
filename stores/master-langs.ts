@@ -44,7 +44,7 @@ export const useMasterLangsStore = defineStore('langs', () => {
   }
   
   const deleteLang = async (langId: string) => {
-    await myFetch(`/v2/master/langs/${langId}` , { method: 'DELETE' });
+    await myFetch(`/v2/master/langs/${langId}`, { method: 'DELETE' });
     await getLangs(true);
     return;
   } 
