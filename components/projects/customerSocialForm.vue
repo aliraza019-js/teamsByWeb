@@ -3,7 +3,7 @@ ClientOnly
     v-dialog(:model-value="isDialogVisible" max-width="650px" @update:modelValue="$emit('update:isDialogVisible', false)")
         CommonCard(color="lightBlue" :loading="loading")
             template(#title)
-                span(class="text-secondary d-flex align-center") {{ $t('personContact.title')}}
+                span(class="text-secondary d-flex align-center") {{ $t('personContact.social')}}
                 v-btn(icon size="small" variant="plain" color="primaryTextPale" @click="$emit('update:isDialogVisible', false)")
                     v-icon mdi-close
             template(#body)

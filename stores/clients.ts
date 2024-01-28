@@ -16,9 +16,21 @@ export const useClientStore = defineStore('client', () => {
         })
     }
 
+    const getClientById = (id:any) => {
+        return new Promise(async (resolve, reject) => {
+
+            myFetch('/v2/clients/'+id, {method: "GET", })
+                .then(res => {
+                    resolve(res)
+                }).catch(()=>{
+                    reject()
+            })
+        })
+    }
+
    
 
 
 
-    return {getClientsList, }
+    return {getClientsList,getClientById }
 })

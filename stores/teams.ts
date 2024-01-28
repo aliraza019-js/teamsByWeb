@@ -10,7 +10,7 @@ export const useTeamsStore = defineStore('Teams', () => {
   const getTeams = () => {
     return new Promise(async (resolve, reject) => {
         loadingTeamsState.value = true;
-      myFetch('/v2/teams/', { method: 'GET' })
+      myFetch('/v2/teams?limit=99', { method: 'GET' })
         .then(res => {
             TeamsState.value = res.data;
           resolve(res.data);
