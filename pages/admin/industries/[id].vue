@@ -1,45 +1,50 @@
 <template lang="pug">
-v-card(:loading="loadingIndustries" width="100%" flat)
-  v-toolbar(flat color="transparent" :title="getIntTitle(ind.code, $i18n.locale)" v-if="ind")
+v-card(:loading="loadingIndustries" width="100%" flat color="transparent")
+  v-toolbar(flat color="transparent" :title="$t('admin.industry')" v-if="ind")
     template(v-slot:prepend)
       v-btn(icon @click="goBack()")
         v-icon mdi-arrow-left
-    template(v-slot:append)
-      AdminEditIndustries(:data-obj="ind", icon-size="small")
-      FormsConfirmDelete(icon-size="small" @on-confirmed="delInd(ind)")
+
   .underline
-
   //- industry details
-  v-card-text
-    v-expansion-panels(color="primary")
-      v-expansion-panel
-        v-expansion-panel-title Details
-        v-expansion-panel-text
-          v-list
-            v-list-item
-              v-list-item-subtitle {{ $t('forms.title') }}
-              v-list-item-title {{ ind.title }}
-            v-list-item
-              v-list-item-subtitle {{ $t('admin.code') }}
-              v-list-item-title {{ ind.code }}
-            v-list-item(v-for="(lang, index2) in ind.intTitle" :key="index2")
-              v-list-item-subtitle {{ $t('forms.title') }} {{ getIntLangTitle(lang.key, $i18n.locale) }}
-              v-list-item-title {{ lang.value }}
-
-  //- list categories
-  v-card(flat)
-    v-card-text
-      v-toolbar(:title="$t('admin.skillCats')" flat color="transparent")
-        template(v-slot:append)
-          LazyAdminEditSkillGroup(isNew="true")
-      v-divider(color="primary")
+  CommonCard.mt-5(v-if="ind")
+    template(#title)
+      h1.text-h6.overflow-hidden {{ getIntTitle(ind.code, $i18n.locale) }}
+      div
+        AdminEditIndustries(:data-obj="ind", icon-size="small")
+        FormsConfirmDelete(icon-size="small" @on-confirmed="delInd(ind)")
+    template(#body)
       v-list
-        v-list-item(
-          v-for="(cat, index) in skillCats"
-          :key="index"
-          append-icon="mdi-arrow-right"
-          :to="`/admin/skill-cats/${cat._id}`")
-          v-list-item-title {{ getCatIntTitle(cat, $i18n.locale) }}
+        v-list-item
+          v-list-item-subtitle {{ $t('forms.title') }}
+          v-list-item-title {{ ind.title }}
+        v-list-item
+          v-list-item-subtitle {{ $t('admin.code') }}
+          v-list-item-title {{ ind.code }}
+        v-list-item(v-for="(lang, index2) in ind.intTitle" :key="index2")
+          v-list-item-subtitle {{ $t('forms.title') }} {{ getIntLangTitle(lang.key, $i18n.locale) }}
+          v-list-item-title {{ lang.value }}
+
+  v-toolbar.mt-10(:title="$t('admin.skillCats')" flat color="secondary" rounded)
+    template(v-slot:append)
+      LazyAdminEditSkillGroup(isNew="true")
+      v-btn(icon flat @click="showDetails =  !showDetails")
+        v-icon {{showDetails ? 'mdi-eye-off-outline' : 'mdi-eye-outline'}}
+
+  CommonCard(v-if="ind" v-for="(cat, index) in skillCats" :key="index")
+    template(#title)
+      h2.text-h6.overflow-hidden {{ getCatIntTitle(cat, $i18n.locale) }}
+      div
+        LazyAdminEditSkillGroup(:data-obj="cat" icon-size="small")
+        v-btn(flat icon :to="`/admin/skill-cats/${cat._id}`")
+          v-icon mdi-arrow-right
+    template(#body v-if="showDetails")
+      v-list-item.mt-2
+        v-list-item-subtitle {{ $t('forms.title') }}
+        v-list-item-title {{ cat.title }}
+      v-list-item(v-for="(lang, index2) in cat.intTitle" :key="index2")
+        v-list-item-subtitle {{ $t('forms.title') }} {{ getIntLangTitle(lang.key, $i18n.locale) }}
+        v-list-item-title {{ lang.value }}
 </template>
 
 <script setup>
@@ -65,6 +70,7 @@ const ind = computed(() => {
 const skillCats = computed(() => {
   return skillGroupsByInd(route.params.id);
 })
+const showDetails = ref(true)
 
 // methods
 const delInd = async (ind) => {
