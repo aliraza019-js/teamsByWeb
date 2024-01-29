@@ -102,7 +102,7 @@ const pushForm = async () => {
   loading.value = true;
   disabled.value = true;
   try {
-    // props.dataObj ? await updateSkill(formData.value, props.dataObj._id) : await createSkill(formData.value);
+    props.dataObj ? await updateSkill(formData.value, props.dataObj._id) : await createSkill(formData.value);
   } catch (e) {
     console.log('error updating industry', e);
   } finally {

@@ -22,7 +22,7 @@ v-card(width="100%" flat :loading="loadingIndustries" color="transparent")
         h2.text-h6.overflow-hidden {{ getIntTitle(item.code, $i18n.locale) }}
         div
           AdminEditIndustries(:data-obj="item", icon-size="small")
-          v-btn(flat icon :to="`/admin/industries/${item._id}`")
+          v-btn(flat icon :to="localePath(`/admin/industries/${item._id}`)")
             v-icon mdi-arrow-right
 
       template(#body)
@@ -40,7 +40,7 @@ v-card(width="100%" flat :loading="loadingIndustries" color="transparent")
   v-card.ma-5(v-for="(item, index) in filteredIndustries" :key="item.code" variant="tonal")
     v-toolbar(:title="getIntTitle(item.code, $i18n.locale)")
       AdminEditIndustries(:data-obj="item", icon-size="small")
-      v-btn(flat icon :to="`/admin/industries/${item._id}`")
+      v-btn(flat icon :to="localePath(`/admin/industries/${item._id}`)")
         v-icon mdi-arrow-right
 
     v-divider

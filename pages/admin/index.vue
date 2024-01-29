@@ -37,7 +37,7 @@ v-card(width="100%" flat color="transparent")
             v-list-item-title {{ $t('admin.skillCats') }}
             template(v-slot:append)
               v-icon mdi-arrow-right
-          v-list-item(:to="localePath('/admin/skills')")
+          //-v-list-item(:to="localePath('/admin/skills')")
             v-list-item-title {{ $t('admin.skills') }}
             template(v-slot:append)
               v-icon mdi-arrow-right

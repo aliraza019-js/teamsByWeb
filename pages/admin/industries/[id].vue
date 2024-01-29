@@ -25,7 +25,7 @@ v-card(:loading="loadingIndustries" width="100%" flat color="transparent")
           v-list-item-subtitle {{ $t('forms.title') }} {{ getIntLangTitle(lang.key, $i18n.locale) }}
           v-list-item-title {{ lang.value }}
 
-  v-toolbar.mt-5(:title="$t('admin.skillCats')" flat color="transparent")
+  v-toolbar.mt-10(:title="$t('admin.skillCats')" flat color="secondary" rounded)
     template(v-slot:append)
       LazyAdminEditSkillGroup(isNew="true")
       v-btn(icon flat @click="showDetails =  !showDetails")
