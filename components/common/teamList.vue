@@ -3,11 +3,11 @@ v-card(class="d-flex rounded-l" width="100%" height="70px" elevation="3" style="
   v-col(class="imgCol")   
     img(v-if="team.profileImage && team.profileImage.url" :src="team.profileImage.url" class="teamPic")
     img(v-else src="https://img.team-stage.com/placeholder/new/team1_oVhR_PZdI.webp" class="teamPic")
-  v-col()
+  v-col(class="ml-2")
     v-row() 
       body-2 {{ team.title }}
     v-row()  
-      h4 {{ team.name  }}
+      h4 {{ team?.name ? team?.name?.substring(0,15) : 'No title given yet'  }}
 </template>
     
 <script setup>
@@ -47,16 +47,15 @@ onMounted(() => {
 // console.log('team', props.team)
 </script>
     
-<style lang="scss" scoped> 
-.teamPic {
-  width: 100%;
-  height: 100%; 
-}
+<style lang="scss" scoped> .teamPic {
+   width: 100%;
+   height: 100%;
+ }
 
-.imgCol {
-  padding: 0px;
-  height: 100%;
-  max-width: 100px;
-  min-width: 53px;
-}
+ .imgCol {
+   padding: 0px;
+   height: 100%;
+   max-width: 100px;
+   min-width: 53px;
+ }
 </style>

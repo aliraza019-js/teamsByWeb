@@ -96,7 +96,8 @@
       "about": "About Client",
       "contactInfo": "Contact Information",
       "location": "Location",
-      "Social": "Social"
+      "Social": "Social",
+      "group": "Group"
     },
     "location": {
       "address": "Street Address",
@@ -114,7 +115,8 @@
     "comment": "Comment",
     "projects": "Projects",
     "projectOverview": "Overview",
-    "Organization": "Organization"
+    "Organization": "Organization",
+    "skills": "Skills"
   },
   "search": {
     "search": "Search"
@@ -173,7 +175,7 @@
   },
   "personContact": {
     "title": "Contact information",
-    "social": "Social",
+    "social": "Social Information",
     "type": "Type",
     "visibility": "Visibility",
     "value": "Value"

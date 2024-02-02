@@ -4,7 +4,7 @@ CommonCardContainer(:title="response.name" :tabRoutes="tabRoutes" )
     v-btn(icon class="ml-0" to="/team/teams")
       v-icon mdi-arrow-left
   template(#titleAtributes)
-    v-avatar(size="70" class="user-profile position-absolute")
+    v-avatar(rounded="0" size="70" class="user-profile position-absolute")
       v-img(v-if="response.profileImage && response.profileImage.url" :src="response.profileImage.url")
       v-img(v-else src="response.profileImage.url")
     
@@ -53,6 +53,6 @@ CommonCardContainer(:title="response.name" :tabRoutes="tabRoutes" )
 
     .user-profile {
       right: 0;
-      top: 12px;
+      top: 5px;
     }
     </style>

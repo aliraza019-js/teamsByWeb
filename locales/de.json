@@ -65,7 +65,8 @@
       "about": "About Client",
       "contactInfo": "Contact Information",
       "location": "Location",
-      "Social": "Social"
+      "Social": "Social",
+      "group": "Group"
     },
     "location": {
       "address": "Street Address",
@@ -83,7 +84,9 @@
     "comment": "Kommentar",
     "projects": "Projekte",
     "projectOverview": "overzicht",
-    "Organization": "Organisation"
+    "Organization": "Organisation",
+    "skills": "Skills"
+    
   },
   "search": {
     "search": "Suche"
@@ -142,7 +145,7 @@
   },
   "personContact": {
     "title": "Kontakt Informationen",
-    "social": "Social",
+    "social": "Social Informationen",
     "existingAccount2": "Hier einloggen"
   },
   "home": {

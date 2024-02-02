@@ -30,13 +30,13 @@ ClientOnly
 </template>
         
 <script setup>
-import { useCustomerStore } from '~/stores/customers'
+import { useTeamsStore } from '~/stores/teams'
 const props = defineProps({
     isDialogVisible: false,
-    customer: {}
+    team: {}
 })
 
-const { updateCustomer } = useCustomerStore()
+const { updateTeam } = useTeamsStore()
 
 const emit = defineEmits(
     ['update:isDialogVisible', 'refresh']
@@ -100,7 +100,7 @@ const submitData = () => {
     error.value = ''
     const social_types = ['linkedin', 'xing', 'facebook', 'instagram', 'tiktok', 'twitter', 'other',]
     const social = formData.social.filter(item => social_types.includes(item.type))
-    updateCustomer(props.customer._id, { social }).then(response => {
+    updateTeam(props.team._id, { social }).then(response => {
         if (response.status == 400) {
             emit('show-snack-bar', response)
         }
@@ -123,8 +123,8 @@ const submitData = () => {
     })
 };
 watch(() => props.isDialogVisible, () => {
-    if (props.customer) {
-        const social = JSON.parse(JSON.stringify(props.customer.social))
+    if (props.team) {
+        const social = JSON.parse(JSON.stringify(props.team.social))
         formData.social = [
             ...social
         ]
