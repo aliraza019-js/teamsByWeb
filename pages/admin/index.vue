@@ -12,7 +12,7 @@ v-card(width="100%" flat color="transparent")
       template(#body)
         v-list
           v-list-item(:to="localePath('/admin/terms')")
-            v-list-item-title Terms
+            v-list-item-title {{ $t('admin.terms') }}
             template(v-slot:append)
               v-icon mdi-arrow-right
 
@@ -48,15 +48,15 @@ v-card(width="100%" flat color="transparent")
       template(#body)
         v-list
           v-list-item(:to="localePath('/admin/help')")
-            v-list-item-title Help
+            v-list-item-title {{ $t('admin.help') }}
             template(v-slot:append)
               v-icon mdi-arrow-right
           v-list-item(:to="localePath('/admin/about')")
-            v-list-item-title About TeamStage
+            v-list-item-title {{ $t('admin.about') }}
             template(v-slot:append)
               v-icon mdi-arrow-right
           v-list-item(:to="localePath('/admin/privacy')")
-            v-list-item-title Privacy
+            v-list-item-title {{ $t('admin.privacy') }}
             template(v-slot:append)
               v-icon mdi-arrow-right
 

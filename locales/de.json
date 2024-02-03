@@ -136,7 +136,11 @@
     "filterSkills": "Skills filtern ...",
     "addHelp": "Hilfe hinzufügen",
     "editHelp": "Hilfe editieren",
-    "master": "Stammdaten"
+    "master": "Stammdaten",
+    "privacy": "Datenschutz",
+    "terms": "Nutzungsbedingungen",
+    "about": "Über TeamStage",
+    "help": "Hilfe"
   },
   "personAbout": {
     "about": "Über",

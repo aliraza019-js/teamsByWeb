@@ -1,6 +1,6 @@
 <template lang="pug">
 v-card(width="100%" flat)
-  v-toolbar(title="Terms" flat color="transparent")
+  v-toolbar(:title="$t('admin.terms')" flat color="transparent")
     .underline
     template(v-slot:prepend)
       v-btn(icon :to="localePath('/admin')")

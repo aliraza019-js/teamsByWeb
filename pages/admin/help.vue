@@ -1,22 +1,55 @@
 <template lang="pug">
-v-card(width="100%" flat)
-  v-toolbar(title="Help" flat color="transparent")
+v-card(width="100%" flat :loading="loading")
+  v-toolbar(:title="$t('admin.help')" flat color="transparent")
     .underline
     template(v-slot:prepend)
       v-btn(icon :to="localePath('/admin')")
         v-icon mdi-arrow-left
     template(v-slot:append)
-      LazyAdminEditHelp
-
+      v-btn(icon @click="htmlIsEditble = true" v-if="!htmlIsEditble")
+        v-icon mdi-pencil
+      v-btn(icon @click="saveData()" v-if="htmlIsEditble")
+        v-icon mdi-content-save
   v-card-text
-    LazyAdminEditHelpInline
-
+    ClientOnly
+      lazy-editor-simple(v-model="htmlContent" :editable="htmlIsEditble")
 
 </template>
 
 <script setup>
+// imports
+
+// page definition
 definePageMeta({
   activeRoute: 'admin'
+})
+
+// data
+const htmlContent = ref('');
+const htmlIsEditble = ref(false);
+const loading = ref(false);
+
+// methods
+const getData = async () => {
+  const res = await myFetch('/pub/corporate/help', {method: 'GET'});
+  htmlContent.value = res.content;
+}
+const saveData = async () => {
+  loading.value = true;
+  try {
+    await myFetch('/v2/corporate/help', { method: 'POST', body: {content: htmlContent.value } })
+  } catch (e) {
+    console.log('error saving data', e);
+  } finally {
+    loading.value = false;
+    htmlIsEditble.value = false;
+  }
+}
+
+// hooks
+onMounted(async () => {
+  await getData();
+  // htmlContent.value = '<p>some content here</p>'
 })
 </script>
 

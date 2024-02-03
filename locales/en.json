@@ -166,7 +166,11 @@
     "filterSkills": "filter skills ...",
     "addHelp": "Add help",
     "editHelp": "Edit help",
-    "master": "Master data"
+    "master": "Master data",
+    "privacy": "Privacy",
+    "terms": "Terms and conditions",
+    "about": "About TeamStage",
+    "help": "Help"
   },
   "personAbout": {
     "about": "About",
