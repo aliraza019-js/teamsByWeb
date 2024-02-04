@@ -79,7 +79,19 @@
   },
   "team": {
     "teams": "Teams",
-    "colleagues": "Colleagues"
+    "colleagues": "Colleagues",
+    "payments": "payments"
+  },
+  "billing": {
+    "billingInfo": "Billing Information",
+    "company": "Company",
+    "email": "Email",
+    "street": "street",
+    "zip": "Zip",
+    "city": "City",
+    "countryCode": "Country Code",
+    "firstName": "First Name",
+    "lastName": "Last Name"
   },
   "projects": {
     "projects": "Projects",
@@ -116,7 +128,8 @@
     "projects": "Projects",
     "projectOverview": "Overview",
     "Organization": "Organization",
-    "skills": "Skills"
+    "skills": "Skills",
+    "payments": "payments"
   },
   "search": {
     "search": "Search"

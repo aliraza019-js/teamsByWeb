@@ -53,7 +53,19 @@
   },
   "team": {
     "teams": "Teams",
-    "colleagues": "Kollegen"
+    "colleagues": "Kollegen",
+    "payments": "payments"
+  },
+  "billing": {
+    "billingInfo": "Billing Information",
+    "company": "Company",
+    "email": "Email",
+    "street": "street",
+    "zip": "Zip",
+    "city": "City",
+    "countryCode": "Country Code",
+    "firstName": "First Name",
+    "lastName": "Last Name"
   },
   "projects": {
     "projects": "Projekte",
@@ -86,7 +98,6 @@
     "projectOverview": "overzicht",
     "Organization": "Organisation",
     "skills": "Skills"
-    
   },
   "search": {
     "search": "Suche"
