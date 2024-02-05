@@ -5,9 +5,9 @@ v-card(class="d-flex rounded-l" width="100%" height="70px" elevation="3" style="
     img(v-else src="https://img.team-stage.com/placeholder/new/team1_oVhR_PZdI.webp" class="teamPic")
   v-col(class="ml-2")
     v-row() 
-      body-2 {{ team.title }}
+      div(class="title") {{team.client?.name }}
     v-row()  
-      h4 {{ team?.name ? team?.name?.substring(0,15) : 'No title given yet'  }}
+      p(class="teamName") {{ team?.name ? team?.name?.substring(0,15) + '...' : 'No title given yet' }}
 </template>
     
 <script setup>
@@ -50,6 +50,20 @@ onMounted(() => {
 <style lang="scss" scoped> .teamPic {
    width: 100%;
    height: 100%;
+ }
+
+ .title {
+   font: normal normal normal 10px/20px Nunito;
+   letter-spacing: 0px;
+   color: #1C1C1C;
+   opacity: 1;
+ }
+
+ .teamName {
+   font: normal normal bold 12px/20px Nunito;
+   letter-spacing: 0px;
+   color: #0966CB;
+   opacity: 1;
  }
 
  .imgCol {

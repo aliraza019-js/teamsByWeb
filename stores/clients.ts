@@ -1,36 +1,48 @@
-import {defineStore} from 'pinia';
+import { defineStore } from 'pinia';
 
 export const useClientStore = defineStore('client', () => {
 
-   
 
-     const getClientsList = () => {
+
+    const getClientsList = () => {
         return new Promise(async (resolve, reject) => {
 
-            myFetch('/v2/clients', {method: "GET", })
+            myFetch('/v2/clients', { method: "GET", })
                 .then(res => {
                     resolve(res)
-                }).catch(()=>{
+                }).catch(() => {
                     reject()
-            })
+                })
         })
     }
 
-    const getClientById = (id:any) => {
+    const getClientById = (id: any) => {
         return new Promise(async (resolve, reject) => {
 
-            myFetch('/v2/clients/'+id, {method: "GET", })
+            myFetch('/v2/clients/' + id, { method: "GET", })
                 .then(res => {
                     resolve(res)
-                }).catch(()=>{
+                }).catch(() => {
                     reject()
-            })
+                })
         })
     }
 
-   
+    const updateClient = (id: string, data: any) => {
+        return new Promise(async (resolve, reject) => {
+
+            myFetch('/v2/clients/' + id, { method: "PATCH", body: data })
+                .then(res => {
+                    resolve(res)
+                }).catch(err => {
+                    reject(err)
+                })
+        })
+    }
 
 
 
-    return {getClientsList,getClientById }
+
+
+    return { getClientsList, getClientById, updateClient }
 })

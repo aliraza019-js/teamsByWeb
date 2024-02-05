@@ -52,8 +52,14 @@ import { useTeamsStore } from '~/stores/teams'
 const response = ref({});
 const route = useRoute()
 const { getTeamsById } = useTeamsStore()
-onMounted(async () => {
+
+const fetchTeams = async () => {
   response.value = await getTeamsById(route.params.id)
+
+}
+
+onMounted(async () => {
+  await fetchTeams()
 })
 
 definePageMeta({
@@ -144,6 +150,7 @@ const showSnackBar = (event) => {
  * @return {void} This function does not return a value.
  */
 const refresh = () => {
+  fetchTeams()
   emit('refresh');
   editAbout.value = false;
   editContact.value = false,
