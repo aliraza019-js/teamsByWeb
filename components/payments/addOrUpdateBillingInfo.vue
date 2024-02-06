@@ -1,3 +1,7 @@
+
+import type { error } from 'console';
+
+import type { emit } from 'process';
 <template lang="pug">
     ClientOnly
         v-dialog(
@@ -7,7 +11,7 @@
         )
             CommonCard(color="lightBlue" :loading="loading")
                 template(#title)
-                    span(class="text-secondary d-flex align-center") Add Billing Information
+                    span(class="text-secondary d-flex align-center") {{`${canUpdate ? 'Update' : 'Add'}`}} Billing Information
                     v-btn(
                         icon
                         size="small"
@@ -20,7 +24,6 @@
                     v-form(class="d-flex flex-column" ref="form")
                         // Billing Information Subheading
                         v-subheader(class="text-h6 text-primary mb-4") Personal Information
-
                         v-text-field(
                             density="comfortable"
                             :label="$t('billing.company')"
@@ -92,43 +95,40 @@
                             ) Save
   </template>
 <script setup>
-import { useClientStore } from '~/stores/clients'
-import { useTeamsStore } from '~/stores/teams'
-import { useCustomerStore } from '~/stores/customers'
+import { usePaymentStore } from "~/stores/payment";
+import { ref, onMounted, defineProps } from 'vue';
 
+
+const { addPaymentByClientId, updatePaymentByClientId } = usePaymentStore()
 const props = defineProps({
     isDialogVisible: false,
-    // clientId: null,
+    payments: null,
+    canUpdate: false,
+    clientId: null
 })
 
 const emit = defineEmits(
-    ['update:isDialogVisible']
+    ['update:isDialogVisible', 'refresh', 'show-snack-bar']
 )
 
-const { getClientsList } = useClientStore()
-const { addCustomer } = useCustomerStore()
-const { addTeamByClientId } = useTeamsStore()
 // data
 const { t } = useI18n()
 const form = ref(null)
 
 const formData = reactive({
-    // name: '',
-    company: "TestCompany 27Apps",
-    email: "billing@27apps.com",
+    company: "",
+    email: "",
     address: {
-        street: "Freundallee 23",
-        zip: "30179",
-        city: "Hannover",
-        countryCode: "DE"
+        street: "",
+        zip: "",
+        city: "",
+        countryCode: ""
     },
-    personNameFirst: "Max",
-    personNameFam: "Mustermann"
+    personNameFirst: "",
+    personNameFam: ""
 })
-const clientId = ref(null)
 const loading = ref(false)
 const disabled = ref(false)
-const clients = ref([])
 
 // Form Rules
 const rules = reactive({
@@ -162,18 +162,46 @@ const validate = async () => {
     const { valid } = await form.value.validate()
     if (valid) return submitData()
 }
-// const submitData = () => {
-//     loading.value = true
-//     disabled.value = true
-//     addTeamByClientId(clientId.value, formData).finally(() => {
-//         loading.value = false
-//         disabled.value = false
-//         formData.name = ''
-//         clientId.value = null
-//         emit('update:isDialogVisible', false)
-//     })
+const submitData = () => {
+    loading.value = true
+    disabled.value = true
+    const clientId = props.payments?.clientId
+    if (props.canUpdate) {
+        updatePaymentByClientId(props.clientId, formData).then((res) => {
+            console.log('res updatePaymentByClientId', res.status == 400)
+            loading.value = false
+            disabled.value = false
+            emit('refresh')
+            emit('update:isDialogVisible', false)
+            if (res.status == 400) {
+                emit('show-snack-bar', { message: `${res.message}`, success: false })
+            } else {
+                emit('show-snack-bar', { message: 'Payment updated', success: true })
+            }
+        })
+            .finally(() => {
+                loading.value = false
+                disabled.value = false
+            });
+    } else {
+        addPaymentByClientId(props.clientId, formData).then((res) => {
+            loading.value = false
+            disabled.value = false
+            emit('refresh')
+            emit('update:isDialogVisible', false)
+            if (res.status == 400) {
+                emit('show-snack-bar', { message: `${res.message}`, success: false })
+            } else {
+                emit('show-snack-bar', { message: 'Payment Added', success: true })
+            }
+        })
+            .finally(() => {
+                loading.value = false
+                disabled.value = false
+            });
+    }
 
-// };
+};
 
 // watch(() => props.isDialogVisible, (newValue) => {
 //     if (!newValue) {
@@ -181,11 +209,33 @@ const validate = async () => {
 //     }
 // })
 
-onMounted(async () => {
-    const response = await getClientsList()
-    clients.value = response.data
-    console.log('clients', clients.value)
+watchEffect(() => {
+    if (props.isDialogVisible) {
+        formData.company = props.payments?.company
+        formData.email = props.payments?.email
+        formData.personNameFirst = props.payments?.personNameFirst
+        formData.personNameFam = props.payments?.personNameFam
+        formData.address.street = props.payments?.address?.street
+        formData.address.zip = props.payments?.address?.zip
+        formData.address.city = props.payments?.address?.city
+        formData.address.countryCode = props.payments?.address?.countryCode
+    } else {
+        formData.company = ""
+        formData.email = ""
+        formData.personNameFirst = ""
+        formData.personNameFam = ""
+        formData.address.street = ""
+        formData.address.zip = ""
+        formData.address.city = ""
+        formData.address.countryCode = ""
+    }
 })
+
+// onMounted(async () => {
+//     const response = await getClientsList()
+//     clients.value = response.data
+//     console.log('clients', clients.value)
+// })
 
 </script>
         
