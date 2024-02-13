@@ -37,8 +37,8 @@ v-row(class="overflow-auto h-100")
                                     v-icon(color="primaryTextPale" size="large" icon="mdi-message-reply-text")
                                     p(class="font-weight-bold cursor-pointer ml-2" @click.stop="loadDynamicComponent(item.data?._id)") {{ item.commentsCount? item.commentsCount: '0'  }} comments
                                 div(class="d-flex align-center" @click.stop="addLiked(item)")
-                                    v-icon(color="primaryTextPale" size="large" :icon="item.userLiked? 'mdi-thumb-up':'mdi-thumb-up-outline'")
-                                    p(class="font-weight-bold cursor-pointer ml-2") {{ loading ? 'Loading....' : item.likesCount ? item.likesCount+'': '0'}} likes
+                                    v-icon(color="primaryTextPale" :class="{'liked': item.liked}" class="like-icon" size="large" :icon="item.userLiked? 'mdi-thumb-up':'mdi-thumb-up-outline'")
+                                    p(class="font-weight-bold cursor-pointer ml-2") {{ item.likesCount ? item.likesCount+'': '0'}} likes
         component(:is="dynamicComponent")
 </template>
         
@@ -149,25 +149,35 @@ const formatDateRange = (dateTo, dateFrom) => {
  * @return {void} 
  */
 const addLiked = async (itemData) => {
-    console.log('itemData', itemData)
-    loading.value = true
+    console.log('itemData', itemData);
+    loading.value = true;
     const payload = {
         oid: itemData._id,
         type: 'news'
-    }
-    const resLikes = await myFetch('/v2/likes/toggle', { method: 'POST', body: { ...payload } })
-    if (resLikes) {
-        loading.value = false
-        const ProjectData = newsData.value.find(item => {
-            console.log('item ProjectData', item)
-            if (item._id === itemData._id) {
-                item.userLiked = !item.userLiked,
-                    item.likesCount = item.userLiked ? 1 : 0
-            }
-        })
+    };
+    const resLikes = await myFetch('/v2/likes/toggle', { method: 'POST', body: { ...payload } });
 
+    if (resLikes) {
+        loading.value = false;
+        const ProjectData = newsData.value.find(item => {
+            console.log('item ProjectData', item);
+            if (item._id === itemData._id) {
+                item.userLiked = !item.userLiked;
+                item.likesCount = item.userLiked ? 1 : 0;
+                item.liked = true; // Flag to trigger the transition
+            }
+        });
+
+        setTimeout(() => {
+            const ProjectData = newsData.value.find(item => {
+                if (item._id === itemData._id) {
+                    item.liked = false; // Reset the flag after the transition duration
+                }
+            });
+        }, 300); // Adjust the duration to match your CSS transition duration
     }
-}
+};
+
 
 /**
  * Formats a date string for use in news articles.
@@ -197,6 +207,30 @@ definePageMeta({
 <style scoped lang="scss">
 .cursor-pointer {
     cursor: pointer !important;
+}
+
+.like-icon {
+    transition: transform 0.3s ease-in-out;
+}
+
+.like-icon.liked {
+    animation: scaleIn 0.3s ease-in-out forwards;
+}
+
+@keyframes scaleIn {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.5);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.like-icon:hover {
+    transform: scale(1.2);
 }
 
 .newsAvatar {

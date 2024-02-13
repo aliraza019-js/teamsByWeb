@@ -17,7 +17,7 @@ v-container(class="pa-0")
             v-btn(v-if="clients?.isAdmin" icon size="small" variant="plain" color="secondary" @click="editContact = true")
               v-icon(color="") mdi-plus
         template(#body)
-          CommonContactInformation(:data="clients?.contacts")
+          CommonContactInformation(:data="clients")
     v-col(cols="12")
       CommonCard
         template(#title)
@@ -26,10 +26,10 @@ v-container(class="pa-0")
             v-btn(v-if="clients?.isAdmin" icon size="small" variant="plain" color="secondary" @click="editSocial = true")
               v-icon(color="") mdi-plus
         template(#body)
-          CommonSocialInformation(:data="clients?.social")
-  ProjectsEditAboutCustomer(:persistent="true" :customer="clients" @show-snack-bar="showSnackBar" @refresh="refresh" min-height="500" width="500" :isDialogVisible="editAbout" @update:isDialogVisible="(value) => editAbout = false")
-  ProjectsCustomerContactForm(:persistent="true" :customer="clients" @show-snack-bar="showSnackBar" @refresh="refresh" min-height="500" width="500" :isDialogVisible="editContact" @update:isDialogVisible="(value) => editContact = false")
-  ProjectsCustomerSocialForm(:persistent="true" :customer="clients" @show-snack-bar="showSnackBar" @refresh="refresh" min-height="500" width="500" :isDialogVisible="editSocial" @update:isDialogVisible="(value) => editSocial = false")
+          CommonSocialInformation(:data="clients")
+  ClientsEditAboutCustomer(:persistent="true" :client="clients" @show-snack-bar="showSnackBar" @refresh="refresh" min-height="500" width="500" :isDialogVisible="editAbout" @update:isDialogVisible="(value) => editAbout = false")
+  ClientsCustomerContactForm(:persistent="true" :client="clients" @show-snack-bar="showSnackBar" @refresh="refresh" min-height="500" width="500" :isDialogVisible="editContact" @update:isDialogVisible="(value) => editContact = false")
+  ClientsCustomerSocialForm(:persistent="true" :client="clients" @show-snack-bar="showSnackBar" @refresh="refresh" min-height="500" width="500" :isDialogVisible="editSocial" @update:isDialogVisible="(value) => editSocial = false")
   CommonSnackbar(v-if="showSnackbar" :message="snackbarMessage" :success="snackbarSuccess")
 
 </template>
