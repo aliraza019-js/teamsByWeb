@@ -33,10 +33,10 @@ v-row(class="overflow-auto h-100")
                                     p(class="text-capitalize") {{item.body?.en}} 
                                 p(class="text-justify") {{ item.data?.desc }} 
                             v-col(cols="12" class="d-flex justify-space-between")
-                                div(class="d-flex align-center")
+                                div(class="d-flex align-center" v-ripple="{ class: 'custom-ripple' }" @click.stop="loadDynamicComponent(item.data?._id)")
                                     v-icon(color="primaryTextPale" size="large" icon="mdi-message-reply-text")
-                                    p(class="font-weight-bold cursor-pointer ml-2" @click.stop="loadDynamicComponent(item.data?._id)") {{ item.commentsCount? item.commentsCount: '0'  }} comments
-                                div(class="d-flex align-center" @click.stop="addLiked(item)")
+                                    p(class="font-weight-bold cursor-pointer ml-2") {{ item.commentsCount? item.commentsCount: '0'  }} comments
+                                div(class="d-flex align-center" v-ripple="{ class: 'custom-ripple' }" @click.stop="addLiked(item)")
                                     v-icon(color="primaryTextPale" :class="{'liked': item.liked}" class="like-icon" size="large" :icon="item.userLiked? 'mdi-thumb-up':'mdi-thumb-up-outline'")
                                     p(class="font-weight-bold cursor-pointer ml-2") {{ item.likesCount ? item.likesCount+'': '0'}} likes
         component(:is="dynamicComponent")
@@ -73,10 +73,15 @@ const handleImageError = (event) => {
 provide('relationalId', relationalId);
 
 
-
-onMounted(async () => {
+const fetchNews = async () => {
     news.value = await getAllnews(99, 0)
     newsData.value = news.value.data;
+}
+
+
+
+onMounted(async () => {
+    await fetchNews()
 })
 
 /**
@@ -161,20 +166,13 @@ const addLiked = async (itemData) => {
         loading.value = false;
         const ProjectData = newsData.value.find(item => {
             console.log('item ProjectData', item);
-            if (item._id === itemData._id) {
-                item.userLiked = !item.userLiked;
-                item.likesCount = item.userLiked ? 1 : 0;
-                item.liked = true; // Flag to trigger the transition
-            }
+            fetchNews()
+            // if (item._id === itemData._id) {
+            //     item.userLiked = !item.userLiked;
+            //     item.likesCount = item.userLiked;
+            //     item.liked = true;
+            // }
         });
-
-        setTimeout(() => {
-            const ProjectData = newsData.value.find(item => {
-                if (item._id === itemData._id) {
-                    item.liked = false; // Reset the flag after the transition duration
-                }
-            });
-        }, 300); // Adjust the duration to match your CSS transition duration
     }
 };
 
@@ -221,9 +219,11 @@ definePageMeta({
     0% {
         transform: scale(1);
     }
+
     50% {
         transform: scale(1.5);
     }
+
     100% {
         transform: scale(1);
     }
@@ -231,6 +231,11 @@ definePageMeta({
 
 .like-icon:hover {
     transform: scale(1.2);
+}
+
+.custom-ripple {
+    border-radius: 50%;
+    /* Set the border-radius for the ripple */
 }
 
 .newsAvatar {

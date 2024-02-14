@@ -4,7 +4,7 @@ v-row(class="overflow-auto h-100 scroll-container")
   v-col(cols="12")
     CommonCard
       template(#title)
-        span(class="text-secondary d-flex align-center" ) {{$t('personAbout.about') +" "+ response.name}}
+        span(class="text-secondary d-flex align-center" ) {{$t('personAbout.about') +" "+ (response.name ? response.name : '')}}
         v-btn(v-if="response.isAdmin" icon size="small" variant="plain" color="primaryTextPale" @click="editAbout = true") 
           v-icon mdi-pencil
       template(#body)

@@ -8,7 +8,10 @@ v-container(class="pa-0")
                     v-btn(icon size="small" variant="plain" color="primaryTextPale" @click="showBillingDailog")
                         v-icon {{payments?.billing ? 'mdi-pencil' : 'mdi-plus'}}
                 template(#body)
-                    div(v-if="payments?.billing")
+                    div(v-if="canShowPayments" class="d-flex")
+                        v-icon(color="primaryTextPale" size="small" class="mt-2 mr-2" icon="mdi-credit-card")
+                        p(class="font-weight-bold mt-2") No Billing info added yet
+                    div(v-else)
                         v-container(class="px-0")
                             span(class="text-primary font-weight-bold text-green font-15 d-flex align-center mt-2 mb-4") {{'Personal Information'}}
                             v-row
@@ -57,9 +60,6 @@ v-container(class="pa-0")
                                         v-icon(color="primaryTextPale" size="small" class="mr-2" icon="mdi-map-marker-radius")
                                         span(class="text-secondary") Zip Code
                                         p(class="font-weight-bold mt-2 ml-6") {{ payments?.billing?.master?.address?.zip }}
-                    div(v-else class="d-flex")
-                        v-icon(color="primaryTextPale" size="small" class="mt-2 mr-2" icon="mdi-credit-card")
-                        p(class="font-weight-bold mt-2") No Billing info added yet
     PaymentsAddOrUpdateBillingInfo(:persistent="true" min-height="500" width="500" :clientId="payments?._id" @show-snack-bar="emitSnackBar" :canUpdate="payments?.billing ? true : false" :payments="payments?.billing?.master" @refresh="fetchPayments"   :isDialogVisible="dialogAddOrUpdateBillingInfo" @update:isDialogVisible="closeBillingDailog")
     CommonSnackbar(v-if="showSnackbar" :message="snackbarMessage" :success="snackbarSuccess")
 </template>
@@ -87,6 +87,7 @@ const localePath = useLocalePath();
 const payments = ref([])
 const dialogAddOrUpdateBillingInfo = ref(false)
 const showSnackbar = ref(false)
+const canShowPayments = ref(false)
 const snackbarMessage = ref('')
 const snackbarSuccess = ref(false)
 
@@ -105,6 +106,11 @@ const emitSnackBar = (event) => {
 
 const fetchPayments = async () => {
     payments.value = await getPaymentById(props.clients?._id)
+    if (payments.value.billing?.length) {
+        canShowPayments.value = true
+    } else {
+        canShowPayments.value = false
+    }
 
 }
 

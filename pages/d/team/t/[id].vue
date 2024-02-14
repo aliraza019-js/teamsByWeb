@@ -1,5 +1,6 @@
 <template lang="pug">
-CommonCardContainer(:title="response.name" :tabRoutes="tabRoutes" )
+v-progress-linear( indeterminate v-if="!response?.name" :size="64")
+CommonCardContainer(v-else :title="response.name" :tabRoutes="tabRoutes" )
   template(#prependTitleAtributes)
     v-btn(icon class="ml-0" to="/team/teams")
       v-icon mdi-arrow-left
@@ -7,52 +8,51 @@ CommonCardContainer(:title="response.name" :tabRoutes="tabRoutes" )
     v-avatar(rounded="0" size="70" class="user-profile position-absolute")
       v-img(v-if="response.profileImage && response.profileImage.url" :src="response.profileImage.url")
       v-img(v-else src="response.profileImage.url")
-    
+
   v-container
     NuxtPage
 </template>
-    <script setup>
-    import {useTeamsStore} from '~/stores/teams'
-      const response = ref({});
-      const route = useRoute()
-      const {getTeamsById} = useTeamsStore()
-      onMounted(async () => {
-          response.value = await getTeamsById(route.params.id)
+<script setup>
+import { useTeamsStore } from '~/stores/teams'
+const response = ref({});
+const route = useRoute()
+const { getTeamsById } = useTeamsStore()
+onMounted(async () => {
+  response.value = await getTeamsById(route.params.id)
 
-      })
-    definePageMeta({
-      activeRoute: 't'
-    })
+})
+definePageMeta({
+  activeRoute: 't'
+})
 
-    // console.log(route.params.id);
-
-
-    const tabRoutes = ref(
-    [
-
-      {
-        label: "About",
-        link: `/d/team/t/${route.params.id}/about`
-      },
-      {
-        label: "Team",
-        link: `/d/team/t/${route.params.id}/team`
-      },
-      {
-        label: "Projects",
-        link: `/d/team/t/${route.params.id}/projects`
-      },
-   
-    ]
-  );
+// console.log(route.params.id);
 
 
-    </script>
+const tabRoutes = ref(
+  [
+
+    {
+      label: "About",
+      link: `/d/team/t/${route.params.id}/about`
+    },
+    {
+      label: "Team",
+      link: `/d/team/t/${route.params.id}/team`
+    },
+    {
+      label: "Projects",
+      link: `/d/team/t/${route.params.id}/projects`
+    },
+
+  ]
+);
+
+
+</script>
     
-    <style lang="scss" scoped>
-
-    .user-profile {
-      right: 0;
-      top: 5px;
-    }
-    </style>
+<style lang="scss" scoped>
+.user-profile {
+  right: 0;
+  top: 5px;
+}
+</style>

@@ -1,5 +1,6 @@
 <template lang="pug">
-CommonCardContainer(:title="response && response.givenName" :tabRoutes="tabRoutes")
+v-progress-linear( indeterminate v-if="!response" :size="64")
+CommonCardContainer(v-else :title="response && response.givenName" :tabRoutes="tabRoutes")
   template(#prependTitleAtributes)
     v-btn(icon class="ml-0" to="/team/persons")
       v-icon mdi-arrow-left
@@ -13,46 +14,45 @@ CommonCardContainer(:title="response && response.givenName" :tabRoutes="tabRoute
 </template>
   
 <script setup>
-import {useColleaguesStore} from '~/stores/colleages'
+import { useColleaguesStore } from '~/stores/colleages'
 const response = ref({});
 const route = useRoute()
-const {getColleaguesById} = useColleaguesStore()
+const { getColleaguesById } = useColleaguesStore()
 onMounted(async () => {
-    response.value = await getColleaguesById(route.params.id)
+  response.value = await getColleaguesById(route.params.id)
 })
 definePageMeta({
   activeRoute: 'person'
 })
 
-  const tabRoutes = ref(
-    [
-      {
-        label: "General",
-        link: `/d/team/person/${route.params.id}/general`
-      },
-      {
-        label: "Skills",
-        link: `/d/team/person/${route.params.id}/skills`
-      },
-      {
-        label: "Projects",
-        link: `/d/team/person/${route.params.id}/projects`
-      },
-      {
-        label: "Trainings",
-        link: `/d/team/person/${route.params.id}/trainings`
-      },
-      {
-        label: "Certifications",
-        link: `/d/team/person/${route.params.id}/certifications`
-      },
-    ]
-  );
-  
-  </script>
+const tabRoutes = ref(
+  [
+    {
+      label: "General",
+      link: `/d/team/person/${route.params.id}/general`
+    },
+    {
+      label: "Skills",
+      link: `/d/team/person/${route.params.id}/skills`
+    },
+    {
+      label: "Projects",
+      link: `/d/team/person/${route.params.id}/projects`
+    },
+    {
+      label: "Trainings",
+      link: `/d/team/person/${route.params.id}/trainings`
+    },
+    {
+      label: "Certifications",
+      link: `/d/team/person/${route.params.id}/certifications`
+    },
+  ]
+);
+
+</script>
 
 <style lang="scss" scoped>
-
 .user-profile {
   right: 0;
   top: 12px;

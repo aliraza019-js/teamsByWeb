@@ -5,7 +5,7 @@ v-container
             div(v-for="(item, index) in data.social" :key="index" class="d-flex my-4 gap-10 align-items justify-start")
                 v-icon(color="#707070") {{getIcon(item.type)}}
                 p(class="mb-0 font-weight-bold") {{ item.value }}
-            div(v-if="data.social.length == 0" class="d-flex my-4 gap-10 align-items justify-start")
+            div(v-if="data?.social?.length == 0" class="d-flex my-4 gap-10 align-items justify-start")
                 p(class="mb-0 font-weight-bold") No social information added yet
 </template>
     
