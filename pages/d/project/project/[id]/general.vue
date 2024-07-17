@@ -1,5 +1,7 @@
 <template lang="pug">
-v-row()
+div(v-if="loadingProject") 
+  <v-progress-linear indeterminate :size="64"></v-progress-linear>
+v-row(v-else)
   v-col(cols="12")
     CommonCard
       template(#title)
@@ -8,7 +10,7 @@ v-row()
           v-icon mdi-pencil
       template(#body)
         v-container(class="px-0")
-          p {{ projectsData && projectsData[0].desc  }}
+          p {{ projectsData && projectsData[0]?.desc ? projectsData[0].desc : 'description...' }}
   v-col(cols="12")
     CommonCard
       template(#title)
@@ -56,8 +58,7 @@ let snackbarMessage = ref('')
 let snackbarSuccess = ref(false)
 
 const emit = defineEmits(['refresh'])
-const { getProjectById } = useProjectStore()
-const { updateProjectDescription } = useProjectStore()
+const { getProjectById, loadingProject, updateProjectDescription } = useProjectStore()
 
 const route = useRoute();
 const projectValueData = ref(null)

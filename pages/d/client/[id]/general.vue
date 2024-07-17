@@ -35,7 +35,7 @@ v-container(class="pa-0")
 </template>
   
 <script setup>
-
+import { useClientStore } from "~/stores/clients";
 import { ref, onMounted, defineProps } from 'vue';
 
 
@@ -49,6 +49,8 @@ const emit = defineEmits(
   ['update:isDialogVisible', 'refresh', 'show-snack-bar']
 )
 
+const router = useRouter();
+const route = useRoute();
 const props = defineProps(['clients']);
 
 
@@ -89,6 +91,15 @@ const showSnackBar = (event) => {
   snackbarMessage.value = event.message
   snackbarSuccess.value = false
 }
+
+onMounted(() => {
+  const store = useClientStore();
+
+  // Now, you can call the store method
+  console.log('route fetchClients', store.getPreviousRouteId());
+  emit('previous-route-id', store.getPreviousRouteId());
+
+});
 
 /**
  * Refreshes the data of the component.

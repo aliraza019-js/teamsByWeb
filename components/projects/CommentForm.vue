@@ -1,6 +1,6 @@
 <template lang="pug">
 ClientOnly
-v-dialog(:model-value="props.isCommentDialog" max-width="450px" @update:modelValue="$emit('update:isCommentDialog', false)")
+v-dialog(:model-value="props.isCommentDialog" :max-width="`${width}px`" :min-height="`${minHeight}px`" @update:modelValue="$emit('update:isCommentDialog', false)")
     CommonCard(color="lightBlue" :loading="loading")
         template(#title)
             span(class="text-secondary d-flex align-center") {{$t('projects.addComment')}}
@@ -20,7 +20,9 @@ const props = defineProps({
     persistent: true,
     editItem: {},
     projectId: null,
-    relId: null
+    relId: null,
+    minHeight: 500,
+    width: 500
 })
 
 

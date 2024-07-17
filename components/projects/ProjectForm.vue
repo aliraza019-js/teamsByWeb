@@ -8,7 +8,7 @@ ClientOnly
                     v-icon mdi-close
             template(#body)
                 v-form(class="d-flex flex-column" ref="form")
-                    v-select(:label="$t('projects.selectCustomer')" item-title="name" item-value="_id" variant="solo" :items="customers" v-model="clientId" :rules="rules.required")
+                    v-select(:label="$t('projects.selectCustomer')" item-title="name" item-value="_id" variant="solo" :items="customers ? customers : []" v-model="clientId" :rules="rules.required")
                     v-text-field(density="comfortable" :label="$t('projects.projectName')" variant="solo" v-model="formData.name" :rules="rules.required")
                     div(class="d-flex justify-center mt-5")
                         v-btn(rounded="pill" size="large" color="secondary" width="65%" @click="validate" :disabled="disabled") Save
@@ -27,13 +27,14 @@ const showError = ref('')
 const router = useRouter();
 const showSnackbar = ref(false)
 const snackbarMessage = ref('')
+const customers = ref([])
 const snackbarSuccess = ref(false)
 
 const emit = defineEmits(
     ['update:isDialogVisible']
 )
 const { addProject } = useProjectStore()
-const { customers, getCustomers } = useCustomerStore()
+const { getCustomers } = useCustomerStore()
 // data
 const { t } = useI18n()
 const form = ref(null)
@@ -94,9 +95,13 @@ watch(() => props.isDialogVisible, (newValue) => {
 })
 
 
-onMounted(() => {
-    // console.log('customers abc', customers)
-    getCustomers(20,0)
+onMounted(async () => {
+    try {
+        const response = await getCustomers(20, 0);
+        customers.value = response.data;
+    } catch (error) {
+        console.error('Error fetching customers:', error);
+    }
 })
 
 </script>

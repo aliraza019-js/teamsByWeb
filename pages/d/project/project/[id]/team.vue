@@ -1,6 +1,6 @@
 <template lang="pug">
 v-row
-  v-col(cols="12" sm="4" v-for="team , index in teams" :key="index")
+  v-col(cols="12" sm="4" v-for="team , index in teams.data" :key="index")
     v-card(rounded="lg" class="elevation-4")
       v-card-text(class="d-flex py-1")
         v-avatar(size="60" :image="team.profileImage ? team.profileImage.url : img")
@@ -21,7 +21,7 @@ const img = ref('https://images.unsplash.com/photo-1488161628813-04466f872be2?ix
 const { getTeams, teams } = useTeamsStore()
 
 onMounted(async () => {
-  await getTeams()
+  await getTeams(10,0)
 })
 
 </script>

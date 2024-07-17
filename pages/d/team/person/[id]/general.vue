@@ -43,8 +43,8 @@ onMounted(async () => {
   // console.log('teams.value in colleagues', teams.value)
   placeData.value = {
     location: {
-      lat: parseInt(response.value.location.latitude),
-      lng: parseInt(response.value.location.longitude),
+      lat: parseInt(response?.value?.location?.latitude ? response?.value?.location?.latitude : 0),
+      lng: parseInt(response?.value?.location?.longitude ? response?.value?.location?.longitude : 0),
       location_type: "ROOFTOP"
     }
   }

@@ -44,11 +44,14 @@ export const useProjectStore = defineStore('project', () => {
 
     const getProjectById = (id: any) => {
         return new Promise(async (resolve, reject) => {
+            loadingProjectState.value = true
             myFetch('/v2/projects/' + id, { method: "GET", })
                 .then(res => {
                     resolve(res)
                 }).catch(() => {
                     reject()
+                }).finally(() => {
+                    loadingProjectState.value = false
                 })
         })
     }
@@ -113,15 +116,16 @@ export const useProjectStore = defineStore('project', () => {
         })
     }
 
-    return { 
-        addProject, 
-        getProjects, 
-        loadingProject, 
-        projects, 
-        getProjectById, 
-        updateProjectDescription, 
-        getCommentsByProjectId, 
-        addComment, 
-        getTeamsByClientId, 
-        getProjectsByOrgId }
+    return {
+        addProject,
+        getProjects,
+        loadingProject,
+        projects,
+        getProjectById,
+        updateProjectDescription,
+        getCommentsByProjectId,
+        addComment,
+        getTeamsByClientId,
+        getProjectsByOrgId
+    }
 })

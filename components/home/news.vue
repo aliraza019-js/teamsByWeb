@@ -5,7 +5,7 @@ v-row(class="overflow-auto h-100")
     //- :to="localePath(`/d/project/project/${item.data._id}/general`)"
     //- @click="navigateToUrl(item)"
     v-col(cols="12")
-        v-col(v-if="!dynamicComponent"  cols="12" v-for="item , index in newsData" :key="index" @click="navigateToUrl(item)" class="cursor-pointer" )
+        v-col(v-if="!dynamicComponentData"  cols="12" v-for="item , index in newsData" :key="index" @click="item.type == 'project' ? navigateToUrl(item) : ''" :class="{'cursor-pointer' : item.type == 'project'}" )
             CommonCard
                 template(#title)
                     div(class="d-flex flex-column")
@@ -33,13 +33,13 @@ v-row(class="overflow-auto h-100")
                                     p(class="text-capitalize") {{item.body?.en}} 
                                 p(class="text-justify") {{ item.data?.desc }} 
                             v-col(cols="12" class="d-flex justify-space-between")
-                                div(class="d-flex align-center" v-ripple="{ class: 'custom-ripple' }" @click.stop="loadDynamicComponent(item.data?._id)")
+                                div(class="d-flex align-center" v-ripple="{ class: 'custom-ripple' }" @click.stop="loadDynamicComponent(item.data?._id , item.title?.en)")
                                     v-icon(color="primaryTextPale" size="large" icon="mdi-message-reply-text")
                                     p(class="font-weight-bold cursor-pointer ml-2") {{ item.commentsCount? item.commentsCount: '0'  }} comments
                                 div(class="d-flex align-center" v-ripple="{ class: 'custom-ripple' }" @click.stop="addLiked(item)")
                                     v-icon(color="primaryTextPale" :class="{'liked': item.liked}" class="like-icon" size="large" :icon="item.userLiked? 'mdi-thumb-up':'mdi-thumb-up-outline'")
                                     p(class="font-weight-bold cursor-pointer ml-2") {{ item.likesCount ? item.likesCount+'': '0'}} likes
-        component(:is="dynamicComponent")
+        component(:is="componentStack.length > 0 ? componentStack[componentStack.length - 1] : null" @go-back="goBackToPreviousComponent")
 </template>
         
 <script setup>
@@ -56,11 +56,28 @@ const newsData = ref([]);
 const loading = ref(false)
 const relationalId = ref("")
 
-const dynamicComponent = ref(null);
+const emit = defineEmits(
+    ['comments-data', 'get-back-previous-state']
+)
 
-const loadDynamicComponent = (id) => {
+
+const props = defineProps({
+    dynamicComponentValue: {
+        type: Boolean,
+        default: false
+    }
+});
+
+
+const dynamicComponentData = ref(false);
+const componentStack = ref([]);
+
+const loadDynamicComponent = (id, title) => {
+    console.log('DynamicComponent', DynamicComponent)
+    emit('comments-data', title)
     relationalId.value = id
-    dynamicComponent.value = DynamicComponent;
+    componentStack.value.push(DynamicComponent);
+    dynamicComponentData.value = true;
 };
 
 const handleImageError = (event) => {
@@ -72,12 +89,26 @@ const handleImageError = (event) => {
 
 provide('relationalId', relationalId);
 
+const goBackToPreviousComponent = () => {
+    console.log('goBackToPreviousComponent hit')
+    componentStack.value.pop()
+    emit('get-back-previous-state', true)
+};
+
+watchEffect(() => {
+    dynamicComponentData.value = props.dynamicComponentValue;
+
+    if (!dynamicComponentData.value) {
+        console.log('value pop');
+        goBackToPreviousComponent();
+    }
+});
+
 
 const fetchNews = async () => {
     news.value = await getAllnews(99, 0)
     newsData.value = news.value.data;
 }
-
 
 
 onMounted(async () => {
@@ -93,6 +124,7 @@ onMounted(async () => {
 const navigateToComments = (id) => {
     const router = useRouter();
     // console.log('id navigateToComments', id)
+
     const relationalId = id;
     const path = `/d/project/project/${relationalId}/comment`;
 
@@ -109,13 +141,14 @@ const navigateToUrl = (item) => {
         const projectId = item.data?._id;
         const path = `/d/project/project/${projectId}/general`;
         router.push({ path });
-    } else if (item.type == 'training') {
-        const path = `/account/trainings`;
-        router.push({ path });
-    } else {
-        const path = `/account/certifications`;
-        router.push({ path });
     }
+    // else if (item.type == 'training') {
+    //     const path = `/account/trainings`;
+    //     router.push({ path });
+    // } else {
+    //     const path = `/account/certifications`;
+    //     router.push({ path });
+    // }
 
 };
 
@@ -194,10 +227,6 @@ const formatDateForNews = (dateString) => {
     const [day, month, year] = new Date(dateString).toLocaleDateString(locale, options).split('/');
     return `${parseInt(day)}.${parseInt(month)}.${year}`;
 };
-
-definePageMeta({
-    activeRoute: 'team'
-})
 
 </script>
         

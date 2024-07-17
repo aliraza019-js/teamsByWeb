@@ -1,19 +1,41 @@
 <template lang="pug">
 v-card(width="100%" flat)
-  v-toolbar(:title="$t('home.home')" flat color="transparent")
-    .underline
-    v-btn(icon)
-      v-icon mdi-menu
+  div(class="d-flex align-center justify-space-between")
+    v-btn(v-if="showTitle" icon elevation="0" class="ml-0 float-left" @click="dynamicComponentData = false")
+      v-icon mdi-arrow-left
+    v-toolbar(:title="showTitle ? title :$t('home.home')" flat color="transparent")
+      .underline
+    //- v-btn(icon)
+    //-   v-icon mdi-menu
 
   v-card-text
-    news
+    HomeNews(@comments-data="getCommentsTitle" :dynamicComponentValue="dynamicComponentData" @get-back-previous-state="goBackToPreviousSate")
 </template>
 
 <script setup>
-import news from './home/homelisting/news.vue';
 definePageMeta({
   activeRoute: 'home'
 });
+
+const dynamicComponentData = ref(false)
+
+const title = ref('')
+const showTitle = ref(false)
+const dynamicComponent = ref(false)
+
+const getCommentsTitle = (event) => {
+  title.value = event
+  showTitle.value = true
+  dynamicComponentData.value = true
+  // console.log('responseData', event)
+
+}
+
+const goBackToPreviousSate = () => {
+  title.value = ''
+  showTitle.value = false
+  dynamicComponentData.value = false
+}
 
 </script>
 

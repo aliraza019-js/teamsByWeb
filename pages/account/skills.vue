@@ -3,8 +3,6 @@ v-row(class="overflow-auto h-100")
   v-col(cols="12" class="d-flex justify-end pb-0")
     v-btn(variant="text" prepend-icon="mdi-plus" density="compact" @click="dialogSkills = true") {{$t('skills.add')}}
   v-col(cols="12")
-    v-row
-      v-col(cols="12") {{ loadingUserState }}
     v-row(class="overflow-auto scroll-container" v-if="user")
       v-col(cols="12" v-for="(item, index) in user.skills" :key="index")
         CommonCard
@@ -35,7 +33,7 @@ definePageMeta({
   activeRoute: 'account'
 });
 
-const {user, loadingUserState, updateUser, updateUserInfo} = useUserStore()
+const {user, updateUser, updateUserInfo} = useUserStore()
 
 const dialogSkills = ref(false)
 const dialogConfirmDelete = ref(false)

@@ -13,7 +13,7 @@ v-row(style="height: 500px" class="overflow-auto comment-container")
           div(class="d-flex gap-10")
             v-icon(style="color: primaryTextPale") mdi-thumb-up-outline
             span(class="font-weight-bold") {{ data ? data.likesCount : '0'}} likes
-  ProjectsCommentForm(:persistent="true" min-height="500" width="500" :projectId="route.params.id"  :isCommentDialog="dialogAddComment" @update:comments="fetchprojectComments" @update:isCommentDialog="closeDialog")
+  ProjectsCommentForm(:persistent="true" minHeight="500" width="500" :projectId="route.params.id"  :isCommentDialog="dialogAddComment" @update:comments="fetchprojectComments" @update:isCommentDialog="closeDialog")
 </template>
 
 <script setup>

@@ -28,23 +28,23 @@ definePageMeta({
 const tabRoutes = ref(
   [
     {
-      label: "General",
+      label: "person.general",
       link: `/d/team/person/${route.params.id}/general`
     },
     {
-      label: "Skills",
+      label: "person.skills",
       link: `/d/team/person/${route.params.id}/skills`
     },
     {
-      label: "Projects",
+      label: "person.projects",
       link: `/d/team/person/${route.params.id}/projects`
     },
     {
-      label: "Trainings",
+      label: "person.trainings",
       link: `/d/team/person/${route.params.id}/trainings`
     },
     {
-      label: "Certifications",
+      label: "person.certifications",
       link: `/d/team/person/${route.params.id}/certifications`
     },
   ]

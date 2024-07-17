@@ -5,9 +5,9 @@
     "or": "ODER"
   },
   "base": {
-    "areYouSureToDelete": "Are you sure you want to delete this?",
-    "cancel": "Cancel",
-    "confirm": "Confirm"
+    "areYouSureToDelete": "Bist du sicher, dass du dies löschen möchtest?",
+    "cancel": "Abbrechen",
+    "confirm": "Bestätigen"
   },
   "login": {
     "invalid": "Ungültige Zugangsdaten",
@@ -54,40 +54,47 @@
   "team": {
     "teams": "Teams",
     "colleagues": "Kollegen",
-    "payments": "payments"
+    "payments": "Zahlungen"
   },
   "billing": {
-    "billingInfo": "Billing Information",
-    "company": "Company",
-    "email": "Email",
-    "street": "street",
-    "zip": "Zip",
-    "city": "City",
-    "countryCode": "Country Code",
-    "firstName": "First Name",
-    "lastName": "Last Name"
+    "billingInfo": "Rechnungsinformationen",
+    "company": "Unternehmen",
+    "email": "E-Mail",
+    "street": "Straße",
+    "zip": "PLZ",
+    "city": "Stadt",
+    "countryCode": "Ländercode",
+    "firstName": "Vorname",
+    "lastName": "Nachname"
+  },
+  "person": {
+    "general": "Allgemein",
+    "skills": "Fähigkeiten",
+    "projects": "Projekte",
+    "trainings": "Trainings",
+    "certifications": "Zertifizierungen"
   },
   "projects": {
     "projects": "Projekte",
     "clientsName": "Kunden",
     "addComment": "Einen Kommentar hinzufügen",
     "aboutProject": "Über Projekte",
-    "addLocation": "Add Location",
+    "addLocation": "Ort hinzufügen",
     "clients": {
-      "about": "About Client",
-      "contactInfo": "Contact Information",
-      "location": "Location",
-      "Social": "Social",
-      "group": "Group"
+      "about": "Über den Kunden",
+      "contactInfo": "Kontaktinformationen",
+      "location": "Ort",
+      "Social": "Soziales",
+      "group": "Gruppe"
     },
     "location": {
-      "address": "Street Address",
-      "street": "Street No",
-      "city": "City",
-      "zip": "Zip Code",
-      "ChooseOnMap": "Choose on map",
-      "country": "country",
-      "currentLocation": "Use your current Location"
+      "address": "Straßenadresse",
+      "street": "Straße Nr.",
+      "city": "Stadt",
+      "zip": "PLZ",
+      "ChooseOnMap": "Auf Karte auswählen",
+      "country": "Land",
+      "currentLocation": "Aktuellen Standort verwenden"
     }
   },
   "projectdetails": {
@@ -95,9 +102,9 @@
     "teams": "Teams",
     "comment": "Kommentar",
     "projects": "Projekte",
-    "projectOverview": "overzicht",
+    "projectOverview": "Übersicht",
     "Organization": "Organisation",
-    "skills": "Skills"
+    "skills": "Fähigkeiten"
   },
   "search": {
     "search": "Suche"
@@ -106,7 +113,7 @@
     "account": "Account",
     "teams": "Teams",
     "general": "Allgemein",
-    "skills": "Skills",
+    "skills": "Fähigkeiten",
     "projects": "Projekte",
     "trainings": "Trainings",
     "certifications": "Zertifizierungen",
@@ -129,7 +136,7 @@
     "supportedCountries": "Unterstützte Länder",
     "industries": "Branchen",
     "industry": "Branche",
-    "skills": "Skills",
+    "skills": "Fähigkeiten",
     "skillCats": "Skill-Kategorien",
     "skillCat": "Skill-Kategorie",
     "code": "Code",
@@ -144,7 +151,7 @@
     "editSkillCat": "Skill-Kategorie editieren",
     "addSkill": "Neue Fähigkeit",
     "editSkill": "Fähigkeit editieren",
-    "filterSkills": "Skills filtern ...",
+    "filterSkills": "Fähigkeiten filtern ...",
     "addHelp": "Hilfe hinzufügen",
     "editHelp": "Hilfe editieren",
     "master": "Stammdaten",
@@ -160,22 +167,22 @@
   },
   "personContact": {
     "title": "Kontakt Informationen",
-    "social": "Social Informationen",
+    "social": "Soziale Informationen",
     "existingAccount2": "Hier einloggen"
   },
   "home": {
-    "home": "Home",
+    "home": "Start",
     "team": "Team",
     "projects": "Projekte",
     "search": "Suche",
-    "account": "Konte",
+    "account": "Konto",
     "setting": "Einstellung",
     "logOut": "Abmelden"
   },
   "init": {
-    "profileSetup": "Profile Einrichten",
-    "pleaseComplete": "Bitte ergänze deine Profil-Informationen",
-    "teamSetup": "Einrichtung Team",
+    "profileSetup": "Profil einrichten",
+    "pleaseComplete": "Bitte vervollständige deine Profilinformationen",
+    "teamSetup": "Team einrichten",
     "youAreNot": "Bisher bist du keinem Team zugeordnet. Erstelle ein neues Team oder schließe dich einem an.",
     "createNew": "Erstelle ein neues Team",
     "useThisToCreate": "Nutze diesen Link, um einen neuen Mandanten zu erstellen. Im Anschluss kannst du Teams hinzufügen und Kollegen einladen.",
@@ -185,12 +192,12 @@
     "tenantDesc1": "Kann frei vergeben werden, in der Regel der Name des Unternehmens oder der Unternehmensgruppe.",
     "tenantTeams": "Teams",
     "tenantDesc2": "Teams helfen dir, deine Organisation zu managen. Du kannst auch später Teams hinzufügen oder ändern.",
-    "tenantSkills": "Skills",
-    "tenantSkillsTemplate": "Skills Vorlagen",
-    "tenantDesc3": "Skills bilden hier eine unternehmensweite Struktur von Wissen und Erfahrung. Du kannst hier eine Vorlage wählen oder später Skills hinzufügen oder ändern.",
+    "tenantSkills": "Fähigkeiten",
+    "tenantSkillsTemplate": "Fähigkeiten Vorlagen",
+    "tenantDesc3": "Fähigkeiten bilden hier eine unternehmensweite Struktur von Wissen und Erfahrung. Du kannst hier eine Vorlage wählen oder später Fähigkeiten hinzufügen oder ändern.",
     "tenantDone": "Fertig",
     "tenantDesc4": "Sehr gut, du bist fertig. Lade als nächstes Kollegen ein, die in deiner Organisation arbeiten.",
-    "teamName": "Team name",
+    "teamName": "Teamname",
     "skipForNow": "Überspringen"
   },
   "forms": {
@@ -198,14 +205,14 @@
     "familyName": "Nachname",
     "password": "Passwort",
     "passwordRepeat": "Passwort wiederholen",
-    "next": "weiter",
-    "finish": "abschließen",
-    "save": "speichern",
-    "cancel": "abbrechen",
-    "back": "zurück",
+    "next": "Weiter",
+    "finish": "Abschließen",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "back": "Zurück",
     "success": "Erfolgreich übertragen",
-    "required": "Pfichtfeld",
-    "noValidMail": "Keine valide Mail-Adresse",
+    "required": "Pflichtfeld",
+    "noValidMail": "Keine valide E-Mail-Adresse",
     "passwordMatch": "Passwort stimmt nicht überein",
     "reallyDelete": "Wirklich löschen? Dies kann nicht rückgängig gemacht werden.",
     "warning": "Achtung",
@@ -218,24 +225,24 @@
     "type": "Typ",
     "value": "Wert",
     "privacy": "Sichtbarkeit",
-    "editContact": "Eintrag editieren",
+    "editContact": "Eintrag bearbeiten",
     "newContact": "Neuer Eintrag"
   },
   "certifications": {
     "addCertification": "Zertifikat hinzufügen",
-    "edit": "Edit Certification",
-    "certificationAssociation": "Certification Association",
-    "comments": "Comments",
-    "likes": "Likes",
-    "date": "Date"
+    "edit": "Zertifikat bearbeiten",
+    "certificationAssociation": "Zertifizierungsvereinigung",
+    "comments": "Kommentare",
+    "likes": "Gefällt mir",
+    "date": "Datum"
   },
   "trainings": {
     "title": "Trainings",
-    "add": "Add Training",
-    "edit": "Edit Training",
-    "dateFrom": "Date From",
-    "dateTo": "Date To",
-    "provider": "Provider",
-    "place": "Place"
+    "add": "Training hinzufügen",
+    "edit": "Training bearbeiten",
+    "dateFrom": "Datum Von",
+    "dateTo": "Datum Bis",
+    "provider": "Anbieter",
+    "place": "Ort"
   }
 }

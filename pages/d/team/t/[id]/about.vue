@@ -40,7 +40,7 @@ v-row(class="overflow-auto h-100 scroll-container")
         span(class="text-secondary d-flex align-center" :class="{'cursor-pointer' : response.client}" @click="response.client && redirectUrl(response.client?._id)") {{ $t('projects.clients.group') }}: {{response.client?.name}}
         div(class="d-flex align-center")
       template(#body)
-        v-img(:src="response.client?.profileImage ? response.client?.profileImage?.url : 'https://img.team-stage.com/placeholder/new/tenant1_IzzN5idxS.webp'" width="100%" height="300px")
+        v-img(:src="response.client?.profileImage ? imageSource : imageUrl" @error="handleImageError" width="100%" height="300px")
   TeamsEditAboutCustomer(:persistent="true" :team="response" @show-snack-bar="showSnackBar" @refresh="refresh" min-height="500" width="500" :isDialogVisible="editAbout" @update:isDialogVisible="(value) => editAbout = false")
   TeamsCustomerContactForm(:persistent="true" :team="response" @show-snack-bar="showSnackBar" @refresh="refresh" min-height="500" width="500" :isDialogVisible="editContact" @update:isDialogVisible="(value) => editContact = false")
   TeamsCustomerSocialForm(:persistent="true" :team="response" @show-snack-bar="showSnackBar" @refresh="refresh" min-height="500" width="500" :isDialogVisible="editSocial" @update:isDialogVisible="(value) => editSocial = false")
@@ -48,19 +48,26 @@ v-row(class="overflow-auto h-100 scroll-container")
 </template>
   
 <script setup>
+import { useClientStore } from "~/stores/clients";
 import { useTeamsStore } from '~/stores/teams'
+
 const response = ref({});
 const route = useRoute()
 const { getTeamsById } = useTeamsStore()
+const { setRouteId } = useClientStore()
 
 const fetchTeams = async () => {
   response.value = await getTeamsById(route.params.id)
-
 }
+
+const imageUrl = ref('https://img.team-stage.com/placeholder/new/tenant1_IzzN5idxS.webp')
+const imageSource = ref('')
 
 onMounted(async () => {
   await fetchTeams()
+  imageSource.value = response.value.client?.profileImage?.url
 })
+
 
 definePageMeta({
   activeRoute: 'team'
@@ -69,6 +76,10 @@ definePageMeta({
 const emit = defineEmits(
   ['update:isDialogVisible', 'refresh', 'show-snack-bar']
 )
+
+const handleImageError = () => {
+  imageSource.value = imageUrl.value
+};
 
 
 const editAbout = ref(false);
@@ -86,12 +97,18 @@ const snackbarSuccess = ref(false)
  */
 const redirectUrl = (id) => {
   const router = useRouter();
-  // console.log('id navigateToProjectComments', id)
-  // /d/project/org/64298b2fc44e28b2fe4f1c29/general
+
   const clientId = id;
   const path = `/d/client/${clientId}/general`;
+  setRouteId(router.currentRoute.value.params?.id)
 
-  router.replace({ path });
+  router.push({
+    path: path,
+    params: {
+      id: clientId,
+      RouteId: router.currentRoute.value.params?.id
+    }
+  });
 };
 
 /**
@@ -154,7 +171,7 @@ const refresh = () => {
   emit('refresh');
   editAbout.value = false;
   editContact.value = false,
-  editSocial.value = false
+    editSocial.value = false
 };
 
 </script>

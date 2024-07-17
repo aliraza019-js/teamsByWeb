@@ -1,6 +1,9 @@
 import { defineStore } from 'pinia';
 
 export const useClientStore = defineStore('client', () => {
+    const state = reactive({
+        previousRouteIdData: null,
+    });
 
 
 
@@ -40,9 +43,18 @@ export const useClientStore = defineStore('client', () => {
         })
     }
 
+    const setRouteId = async (previousRouteId: any) => {
+        state.previousRouteIdData = previousRouteId;
+        console.log('previousRouteIdData', state.previousRouteIdData)
+    }
+
+    const getPreviousRouteId = () => {
+        return state.previousRouteIdData;
+    };
 
 
 
 
-    return { getClientsList, getClientById, updateClient }
+
+    return { getClientsList, getClientById, updateClient, setRouteId, getPreviousRouteId }
 })

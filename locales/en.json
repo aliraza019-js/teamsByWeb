@@ -197,6 +197,13 @@
     "visibility": "Visibility",
     "value": "Value"
   },
+  "person": {
+    "general": "General",
+    "skills": "Skills",
+    "projects": "Projects",
+    "trainings": "Trainings",
+    "certifications": "Certifications"
+  },
   "init": {
     "profileSetup": "Profile SetUp",
     "pleaseComplete": "Please complete your basic profile information",

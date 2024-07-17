@@ -21,7 +21,7 @@ definePageMeta({
 const route = useRoute();
 const title = ref('test');
 const projects = ref(null)
-const { getProjectById } = useProjectStore()
+const { getProjectById , loadingProject } = useProjectStore()
 
 const tabRoutes = ref(
   [
