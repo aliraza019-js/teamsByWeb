@@ -20,19 +20,19 @@ v-app
         v-icon mdi-menu
   //- main
   v-main
-    v-container.d-flex.flex-row
-      .d-none.d-md-flex
+    v-container.d-flex.flex-row.layout-container-team-stage
+      .d-none.d-md-flex.layout-navbar-container
         LayoutMainNav.mr-5(:nav-items="navItems")
       slot(v-if="auth.isLoggedIn")
 
-  LayoutFooterNav.d-flex.d-md-none(:navItems="navItems")
+  LayoutFooterNav.d-flex.d-lg-none.footer-layout-mobile(:navItems="navItems")
   //- footer
   v-footer.d-none.d-md-flex.my-footer(height="45px")
     v-container
       .d-flex.flex-row
         span.text-caption copyright &copy; TeamStage {{new Date().getFullYear()}}
-</template>
-
+  </template>
+  
 <script setup>
 // imports
 import { useUserStore } from '~/stores/user'
@@ -67,7 +67,7 @@ onMounted(async () => {
 });
 
 </script>
-
+  
 <style lang="scss" scoped>
 .app-bar {
   background-image: linear-gradient($secondary, $primary);
@@ -78,6 +78,22 @@ onMounted(async () => {
 .v-main {
   padding-bottom: 0;
   padding-top: 64px;
+}
+
+@media (min-width: 1030px) and (max-width: 1279px) {
+  .v-container.layout-container-team-stage {
+    max-width: 1250px !important;
+  }
+
+  .footer-layout-mobile {
+    display: none !important;
+  }
+}
+
+@media (min-width: 960px) and (max-width: 1029px) {
+  .layout-navbar-container {
+    display: none !important;
+  }
 }
 
 .my-footer {
